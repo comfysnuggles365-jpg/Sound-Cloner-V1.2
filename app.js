@@ -2895,10 +2895,21 @@ function setupEventListeners() {
   
   // Paste prompt
   document.getElementById('pastePromptBtn').addEventListener('click', async () => {
+    const input = document.getElementById('style-prompt');
+    input.focus();
     try {
-      const text = await clipRead();
-      document.getElementById('style-prompt').value = text;
-    } catch(e) { alert('Could not read clipboard. Paste manually into the style prompt box.'); }
+      // This will trigger browser permission prompt on first use
+      const text = await navigator.clipboard.readText();
+      if (text) {
+        input.value = text;
+        input.focus();
+        return;
+      }
+    } catch(e) {
+      // Permission denied or not available — show hint
+      input.placeholder = '⌨ Press Ctrl+V (or Cmd+V) to paste...';
+      setTimeout(() => { input.placeholder = 'Paste a style prompt — or choose an artist above'; }, 3000);
+    }
   });
   
   // Generate
