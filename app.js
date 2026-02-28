@@ -3624,8 +3624,6 @@ const RP = {
 
     // Export buttons
     document.getElementById('rp-export-dk').addEventListener('click', () => this.exportForDistroKid());
-    document.getElementById('rp-copy-meta').addEventListener('click', () => this.copyMetadata());
-    document.getElementById('rp-download-lyrics').addEventListener('click', () => this.downloadLyrics());
     document.getElementById('rp-download-json').addEventListener('click', () => this.downloadJSON());
   },
 
