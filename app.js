@@ -1282,6 +1282,7 @@ function renderArtists() {
       <div class="card-moods">${a.mood.map(m => `<span class="mood-tag">${m}</span>`).join('')}</div>
       <div class="card-peek">${a.blueprint.substring(0, 120)}${a.blueprint.length > 120 ? '…' : ''}</div>
       <button class="copy-btn" data-idx="${globalIdx}">📋 Copy Style Prompt</button>
+      <button class="copy-btn artist-batch-btn" data-idx="${globalIdx}" style="background:var(--bg3);color:var(--cyan);border-color:var(--cyan)33;margin-top:4px">⚡ Batch</button>
       <div class="blueprint-wrap ${isExpanded ? 'open' : ''}">
         <div class="blueprint-label">Suno Style Blueprint</div>
         <div class="blueprint-text">${a.blueprint}</div>
@@ -1305,6 +1306,18 @@ function renderArtists() {
     btn.addEventListener('click', () => {
       const a = ARTISTS[parseInt(btn.dataset.idx)];
       toggleFavorite(a.name, btn);
+    });
+  });
+  grid.querySelectorAll('.artist-batch-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const a = ARTISTS[parseInt(btn.dataset.idx)];
+      document.getElementById('style-prompt').value = a.blueprint;
+      switchTab('batch');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Sent!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1200);
     });
   });
   grid.querySelectorAll('.expand-btn').forEach(btn => {
@@ -1563,7 +1576,7 @@ function copyToClipboard(text, btn, statusMsg, historyEntry = null) {
   // Try modern clipboard API first, fall back to execCommand
   const doCopy = () => {
     if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-      return clipCopy(text);
+      return navigator.clipboard.writeText(text);
     }
     // Fallback for HTTP or older browsers
     return new Promise((resolve, reject) => {
@@ -1624,7 +1637,7 @@ function copyToClipboard(text, btn, statusMsg, historyEntry = null) {
 // Simple clipboard write with fallback
 function clipCopy(text) {
   if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-    return clipCopy(text);
+    return navigator.clipboard.writeText(text);
   }
   return new Promise((resolve, reject) => {
     try {
