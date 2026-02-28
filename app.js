@@ -1712,6 +1712,7 @@ function switchTab(tab) {
   const isFavorites = tab === 'favorites';
   const isGuide     = tab === 'guide';
   const isAnalyse   = tab === 'analyse';
+  const isRelease   = tab === 'release';
   
   // Search bar visible for both artists and blueprints tabs
   document.getElementById('search-bar').classList.toggle('visible', isArtists || isGenres);
@@ -1726,8 +1727,10 @@ function switchTab(tab) {
   document.getElementById('favorites-panel').classList.toggle('visible', isFavorites);
   document.getElementById('guide-panel').classList.toggle('visible', isGuide);
   document.getElementById('analyse-panel').classList.toggle('visible', isAnalyse);
+  document.getElementById('release-panel').classList.toggle('visible', isRelease);
 
   if (isAnalyse) checkAnalyseKey();
+  if (isRelease) rpRefresh();
 
   // Reset genre filter and rebuild sidebar for the new tab
   activeGenre = 'All';
@@ -3538,4 +3541,407 @@ async function handleAnalyseSong({ geminiApiKey, audioBase64, mimeType, fileName
   }
 
   throw new Error(`Analysis failed — no working Gemini model. Last error: ${lastError}`);
+}
+
+// ============================================================
+// RELEASE PLANNER TAB
+// ============================================================
+
+const RP = {
+  tracks: [],
+  settings: JSON.parse(localStorage.getItem('rp_settings') || '{}'),
+
+  init() {
+    // Load saved data
+    this.tracks = JSON.parse(localStorage.getItem('rp_tracks') || '[]');
+    this.settings = JSON.parse(localStorage.getItem('rp_settings') || '{}');
+
+    // Populate settings fields
+    if (this.settings.artist) document.getElementById('rp-artist').value = this.settings.artist;
+    if (this.settings.label) document.getElementById('rp-label').value = this.settings.label;
+    if (this.settings.language) document.getElementById('rp-language').value = this.settings.language;
+    if (this.settings.releaseDate) document.getElementById('rp-release-date').value = this.settings.releaseDate;
+    if (this.settings.songwriter) document.getElementById('rp-songwriter').value = this.settings.songwriter;
+    if (this.settings.albumTitle) document.getElementById('rp-album-title').value = this.settings.albumTitle;
+
+    // Set default release date to next Friday
+    if (!this.settings.releaseDate) {
+      const d = new Date();
+      d.setDate(d.getDate() + ((5 - d.getDay() + 7) % 7 || 7) + 7); // next-next Friday
+      document.getElementById('rp-release-date').value = d.toISOString().split('T')[0];
+    }
+
+    // Bind events
+    this.bindEvents();
+    this.render();
+  },
+
+  bindEvents() {
+    // Settings auto-save
+    ['rp-artist','rp-label','rp-language','rp-release-date','rp-songwriter','rp-album-title'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => this.saveSettings());
+      document.getElementById(id).addEventListener('change', () => this.saveSettings());
+    });
+
+    // Upload files
+    document.getElementById('rp-add-files').addEventListener('click', () => {
+      document.getElementById('rp-file-input').click();
+    });
+    document.getElementById('rp-file-input').addEventListener('change', (e) => {
+      this.addFiles(Array.from(e.target.files));
+      e.target.value = '';
+    });
+
+    // Add from batch
+    document.getElementById('rp-add-from-batch').addEventListener('click', () => {
+      this.addFromBatch();
+    });
+
+    // Clear all
+    document.getElementById('rp-clear-all').addEventListener('click', () => {
+      if (this.tracks.length === 0) return;
+      if (confirm('Remove all tracks from the release?')) {
+        this.tracks = [];
+        this.save();
+        this.render();
+      }
+    });
+
+    // Release type toggle
+    document.querySelectorAll('.rp-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.rp-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Export buttons
+    document.getElementById('rp-export-dk').addEventListener('click', () => this.exportForDistroKid());
+    document.getElementById('rp-copy-meta').addEventListener('click', () => this.copyMetadata());
+    document.getElementById('rp-download-lyrics').addEventListener('click', () => this.downloadLyrics());
+    document.getElementById('rp-download-json').addEventListener('click', () => this.downloadJSON());
+  },
+
+  saveSettings() {
+    this.settings = {
+      artist: document.getElementById('rp-artist').value,
+      label: document.getElementById('rp-label').value,
+      language: document.getElementById('rp-language').value,
+      releaseDate: document.getElementById('rp-release-date').value,
+      songwriter: document.getElementById('rp-songwriter').value,
+      albumTitle: document.getElementById('rp-album-title').value,
+    };
+    localStorage.setItem('rp_settings', JSON.stringify(this.settings));
+    this.updateAutoFields();
+    this.updateTopBar();
+  },
+
+  save() {
+    // Save tracks (without audio file blobs — those are in memory only)
+    const saveable = this.tracks.map(t => ({
+      title: t.title, genre: t.genre, bpm: t.bpm, explicit: t.explicit,
+      lyrics: t.lyrics, duration: t.duration, audioFileName: t.audioFileName,
+      audioFileSize: t.audioFileSize, audioFileType: t.audioFileType, source: t.source
+    }));
+    localStorage.setItem('rp_tracks', JSON.stringify(saveable));
+  },
+
+  addTrack(track) {
+    this.tracks.push(track);
+    this.save();
+    this.render();
+  },
+
+  removeTrack(index) {
+    this.tracks.splice(index, 1);
+    this.save();
+    this.render();
+  },
+
+  addFiles(files) {
+    files.forEach(file => {
+      const ext = file.name.split('.').pop().toUpperCase();
+      const name = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+      const sizeMB = (file.size / 1024 / 1024).toFixed(1);
+
+      const track = {
+        title: name,
+        genre: '',
+        bpm: null,
+        explicit: false,
+        lyrics: '',
+        duration: null,
+        audioFileName: file.name,
+        audioFileSize: sizeMB + ' MB',
+        audioFileType: ext.toLowerCase(),
+        audioFile: file, // Keep reference in memory
+        source: 'upload'
+      };
+
+      // Get duration
+      const audio = new Audio();
+      audio.src = URL.createObjectURL(file);
+      audio.addEventListener('loadedmetadata', () => {
+        const min = Math.floor(audio.duration / 60);
+        const sec = Math.floor(audio.duration % 60);
+        track.duration = min + ':' + String(sec).padStart(2, '0');
+        URL.revokeObjectURL(audio.src);
+        this.save();
+        this.render();
+      });
+
+      this.tracks.push(track);
+    });
+    this.save();
+    this.render();
+    this.showToast('✓ ' + files.length + ' file(s) added');
+  },
+
+  addFromBatch() {
+    // Pull the last generated songs from batch state
+    const batchOutput = document.getElementById('batch-output');
+    if (!batchOutput) { this.showToast('⚠ Generate songs in Batch tab first'); return; }
+
+    const songCards = batchOutput.querySelectorAll('.song-card');
+    if (!songCards.length) { this.showToast('⚠ No songs in Batch tab — generate some first'); return; }
+
+    let added = 0;
+    songCards.forEach(card => {
+      const titleEl = card.querySelector('.song-title, h3, strong');
+      const title = titleEl ? titleEl.textContent.trim() : 'Untitled';
+
+      // Check if already added
+      if (this.tracks.some(t => t.title === title)) return;
+
+      // Try to extract genre and BPM from the card
+      const cardText = card.textContent;
+      const bpmMatch = cardText.match(/(\d{2,3})\s*bpm/i);
+      const bpm = bpmMatch ? parseInt(bpmMatch[1]) : null;
+
+      // Get lyrics if available
+      let lyrics = '';
+      const lyricsEl = card.querySelector('.song-lyrics, pre, .lyrics-text');
+      if (lyricsEl) lyrics = lyricsEl.textContent.trim();
+
+      // Get style prompt for genre
+      let genre = '';
+      const styleEl = card.querySelector('.song-style, .style-prompt');
+      if (styleEl) genre = styleEl.textContent.trim().substring(0, 40);
+
+      this.tracks.push({
+        title, genre, bpm, explicit: false, lyrics, duration: null,
+        audioFileName: null, audioFileSize: null, audioFileType: null,
+        audioFile: null, source: 'batch'
+      });
+      added++;
+    });
+
+    this.save();
+    this.render();
+    this.showToast(added > 0 ? '✓ ' + added + ' songs added from Batch' : '⚠ Songs already in tracklist');
+  },
+
+  render() {
+    const list = document.getElementById('rp-tracklist');
+    const empty = document.getElementById('rp-empty');
+
+    if (this.tracks.length === 0) {
+      list.innerHTML = '';
+      list.appendChild(empty);
+      empty.style.display = 'block';
+    } else {
+      if (empty) empty.style.display = 'none';
+      list.innerHTML = this.tracks.map((t, i) => {
+        const num = String(i + 1).padStart(2, '0');
+        const hasFile = !!t.audioFileName;
+        const borderStyle = hasFile ? (t.audioFileType === 'wav' ? 'border-left:2px solid #f472b6' : 'border-left:2px solid #0088ff') : '';
+        return `<div class="rp-track-card" style="${borderStyle}" data-idx="${i}">
+          <span class="rp-track-num">${num}</span>
+          <button class="rp-track-remove" data-idx="${i}" title="Remove">✕</button>
+          <div class="rp-track-title">${t.title}</div>
+          <div class="rp-track-meta">
+            ${t.genre ? `<span class="rp-track-genre">${t.genre}</span>` : '<span style="color:var(--dim)">No genre</span>'}
+            ${t.bpm ? `<span class="rp-track-bpm">${t.bpm} BPM</span>` : ''}
+            <span class="${t.explicit ? 'rp-track-explicit' : 'rp-track-clean'}">${t.explicit ? 'E' : 'CLEAN'}</span>
+          </div>
+          ${hasFile ? `<div class="rp-track-file-info">
+            <span class="rp-track-file-badge ${t.audioFileType}">${t.audioFileType.toUpperCase()}</span>
+            <span class="rp-track-file-size">${t.audioFileSize}</span>
+            ${t.duration ? `<span class="rp-track-file-size">${t.duration}</span>` : ''}
+          </div>` : ''}
+        </div>`;
+      }).join('');
+
+      // Bind remove buttons
+      list.querySelectorAll('.rp-track-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(btn.dataset.idx);
+          this.removeTrack(idx);
+        });
+      });
+    }
+
+    this.updateTopBar();
+    this.updateAutoFields();
+    this.updateCompleteness();
+  },
+
+  updateTopBar() {
+    const count = this.tracks.length;
+    const type = count === 0 ? '—' : count === 1 ? 'Single' : count <= 6 ? 'EP · ' + count + ' Tracks' : 'Album · ' + count + ' Tracks';
+    document.getElementById('rp-type-badge').textContent = type;
+    document.getElementById('rp-track-count').textContent = count;
+    document.getElementById('rp-artist-display').textContent = this.settings.artist || '—';
+    const d = this.settings.releaseDate;
+    document.getElementById('rp-release-date-display').textContent = d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' }) : '—';
+  },
+
+  updateAutoFields() {
+    const artist = this.settings.artist || '—';
+    const year = new Date().getFullYear();
+    const genres = [...new Set(this.tracks.map(t => t.genre).filter(Boolean))];
+    const explicitCount = this.tracks.filter(t => t.explicit).length;
+    const durations = this.tracks.map(t => t.duration).filter(Boolean);
+
+    document.getElementById('rp-auto-genre').textContent = genres.length ? genres.slice(0, 3).join(', ') : '—';
+    document.getElementById('rp-auto-copyright').textContent = artist !== '—' ? `© ${year} ${artist}` : '—';
+    document.getElementById('rp-auto-explicit').textContent = this.tracks.length ?
+      (explicitCount > 0 ? `Yes (${explicitCount} of ${this.tracks.length})` : 'No — all clean') : '—';
+    document.getElementById('rp-auto-duration').textContent = durations.length ? durations.length + ' tracked' : '—';
+  },
+
+  updateCompleteness() {
+    let score = 0, total = 0;
+    const check = (val) => { total++; if (val) score++; };
+    check(this.settings.artist);
+    check(this.settings.albumTitle);
+    check(this.settings.releaseDate);
+    check(this.settings.songwriter);
+    check(this.tracks.length > 0);
+    this.tracks.forEach(t => {
+      check(t.title);
+      check(t.lyrics);
+      check(t.audioFileName);
+    });
+    const pct = total > 0 ? Math.round((score / total) * 100) : 0;
+    document.getElementById('rp-completeness-fill').style.width = pct + '%';
+    document.getElementById('rp-completeness-pct').textContent = pct + '%';
+  },
+
+  // ── Build payload for companion extension ──
+  buildPayload() {
+    const s = this.settings;
+    const year = new Date().getFullYear();
+    return {
+      artist: s.artist || '',
+      albumTitle: s.albumTitle || '',
+      label: s.label || 'Independent',
+      genre: [...new Set(this.tracks.map(t => t.genre).filter(Boolean))].join(', ') || '',
+      language: s.language || 'English',
+      releaseDate: s.releaseDate || '',
+      songwriter: s.songwriter || s.artist || '',
+      copyright: `© ${year} ${s.artist || ''}`,
+      soundRecording: `℗ ${year} ${s.artist || ''}`,
+      tracks: this.tracks.map((t, i) => ({
+        trackNumber: i + 1,
+        title: t.title || '',
+        explicit: !!t.explicit,
+        lyrics: t.lyrics || '',
+        genre: t.genre || '',
+        bpm: t.bpm || null,
+        duration: t.duration || null,
+        audioFileName: t.audioFileName || null,
+        songwriter: s.songwriter || s.artist || '',
+        isrc: null
+      })),
+      exportedAt: new Date().toISOString(),
+      source: 'Sound Cloner v1.2',
+      trackCount: this.tracks.length
+    };
+  },
+
+  // ── EXPORTS ──
+  async exportForDistroKid() {
+    const btn = document.getElementById('rp-export-dk');
+    const json = JSON.stringify(this.buildPayload(), null, 2);
+    try {
+      await navigator.clipboard.writeText(json);
+      btn.textContent = '✓ Copied to Clipboard!';
+      btn.style.background = '#00c851';
+      this.showToast('✓ Release data copied — paste into companion extension on DistroKid');
+    } catch(e) {
+      const ta = document.createElement('textarea');
+      ta.value = json; ta.style.position='fixed'; ta.style.left='-9999px';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = '✓ Copied!';
+      this.showToast('✓ Copied to clipboard');
+    }
+    setTimeout(() => { btn.textContent = '📦 Export for DistroKid'; btn.style.background = ''; }, 3000);
+  },
+
+  async copyMetadata() {
+    const btn = document.getElementById('rp-copy-meta');
+    const p = this.buildPayload();
+    let text = `═══ ${p.albumTitle.toUpperCase()} ═══\nArtist: ${p.artist}\nLabel: ${p.label}\nGenre: ${p.genre}\nLanguage: ${p.language}\nRelease: ${p.releaseDate}\n${p.copyright}\nTracks: ${p.trackCount}\n\n`;
+    p.tracks.forEach(t => {
+      text += `${String(t.trackNumber).padStart(2,'0')}. ${t.title} [${t.genre}]${t.bpm ? ' '+t.bpm+'BPM' : ''} ${t.explicit?'[EXPLICIT]':'[CLEAN]'}${t.duration?' ('+t.duration+')':''}\n`;
+    });
+    try { await navigator.clipboard.writeText(text); } catch(e) {
+      const ta = document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btn.textContent = '✓ Copied!';
+    this.showToast('✓ Metadata copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Metadata'; }, 2000);
+  },
+
+  downloadLyrics() {
+    const btn = document.getElementById('rp-download-lyrics');
+    const p = this.buildPayload();
+    let text = `${p.albumTitle} — Lyrics\nArtist: ${p.artist}\n${'═'.repeat(40)}\n\n`;
+    p.tracks.forEach(t => {
+      text += `── Track ${String(t.trackNumber).padStart(2,'0')}: ${t.title} ──\n`;
+      text += (t.lyrics || '[No lyrics yet]') + '\n\n';
+    });
+    const blob = new Blob([text], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (p.albumTitle || 'release').replace(/[^a-zA-Z0-9 ]/g, '') + '-Lyrics.txt';
+    a.click(); URL.revokeObjectURL(a.href);
+    btn.textContent = '✓ Downloaded!';
+    this.showToast('✓ Lyrics file downloaded');
+    setTimeout(() => { btn.textContent = '📄 Lyrics (.txt)'; }, 2000);
+  },
+
+  downloadJSON() {
+    const btn = document.getElementById('rp-download-json');
+    const json = JSON.stringify(this.buildPayload(), null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (this.settings.albumTitle || 'release').replace(/[^a-zA-Z0-9 ]/g, '') + '-distrokid.json';
+    a.click(); URL.revokeObjectURL(a.href);
+    btn.textContent = '✓ Downloaded!';
+    this.showToast('✓ JSON file saved — import into companion extension');
+    setTimeout(() => { btn.textContent = '💾 JSON File'; }, 2000);
+  },
+
+  showToast(text) {
+    const t = document.getElementById('rp-toast');
+    t.textContent = text;
+    t.style.opacity = '1';
+    t.style.transform = 'translateX(-50%) translateY(0)';
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 2500);
+  }
+};
+
+function rpRefresh() { RP.render(); }
+
+// Init Release Planner when DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => RP.init());
+} else {
+  RP.init();
 }
