@@ -736,6 +736,11 @@ body::before {
 .rp-tracklist::-webkit-scrollbar { width: 3px; }
 .rp-tracklist::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
 .rp-empty-state { text-align: center; padding: 30px 16px; color: var(--dim); font-size: 12px; }
+.rp-dropzone { border: 2px dashed var(--border); border-radius: 10px; margin: 8px; transition: all 0.2s; cursor: pointer; }
+.rp-dropzone:hover { border-color: var(--accent); background: rgba(0,229,204,0.03); }
+.rp-dropzone.dragover { border-color: var(--accent); background: rgba(0,229,204,0.08); transform: scale(1.01); }
+.rp-tracklist.dragover { background: rgba(0,229,204,0.04); }
+.rp-tracklist.dragover .rp-track-card { opacity: 0.6; }
 .rp-track-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; position: relative; animation: fadeSlideIn 0.2s ease-out; }
 .rp-track-card:hover { border-color: rgba(255,255,255,0.12); }
 @keyframes fadeSlideIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
@@ -775,6 +780,9 @@ body::before {
 .rp-add-btn { flex: 1; padding: 8px; background: linear-gradient(135deg, rgba(0,229,204,0.08), rgba(0,136,255,0.08)); border: 1px dashed rgba(0,229,204,0.25); border-radius: 7px; color: var(--accent); font-size: 10px; font-weight: 600; cursor: pointer; font-family: inherit; text-align: center; }
 .rp-add-btn:hover { background: linear-gradient(135deg, rgba(0,229,204,0.15), rgba(0,136,255,0.15)); }
 .rp-add-btn.rp-add-files { color: #0088ff; border-color: rgba(0,136,255,0.25); }
+.rp-clear-bar { padding: 6px 8px; border-top: 1px solid var(--border); }
+.rp-clear-btn { width: 100%; padding: 6px; background: transparent; border: 1px solid rgba(255,77,109,0.15); border-radius: 6px; color: var(--dim); font-size: 9px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.rp-clear-btn:hover { border-color: #ff4d6d; color: #ff4d6d; background: rgba(255,77,109,0.05); }
 .rp-fields { padding: 12px 0; display: flex; flex-direction: column; gap: 8px; }
 .rp-field { }
 .rp-field-row { display: flex; gap: 8px; }
@@ -1828,7 +1836,7 @@ body::before {
             </div>
           </div>
           <div class="rp-actions-top">
-            <button class="rp-btn rp-btn-sm" id="rp-clear-all" title="Clear all tracks">🗑</button>
+            <button class="rp-btn rp-btn-sm" id="rp-clear-fields" title="Clear all form fields">🧹 Clear Fields</button>
           </div>
         </div>
 
@@ -1845,16 +1853,19 @@ body::before {
               </div>
             </div>
             <div class="rp-tracklist" id="rp-tracklist">
-              <div class="rp-empty-state" id="rp-empty">
-                <div style="font-size:24px;margin-bottom:6px">📂</div>
-                <div>No tracks yet</div>
-                <div style="font-size:10px;color:var(--dim);margin-top:4px">Add songs from Batch tab or upload files</div>
+              <div class="rp-empty-state rp-dropzone" id="rp-empty">
+                <div style="font-size:28px;margin-bottom:8px">📂</div>
+                <div style="font-weight:600">Drop audio files or folders here</div>
+                <div style="font-size:10px;color:var(--dim);margin-top:4px">or use the buttons below · MP3, WAV, FLAC, M4A</div>
               </div>
             </div>
             <div class="rp-add-buttons">
               <button class="rp-add-btn" id="rp-add-from-batch">⚡ From Batch</button>
               <button class="rp-add-btn rp-add-files" id="rp-add-files">📂 Upload Files</button>
               <input type="file" id="rp-file-input" multiple accept=".mp3,.wav,.m4a,.flac,.ogg,.aiff" style="display:none">
+            </div>
+            <div class="rp-clear-bar">
+              <button class="rp-clear-btn" id="rp-clear-all">🗑 Clear All Tracks</button>
             </div>
           </div>
 
@@ -1885,6 +1896,21 @@ body::before {
                   <option>Punk</option><option>R&B/Soul</option><option>Reggae</option>
                   <option>Rock</option><option>Singer/Songwriter</option><option>Soundtrack</option>
                   <option>Spoken Word</option><option>World</option>
+                </select>
+              </div>
+              <div class="rp-field">
+                <label class="rp-label">Secondary Genre</label>
+                <select class="rp-input" id="rp-genre2">
+                  <option value="">None</option>
+                  <option>Alternative</option><option>Afrobeat</option><option>Big Band</option>
+                  <option>Blues</option><option>Children's Music</option><option>Christian/Gospel</option>
+                  <option>Comedy</option><option>Country</option><option>Dance</option>
+                  <option>Electronic</option><option>Folk</option><option>Hip Hop/Rap</option>
+                  <option>Holiday</option><option>Jazz</option><option>K-Pop</option>
+                  <option>J-Pop</option><option>Latin</option><option>Metal</option>
+                  <option>New Age</option><option>Pop</option><option>Punk</option>
+                  <option>R&B/Soul</option><option>Reggae</option><option>Rock</option>
+                  <option>Singer/Songwriter</option><option>Spoken Word</option><option>World</option>
                 </select>
               </div>
               <div class="rp-field-row">
@@ -1930,6 +1956,18 @@ body::before {
                   <option>Music only</option>
                   <option>Lyrics only</option>
                 </select>
+              </div>
+              <div class="rp-field" style="margin-top:6px">
+                <label class="rp-label">Previously Released?</label>
+                <div style="display:flex;gap:8px;align-items:center;margin-top:3px">
+                  <label style="font-size:11px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px">
+                    <input type="radio" name="rp-prev-released" id="rp-prev-no" value="no" checked> No
+                  </label>
+                  <label style="font-size:11px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px">
+                    <input type="radio" name="rp-prev-released" id="rp-prev-yes" value="yes"> Yes
+                  </label>
+                  <input class="rp-input" id="rp-orig-release-date" type="date" style="display:none;width:auto;flex:1;margin-left:4px" title="Original release date">
+                </div>
               </div>
             </div>
 

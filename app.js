@@ -3560,6 +3560,7 @@ const RP = {
     if (this.settings.artist) document.getElementById('rp-artist').value = this.settings.artist;
     if (this.settings.label) document.getElementById('rp-label').value = this.settings.label;
     if (this.settings.genre) document.getElementById('rp-genre').value = this.settings.genre;
+    if (this.settings.genre2) document.getElementById('rp-genre2').value = this.settings.genre2;
     if (this.settings.language) document.getElementById('rp-language').value = this.settings.language;
     if (this.settings.releaseDate) document.getElementById('rp-release-date').value = this.settings.releaseDate;
     if (this.settings.swFirst) document.getElementById('rp-sw-first').value = this.settings.swFirst;
@@ -3567,6 +3568,11 @@ const RP = {
     if (this.settings.swLast) document.getElementById('rp-sw-last').value = this.settings.swLast;
     if (this.settings.swRole) document.getElementById('rp-sw-role').value = this.settings.swRole;
     if (this.settings.albumTitle) document.getElementById('rp-album-title').value = this.settings.albumTitle;
+    if (this.settings.previouslyReleased === 'yes') {
+      document.getElementById('rp-prev-yes').checked = true;
+      document.getElementById('rp-orig-release-date').style.display = '';
+    }
+    if (this.settings.originalReleaseDate) document.getElementById('rp-orig-release-date').value = this.settings.originalReleaseDate;
 
     // Set default release date to next Friday
     if (!this.settings.releaseDate) {
@@ -3582,7 +3588,7 @@ const RP = {
 
   bindEvents() {
     // Settings auto-save
-    ['rp-artist','rp-label','rp-genre','rp-language','rp-release-date','rp-sw-first','rp-sw-middle','rp-sw-last','rp-sw-role','rp-album-title'].forEach(id => {
+    ['rp-artist','rp-label','rp-genre','rp-genre2','rp-language','rp-release-date','rp-sw-first','rp-sw-middle','rp-sw-last','rp-sw-role','rp-album-title','rp-orig-release-date'].forEach(id => {
       const el = document.getElementById(id);
       if (el) {
         el.addEventListener('input', () => this.saveSettings());
@@ -3590,7 +3596,7 @@ const RP = {
       }
     });
 
-    // Upload files
+    // Upload files via button
     document.getElementById('rp-add-files').addEventListener('click', () => {
       document.getElementById('rp-file-input').click();
     });
@@ -3599,19 +3605,125 @@ const RP = {
       e.target.value = '';
     });
 
+    // ── DRAG AND DROP ──
+    const tracklist = document.getElementById('rp-tracklist');
+    const AUDIO_EXTS = ['.mp3','.wav','.m4a','.flac','.ogg','.aiff','.aif','.wma','.aac'];
+
+    const isAudioFile = (name) => AUDIO_EXTS.some(ext => name.toLowerCase().endsWith(ext));
+
+    // Prevent default on all drag events
+    ['dragenter','dragover','dragleave','drop'].forEach(evt => {
+      tracklist.addEventListener(evt, (e) => { e.preventDefault(); e.stopPropagation(); });
+    });
+
+    tracklist.addEventListener('dragenter', () => tracklist.classList.add('dragover'));
+    tracklist.addEventListener('dragover', () => tracklist.classList.add('dragover'));
+    tracklist.addEventListener('dragleave', (e) => {
+      // Only remove if leaving the tracklist entirely
+      if (!tracklist.contains(e.relatedTarget)) tracklist.classList.remove('dragover');
+    });
+
+    tracklist.addEventListener('drop', async (e) => {
+      tracklist.classList.remove('dragover');
+      const items = e.dataTransfer.items;
+      const files = [];
+
+      if (items && items.length && items[0].webkitGetAsEntry) {
+        // Handle folders and files via webkitGetAsEntry
+        const entries = [];
+        for (let i = 0; i < items.length; i++) {
+          const entry = items[i].webkitGetAsEntry();
+          if (entry) entries.push(entry);
+        }
+
+        // Recursively read directories
+        const readEntry = (entry) => {
+          return new Promise((resolve) => {
+            if (entry.isFile) {
+              entry.file(f => {
+                if (isAudioFile(f.name)) files.push(f);
+                resolve();
+              }, () => resolve());
+            } else if (entry.isDirectory) {
+              const reader = entry.createReader();
+              reader.readEntries(async (entries) => {
+                for (const e of entries) {
+                  await readEntry(e);
+                }
+                resolve();
+              }, () => resolve());
+            } else {
+              resolve();
+            }
+          });
+        };
+
+        for (const entry of entries) {
+          await readEntry(entry);
+        }
+      } else {
+        // Fallback: regular file list
+        for (const file of e.dataTransfer.files) {
+          if (isAudioFile(file.name)) files.push(file);
+        }
+      }
+
+      if (files.length > 0) {
+        // Sort files alphabetically for consistent order
+        files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+        this.addFiles(files);
+      } else {
+        this.showToast('⚠ No audio files found — drop MP3, WAV, FLAC, or M4A files');
+      }
+    });
+
+    // Also make the empty dropzone clickable
+    document.getElementById('rp-empty')?.addEventListener('click', () => {
+      document.getElementById('rp-file-input').click();
+    });
+
     // Add from batch
     document.getElementById('rp-add-from-batch').addEventListener('click', () => {
       this.addFromBatch();
     });
 
-    // Clear all
+    // Clear all tracks
     document.getElementById('rp-clear-all').addEventListener('click', () => {
       if (this.tracks.length === 0) return;
       if (confirm('Remove all tracks from the release?')) {
         this.tracks = [];
         this.save();
         this.render();
+        this.showToast('✓ All tracks cleared');
       }
+    });
+
+    // Clear all form fields (keeps tracks)
+    document.getElementById('rp-clear-fields').addEventListener('click', () => {
+      if (confirm('Clear all form fields? (tracks will stay)')) {
+        document.getElementById('rp-artist').value = '';
+        document.getElementById('rp-album-title').value = '';
+        document.getElementById('rp-label').value = 'Independent';
+        document.getElementById('rp-genre').value = '';
+        document.getElementById('rp-language').value = 'English';
+        document.getElementById('rp-release-date').value = '';
+        document.getElementById('rp-sw-first').value = '';
+        document.getElementById('rp-sw-middle').value = '';
+        document.getElementById('rp-sw-last').value = '';
+        document.getElementById('rp-sw-role').value = 'Music and lyrics';
+        this.saveSettings();
+        this.render();
+        this.showToast('✓ All fields cleared');
+      }
+    });
+
+    // Previously released radio
+    document.querySelectorAll('input[name="rp-prev-released"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const isYes = document.getElementById('rp-prev-yes').checked;
+        document.getElementById('rp-orig-release-date').style.display = isYes ? '' : 'none';
+        this.saveSettings();
+      });
     });
 
     // Release type toggle
@@ -3632,6 +3744,7 @@ const RP = {
       artist: document.getElementById('rp-artist').value,
       label: document.getElementById('rp-label').value,
       genre: document.getElementById('rp-genre').value,
+      genre2: document.getElementById('rp-genre2').value,
       language: document.getElementById('rp-language').value,
       releaseDate: document.getElementById('rp-release-date').value,
       swFirst: document.getElementById('rp-sw-first').value,
@@ -3639,6 +3752,8 @@ const RP = {
       swLast: document.getElementById('rp-sw-last').value,
       swRole: document.getElementById('rp-sw-role').value,
       albumTitle: document.getElementById('rp-album-title').value,
+      previouslyReleased: document.getElementById('rp-prev-yes').checked ? 'yes' : 'no',
+      originalReleaseDate: document.getElementById('rp-orig-release-date').value,
     };
     localStorage.setItem('rp_settings', JSON.stringify(this.settings));
     this.updateAutoFields();
@@ -3936,6 +4051,7 @@ const RP = {
       albumTitle: s.albumTitle || '',
       label: s.label || 'Independent',
       genre: s.genre || '',
+      genre2: s.genre2 || '',
       language: s.language || 'English',
       releaseDate: s.releaseDate || '',
       songwriter: songwriter,
@@ -3943,6 +4059,8 @@ const RP = {
       songwriterMiddle: s.swMiddle || '',
       songwriterLast: s.swLast || '',
       songwriterRole: s.swRole || 'Music and lyrics',
+      previouslyReleased: s.previouslyReleased === 'yes',
+      originalReleaseDate: s.originalReleaseDate || '',
       copyright: `\u00A9 ${year} ${s.artist || ''}`,
       soundRecording: `\u2117 ${year} ${s.artist || ''}`,
       tracks: this.tracks.map((t, i) => ({
