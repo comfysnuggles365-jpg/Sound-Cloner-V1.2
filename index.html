@@ -765,6 +765,10 @@ body::before {
 .rp-track-file-badge.wav { background: rgba(244,114,182,0.15); color: #f472b6; }
 .rp-track-file-badge.flac { background: rgba(255,201,71,0.15); color: #ffc947; }
 .rp-track-file-size { font-size: 9px; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+.rp-track-file-name { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
+.rp-no-audio { }
+.rp-track-add-audio { background: none; border: 1px dashed rgba(255,77,109,0.3); color: var(--dim); font-size: 9px; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-family: inherit; }
+.rp-track-add-audio:hover { border-color: var(--accent); color: var(--accent); }
 .rp-track-remove { position: absolute; top: 7px; right: 28px; background: none; border: none; color: var(--dim); cursor: pointer; font-size: 10px; padding: 2px; }
 .rp-track-remove:hover { color: #ff4d6d; }
 .rp-add-buttons { padding: 8px; display: flex; gap: 5px; border-top: 1px solid var(--border); }

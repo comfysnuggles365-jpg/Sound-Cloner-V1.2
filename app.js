@@ -3763,7 +3763,7 @@ const RP = {
       list.innerHTML = this.tracks.map((t, i) => {
         const num = String(i + 1).padStart(2, '0');
         const hasFile = !!t.audioFileName;
-        const borderStyle = hasFile ? (t.audioFileType === 'wav' ? 'border-left:2px solid #f472b6' : 'border-left:2px solid #0088ff') : '';
+        const borderStyle = hasFile ? (t.audioFileType === 'wav' ? 'border-left:2px solid #f472b6' : 'border-left:2px solid #0088ff') : 'border-left:2px solid rgba(255,77,109,0.3)';
         const hasLyrics = !!(t.lyrics && t.lyrics.trim());
         return `<div class="rp-track-card" style="${borderStyle}" data-idx="${i}">
           <span class="rp-track-num">${num}</span>
@@ -3779,9 +3779,11 @@ const RP = {
           </div>
           ${hasFile ? `<div class="rp-track-file-info">
             <span class="rp-track-file-badge ${t.audioFileType}">${t.audioFileType.toUpperCase()}</span>
-            <span class="rp-track-file-size">${t.audioFileSize}</span>
-            ${t.duration ? `<span class="rp-track-file-size">${t.duration}</span>` : ''}
-          </div>` : ''}
+            <span class="rp-track-file-name">${t.audioFileName}</span>
+            <span class="rp-track-file-size">${t.audioFileSize}${t.duration ? ' · ' + t.duration : ''}</span>
+          </div>` : `<div class="rp-track-file-info rp-no-audio">
+            <button class="rp-track-add-audio" data-idx="${i}">🎵 Add audio file</button>
+          </div>`}
         </div>`;
       }).join('');
 
@@ -3813,15 +3815,13 @@ const RP = {
         });
       });
 
-      // Bind lyrics toggle (expand/collapse textarea)
+      // Bind lyrics toggle
       list.querySelectorAll('.rp-track-lyrics-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
           const idx = btn.dataset.idx;
           const area = list.querySelector(`.rp-track-lyrics-area[data-idx="${idx}"]`);
           area.style.display = area.style.display === 'none' ? 'block' : 'none';
-          if (area.style.display === 'block') {
-            area.querySelector('textarea').focus();
-          }
+          if (area.style.display === 'block') area.querySelector('textarea').focus();
         });
       });
 
@@ -3831,6 +3831,43 @@ const RP = {
           const idx = parseInt(ta.dataset.idx);
           this.tracks[idx].lyrics = ta.value;
           this.save();
+        });
+      });
+
+      // Bind per-track audio upload
+      list.querySelectorAll('.rp-track-add-audio').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          const picker = document.createElement('input');
+          picker.type = 'file';
+          picker.accept = '.mp3,.wav,.m4a,.flac,.ogg,.aiff';
+          picker.style.display = 'none';
+          document.body.appendChild(picker);
+          picker.addEventListener('change', () => {
+            if (picker.files.length) {
+              const file = picker.files[0];
+              const ext = file.name.split('.').pop().toLowerCase();
+              this.tracks[idx].audioFileName = file.name;
+              this.tracks[idx].audioFileSize = (file.size / 1024 / 1024).toFixed(1) + ' MB';
+              this.tracks[idx].audioFileType = ext;
+              this.tracks[idx].audioFile = file;
+              // Get duration
+              const audio = new Audio();
+              audio.src = URL.createObjectURL(file);
+              audio.addEventListener('loadedmetadata', () => {
+                const min = Math.floor(audio.duration / 60);
+                const sec = Math.floor(audio.duration % 60);
+                this.tracks[idx].duration = min + ':' + String(sec).padStart(2, '0');
+                URL.revokeObjectURL(audio.src);
+                this.save();
+                this.render();
+              });
+              this.save();
+              this.render();
+            }
+            document.body.removeChild(picker);
+          });
+          picker.click();
         });
       });
     }
@@ -3929,12 +3966,28 @@ const RP = {
   // ── EXPORTS ──
   async exportForDistroKid() {
     const btn = document.getElementById('rp-export-dk');
-    const json = JSON.stringify(this.buildPayload(), null, 2);
+    const payload = this.buildPayload();
+    const json = JSON.stringify(payload, null, 2);
+
+    // Count tracks with audio
+    const withAudio = this.tracks.filter(t => t.audioFileName).length;
+    const withoutAudio = this.tracks.length - withAudio;
+
     try {
       await navigator.clipboard.writeText(json);
       btn.textContent = '✓ Copied to Clipboard!';
       btn.style.background = '#00c851';
-      this.showToast('✓ Release data copied — paste into companion extension on DistroKid');
+
+      // Build a helpful toast message
+      let msg = '✓ Exported! ';
+      if (withoutAudio > 0) {
+        msg += withoutAudio + ' tracks missing audio files. ';
+      }
+      if (withAudio > 0) {
+        msg += 'Select audio files in this order on DistroKid: ';
+        msg += this.tracks.filter(t => t.audioFileName).map((t, i) => (i+1) + '. ' + t.audioFileName).join(', ');
+      }
+      this.showToast(msg, 5000);
     } catch(e) {
       const ta = document.createElement('textarea');
       ta.value = json; ta.style.position='fixed'; ta.style.left='-9999px';
@@ -3943,7 +3996,7 @@ const RP = {
       btn.textContent = '✓ Copied!';
       this.showToast('✓ Copied to clipboard');
     }
-    setTimeout(() => { btn.textContent = '📦 Export for DistroKid'; btn.style.background = ''; }, 3000);
+    setTimeout(() => { btn.textContent = '📦 Export for DistroKid'; btn.style.background = ''; }, 4000);
   },
 
   async copyMetadata() {
@@ -3993,12 +4046,12 @@ const RP = {
     setTimeout(() => { btn.textContent = '💾 JSON File'; }, 2000);
   },
 
-  showToast(text) {
+  showToast(text, duration = 2500) {
     const t = document.getElementById('rp-toast');
     t.textContent = text;
     t.style.opacity = '1';
     t.style.transform = 'translateX(-50%) translateY(0)';
-    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 2500);
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, duration);
   }
 };
 
