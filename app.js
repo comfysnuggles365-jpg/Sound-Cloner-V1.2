@@ -3559,9 +3559,13 @@ const RP = {
     // Populate settings fields
     if (this.settings.artist) document.getElementById('rp-artist').value = this.settings.artist;
     if (this.settings.label) document.getElementById('rp-label').value = this.settings.label;
+    if (this.settings.genre) document.getElementById('rp-genre').value = this.settings.genre;
     if (this.settings.language) document.getElementById('rp-language').value = this.settings.language;
     if (this.settings.releaseDate) document.getElementById('rp-release-date').value = this.settings.releaseDate;
-    if (this.settings.songwriter) document.getElementById('rp-songwriter').value = this.settings.songwriter;
+    if (this.settings.swFirst) document.getElementById('rp-sw-first').value = this.settings.swFirst;
+    if (this.settings.swMiddle) document.getElementById('rp-sw-middle').value = this.settings.swMiddle;
+    if (this.settings.swLast) document.getElementById('rp-sw-last').value = this.settings.swLast;
+    if (this.settings.swRole) document.getElementById('rp-sw-role').value = this.settings.swRole;
     if (this.settings.albumTitle) document.getElementById('rp-album-title').value = this.settings.albumTitle;
 
     // Set default release date to next Friday
@@ -3578,9 +3582,12 @@ const RP = {
 
   bindEvents() {
     // Settings auto-save
-    ['rp-artist','rp-label','rp-language','rp-release-date','rp-songwriter','rp-album-title'].forEach(id => {
-      document.getElementById(id).addEventListener('input', () => this.saveSettings());
-      document.getElementById(id).addEventListener('change', () => this.saveSettings());
+    ['rp-artist','rp-label','rp-genre','rp-language','rp-release-date','rp-sw-first','rp-sw-middle','rp-sw-last','rp-sw-role','rp-album-title'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => this.saveSettings());
+        el.addEventListener('change', () => this.saveSettings());
+      }
     });
 
     // Upload files
@@ -3626,9 +3633,13 @@ const RP = {
     this.settings = {
       artist: document.getElementById('rp-artist').value,
       label: document.getElementById('rp-label').value,
+      genre: document.getElementById('rp-genre').value,
       language: document.getElementById('rp-language').value,
       releaseDate: document.getElementById('rp-release-date').value,
-      songwriter: document.getElementById('rp-songwriter').value,
+      swFirst: document.getElementById('rp-sw-first').value,
+      swMiddle: document.getElementById('rp-sw-middle').value,
+      swLast: document.getElementById('rp-sw-last').value,
+      swRole: document.getElementById('rp-sw-role').value,
       albumTitle: document.getElementById('rp-album-title').value,
     };
     localStorage.setItem('rp_settings', JSON.stringify(this.settings));
@@ -3755,14 +3766,18 @@ const RP = {
         const num = String(i + 1).padStart(2, '0');
         const hasFile = !!t.audioFileName;
         const borderStyle = hasFile ? (t.audioFileType === 'wav' ? 'border-left:2px solid #f472b6' : 'border-left:2px solid #0088ff') : '';
+        const hasLyrics = !!(t.lyrics && t.lyrics.trim());
         return `<div class="rp-track-card" style="${borderStyle}" data-idx="${i}">
           <span class="rp-track-num">${num}</span>
           <button class="rp-track-remove" data-idx="${i}" title="Remove">✕</button>
-          <div class="rp-track-title">${t.title}</div>
+          <input class="rp-track-title-input" data-idx="${i}" value="${(t.title || '').replace(/"/g, '&quot;')}" placeholder="Track title...">
           <div class="rp-track-meta">
-            ${t.genre ? `<span class="rp-track-genre">${t.genre}</span>` : '<span style="color:var(--dim)">No genre</span>'}
             ${t.bpm ? `<span class="rp-track-bpm">${t.bpm} BPM</span>` : ''}
-            <span class="${t.explicit ? 'rp-track-explicit' : 'rp-track-clean'}">${t.explicit ? 'E' : 'CLEAN'}</span>
+            <button class="rp-track-explicit-toggle ${t.explicit ? 'on' : ''}" data-idx="${i}" title="Toggle explicit">${t.explicit ? '🔞 EXPLICIT' : '✅ CLEAN'}</button>
+            <button class="rp-track-lyrics-toggle ${hasLyrics ? 'has' : ''}" data-idx="${i}" title="${hasLyrics ? 'Edit lyrics' : 'Add lyrics'}">${hasLyrics ? '📝 Lyrics ✓' : '📝 + Lyrics'}</button>
+          </div>
+          <div class="rp-track-lyrics-area" data-idx="${i}" style="display:none">
+            <textarea class="rp-track-lyrics-input" data-idx="${i}" placeholder="Paste lyrics here...">${t.lyrics || ''}</textarea>
           </div>
           ${hasFile ? `<div class="rp-track-file-info">
             <span class="rp-track-file-badge ${t.audioFileType}">${t.audioFileType.toUpperCase()}</span>
@@ -3778,6 +3793,46 @@ const RP = {
           e.stopPropagation();
           const idx = parseInt(btn.dataset.idx);
           this.removeTrack(idx);
+        });
+      });
+
+      // Bind title edits
+      list.querySelectorAll('.rp-track-title-input').forEach(inp => {
+        inp.addEventListener('change', () => {
+          const idx = parseInt(inp.dataset.idx);
+          this.tracks[idx].title = inp.value;
+          this.save();
+        });
+      });
+
+      // Bind explicit toggles
+      list.querySelectorAll('.rp-track-explicit-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          this.tracks[idx].explicit = !this.tracks[idx].explicit;
+          this.save();
+          this.render();
+        });
+      });
+
+      // Bind lyrics toggle (expand/collapse textarea)
+      list.querySelectorAll('.rp-track-lyrics-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = btn.dataset.idx;
+          const area = list.querySelector(`.rp-track-lyrics-area[data-idx="${idx}"]`);
+          area.style.display = area.style.display === 'none' ? 'block' : 'none';
+          if (area.style.display === 'block') {
+            area.querySelector('textarea').focus();
+          }
+        });
+      });
+
+      // Bind lyrics edits
+      list.querySelectorAll('.rp-track-lyrics-input').forEach(ta => {
+        ta.addEventListener('change', () => {
+          const idx = parseInt(ta.dataset.idx);
+          this.tracks[idx].lyrics = ta.value;
+          this.save();
         });
       });
     }
@@ -3800,63 +3855,75 @@ const RP = {
   updateAutoFields() {
     const artist = this.settings.artist || '—';
     const year = new Date().getFullYear();
-    const genres = [...new Set(this.tracks.map(t => t.genre).filter(Boolean))];
     const explicitCount = this.tracks.filter(t => t.explicit).length;
     const durations = this.tracks.map(t => t.duration).filter(Boolean);
+    const totalFields = this.completenessScore();
 
-    document.getElementById('rp-auto-genre').textContent = genres.length ? genres.slice(0, 3).join(', ') : '—';
-    document.getElementById('rp-auto-copyright').textContent = artist !== '—' ? `© ${year} ${artist}` : '—';
+    document.getElementById('rp-auto-copyright').textContent = artist !== '—' ? `\u00A9 ${year} ${artist}` : '—';
     document.getElementById('rp-auto-explicit').textContent = this.tracks.length ?
-      (explicitCount > 0 ? `Yes (${explicitCount} of ${this.tracks.length})` : 'No — all clean') : '—';
-    document.getElementById('rp-auto-duration').textContent = durations.length ? durations.length + ' tracked' : '—';
+      (explicitCount > 0 ? `${explicitCount} of ${this.tracks.length} explicit` : 'All clean') : '—';
+    document.getElementById('rp-auto-duration').textContent = durations.length ? durations.join(', ') : '—';
+    document.getElementById('rp-auto-completeness').textContent = totalFields.pct + '% ready';
+    document.getElementById('rp-auto-completeness').style.color = totalFields.pct >= 80 ? '#00c851' : totalFields.pct >= 50 ? '#ffc947' : '#ff4d6d';
   },
 
-  updateCompleteness() {
+  completenessScore() {
     let score = 0, total = 0;
     const check = (val) => { total++; if (val) score++; };
     check(this.settings.artist);
     check(this.settings.albumTitle);
+    check(this.settings.genre);
     check(this.settings.releaseDate);
-    check(this.settings.songwriter);
+    check(this.settings.swFirst);
+    check(this.settings.swLast);
     check(this.tracks.length > 0);
     this.tracks.forEach(t => {
       check(t.title);
-      check(t.lyrics);
       check(t.audioFileName);
     });
     const pct = total > 0 ? Math.round((score / total) * 100) : 0;
-    document.getElementById('rp-completeness-fill').style.width = pct + '%';
-    document.getElementById('rp-completeness-pct').textContent = pct + '%';
+    return { score, total, pct };
+  },
+
+  updateCompleteness() {
+    const c = this.completenessScore();
+    document.getElementById('rp-completeness-fill').style.width = c.pct + '%';
+    document.getElementById('rp-completeness-pct').textContent = c.pct + '%';
   },
 
   // ── Build payload for companion extension ──
   buildPayload() {
     const s = this.settings;
     const year = new Date().getFullYear();
+    const songwriter = [s.swFirst, s.swMiddle, s.swLast].filter(Boolean).join(' ');
     return {
       artist: s.artist || '',
       albumTitle: s.albumTitle || '',
       label: s.label || 'Independent',
-      genre: [...new Set(this.tracks.map(t => t.genre).filter(Boolean))].join(', ') || '',
+      genre: s.genre || '',
       language: s.language || 'English',
       releaseDate: s.releaseDate || '',
-      songwriter: s.songwriter || s.artist || '',
-      copyright: `© ${year} ${s.artist || ''}`,
-      soundRecording: `℗ ${year} ${s.artist || ''}`,
+      songwriter: songwriter,
+      songwriterFirst: s.swFirst || '',
+      songwriterMiddle: s.swMiddle || '',
+      songwriterLast: s.swLast || '',
+      songwriterRole: s.swRole || 'Music and lyrics',
+      copyright: `\u00A9 ${year} ${s.artist || ''}`,
+      soundRecording: `\u2117 ${year} ${s.artist || ''}`,
       tracks: this.tracks.map((t, i) => ({
         trackNumber: i + 1,
         title: t.title || '',
         explicit: !!t.explicit,
         lyrics: t.lyrics || '',
-        genre: t.genre || '',
+        genre: t.genre || s.genre || '',
         bpm: t.bpm || null,
         duration: t.duration || null,
         audioFileName: t.audioFileName || null,
-        songwriter: s.songwriter || s.artist || '',
+        songwriter: songwriter,
         isrc: null
       })),
       exportedAt: new Date().toISOString(),
-      source: 'Sound Cloner v1.2',
+      source: 'Sound Cloner v1.3',
       trackCount: this.tracks.length
     };
   },
