@@ -1560,7 +1560,30 @@ function renderBlueprintContent() {
 // COPY UTILITY
 // ============================================================
 function copyToClipboard(text, btn, statusMsg, historyEntry = null) {
-  navigator.clipboard.writeText(text).then(() => {
+  // Try modern clipboard API first, fall back to execCommand
+  const doCopy = () => {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      return clipCopy(text);
+    }
+    // Fallback for HTTP or older browsers
+    return new Promise((resolve, reject) => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('execCommand failed'));
+      } catch(e) { reject(e); }
+    });
+  };
+
+  doCopy().then(() => {
     const original = btn.textContent;
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
@@ -1575,12 +1598,9 @@ function copyToClipboard(text, btn, statusMsg, historyEntry = null) {
     
     // Add to session copy history
     if (historyEntry) {
-      // Remove duplicate if same name exists
       const existingIdx = sessionCopyHistory.findIndex(h => h.name === historyEntry.name);
       if (existingIdx >= 0) sessionCopyHistory.splice(existingIdx, 1);
-      // Add to front
       sessionCopyHistory.unshift({ ...historyEntry, prompt: text });
-      // Cap at 20
       if (sessionCopyHistory.length > 20) sessionCopyHistory.pop();
       renderCopyHistory();
     }
@@ -1592,7 +1612,41 @@ function copyToClipboard(text, btn, statusMsg, historyEntry = null) {
       statusEl.textContent = 'Ready';
       statusEl.className = '';
     }, 3000);
+  }).catch(() => {
+    // Last resort: show text for manual copy
+    const original = btn.textContent;
+    btn.textContent = '⚠ Select & copy below';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+    prompt('Copy this text:', text);
   });
+}
+
+// Simple clipboard write with fallback
+function clipCopy(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+    return clipCopy(text);
+  }
+  return new Promise((resolve, reject) => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    } catch(e) { reject(e); }
+  });
+}
+
+// Simple clipboard read with fallback
+function clipRead() {
+  if (navigator.clipboard && navigator.clipboard.readText && window.isSecureContext) {
+    return navigator.clipboard.readText();
+  }
+  return Promise.reject(new Error('Clipboard read not available'));
 }
 
 function renderCopyHistory() {
@@ -1618,7 +1672,7 @@ function renderCopyHistory() {
       e.stopPropagation();
       const item = sessionCopyHistory[parseInt(btn.dataset.idx)];
       if (item) {
-        navigator.clipboard.writeText(item.prompt);
+        clipCopy(item.prompt);
         btn.textContent = '✓';
         setTimeout(() => { btn.textContent = '↩'; }, 1200);
       }
@@ -2103,7 +2157,7 @@ function renderSongs() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const ta = list.querySelector(`.song-style-box[data-idx="${btn.dataset.idx}"]`);
-      navigator.clipboard.writeText(ta ? ta.value : generatedSongs[+btn.dataset.idx].style);
+      clipCopy(ta ? ta.value : generatedSongs[+btn.dataset.idx].style);
       flashBtn(btn, '✓');
     });
   });
@@ -2112,7 +2166,7 @@ function renderSongs() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const ta = list.querySelector(`.song-lyrics-box[data-idx="${btn.dataset.idx}"]`);
-      navigator.clipboard.writeText(ta ? ta.value : generatedSongs[+btn.dataset.idx].lyrics);
+      clipCopy(ta ? ta.value : generatedSongs[+btn.dataset.idx].lyrics);
       flashBtn(btn, '✓');
     });
   });
@@ -2123,7 +2177,7 @@ function renderSongs() {
       const s = generatedSongs[+btn.dataset.idx];
       const ta = list.querySelector(`.song-lyrics-box[data-idx="${btn.dataset.idx}"]`);
       const lyrics = ta ? ta.value : s.lyrics;
-      navigator.clipboard.writeText(`TITLE: ${s.title}\n\nSTYLE: ${s.style}\n\nLYRICS:\n${lyrics}`);
+      clipCopy(`TITLE: ${s.title}\n\nSTYLE: ${s.style}\n\nLYRICS:\n${lyrics}`);
       flashBtn(btn, '✓');
     });
   });
@@ -2543,13 +2597,13 @@ function setupAnalyse() {
 
   // Copy buttons
   document.getElementById('copy-voice-prompt').addEventListener('click', () => {
-    navigator.clipboard.writeText(document.getElementById('analyse-voice-text').textContent);
+    clipCopy(document.getElementById('analyse-voice-text').textContent);
     const btn = document.getElementById('copy-voice-prompt');
     btn.textContent = '✓ Copied';
     setTimeout(() => btn.textContent = '📋 Copy', 1500);
   });
   document.getElementById('copy-style-prompt').addEventListener('click', () => {
-    navigator.clipboard.writeText(document.getElementById('analyse-style-text').textContent);
+    clipCopy(document.getElementById('analyse-style-text').textContent);
     const btn = document.getElementById('copy-style-prompt');
     btn.textContent = '✓ Copied';
     setTimeout(() => btn.textContent = '📋 Copy', 1500);
@@ -2829,9 +2883,9 @@ function setupEventListeners() {
   // Paste prompt
   document.getElementById('pastePromptBtn').addEventListener('click', async () => {
     try {
-      const text = await navigator.clipboard.readText();
+      const text = await clipRead();
       document.getElementById('style-prompt').value = text;
-    } catch(e) { alert('Could not read clipboard. Paste manually.'); }
+    } catch(e) { alert('Could not read clipboard. Paste manually into the style prompt box.'); }
   });
   
   // Generate
@@ -2844,7 +2898,7 @@ function setupEventListeners() {
     const text = generatedSongs.map((s, i) =>
       `── SONG ${i+1}: ${s.title} ──\nSTYLE: ${s.style}\n\nLYRICS:\n${s.lyrics}`
     ).join('\n\n' + '═'.repeat(50) + '\n\n');
-    navigator.clipboard.writeText(text);
+    clipCopy(text);
     flashBtn(document.getElementById('copy-all-songs'), '✓ Copied!');
   });
 
@@ -2858,7 +2912,7 @@ function setupEventListeners() {
     const promptToCopy = targetSong.style || '';
 
     if (promptToCopy) {
-      navigator.clipboard.writeText(promptToCopy).then(() => {
+      clipCopy(promptToCopy).then(() => {
         btn.textContent = '✓ Style copied — opening Suno…';
         btn.classList.add('copied');
         // Mark as copied
