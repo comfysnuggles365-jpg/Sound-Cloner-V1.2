@@ -70,6 +70,14 @@ const GENRE_BPS = {
     {name:"Conscious Hip-Hop",desc:"Socially aware lyricism",prompt:"90 BPM conscious hip-hop, warm live instrumentation, jazz and soul sample foundation, natural vocal delivery, politically aware lyrical content, bass guitar groove, sophisticated chord progressions"},
     {name:"Melodic Rap",desc:"Sung hooks over trap beats",prompt:"86 BPM melodic trap, Auto-Tune vocal singing over modern trap production, emotional hooks, 808 bass with pitch slides, lush synth pads, blend of rapping and singing, vulnerable emotive energy"},
     {name:"Phonk",desc:"Memphis underground slowed sound",prompt:"130 BPM Memphis phonk, slowed pitched-down vocal samples, distorted cowbell percussion, dark 808 bass, eerie haunted atmosphere, lo-fi underground tape aesthetic, slurred production texture"},
+    {name:"Boom-Bap Revival",desc:"Modern take on 90s golden era",prompt:"92 BPM modern boom-bap revival, crisp drum breaks with vinyl texture, soul sample chops, clean bass guitar, confident lyrical delivery, warm analog mixing, golden era tribute with modern clarity"},
+    {name:"Chopped & Screwed",desc:"Houston slowed and syrupy",prompt:"65 BPM chopped and screwed, extreme slowed tempo, pitch-shifted vocals dripping syrup, heavy sub bass, DJ Screw-style vocal chops, purple drank atmosphere, Houston Texas heat haze"},
+    {name:"Abstract Hip-Hop",desc:"Experimental avant-garde beats",prompt:"85 BPM abstract hip-hop, unconventional time signatures, glitchy sample manipulation, spoken word delivery, experimental sound design, jazz-influenced chord changes, art-house atmosphere"},
+    {name:"Jazz Rap",desc:"Live jazz meets lyrical flow",prompt:"95 BPM jazz rap, live upright bass, brushed drums, saxophone solo breaks, intellectual lyrical content, warm analog recording, sophisticated jazz harmony meets confident rap delivery"},
+    {name:"Crunk",desc:"High energy Southern party",prompt:"75 BPM crunk, aggressive chant hooks, heavy 808 kick drum, repetitive hypnotic synth riff, call-and-response vocals, high energy party atmosphere, Memphis bass influence"},
+    {name:"Horrorcore",desc:"Dark cinematic horror rap",prompt:"80 BPM horrorcore, dark cinematic orchestral samples, horror movie sound effects, aggressive rapid-fire delivery, distorted bass, gothic atmosphere, minor key tension throughout"},
+    {name:"Snap Music",desc:"Minimalist finger-snap beats",prompt:"98 BPM snap music, finger snaps as primary percussion, thin 808 kick, catchy repetitive hook, minimalist production, call-and-response, infectious party energy, clean sparse mix"},
+    {name:"Afroswing Rap",desc:"UK Afrobeats rap hybrid",prompt:"100 BPM Afroswing rap, Afrobeats rhythm with UK rap delivery, warm bass, danceable groove, London multicultural energy, J Hus-inspired fusion, carnival meets grime"},
   ],
   "Pop": [
     {name:"Radio Pop Anthem",desc:"Max Martin school hit construction",prompt:"116 BPM polished radio pop, four-on-the-floor kick, bright synthesizer pads, post-chorus hook drop, powerful chorus belt, emotional pre-chorus build, immaculate production, universal emotional theme"},
@@ -81,6 +89,14 @@ const GENRE_BPS = {
     {name:"Dream Pop",desc:"Hazy atmospheric pop textures",prompt:"84 BPM dream pop, heavily reverbed guitar washes, lush layered vocals buried in reverb, slow-attack synth pads, hazy atmospheric production, ethereal emotional distance, shoegaze pop influence"},
     {name:"Indie Pop",desc:"Quirky guitar-driven pop",prompt:"104 BPM indie pop, jangly clean guitar, warm melodic bass, punchy indie drum feel, clever wordplay lyrics, bright catchy hooks, DIY aesthetic with professional polish, jangly New York indie pop energy"},
     {name:"Alt-Pop Anthem",desc:"Alternative edge meets pop hooks",prompt:"108 BPM alternative pop, distorted guitar layers under polished pop production, powerful emotional vocal, loud-quiet-loud dynamic, anthemic chorus, dark lyrical themes wrapped in catchy melody"},
+    {name:"Bubblegum Pop",desc:"Bright sugary pop confection",prompt:"124 BPM bubblegum pop, bright major key melody, bouncy synth bass, handclap percussion, sugar-sweet vocal delivery, infectious earworm chorus, sparkling production, pure feel-good energy"},
+    {name:"Tropical Pop",desc:"Island-influenced summer anthem",prompt:"100 BPM tropical pop, steel drum melody, reggaeton-lite rhythm, warm marimba, breezy vocal delivery, island vacation atmosphere, bright acoustic guitar, sunset beach energy"},
+    {name:"Art Pop",desc:"Avant-garde experimental pop",prompt:"110 BPM art pop, unconventional song structure, electronic glitch textures, operatic vocal moments, cinematic production, avant-garde sound design, high-art meets pop accessibility"},
+    {name:"Power Pop",desc:"Guitar-driven melodic punch",prompt:"132 BPM power pop, jangly electric guitars, driving drum beat, huge singalong chorus, layered vocal harmonies, crunchy rhythm guitar, pure melodic energy, Weezer-inspired crunch"},
+    {name:"Indie Pop Anthem",desc:"Festival-ready indie uplift",prompt:"118 BPM indie pop anthem, soaring synth pads, four-on-the-floor kick, euphoric chorus build, reverb-drenched vocals, anthemic hand-clap breakdown, festival energy, bittersweet lyrics"},
+    {name:"Electro-Pop Banger",desc:"Club-ready electronic pop",prompt:"126 BPM electro-pop, pulsing sidechain bass, vocoder harmonies, crisp snare hits, filtered synth build, euphoric drop, nightclub energy, polished digital production"},
+    {name:"Retro Pop",desc:"60s girl group reimagined",prompt:"115 BPM retro pop, 60s girl group harmonies, vintage reverb, handclaps and tambourine, walking bass line, wall-of-sound production, nostalgic warmth, Phil Spector homage"},
+    {name:"Hyperpop Bubblegum",desc:"Maximalist digital sugar rush",prompt:"165 BPM hyperpop bubblegum, pitch-shifted chipmunk vocals, maximalist digital production, distorted bass drops, sugar-rush energy, 100 gecs-inspired chaos, internet culture aesthetic"},
   ],
   "R&B": [
     {name:"Neo-Soul",desc:"Neo-soul warm organic feel",prompt:"82 BPM neo-soul, warm Rhodes piano, hip-hop influenced live-feel drumming, organic bass, natural studio imperfection, social consciousness themes, sensual groove with spiritual undertone"},
@@ -92,6 +108,13 @@ const GENRE_BPS = {
     {name:"Afro R&B",desc:"Afrobeats meets modern soul",prompt:"100 BPM Afro R&B, afrobeats percussion under smooth R&B vocal, tropical synth textures, bouncy rhythmic groove, warm romantic themes, Lagos meets Los Angeles production fusion"},
     {name:"R&B Ballad",desc:"Devastating slow emotional delivery",prompt:"60 BPM R&B ballad, solo piano introduction, orchestral string swell, powerful mezzo-soprano build to full belt, melismatic gospel vocal runs, devastating heartbreak or devotion theme, sparse production"},
     {name:"Funk R&B",desc:"Groovy bass-forward soul",prompt:"105 BPM funk-influenced R&B, slap bass guitar groove, wah-wah rhythm guitar, tight punchy drums, horn section punches, confident swaggering vocal, joyful celebratory energy"},
+    {name:"90s New Jack Swing",desc:"Uptempo swing R&B hybrid",prompt:"108 BPM new jack swing, tight programmed drums with swing feel, funky bass synth, layered vocal harmonies, pop-R&B crossover energy, 90s production sheen, infectious dance groove"},
+    {name:"PBR&B",desc:"Hazy atmospheric alternative R&B",prompt:"72 BPM PBR&B, hazy atmospheric production, distant reverbed vocals, minimal trap percussion, ambient synth washes, introspective mood, bedroom recording aesthetic, lo-fi intimacy"},
+    {name:"R&B Pop Crossover",desc:"Radio-ready smooth vocal pop",prompt:"96 BPM R&B pop crossover, polished production, catchy pop melody with soulful runs, clean bass, modern drum programming, radio-friendly structure, mainstream appeal with vocal skill"},
+    {name:"Gospel R&B",desc:"Church-influenced soulful R&B",prompt:"78 BPM gospel R&B, organ chords, hand claps, soulful melismatic vocals, choir harmonies, uplifting message, warm bass guitar, tambourine groove, spiritual passion meets R&B smoothness"},
+    {name:"Slow Jam",desc:"Intimate late-night sensuality",prompt:"65 BPM slow jam, silky smooth bass, gentle finger snaps, whispered intimate vocals, lush string arrangement, candlelit atmosphere, romantic slow dance energy, warm analog warmth"},
+    {name:"Jazzy R&B",desc:"Sophisticated jazz-soul fusion",prompt:"84 BPM jazzy R&B, Rhodes electric piano, walking bass transitions, sophisticated harmony, scat-influenced vocal runs, intimate jazz club atmosphere, refined and warm production"},
+    {name:"Afro-R&B",desc:"African rhythms meet R&B vocals",prompt:"105 BPM Afro-R&B, Afrobeats percussion pattern, smooth R&B vocal delivery, log drum bass, shaker groove, call-and-response harmonies, Lagos meets Los Angeles fusion"},
   ],
   "Electronic": [
     {name:"Festival EDM",desc:"Mainstage euphoric drop energy",prompt:"128 BPM progressive house EDM, massive supersaw lead synth, tension-building pre-drop, explosive four-bar drop, sidechain pumping pads, crowd euphoria designed, stadium festival energy"},
@@ -106,6 +129,16 @@ const GENRE_BPS = {
     {name:"Hyperpop",desc:"Maximalist digital chaos",prompt:"160 BPM hyperpop, extreme pitch-shifted vocals, blown-out 808 distortion, maximalist chaotic production, digital artifacting as aesthetic, rave energy meets pop structure, PC Music label sound"},
     {name:"House Classic",desc:"Chicago 4/4 soulful house",prompt:"126 BPM classic house, four-on-the-floor kick, Chicago soul vocal sample, piano chords on off-beat, warm bassline, worship-the-dancefloor energy, Chicago deep house originator aesthetic"},
     {name:"Synthwave",desc:"80s retro-future neon aesthetic",prompt:"108 BPM synthwave, vintage arpeggiated synthesizer, gated reverb snare, cinematic retro-future atmosphere, driving bass pulse, neon highway imagery, Kavinsky and Perturbator energy"},
+    {name:"IDM",desc:"Intelligent dance music complexity",prompt:"130 BPM IDM, complex evolving drum patterns, granular synthesis textures, glitched melodic fragments, algorithmic composition feel, cerebral listening experience, Warp Records aesthetic"},
+    {name:"Minimal Techno",desc:"Stripped hypnotic repetition",prompt:"128 BPM minimal techno, hypnotic looping percussion, subtle evolving filter sweeps, sparse arrangement, deep groove, one-element-at-a-time builds, Berlin warehouse energy"},
+    {name:"Breakbeat",desc:"Chopped drum breaks energy",prompt:"135 BPM breakbeat, chopped amen break and think break, heavy bass weight, rave stab synths, high energy dancefloor, 90s UK rave atmosphere, breakneck drum edits"},
+    {name:"Downtempo",desc:"Slow-motion electronic bliss",prompt:"85 BPM downtempo, warm pad layers, gentle breakbeat, organic textures mixed with synthesis, late-night headphone listening, contemplative mood, Café Del Mar sunset vibe"},
+    {name:"Acid House",desc:"303 squelch classic rave",prompt:"125 BPM acid house, Roland TB-303 squelching bassline, 909 drum machine, hypnotic acid patterns, warehouse rave atmosphere, repetitive trance-inducing groove, classic Chicago house energy"},
+    {name:"Ambient Techno",desc:"Atmospheric dancefloor meditation",prompt:"120 BPM ambient techno, lush reverb-drenched pads, gentle kick pulse, evolving atmospheric textures, meditative dancefloor energy, The Orb-inspired space, expansive stereo field"},
+    {name:"Hardstyle",desc:"Hard kick festival energy",prompt:"150 BPM hardstyle, distorted reverse bass kick, euphoric lead melody, massive build and drop, crowd chant vocals, festival mainstage energy, aggressive compressed production"},
+    {name:"Garage",desc:"Skippy UK 2-step rhythm",prompt:"132 BPM UK garage, skippy 2-step drum pattern, chopped R&B vocal samples, warm sub bass, shuffled hi-hats, London nightlife energy, sophisticated groove, champagne atmosphere"},
+    {name:"Trance",desc:"Euphoric progressive build",prompt:"138 BPM trance, soaring euphoric synth lead, progressive build over 8 bars, massive breakdown and drop, rolling bassline, Armin van Buuren-inspired uplift, festival arms-in-the-air moment"},
+    {name:"Dubstep",desc:"Heavy wobble bass drops",prompt:"140 BPM dubstep, massive wobble bass, heavy half-time drum pattern, aggressive synth design, huge drop after atmospheric intro, Skrillex-inspired filth, speaker-destroying bass weight"},
   ],
   "Rock": [
     {name:"Arena Rock",desc:"Stadium singalong production",prompt:"128 BPM arena rock, massive wall-of-guitar chorus, four-on-the-floor kick, anthemic gang vocal, inspirational lyric themes, arena rock production scale, enormous reverb snare"},
@@ -116,6 +149,15 @@ const GENRE_BPS = {
     {name:"Grunge",desc:"Seattle loud-quiet-loud dynamic",prompt:"110 BPM grunge, loud-quiet-loud dynamic structure, overdriven Fender guitar, heavy distorted chorus, vulnerable verse delivery erupting to screaming chorus, Nirvana and Soundgarden energy"},
     {name:"Desert Rock",desc:"heavy desert rock groove",prompt:"106 BPM desert rock, heavy fuzzy guitar groove, thunderous bass, hypnotic repetitive riff, heavy desert rock groove energy, Palm Desert California heat, dry punishing production"},
     {name:"Math Rock",desc:"Odd time signatures and precision",prompt:"Variable tempo math rock, odd time signatures shifting between 7/8 and 5/4, intricate guitar interlock, technical precision, minimal or no vocals, post-rock math rock cerebral influence, cerebral energy"},
+    {name:"Classic Rock",desc:"70s guitar-driven anthem",prompt:"120 BPM classic rock, powerful electric guitar riffs, driving drum beat, Hammond organ fills, blues-based chord progression, stadium sing-along chorus, analog recording warmth, 70s rock energy"},
+    {name:"Surf Rock",desc:"Reverb-drenched beach guitar",prompt:"160 BPM surf rock, heavy spring reverb guitar, tremolo picking, driving tom-heavy drums, twangy Fender tone, beach party energy, Dick Dale-inspired intensity, sunny California vibe"},
+    {name:"Blues Rock Revival",desc:"Raw blues-powered guitar rock",prompt:"128 BPM blues rock, raw overdriven guitar, 12-bar blues structure, powerful drum groove, gritty vocal delivery, guitar solo showcase, live-in-the-room recording, authentic blues grit"},
+    {name:"Garage Rock",desc:"Raw lo-fi punk-blues energy",prompt:"145 BPM garage rock, fuzzy distorted guitar, lo-fi recording quality, shouted vocals, simple three-chord progression, raw untamed energy, stripped-down production, DIY punk attitude"},
+    {name:"Space Rock",desc:"Cosmic psychedelic exploration",prompt:"95 BPM space rock, swirling delay guitar textures, cosmic synth layers, driving bass pulse, expansive reverb, otherworldly atmosphere, Pink Floyd-inspired exploration, vast sonic landscape"},
+    {name:"Southern Rock",desc:"Swampy dual-guitar swagger",prompt:"115 BPM southern rock, dual lead guitars harmonizing, swampy groove, rolling drum pattern, Hammond B3 organ, whiskey-soaked vocal grit, Allman Brothers energy, extended jam section"},
+    {name:"Power Ballad",desc:"Epic slow-build emotional rock",prompt:"72 BPM power ballad, gentle acoustic intro building to full band climax, soaring guitar solo, emotional vocal delivery, orchestra swells, lighter-waving chorus, 80s arena atmosphere"},
+    {name:"Noise Rock",desc:"Abrasive experimental guitar chaos",prompt:"140 BPM noise rock, heavily distorted dissonant guitar, pounding repetitive drums, screamed vocals, feedback drones, confrontational intensity, Sonic Youth-inspired chaos, artistic aggression"},
+    {name:"Prog Rock",desc:"Epic complex musical journey",prompt:"Variable BPM prog rock, complex time signature changes, extended song structure, virtuosic musicianship, concept album narrative, Mellotron and Moog synthesizers, Yes-inspired epic journey, 15-minute odyssey"},
   ],
   "Country": [
     {name:"Classic Nashville",desc:"Timeless honky-tonk tradition",prompt:"96 BPM classic Nashville country, pedal steel guitar weeping, Telecaster twang, acoustic guitar strumming, fiddle solo, working-class storytelling, traditional verse-chorus structure, radio Nashville polish"},
@@ -126,6 +168,14 @@ const GENRE_BPS = {
     {name:"Texas Red Dirt",desc:"Texas and Oklahoma roots music",prompt:"98 BPM Texas red dirt country, electric and acoustic guitar blend, powerful fiery vocal delivery, Texas barroom energy, Texas red dirt country influence, authentic working-class perspective"},
     {name:"Bluegrass",desc:"High lonesome acoustic virtuosity",prompt:"135 BPM bluegrass, acoustic banjo rolls, mandolin chop, fiddle melody, upright bass, tight five-part vocal harmony, high lonesome sound, Appalachian storytelling tradition"},
     {name:"Country Ballad",desc:"Emotional slow country tearjerker",prompt:"72 BPM country ballad, solo acoustic guitar and piano, pedal steel swells, raw heartfelt vocal delivery, devastating personal storytelling, minimal production letting emotion breathe"},
+    {name:"Honky-Tonk",desc:"Classic barroom country",prompt:"130 BPM honky-tonk, twangy telecaster guitar, upright bass slap, fiddle melody, classic two-step rhythm, barroom piano, beer-drinking singalong chorus, sawdust-floor energy"},
+    {name:"Country Rock",desc:"Southern rock meets Nashville",prompt:"118 BPM country rock, electric and acoustic guitar blend, driving drum beat, pedal steel accents, rock energy with country twang, Eagles-inspired harmony, open-road freedom"},
+    {name:"Contemporary Country",desc:"Modern Nashville production",prompt:"100 BPM contemporary country, polished Nashville production, acoustic guitar foundation, subtle electronic elements, anthemic chorus, modern drum programming with live feel, crossover appeal"},
+    {name:"Western Swing",desc:"Jazz-influenced dancehall country",prompt:"140 BPM western swing, jazzy chord progressions, twin fiddles, steel guitar, walking bass, swing rhythm, Bob Wills-inspired energy, Texas dance hall atmosphere, sophisticated country jazz"},
+    {name:"Alt-Country",desc:"Indie rock meets country soul",prompt:"105 BPM alt-country, Telecaster twang with indie rock distortion, literate lyrics, unconventional song structure, pedal steel over power chords, Wilco-inspired experimentation, heartland authenticity"},
+    {name:"Country Trap",desc:"Modern country-hip hop hybrid",prompt:"78 BPM country trap, 808 bass under acoustic guitar, trap hi-hats with banjo melody, modern vocal delivery, dirt road meets urban production, genre-blending crossover"},
+    {name:"Bro-Country",desc:"Party-anthem truck-driving summer",prompt:"126 BPM bro-country, driving electric guitar riff, programmed rock drums, tailgate party lyrics, big singalong chorus, summer anthem energy, trucks and sunshine, arena-country production"},
+    {name:"Truck-Driving Country",desc:"Open-road diesel anthem",prompt:"95 BPM truck-driving country, steady rolling rhythm, pedal steel highway melody, CB radio atmosphere, open-road freedom, diesel engine rumble, Dave Dudley-inspired working-class anthem"},
   ],
   "Latin": [
     {name:"Reggaeton",desc:"Dembow Caribbean energy",prompt:"98 BPM reggaeton, standard dembow percussion pattern, trap 808 bass, Spanish lyricism, Puerto Rican and Colombian urban energy, dancehall influence, summer heat sensuality"},
@@ -136,6 +186,14 @@ const GENRE_BPS = {
     {name:"Cumbia Electronic",desc:"Colombian cumbia meets club beats",prompt:"110 BPM cumbia electronic, traditional cumbia rhythm transformed with electronic production, accordion sample textures, danceable groove, Latin American party energy, tropical club atmosphere"},
     {name:"Bolero",desc:"Slow romantic Latin ballad",prompt:"72 BPM bolero, lush orchestral strings, classical guitar, warm resonant baritone or tenor, deeply romantic devotional lyrics, Latin American nostalgia, intimate candlelit atmosphere"},
     {name:"Afrolatino",desc:"Afrobeats meets Caribbean Latin",prompt:"100 BPM Afrolatino, West African percussion meets Latin rhythm, Spanish and English bilingual, tropical production, Ozuna and Afrobeats crossover energy, global summer sound"},
+    {name:"Dembow",desc:"Dominican bounce rhythm",prompt:"118 BPM dembow, signature Dominican dembow rhythm, heavy bass, aggressive vocal delivery, dancehall influence, Caribbean party energy, raw urban production, Santo Domingo streets"},
+    {name:"Corrido Tumbado",desc:"Modern Mexican corrido trap",prompt:"85 BPM corrido tumbado, requinto guitar melody, 808 bass drops, traditional corrido storytelling, modern trap production overlay, Mexican regional meets urban, street narrative"},
+    {name:"Bossa Nova",desc:"Brazilian smooth jazz-samba",prompt:"120 BPM bossa nova, gentle nylon guitar, brushed percussion, soft vocal delivery, sophisticated jazz harmony, Rio de Janeiro breeze, intimate café atmosphere, Antonio Carlos Jobim warmth"},
+    {name:"Merengue",desc:"Fast Dominican dance rhythm",prompt:"160 BPM merengue, tambora drum and güira scraper, accordion melody, fast two-step dance rhythm, call-and-response vocals, Caribbean carnival energy, non-stop dance groove"},
+    {name:"Latin Pop Ballad",desc:"Romantic Spanish-language ballad",prompt:"70 BPM Latin pop ballad, romantic acoustic guitar, string orchestra, passionate Spanish vocal delivery, emotional crescendo, telenovela cinematic atmosphere, heartfelt love song"},
+    {name:"Perreo",desc:"Reggaeton club grind",prompt:"92 BPM perreo, heavy dembow reggaeton beat, aggressive bass, dancehall vocal chops, club grind energy, Puerto Rico nightclub atmosphere, provocative dance rhythm"},
+    {name:"Tropical House Latin",desc:"Island electronic pop fusion",prompt:"110 BPM tropical house Latin, steel pan melody, four-on-the-floor kick, Spanish vocals, island percussion, summer electronic production, beach club sunset energy, Latin-EDM fusion"},
+    {name:"Reggaeton Romantico",desc:"Smooth romantic reggaeton",prompt:"88 BPM reggaeton romantico, smooth dembow beat, romantic lyrical content, R&B vocal melody, warm production, Latin love song, slow-dance energy, intimate club atmosphere"},
   ],
   "Metal": [
     {name:"Thrash Metal",desc:"Aggressive fast precision",prompt:"185 BPM thrash metal, palm-muted galloping guitar riff, double-kick bass drum, aggressive shouted vocal, political lyric content, Bay Area metal aesthetic, relentless forward momentum"},
@@ -146,6 +204,14 @@ const GENRE_BPS = {
     {name:"Nu-Metal",desc:"Late 90s rap-metal crossover",prompt:"110 BPM nu-metal, detuned seven-string guitar groove, rap verse and sung chorus hybrid, heavy aggressive drop, DJ scratch, angst-driven lyrical themes, late 90s nu-metal rap-rock influence"},
     {name:"Metalcore",desc:"Hardcore punk meets metal",prompt:"155 BPM metalcore, breakdown riff, screamed verse transitioning to clean sung chorus, double-kick drumming, aggressive hardcore energy meeting melodic hooks, metalcore melodic hardcore energy"},
     {name:"Stoner Rock",desc:"Fuzzy slow heavy groove",prompt:"82 BPM stoner rock, massive fuzz guitar tone, slow heavy groove, warm analog production, psychedelic texture, desert rock stoner metal influence, desert rock energy, weed-soaked heavy riffing"},
+    {name:"Symphonic Metal",desc:"Orchestra meets heavy guitars",prompt:"155 BPM symphonic metal, full orchestral arrangement, operatic soprano vocals, heavy distorted guitars, double bass drums, epic cinematic scope, Nightwish-inspired grandeur, fantasy atmosphere"},
+    {name:"Sludge Metal",desc:"Slow crushing heaviness",prompt:"60 BPM sludge metal, down-tuned crushing guitar riffs, impossibly slow tempo, screamed anguished vocals, wall of feedback, oppressive atmosphere, Eyehategod-inspired misery, tar-thick distortion"},
+    {name:"Folk Metal",desc:"Medieval instruments meet metal",prompt:"170 BPM folk metal, tin whistle and hurdy-gurdy melodies, blast beat drums, folk dance rhythm sections, clean and harsh vocal alternation, medieval fantasy atmosphere, tavern drinking song energy"},
+    {name:"Industrial Metal",desc:"Mechanical precision aggression",prompt:"135 BPM industrial metal, mechanical drum machine precision, distorted guitar chug, electronic noise textures, aggressive shouted vocals, factory-floor atmosphere, Ministry-inspired cybernetic rage"},
+    {name:"Djent",desc:"Polyrhythmic progressive precision",prompt:"100 BPM djent, polyrhythmic palm-muted guitar chug, 8-string guitar low-end, complex time signature shifts, clean ambient interludes, surgical precision, Meshuggah-inspired mechanical groove"},
+    {name:"Speed Metal",desc:"Blistering fast classic metal",prompt:"200 BPM speed metal, blistering fast tremolo picking, rapid double bass drums, high-pitched vocal screams, lightning guitar solos, NWOBHM influence, pure adrenaline velocity, leather and denim energy"},
+    {name:"Groove Metal",desc:"Head-nodding heavy riff machine",prompt:"115 BPM groove metal, heavy chugging palm-muted riff, half-time feel drums, aggressive shouted vocals, breakdown sections, Pantera-inspired swagger, pit-starting heaviness, massive guitar tone"},
+    {name:"Blackgaze",desc:"Black metal meets shoegaze beauty",prompt:"160 BPM blackgaze, tremolo-picked guitars with shoegaze reverb, blast beats fading to ambient sections, ethereal clean vocals over harsh screams, beautiful yet extreme, Deafheaven-inspired catharsis"},
   ],
   "Jazz": [
     {name:"Bebop",desc:"Classic bebop jazz virtuosity",prompt:"220 BPM bebop jazz, saxophone or trumpet rapid chromatic runs over complex chord changes, rhythm section comping, 32-bar form, improvisation as primary expression, New York 1940s sophistication"},
@@ -155,6 +221,14 @@ const GENRE_BPS = {
     {name:"Hard Bop",desc:"Post-bop soulful drive",prompt:"155 BPM hard bop, driving four-four swing, soulful blues influence in jazz, aggressive trumpet and saxophone interaction, hard bop soulful drive energy"},
     {name:"Acid Jazz",desc:"Funk groove meets jazz harmony",prompt:"100 BPM acid jazz, funky drum groove, organ, electric guitar, jazz harmonic sophistication over funk rhythm, funk-jazz dancefloor consciousness energy, dancefloor jazz consciousness"},
     {name:"Free Jazz",desc:"Avant-garde free jazz collective",prompt:"Freeform free jazz, collective improvisation, no fixed tempo or key center, saxophone saxophone trumpet and bass interacting spontaneously, free jazz avant-garde collective influence, pure expression"},
+    {name:"Cool Jazz",desc:"West Coast relaxed sophistication",prompt:"120 BPM cool jazz, relaxed West Coast swing, muted trumpet melody, light brushed drums, walking bass, understated sophistication, Miles Davis Birth of the Cool era, smooth California nights"},
+    {name:"Fusion",desc:"Jazz-rock electric experimentation",prompt:"130 BPM jazz fusion, electric guitar with jazz voicings, Fender Rhodes comping, complex odd-meter grooves, virtuosic soloing, Weather Report-inspired exploration, electric bass slap, high energy"},
+    {name:"Gypsy Jazz",desc:"Django Reinhardt hot swing",prompt:"180 BPM gypsy jazz, acoustic guitar rapid strumming, violin melody, walking acoustic bass, hot club swing rhythm, Django Reinhardt-inspired virtuosity, Parisian café energy, acoustic fire"},
+    {name:"Smooth Jazz",desc:"Polished melodic easy listen",prompt:"95 BPM smooth jazz, soprano saxophone melody, electric piano chords, programmed drums with live feel, gentle bass groove, late-night radio atmosphere, accessible and warm, relaxing sophistication"},
+    {name:"Latin Jazz Fusion",desc:"Afro-Cuban rhythms meet jazz",prompt:"140 BPM Latin jazz, Afro-Cuban clave rhythm, congas and timbales, trumpet solo over montuno piano, walking bass, salsa-meets-bebop energy, Dizzy Gillespie-inspired Afro-Cuban fire"},
+    {name:"Big Band Swing",desc:"Full orchestra swing era",prompt:"155 BPM big band swing, 17-piece ensemble arrangement, brass section shout chorus, rhythm section driving swing, saxophone soli, dance floor energy, Count Basie-inspired power, 1940s ballroom"},
+    {name:"Spiritual Jazz",desc:"Cosmic transcendent exploration",prompt:"90 BPM spiritual jazz, modal harmonies, African percussion, chanting vocals, tenor saxophone meditation, Alice Coltrane-inspired cosmic reach, spiritual transcendence, harp arpeggios"},
+    {name:"Vocal Jazz",desc:"Standards sung with elegance",prompt:"110 BPM vocal jazz, elegant vocal interpretation of standards, piano trio accompaniment, intimate nightclub setting, Ella Fitzgerald-inspired scatting, sophisticated phrasing, velvet voice, timeless class"},
   ],
   "Indie": [
     {name:"Bedroom Pop",desc:"Lo-fi intimate DIY",prompt:"82 BPM bedroom pop, lo-fi recording aesthetic, close-mic vocal intimacy, simple guitar or keyboard, quiet vulnerable delivery, home studio imperfection as charm, intimate bedroom pop DIY energy"},
@@ -165,6 +239,14 @@ const GENRE_BPS = {
     {name:"Art Folk",desc:"Literary sophisticated acoustic",prompt:"80 BPM art folk, acoustic guitar finger-picking, literary complex lyrics, multi-tracked vocal harmonies, subtle orchestration, art folk orchestral pastoral influence, pastoral beauty"},
     {name:"Post-Rock",desc:"Instrumental cinematic build",prompt:"95 BPM post-rock, slow instrumental build from sparse guitar to massive wall of sound, no vocals, layered guitar crescendo, post-rock cinematic crescendo influence"},
     {name:"Jangle Pop",desc:"Bright Rickenbacker guitar pop",prompt:"115 BPM jangle pop, bright clean Rickenbacker or 12-string guitar, melodic bass, upbeat drumming, catchy hooks, jangle pop Rickenbacker guitar influence, optimistic bittersweet energy"},
+    {name:"Lo-Fi Indie",desc:"Tape-recorded bedroom charm",prompt:"100 BPM lo-fi indie, tape-recorded warmth, out-of-tune charm, simple guitar strumming, whispered vocals, four-track cassette aesthetic, DIY bedroom recording, Guided by Voices rawness"},
+    {name:"Twee Pop",desc:"Precious delicate indie sweetness",prompt:"125 BPM twee pop, delicate ukulele and glockenspiel, whispery sweet vocals, simple drum machine, precious innocent lyrics, Belle and Sebastian charm, cardigan-wearing sincerity"},
+    {name:"Noise Pop",desc:"Melodic pop buried in fuzz",prompt:"130 BPM noise pop, catchy melody buried under wall of guitar distortion, simple pop structure, dreamy vocals, Jesus and Mary Chain-inspired fuzz, beauty hidden in chaos"},
+    {name:"Slowcore",desc:"Minimalist glacial indie",prompt:"65 BPM slowcore, extremely slow tempo, sparse minimal arrangement, hushed vocals, clean electric guitar, long sustained notes, melancholic introspection, Low-inspired patience and silence"},
+    {name:"Midwest Emo",desc:"Twinkly guitar emotional indie",prompt:"115 BPM midwest emo, twinkly clean guitar arpeggios, dynamic soft-loud shifts, earnest emotional vocals, math-rock influenced drumming, raw vulnerability, American Football-inspired nostalgia"},
+    {name:"Britpop",desc:"90s British guitar swagger",prompt:"124 BPM britpop, jangly Rickenbacker guitar, confident vocal swagger, driving rhythm section, anthemic chorus, working-class lyrics, Oasis-inspired attitude, 90s British guitar pop energy"},
+    {name:"Baroque Pop",desc:"Orchestral ornate pop grandeur",prompt:"108 BPM baroque pop, harpsichord and string quartet, ornate melodic arrangement, theatrical vocal delivery, classical music influence, Beach Boys-inspired harmony, sophisticated pop grandeur"},
+    {name:"Indietronica",desc:"Electronic beats indie vocals",prompt:"118 BPM indietronica, electronic beats with indie rock guitars, synth arpeggios, human vocal warmth over digital precision, MGMT-inspired psychedelic electronic, blog-era indie dance"},
   ],
   "Soul": [
     {name:"Classic Soul",desc:"Southern soul gospel fire",prompt:"95 BPM classic soul, warm Hammond organ, tight horn section, live drum feel, powerful raw vocal with gospel runs, emotional authenticity, Southern soul analog warmth, gritty analog warmth"},
@@ -173,6 +255,13 @@ const GENRE_BPS = {
     {name:"Psychedelic Soul",desc:"psychedelic soul-funk boundary-pushing experimentation",prompt:"100 BPM psychedelic soul-funk, dense layered production, syncopated polyrhythm, multi-tracked vocal harmonies, social commentary, raw funk guitar, boundary-pushing studio experimentation"},
     {name:"Southern Soul",desc:"Deep South blues-inflected soul",prompt:"88 BPM Southern soul, slow-burning blues influence, organ and piano blend, horns, raw powerful baritone or alto, Southern soul intimate emotional authenticity, intimate emotional authenticity"},
     {name:"Philadelphia Soul",desc:"TSOP lush orchestral production",prompt:"105 BPM Philadelphia soul, lush orchestral string arrangement, smooth polished production, MFSB and PIR Records energy, elegant sophisticated vocal, sweeping emotional romantic themes"},
+    {name:"Northern Soul",desc:"Uptempo rare dance soul",prompt:"130 BPM northern soul, uptempo dance groove, rare vinyl energy, powerful belting vocals, driving tambourine, Motown-adjacent but grittier, Northern England dance hall, all-night dancing energy"},
+    {name:"Deep Soul",desc:"Intense emotional Southern soul",prompt:"68 BPM deep soul, intense emotional vocal delivery, horn section stabs, slow-burning groove, gospel-influenced melisma, deep Southern production, tear-jerking balladry, Muscle Shoals warmth"},
+    {name:"Neo-Funk",desc:"Modern funk revival groove",prompt:"108 BPM neo-funk, slap bass groove, tight rhythm guitar chop, synth brass stabs, Vulfpeck-inspired minimalism, lo-fi recording charm, infectious head-nodding groove, modern funk party"},
+    {name:"Retro Soul",desc:"Vintage soul recording recreation",prompt:"92 BPM retro soul, vintage analog recording, warm tape saturation, classic Stax horns, tremolo guitar, authentic 60s production techniques, Leon Bridges-inspired throwback, timeless warmth"},
+    {name:"Funk Soul",desc:"Parliament-Funkadelic party groove",prompt:"105 BPM funk soul, heavy syncopated bass, wah-wah guitar, horn section hits, call-and-response vocals, George Clinton-inspired cosmic party, sweaty dancefloor energy, funk mothership"},
+    {name:"Blue-Eyed Soul",desc:"Pop-soul crossover warmth",prompt:"98 BPM blue-eyed soul, polished pop-soul production, heartfelt vocal delivery, string arrangement, sophisticated chord changes, Hall & Oates-inspired crossover, smooth AM radio warmth"},
+    {name:"Cinematic Soul",desc:"Epic orchestral soul production",prompt:"76 BPM cinematic soul, full orchestra arrangement, powerful vocal performance, dramatic crescendos, Isaac Hayes-inspired epic production, Shaft-era sophistication, widescreen soul, movie soundtrack grandeur"},
   ],
   "Afrobeats": [
     {name:"Afropop",desc:"Nigerian mainstream celebration",prompt:"100 BPM Afropop, Lagos energy, syncopated Afrobeats percussion, love and celebration themes, tropical synthesizer production, English and Yoruba bilingual, global crossover accessibility"},
@@ -181,6 +270,13 @@ const GENRE_BPS = {
     {name:"Highlife",desc:"Ghanaian brass and guitar tradition",prompt:"115 BPM highlife, acoustic and electric guitar interplay, brass section, upbeat polyrhythmic percussion, Ghanaian celebration, communal joy, West African melodic warmth"},
     {name:"Afro-Fusion",desc:"Genre-blending modern afrobeats",prompt:"98 BPM afro-fusion, blending afrobeats with reggae R&B and hip-hop, eclectic production palette, smooth powerful vocal, global cultural synthesis, Lagos to London to Los Angeles"},
     {name:"Afrobeats Drill",desc:"West African meets UK drill",prompt:"140 BPM Afro drill, West African melodic influence over UK drill production, percussive afrobeats elements, bilingual lyrical style, London-Lagos energy fusion, bass-heavy club atmosphere"},
+    {name:"Alte",desc:"Nigerian alternative experimental",prompt:"95 BPM alte, experimental Nigerian alternative, lo-fi production, genre-blending approach, introspective lyrics, jazz and R&B influence, Lagos creative scene energy, boundary-pushing African alternative"},
+    {name:"Afro-Pop",desc:"Mainstream African pop hits",prompt:"108 BPM afro-pop, infectious guitar melody, danceable groove, bright production, sing-along chorus, pan-African appeal, mainstream crossover energy, Afrobeats radio hit formula"},
+    {name:"Afro-House",desc:"Deep house meets African rhythm",prompt:"122 BPM afro-house, deep house four-on-the-floor, African percussion overlay, vocal chant loops, warm bass, Black Coffee-inspired sophistication, sunset DJ set energy, Ibiza meets Johannesburg"},
+    {name:"Jùjú",desc:"Yoruba guitar-led dance music",prompt:"115 BPM jùjú music, layered talking drums and percussion, pedal steel guitar melody, Yoruba vocal style, call-and-response choir, celebratory party atmosphere, King Sunny Ade-inspired grooves"},
+    {name:"Afrobeats Pop",desc:"Polished global crossover hit",prompt:"102 BPM Afrobeats pop, polished international production, catchy melody, Afrobeats rhythm with pop structure, bright synths, global crossover appeal, Wizkid-inspired smoothness"},
+    {name:"Kuduro",desc:"Angolan high-energy electronic",prompt:"140 BPM kuduro, aggressive electronic beat, Angolan dance music, distorted bass, rapid-fire vocal delivery, high-energy dancefloor, Lisbon party scene, raw digital production"},
+    {name:"Ndombolo",desc:"Congolese soukous dance energy",prompt:"125 BPM ndombolo, sebene guitar riff, Congolese soukous rhythm, shaker percussion, call-and-response, infectious dance command vocals, Kinshasa party energy, guitar-driven joy"},
   ],
   "Folk": [
     {name:"Singer-Songwriter",desc:"timeless folk singer-songwriter tradition",prompt:"72 BPM folk singer-songwriter, solo acoustic guitar fingerpicking, close-mic vocal with room sound, honest confessional lyrics, minimal production, timeless emotional directness"},
@@ -190,6 +286,13 @@ const GENRE_BPS = {
     {name:"Folk Rock",desc:"Dylan goes electric energy",prompt:"100 BPM folk rock, electric and acoustic guitar blend, full band arrangement, lyrical poetic content, classic folk rock electric jangle energy, jangly Rickenbacker tone, protest and beauty"},
     {name:"Pastoral Folk",desc:"Gentle nature-imagery acoustic",prompt:"70 BPM pastoral folk, fingerpicked acoustic guitar, soft flute or recorder, gentle brush drums, nature and seasons imagery, British folk influence, pastoral British folk warmth"},
     {name:"Vermont Folk-Pop",desc:"earnest folk-pop emotional geography",prompt:"100 BPM folk-pop, acoustic guitar with full band, earnest honest baritone, geographic specificity in lyrics, emotional coming-of-age themes, Stick Season autumn imagery, powerful singalong chorus"},
+    {name:"Murder Ballad",desc:"Dark narrative storytelling",prompt:"80 BPM murder ballad, dark minor key acoustic guitar, storytelling vocal delivery, sparse arrangement, gothic Appalachian atmosphere, Nick Cave-inspired darkness, narrative folk horror"},
+    {name:"Protest Folk",desc:"Political acoustic activism",prompt:"110 BPM protest folk, solo acoustic guitar, urgent vocal delivery, harmonica breaks, political lyrical content, Woody Guthrie-inspired activism, campfire singalong, righteous anger"},
+    {name:"Neo-Folk",desc:"Modern atmospheric acoustic",prompt:"95 BPM neo-folk, layered acoustic guitars, atmospheric reverb, modern production clarity, intimate vocal recording, Fleet Foxes-inspired beauty, lush vocal harmonies, nature imagery"},
+    {name:"Bluegrass Folk",desc:"High-lonesome mountain picking",prompt:"140 BPM bluegrass folk, rapid banjo picking, fiddle melody, mandolin chop, upright bass, high lonesome vocal harmony, mountain music energy, front-porch picking session"},
+    {name:"Sea Shanty",desc:"Maritime call-and-response choral",prompt:"100 BPM sea shanty, group vocal call-and-response, accordion melody, bodhran drum, nautical rhythm, crew singing in unison, maritime adventure atmosphere, TikTok revival energy"},
+    {name:"World Folk Fusion",desc:"Global traditional instrument blend",prompt:"105 BPM world folk fusion, sitar meets acoustic guitar, tabla and djembe percussion, multi-cultural instrument palette, pentatonic melody, global village atmosphere, respectful world music blend"},
+    {name:"Chamber Folk",desc:"Classical instruments acoustic blend",prompt:"85 BPM chamber folk, cello and violin with acoustic guitar, literary lyrics, delicate vocal delivery, classical-folk arrangement, Sufjan Stevens-inspired orchestral folk, intimate concert hall"},
   ],
   "Reggae": [
     {name:"Roots Reggae",desc:"conscious roots reggae vibration",prompt:"78 BPM roots reggae, classic one-drop drum pattern, heavy bass on the one, offbeat guitar skank, organ bubble, spiritual consciousness themes, Rastafari philosophy, Jamaican warmth"},
@@ -197,6 +300,14 @@ const GENRE_BPS = {
     {name:"Dub",desc:"dub studio as instrument philosophy",prompt:"74 BPM dub reggae, heavy bass frequencies, echo and reverb as instruments, selective instrumental drop-outs, studio effects creating space, cavernous room sound, hypnotic groove"},
     {name:"Modern Reggae",desc:"Contemporary conscious sound",prompt:"85 BPM contemporary reggae, modern production with roots foundation, conscious lyrics over clean digital production, modern reggae revival conscious energy, acoustic and digital hybrid"},
     {name:"Reggae-Rap",desc:"Reggae hip-hop conscious crossover",prompt:"92 BPM reggae hip-hop crossover, reggae rhythm with hip-hop production elements, rapid deejay flow over one-drop pattern, conscious socially aware lyrics, reggae hip-hop crossover conscious energy"},
+    {name:"Lovers Rock",desc:"Romantic smooth reggae R&B",prompt:"80 BPM lovers rock, smooth romantic reggae, sweet vocal delivery, gentle one-drop rhythm, warm bass, lover's theme lyrics, London reggae scene, intimate slow-dance groove, 70s British reggae"},
+    {name:"Ska",desc:"Uptempo offbeat Jamaican original",prompt:"155 BPM ska, uptempo offbeat guitar chop, walking bass, horn section melody, driving drum beat, Jamaican independence era energy, The Skatalites-inspired swing, dance hall celebration"},
+    {name:"Ragga",desc:"Digital dancehall DJ style",prompt:"100 BPM ragga, digital dancehall riddim, DJ toasting vocal style, heavy bass weight, electronic production, yard party energy, 90s dancehall digital era, sound system culture"},
+    {name:"Reggae Revival",desc:"Modern roots consciousness",prompt:"76 BPM reggae revival, modern roots reggae, clean production with analog warmth, conscious lyrics, one-drop rhythm, nyabinghi influence, Chronixx-inspired modern roots, Kingston spirituality"},
+    {name:"Rocksteady",desc:"Pre-reggae smooth Jamaican soul",prompt:"90 BPM rocksteady, smooth slow-tempo Jamaican rhythm, sweet three-part vocal harmonies, walking bass, gentle guitar skank, pre-reggae groove, Studio One warmth, 1966 Kingston cool"},
+    {name:"Steppas",desc:"Heavy dub-influenced bass weight",prompt:"140 BPM steppas, heavy four-on-the-floor kick, massive sub bass, dub echo effects, militant rhythm, sound system pressure, roots dub influence, earthquake bass weight"},
+    {name:"Calypso Reggae",desc:"Caribbean carnival island fusion",prompt:"105 BPM calypso reggae, steel pan melody over reggae rhythm, carnival energy, brass section, Caribbean sunshine, island fusion groove, Trinidad meets Jamaica, festive celebration"},
+    {name:"Digital Reggae",desc:"Modern electronic roots fusion",prompt:"82 BPM digital reggae, electronic production with roots reggae feel, synthesizer organ, programmed drums with one-drop pattern, modern bass design, dub effects, contemporary Kingston digital sound"},
   ],
   "Blues": [
     {name:"Delta Blues",desc:"Delta blues raw acoustic roots",prompt:"80 BPM delta blues, slide guitar on acoustic resonator, raw solo vocal, minimal accompaniment, Southern Gothic imagery, human suffering and resilience, dusty road atmosphere"},
@@ -205,6 +316,14 @@ const GENRE_BPS = {
     {name:"Soul Blues",desc:"Soul blues sophisticated elegance",prompt:"88 BPM soul blues, clean jazz-influenced guitar, full band arrangement with horns, sophisticated vocal phrasing, adult contemporary emotional depth, sophisticated soul blues guitar conversation"},
     {name:"Modern Blues",desc:"modern blues contemporary feel",prompt:"106 BPM modern blues, Gibson semi-hollow guitar tone, contemporary production values, political and personal themes, guitar virtuosity meets hip-hop influence, Austin Texas energy"},
     {name:"Slow Blues",desc:"Late night 12-bar devastation",prompt:"58 BPM slow blues, aching minor key 12-bar form, spare bass and drums, weeping guitar phrases, confessional heartbreak vocal, late night whiskey bar atmosphere, maximum emotional weight"},
+    {name:"Piedmont Blues",desc:"Fingerpicking East Coast acoustic",prompt:"95 BPM Piedmont blues, intricate fingerpicking acoustic guitar, alternating bass thumb pattern, ragtime influence, East Coast acoustic blues, front-porch warmth, Blind Blake-inspired virtuosity"},
+    {name:"Jump Blues",desc:"Swinging uptempo R&B precursor",prompt:"140 BPM jump blues, swinging shuffle beat, honking saxophone, boogie-woogie piano, upright bass slap, Louis Jordan-inspired party energy, juke joint celebration, proto-rock and roll"},
+    {name:"British Blues",desc:"UK interpretation electric blues",prompt:"115 BPM British blues, British interpretation of Chicago electric blues, overdriven guitar, aggressive harmonica, heavy drum groove, John Mayall-inspired authenticity, 60s London blues boom"},
+    {name:"Swamp Blues",desc:"Louisiana bayou groove",prompt:"85 BPM swamp blues, lazy bayou groove, tremolo guitar, swirling organ, heavy reverb, Louisiana humidity atmosphere, Slim Harpo-inspired simplicity, mosquito-buzzing heat"},
+    {name:"Gospel Blues",desc:"Church meets juke joint crossover",prompt:"72 BPM gospel blues, church organ chords, passionate vocal testimony, gospel chord changes in blues structure, hand claps, spiritual anguish meets Saturday night sin, sacred-profane tension"},
+    {name:"Acoustic Slide Blues",desc:"Bottleneck resonator raw",prompt:"88 BPM acoustic slide blues, resonator guitar bottleneck slide, raw solo performance, foot stomping percussion, Delta-influenced open tuning, Robert Johnson-inspired crossroads atmosphere"},
+    {name:"Funk Blues",desc:"Greasy groove blues hybrid",prompt:"100 BPM funk blues, greasy groove bass line, tight rhythm guitar chop, blues scale soloing over funk rhythm, B.B. King-meets-James Brown, sweaty club energy, horn stabs"},
+    {name:"Country Blues",desc:"Rural acoustic storytelling",prompt:"82 BPM country blues, solo acoustic guitar, rural Southern storytelling, front-porch performance, raw vocal delivery, Lightnin' Hopkins-inspired conversational style, Texas afternoon heat"},
   ],
   "Punk": [
     {name:"Classic Punk",desc:"Ramones and Sex Pistols raw energy",prompt:"185 BPM classic punk rock, down-strummed power chords, simple 4/4 drumming, shouted group vocals, lo-fi recording, anti-establishment attitude, two-minute song format, raw aggression"},
@@ -213,6 +332,12 @@ const GENRE_BPS = {
     {name:"Hardcore Punk",desc:"Maximum aggression minimum time",prompt:"200 BPM hardcore punk, blast beats, shouted vocal, down-tuned guitars, 90-second songs, maximum aggression, DIY underground ethic, cathartic energy release, mosh pit energy"},
     {name:"Skate Punk",desc:"Fast melodic SoCal punk",prompt:"175 BPM skate punk, fast melodic guitar, horn or trumpet accents, tight drumming, SoCal melodic skate punk energy, Southern California skate culture, satirical political lyrics, three-chord melody"},
     {name:"Emo Punk",desc:"Emotional post-hardcore feeling",prompt:"140 BPM emo, clean verse exploding to distorted chorus, raw emotional vocal, confessional personal lyrics, guitar interplay, emo punk confessional cathartic energy, cathartic release"},
+    {name:"Anarcho-Punk",desc:"Political DIY raw aggression",prompt:"180 BPM anarcho-punk, raw distorted guitar, aggressive political lyrics, DIY recording quality, Crass-inspired anti-establishment rage, feedback and noise, revolutionary energy, fanzine aesthetic"},
+    {name:"Melodic Hardcore",desc:"Fast punk with singalong melody",prompt:"170 BPM melodic hardcore, fast aggressive punk with clean vocal melody, gang vocal choruses, technical drumming, energetic positive vibe, Descendents-inspired melodicism, sweaty basement show"},
+    {name:"Garage Punk",desc:"Primitive fuzzy rock and roll",prompt:"160 BPM garage punk, primitive fuzzy guitar, Farfisa organ, snotty vocal attitude, back-to-basics rock and roll, Nuggets-compilation rawness, 60s garage meets 70s punk"},
+    {name:"Crust Punk",desc:"Metal-influenced apocalyptic punk",prompt:"190 BPM crust punk, D-beat drumming, heavily distorted guitar, gravelly screamed vocals, apocalyptic atmosphere, metal-meets-punk aggression, squatter aesthetic, Discharge-inspired fury"},
+    {name:"Riot Grrrl",desc:"Feminist punk raw power",prompt:"150 BPM riot grrrl, raw feminist punk, confrontational lyrics, simple powerful guitar riffs, urgent vocal delivery, DIY recording, Bikini Kill-inspired fury, zine culture energy"},
+    {name:"Surf Punk",desc:"Beach party meets punk aggression",prompt:"175 BPM surf punk, reverb-drenched guitar with punk speed, Dead Kennedys-inspired surf riff, aggressive drum beat, sarcastic lyrics, California beach-meets-gutter, sun-scorched aggression"},
   ],
   "Ambient": [
     {name:"Pure Ambient",desc:"generative ambient atmosphere",prompt:"No fixed BPM pure ambient, slowly evolving synthesizer pads, generative harmonic movement, no rhythmic pulse, infinite sustain, meditation and contemplation atmosphere, space between sounds as music"},
@@ -221,6 +346,13 @@ const GENRE_BPS = {
     {name:"Nature Ambient",desc:"Field recording and synthesis",prompt:"No tempo nature ambient, processed field recordings of rain and forest, synthesizer harmonics, binaural audio design, healing frequency content, restorative calm atmosphere"},
     {name:"Neo-Classical Ambient",desc:"Ólafur Arnalds piano and strings",prompt:"72 BPM neo-classical ambient, generative piano phrases over string pad, emotional cinematic sweep, Icelandic restraint and beauty, STRATUS generative system aesthetic, delicate and devastating"},
     {name:"Tape Loop Ambient",desc:"Basinski disintegration aesthetic",prompt:"Slow decaying tape loop ambient, analog tape deterioration texture, slowly dissolving melodic fragments, loss and memory as theme, meditative decay, nostalgic dissolution over long duration"},
+    {name:"Space Ambient",desc:"Deep cosmic void exploration",prompt:"Slow evolving space ambient, vast cosmic synthesizer drones, granular star-field textures, deep sub frequency rumbles, zero-gravity weightlessness, interstellar void, dark matter atmosphere"},
+    {name:"Ambient Drone",desc:"Sustained harmonic meditation",prompt:"Sustained ambient drone, single evolving harmonic tone, overtone series exploration, barely perceptible movement, deep listening meditation, La Monte Young-inspired minimalism, infinite duration feel"},
+    {name:"Forest Ambient",desc:"Organic woodland soundscape",prompt:"Organic forest ambient, bird song field recordings, gentle wind through leaves, distant stream water, soft synthesizer undertone, dawn forest atmosphere, nature documentary peace, ecological meditation"},
+    {name:"Ambient Industrial",desc:"Dark mechanical atmospheric",prompt:"Dark ambient industrial, metallic resonance, factory echo recordings, slow menacing pulse, dystopian atmosphere, abandoned machinery hum, Lustmord-inspired darkness, post-apocalyptic dread"},
+    {name:"Healing Ambient",desc:"Therapeutic resonance wellness",prompt:"528 Hz healing ambient, Tibetan singing bowls, crystal resonance, binaural beat undertone, gentle synthesizer wash, spa and meditation atmosphere, therapeutic frequency tuning, deep relaxation"},
+    {name:"Glitch Ambient",desc:"Digital artifact meditation",prompt:"Glitch ambient, microscopic digital artifacts, granular synthesis clouds, buffer overflow textures, Oval-inspired CD-skip beauty, meditative broken digital, quiet electronic malfunction poetry"},
+    {name:"Ambient Guitar",desc:"Processed guitar soundscapes",prompt:"Ambient guitar, heavily processed clean electric guitar, infinite sustain, shimmer reverb, volume swells, delay feedback loops, Brian Eno-inspired guitar treatments, meditative and vast sonic landscape"},
   ],
   "Gospel": [
     {name:"Traditional Gospel",desc:"traditional gospel church fire",prompt:"92 BPM traditional gospel, Hammond organ with Leslie speaker, powerful choir, hand claps on 2 and 4, testifying vocal, spiritual themes of redemption, Black church tradition, joyful noise"},
@@ -228,6 +360,11 @@ const GENRE_BPS = {
     {name:"Worship Ballad",desc:"Hillsong intimate surrender",prompt:"68 BPM modern worship ballad, piano-led arrangement, soaring vocal build, string swells, intimate devotional lyric, congregational sing-along melody, emotional spiritual surrender"},
     {name:"Gospel Soul",desc:"classic gospel soul sacred feeling",prompt:"85 BPM gospel soul, piano and organ blend, small ensemble feel, deeply expressive vocal, spiritual and secular emotion merged, authentic feeling above all production"},
     {name:"Urban Gospel",desc:"Urban multicultural worship collective",prompt:"90 BPM urban contemporary gospel, diverse multicultural worship collective, rotating lead vocals, hip-hop and R&B influenced production, multicultural urban worship collective energy, joyful inclusive praise"},
+    {name:"Choir Gospel",desc:"Mass choir full power",prompt:"95 BPM choir gospel, 100-voice mass choir, powerful Hammond B3 organ, tambourine and drums, call-and-response between soloist and choir, cathedral reverb, overwhelming spiritual power"},
+    {name:"Quartet Gospel",desc:"Traditional four-part harmony",prompt:"90 BPM quartet gospel, four-part male harmony, lead tenor soaring over bass foundation, minimal accompaniment, traditional spiritual arrangement, church basement intimacy, Blind Boys of Alabama power"},
+    {name:"Gospel Funk",desc:"Funky church celebration",prompt:"108 BPM gospel funk, funky bass groove, clavinet and organ, gospel vocal runs, celebratory dance energy, Kirk Franklin-inspired modernization, church band groove, joyful praise party"},
+    {name:"Southern Gospel",desc:"Country-influenced Christian music",prompt:"85 BPM southern gospel, piano and acoustic guitar, four-part harmony, country music influence, storytelling lyrics, Gaither Vocal Band warmth, church revival atmosphere, heartland devotion"},
+    {name:"CCM Worship",desc:"Contemporary Christian mainstream",prompt:"78 BPM CCM worship, atmospheric electric guitar, modern production, congregational singalong melody, gentle build to anthemic chorus, Hillsong-inspired worship, arena church atmosphere"},
   ],
   "K-Pop": [
     {name:"K-Pop Banger",desc:"K-pop idol group stadium energy",prompt:"130 BPM K-pop, polished multi-layered production, hook-driven vocal melody, English and Korean bilingual, choreography-ready beat, emotional pre-chorus build to explosive chorus, idol group energy"},
@@ -236,6 +373,11 @@ const GENRE_BPS = {
     {name:"Synth K-Pop",desc:"K-pop retro-futurist synthesizer aesthetic",prompt:"118 BPM synth-pop K-pop, vintage synthesizer aesthetic with modern polish, funky bass, clean falsetto vocal, retro-futurist visual imagery, sophisticated melodic composition"},
     {name:"Y2K K-Pop",desc:"Y2K effortless K-pop revival",prompt:"108 BPM Y2K influenced K-pop, early 2000s production aesthetic, minimalist authentic styling, understated cool vocal, retro-fresh sound design, Y2K-influenced effortless K-pop aesthetic, effortless infectious melody"},
     {name:"Dark K-Pop Concept",desc:"Dark conceptual K-pop concept",prompt:"128 BPM dark K-pop concept, dramatic orchestral intro, powerful girl group energy, dark conceptual K-pop universe aesthetic, intense visual storytelling, massive drop, empowered fierce concept"},
+    {name:"K-Pop Retro",desc:"80s synth nostalgic concept",prompt:"118 BPM K-pop retro, 80s synthesizer nostalgia, city pop influence, neon-lit visual concept, retro drum machine, pitched vocal harmonies, Seoul nightlife aesthetics, vintage-modern fusion"},
+    {name:"K-Pop R&B",desc:"Smooth Korean R&B vocal focus",prompt:"82 BPM K-pop R&B, smooth vocal delivery, minimal beat, R&B melodic sensibility, Korean language lyrics, intimate production, DEAN-inspired alternative K-R&B, emotional sophistication"},
+    {name:"K-Pop EDM",desc:"Festival drop dance track",prompt:"128 BPM K-pop EDM, massive synth build, explosive drop, Korean vocal chant hook, festival mainstage energy, precise synchronized choreography beat, BLACKPINK-inspired power, global dance track"},
+    {name:"K-Pop Rock",desc:"Band concept guitar energy",prompt:"140 BPM K-pop rock, driving guitar riff, powerful drums, Korean vocals with rock energy, DAY6-inspired band concept, arena singalong chorus, emotional intensity, live band performance feel"},
+    {name:"K-Pop Cute",desc:"Bright aegyo concept track",prompt:"125 BPM K-pop cute concept, bright bubbly synths, playful vocal delivery, aegyo charm, colorful production, handclap percussion, TWICE-inspired brightness, candy-colored energy"},
   ],
   "Drill": [
     {name:"UK Drill",desc:"London cold streets and sliding bass",prompt:"140 BPM UK drill, dark minor key orchestral sample, cold mechanical hi-hat pattern, sliding 808 bass notes, hard snare, street-level lyric realism, London estates atmosphere, menacing energy"},
@@ -243,6 +385,11 @@ const GENRE_BPS = {
     {name:"Melodic Drill",desc:"NY melodic drill deep hook",prompt:"140 BPM melodic drill, deep booming 808, dark melodic hook over drill percussion, gravelly baritone vocal style, Brooklyn NY energy, ominous string samples"},
     {name:"Afro Drill",desc:"UK-Africa Afro drill fusion",prompt:"142 BPM Afro drill, West African melodic influence over UK drill production, percussive afrobeats elements, bilingual lyrical style, London-Lagos energy fusion, bass-heavy club atmosphere"},
     {name:"NY Drill",desc:"Brooklyn Brooklyn NY drill energy",prompt:"142 BPM New York drill, New York drill production style, hard snare, dark minor melody, Brooklyn street narrative, rapid-fire flow, dark atmospheric production"},
+    {name:"Brooklyn Drill",desc:"NY sample-heavy dark drill",prompt:"140 BPM Brooklyn drill, dark minor key piano samples, sliding 808 bass, aggressive delivery, New York attitude, Pop Smoke-inspired energy, sample-heavy production, woo-walk rhythm"},
+    {name:"Drill Melodic",desc:"Singing over drill beats",prompt:"142 BPM melodic drill, auto-tuned singing over drill beat, emotional lyrics over hard production, 808 bass slides, piano melody, vulnerability meets aggression, genre-blending contrast"},
+    {name:"Detroit Drill",desc:"Michigan aggressive bounce",prompt:"145 BPM Detroit drill, aggressive rapid-fire flow, heavy 808, Michigan bounce influence, raw energy, Sada Baby-inspired intensity, Detroit street energy, confrontational delivery"},
+    {name:"Plugg",desc:"Dreamy melodic trap-drill hybrid",prompt:"148 BPM plugg, dreamy ethereal melody, soft 808 pattern, chiptune-influenced synths, SoundCloud aesthetic, Playboi Carti-inspired spacey delivery, lo-fi DIY charm, hypnotic repetition"},
+    {name:"Jersey Club Drill",desc:"Bouncy East Coast hybrid",prompt:"150 BPM jersey club drill, bouncy bed-squeak samples, rapid kick patterns, drill 808 bass, danceable energy, sample chops, East Coast club meets UK drill, TikTok viral energy"},
   ],
   "Phonk": [
     {name:"Memphis Phonk",desc:"Memphis underground ghostly phonk revival",prompt:"130 BPM Memphis phonk, slowed and pitched-down hip-hop vocal samples, distorted 808 bass, cowbell percussion, eerie haunted atmosphere, slurred lo-fi aesthetic, underground tape culture"},
@@ -250,6 +397,11 @@ const GENRE_BPS = {
     {name:"Dark Phonk",desc:"Cold underground midnight sound",prompt:"120 BPM dark phonk, slowed reverb vocal, cold minor key atmosphere, heavy sub bass, atmospheric horror elements, underground DIY production, isolated midnight mood"},
     {name:"Phonk House",desc:"Brazilian dance energy crossover",prompt:"135 BPM phonk house, four-on-the-floor kick with phonk percussion overlay, Brazilian baile funk influence, aggressive bass, dancefloor energy with dark underground aesthetic"},
     {name:"Lofi Phonk",desc:"Chill dark phonk tape warmth",prompt:"110 BPM lo-fi phonk, tape-saturated warm production, gentle cowbell groove, slowed soul vocal sample, chill but dark atmosphere, study-beats meets underground phonk, nostalgic warmth"},
+    {name:"Brazilian Phonk",desc:"Aggressive South American energy",prompt:"130 BPM Brazilian phonk, aggressive MC vocal samples, funk carioca influence, distorted bass, high-energy gym soundtrack, São Paulo streets, aggressive car audio energy"},
+    {name:"Cowbell Phonk",desc:"Signature cowbell-driven classic",prompt:"128 BPM cowbell phonk, iconic cowbell pattern, chopped Memphis vocal sample, heavy 808 sub bass, lo-fi tape quality, Three 6 Mafia homage, trunk-rattling bass, underground Memphis tribute"},
+    {name:"Cyber Phonk",desc:"Digital futuristic dark phonk",prompt:"135 BPM cyber phonk, futuristic digital synths, industrial bass, cyberpunk atmosphere, glitch effects, aggressive energy, neon-dystopia aesthetic, gaming soundtrack intensity"},
+    {name:"Aggressive Phonk",desc:"Maximum intensity gym phonk",prompt:"140 BPM aggressive phonk, maximum distortion, screaming vocal samples, relentless energy, gym lifting intensity, redline aggressive production, adrenaline rush, no-mercy attitude"},
+    {name:"Witch House Phonk",desc:"Occult dark electronic crossover",prompt:"115 BPM witch house phonk, occult atmospheric synths, slowed pitched-down vocals, dark electronic textures, Salem-inspired darkness, triangle symbol aesthetic, haunted digital production"},
   ],
 };
 
@@ -301,7 +453,7 @@ const GENRE_COLORS_BP = {
 };
 
 // ============================================================
-// ARTIST DATABASE — 259 artists
+// ARTIST DATABASE — 500 artists
 // ============================================================
 const ARTISTS = [
 {name:"Drake",genre:"Hip-Hop",bpm:"70-95",mood:["melodic","introspective","confident"],
@@ -1079,7 +1231,731 @@ blueprint:"178 BPM proto-punk and punk rock, Blitzkrieg Bop hey ho lets go, I Wa
 blueprint:"180 BPM skate punk and melodic hardcore, Linoleum skate punk energy, The Decline 18-minute punk suite, Punk in Drublic defining album, Fat Mike Fat Wreck Chords label founder, El Hefe guitar and trumpet, Los Angeles punk scene, satirical political lyrics"},
 
 {name:"Billie Joe Armstrong",genre:"Punk",bpm:"150-185",mood:["pop-punk","Berkeley","songwriter"],
-blueprint:"168 BPM pop-punk, Green Day leader songwriter, Basket Case anxiety written at 924 Gilman Street, American Idiot rock opera writer, three-chord melodic punk songwriting mastery, political and personal lyricism balance"}
+blueprint:"168 BPM pop-punk, Green Day leader songwriter, Basket Case anxiety written at 924 Gilman Street, American Idiot rock opera writer, three-chord melodic punk songwriting mastery, political and personal lyricism balance"},
+,
+
+{name:"2 Chainz",genre:"Hip-Hop",bpm:"70-90",mood:["witty","trap","Atlanta"],
+blueprint:"78 BPM Atlanta trap, punchy 808 bass patterns, clever punchline-heavy delivery with comedic timing, layered ad-libs, hard-hitting trap snares with booming low end, witty metaphors over dark minor-key synths, T.R.U. label energy, strip club anthem vibes"},
+
+{name:"070 Shake",genre:"Alternative",bpm:"90-120",mood:["ethereal","experimental","haunting"],
+blueprint:"105 BPM experimental art-pop, distorted ethereal vocals floating over glitchy synth textures, pitched vocal layers, sparse drum programming with heavy reverb, atmospheric builds, gender-fluid vocal delivery, cinematic emotional intensity, G.O.O.D. Music experimentalism"},
+
+{name:"Adekunle Gold",genre:"Afrobeats",bpm:"100-115",mood:["smooth","romantic","highlife"],
+blueprint:"108 BPM Afro-pop with highlife guitar licks, warm honey vocal delivery, clean acoustic guitar arpeggios blended with modern Afrobeats production, romantic lyrics, Lagos sophistication, vintage highlife meets contemporary Nigerian pop"},
+
+{name:"Alesso",genre:"Electronic",bpm:"126-132",mood:["euphoric","progressive","festival"],
+blueprint:"128 BPM progressive house, massive melodic builds with soaring saw synth leads, anthemic vocal chops, uplifting chord progressions, stadium-sized reverb, crisp punchy kicks, Swedish house mafia influence, hands-in-the-air festival drops"},
+
+{name:"Ali Farka Touré",genre:"Blues",bpm:"85-110",mood:["desert","spiritual","roots"],
+blueprint:"95 BPM desert blues, hypnotic repetitive guitar patterns rooted in Malian pentatonic scales, sparse organic percussion, call-and-response vocal tradition, acoustic guitar as primary voice, Saharan trance-like repetition, African roots of American blues made explicit"},
+
+{name:"Alice in Chains",genre:"Rock",bpm:"80-120",mood:["dark","grunge","harmony"],
+blueprint:"95 BPM grunge metal hybrid, heavy detuned guitar riffs, distinctive dual vocal harmonies in minor thirds, dark sludgy distortion, slow grinding tempos, melancholic lyrical themes, Seattle grunge darkness, haunting layered vocal approach"},
+
+{name:"Amine",genre:"Hip-Hop",bpm:"90-130",mood:["playful","Portland","eclectic"],
+blueprint:"110 BPM eclectic hip-hop, bouncy unpredictable beat switches, playful melodic rap delivery, Portland outsider perspective, colorful production with unexpected samples, animated personality, genre-bending approach mixing rap pop and R&B"},
+
+{name:"Amy Winehouse",genre:"Soul",bpm:"85-120",mood:["retro","raw","jazz-influenced"],
+blueprint:"100 BPM retro soul revival, vintage Motown and girl-group arrangements, powerful jazz-inflected contralto voice, Ronson-produced live band feel, upright bass and brass sections, confessional brutally honest lyrics, 60s production aesthetic with modern edge"},
+
+{name:"Anderson .Paak",genre:"R&B",bpm:"90-115",mood:["groovy","soulful","percussive"],
+blueprint:"100 BPM funk-soul groove, live drumming foundation with syncopated snare work, raspy soulful vocal delivery, vintage analog warmth, Moog bass lines, live instrumentation focus, drummer-vocalist dual perspective, Oxnard California soul, NxWorries collaboration style"},
+
+{name:"André 3000",genre:"Hip-Hop",bpm:"85-120",mood:["eccentric","visionary","soulful"],
+blueprint:"100 BPM experimental hip-hop meets soul, wildly creative production choices, pitched vocal experiments, jazz flute and world music elements, stream-of-consciousness poetry, Outkast experimental legacy, genre-defying artistic vision, Atlanta avant-garde"},
+
+{name:"Angel Olsen",genre:"Indie",bpm:"75-110",mood:["cinematic","heartbreak","transformation"],
+blueprint:"90 BPM indie rock with country-tinged vocals, dramatic dynamic shifts from whisper to full-throated power, vintage reverb-drenched guitar, lush string arrangements, emotionally devastating vocal delivery, retro-futuristic production, Burn Your Fire For No Witness rawness"},
+
+{name:"Angus & Julia Stone",genre:"Folk",bpm:"80-110",mood:["dreamy","acoustic","Australian"],
+blueprint:"95 BPM dreamy folk-pop, brother-sister vocal harmonies, gentle fingerpicked acoustic guitar, soft brushed drums, warm analog production, Rick Rubin stripped-back approach, Australian pastoral folk, intimate whispered delivery"},
+
+{name:"Annihilator",genre:"Metal",bpm:"170-210",mood:["technical","thrash","Canadian"],
+blueprint:"190 BPM technical thrash metal, blazing fast guitar solos with surgical precision, complex time signatures, Jeff Waters virtuoso shredding, tight palm-muted riffing, Canadian thrash tradition, progressive song structures within thrash framework"},
+
+{name:"Ari Lennox",genre:"R&B",bpm:"75-100",mood:["sensual","vintage","Dreamville"],
+blueprint:"85 BPM neo-soul R&B, warm breathy vocal delivery with jazzy inflections, vintage soul chord progressions, live bass and keys, Dreamville label polish, sensual intimate lyrics, 90s R&B nostalgia, natural unforced vocal style"},
+
+{name:"Atmosphere",genre:"Hip-Hop",bpm:"85-100",mood:["introspective","indie","storytelling"],
+blueprint:"92 BPM indie hip-hop, Slug's conversational storytelling delivery, Ant's soulful sample-based beats with live piano, underground hip-hop warmth, deeply personal narrative lyrics, Midwest blue-collar perspective, Rhymesayers independent ethos"},
+
+{name:"Aurora",genre:"Pop",bpm:"90-130",mood:["ethereal","Nordic","mystical"],
+blueprint:"110 BPM ethereal Nordic pop, otherworldly soprano vocal with folk inflections, electronic production with organic textures, dramatic dynamic shifts, nature-inspired atmospheric soundscapes, Norwegian folk meets electronic art pop, spiritual mystical lyrics"},
+
+{name:"Ayra Starr",genre:"Afrobeats",bpm:"105-120",mood:["confident","youthful","Afro-pop"],
+blueprint:"112 BPM Afro-pop with dancehall influences, bright youthful vocal delivery, bouncy percussion patterns, log drum bass, confident feminine energy, Mavin Records polished production, Gen-Z Nigerian pop perspective, Rush energy"},
+
+{name:"Babyface",genre:"R&B",bpm:"70-100",mood:["smooth","romantic","classic"],
+blueprint:"82 BPM classic R&B balladry, silky smooth tenor vocal, clean electric guitar fills, drum machine precision with live feel, romantic songwriting craftsmanship, lush synth pads, LA Reid collaboration polish, 90s R&B gold standard production"},
+
+{name:"Banks",genre:"R&B",bpm:"80-110",mood:["dark","moody","electronic"],
+blueprint:"95 BPM dark alternative R&B, haunting breathy vocal layered with pitch effects, minimal trap-influenced beats, brooding synth textures, vulnerable yet confrontational lyrics, atmospheric production, GODDESS album darkness, electronic R&B edge"},
+
+{name:"Beach House",genre:"Indie",bpm:"85-115",mood:["dreamy","shoegaze","hypnotic"],
+blueprint:"100 BPM dream pop, lush reverb-drenched organ and synth washes, Victoria Legrand's smoky mezzo-soprano, hypnotic repetitive structures, shimmering guitar textures, lo-fi drum machine, ethereal wall-of-sound production, Teen Dream atmosphere"},
+
+{name:"Bear McCreary",genre:"Ambient",bpm:"60-90",mood:["cinematic","orchestral","epic"],
+blueprint:"75 BPM cinematic scoring, full orchestral arrangements with ethnic instrumentation, taiko drums and world percussion, Armenian duduk, Celtic influences, Battlestar Galactica intensity, dramatic dynamic contrasts, film and television soundtrack grandeur"},
+
+{name:"Bernie Worrell",genre:"Funk",bpm:"100-120",mood:["cosmic","synthesizer","P-Funk"],
+blueprint:"110 BPM cosmic funk, pioneering Moog synthesizer bass lines, Parliament-Funkadelic keyboard wizardry, psychedelic synth textures, deep groove pocket, off-kilter harmonic choices, funk keyboard vocabulary inventor, Wizard of Woo sonic exploration"},
+
+{name:"Beth Gibbons",genre:"Alternative",bpm:"70-95",mood:["haunting","vulnerable","trip-hop"],
+blueprint:"80 BPM art-folk and trip-hop, fragile trembling vocal delivery with devastating emotional weight, sparse acoustic arrangements, orchestral textures, existential lyrical themes, Portishead vocalist vulnerability, Lives Outgrown intimate confession"},
+
+{name:"Betty Davis",genre:"Funk",bpm:"100-130",mood:["fierce","raw","proto-punk"],
+blueprint:"115 BPM raw proto-punk funk, aggressive screaming vocal delivery, dirty fuzzed-out guitar riffs, heavy bass grooves, sexually liberated lyrics, pre-punk feminist funk energy, They Say I'm Different attitude, uncompromising sonic aggression"},
+
+{name:"Bjork",genre:"Electronic",bpm:"80-140",mood:["avant-garde","Icelandic","visionary"],
+blueprint:"110 BPM experimental electronic art-pop, unconventional vocal gymnastics spanning operatic to whisper, glitchy beat programming, orchestral meets electronic production, Icelandic otherworldly aesthetic, Homogenic glacial intensity, nature-technology fusion"},
+
+{name:"Black Flag",genre:"Punk",bpm:"160-200",mood:["hardcore","aggressive","DIY"],
+blueprint:"180 BPM hardcore punk, Greg Ginn's atonal angular guitar, relentless aggressive tempo, Henry Rollins intense vocal delivery, Damaged album ferocity, SST Records DIY ethos, Los Angeles hardcore founding sound, Nervous Breakdown raw energy"},
+
+{name:"Black Thought",genre:"Hip-Hop",bpm:"85-105",mood:["lyrical","jazz-rap","Philly"],
+blueprint:"95 BPM jazz-rap, impeccable multisyllabic rhyme schemes, The Roots live band hip-hop, Questlove drum foundation, Philadelphia neo-soul hip-hop, literary wordplay density, freestyle king precision, conscious lyricism over organic instrumentation"},
+
+{name:"Blood Orange",genre:"R&B",bpm:"90-120",mood:["nostalgic","art-pop","80s"],
+blueprint:"105 BPM indie R&B with 80s new wave nostalgia, Dev Hynes' soft falsetto, vintage synth textures, Prince-influenced guitar funk, multicultural art-pop perspective, angular post-punk guitar, dreamy production, Negro Swan vulnerability"},
+
+{name:"Boards of Canada",genre:"Ambient",bpm:"80-110",mood:["nostalgic","lo-fi","uncanny"],
+blueprint:"90 BPM downtempo electronic, degraded VHS-quality synth textures, warped childhood nostalgia samples, lo-fi analog warmth, detuned melodic fragments, hypnotic repetition, Scottish ambient duo, Music Has The Right To Children eerie beauty"},
+
+{name:"Bobby Womack",genre:"Soul",bpm:"80-110",mood:["gritty","raw","gospel-rooted"],
+blueprint:"95 BPM raw Southern soul, gritty gravelly tenor vocal, gospel-trained intensity, wah-wah guitar funk, Memphis soul influence, emotionally unguarded delivery, Across 110th Street cinematic soul, Sam Cooke protégé tradition"},
+
+{name:"Bon Jovi",genre:"Rock",bpm:"110-140",mood:["arena","anthemic","heartland"],
+blueprint:"125 BPM arena rock, massive singalong chorus hooks, big power chord riffs, talk box guitar effects, bombastic stadium production, blue-collar heartland lyrical themes, Livin' on a Prayer fist-pump energy, 80s rock anthem template"},
+
+{name:"Brandy",genre:"R&B",bpm:"75-105",mood:["vocal","layered","90s"],
+blueprint:"88 BPM 90s R&B, signature stacked vocal harmonies creating one-woman choir, Darkchild and Rodney Jerkins production, intricate vocal arrangements, warm mid-tempo grooves, Never Say Never vocal acrobatics, Moesha-era cultural impact"},
+
+{name:"Brittany Howard",genre:"Blues",bpm:"80-120",mood:["powerful","genre-defying","Alabama"],
+blueprint:"100 BPM blues-rock-soul hybrid, massive powerful vocal delivery spanning genres, Alabama Shakes raw energy, fuzzed-out guitar, gospel-influenced vocal runs, genre-fluid songwriting, Jaime solo album experimentalism, Muscle Shoals lineage"},
+
+{name:"Buddy Guy",genre:"Blues",bpm:"85-130",mood:["fiery","electric","Chicago"],
+blueprint:"110 BPM Chicago electric blues, blistering overdriven guitar with aggressive string bending, feedback-drenched solos, powerful gravelly vocal, polka-dot Fender Stratocaster tone, Damn Right I've Got the Blues swagger, Hendrix influence on blues"},
+
+{name:"Caribou",genre:"Electronic",bpm:"110-128",mood:["warm","psychedelic","dance"],
+blueprint:"120 BPM psychedelic electronic dance, warm organic textures over four-on-the-floor beats, layered vocal samples, kaleidoscopic production, math-PhD precision meets emotional warmth, Can't Do Without You euphoria, indie-dance crossover"},
+
+{name:"Carly Rae Jepsen",genre:"Pop",bpm:"110-130",mood:["euphoric","synth-pop","romantic"],
+blueprint:"120 BPM synth-pop perfection, 80s-inspired shimmering synths, infectious hook-driven songwriting, bright optimistic vocal delivery, Emotion album new wave revival, Max Martin-adjacent pop craftsmanship, romantic yearning lyrics, Call Me Maybe evolved"},
+
+{name:"Caroline Polachek",genre:"Pop",bpm:"95-130",mood:["operatic","experimental","art-pop"],
+blueprint:"115 BPM avant-garde pop, classically trained soprano with extreme vocal technique, Auto-Tune as artistic choice, Spanish guitar meets electronic production, Desire album sonic world-building, Chairlift legacy, experimental pop maximalism"},
+
+{name:"Cat Stevens",genre:"Folk",bpm:"80-115",mood:["spiritual","warm","acoustic"],
+blueprint:"95 BPM warm acoustic folk-pop, gentle fingerpicked guitar, warm tenor vocal with spiritual sincerity, simple elegant arrangements with strings, Tea for the Tillerman acoustic intimacy, Peace Train optimism, folk-rock songwriter craft"},
+
+{name:"Charli XCX",genre:"Pop",bpm:"120-140",mood:["hyperpop","bratty","futuristic"],
+blueprint:"130 BPM hyperpop maximalism, distorted bass-heavy PC Music production, bratty confident vocal attitude, A.G. Cook collaboration aesthetic, Brat album energy, chaotic layered synths, pitch-shifted vocal effects, nightlife party energy, genre-pushing pop"},
+
+{name:"Chase & Status",genre:"Electronic",bpm:"170-180",mood:["heavy","drum-and-bass","UK"],
+blueprint:"175 BPM drum and bass, massive sub-bass weight, breakbeat chopped drums, MC vocal features, dubstep-influenced drops, UK rave energy, No More Idols crossover appeal, dancefloor aggression meets pop accessibility"},
+
+{name:"Childish Gambino",genre:"Hip-Hop",bpm:"85-130",mood:["eclectic","funk","visual"],
+blueprint:"105 BPM genre-fluid hip-hop funk, Parliament-influenced bass grooves, falsetto singing over trap beats, Ludwig Göransson production, conceptual album narratives, Because The Internet experimentalism, This Is America cultural commentary, Atlanta creative vision"},
+
+{name:"Cigarettes After Sex",genre:"Indie",bpm:"65-90",mood:["intimate","ambient","nocturnal"],
+blueprint:"75 BPM ambient dream pop, hushed androgynous vocal delivery barely above whisper, heavily reverbed clean guitar arpeggios, slow-motion tempo, minimal drum presence, nocturnal bedroom intimacy, monochrome sonic palette, romantic melancholia"},
+
+{name:"CKay",genre:"Afrobeats",bpm:"105-120",mood:["romantic","smooth","Afro-pop"],
+blueprint:"112 BPM Afro-pop with R&B smoothness, silky tenor vocal, Love Nwantiti viral energy, gentle guitar loops over Afrobeats percussion, romantic crossover appeal, Nigerian pop craftsmanship, soft boy Afrobeats aesthetic"},
+
+{name:"Cocteau Twins",genre:"Alternative",bpm:"85-120",mood:["ethereal","glossolalia","dreamy"],
+blueprint:"100 BPM ethereal wave, Elizabeth Fraser's otherworldly glossolalia vocals, Robin Guthrie's shimmering chorus-drenched guitar, 4AD label aesthetic, Heaven or Las Vegas beauty, invented language singing, reverb cathedral production, dream pop pioneers"},
+
+{name:"Common",genre:"Hip-Hop",bpm:"85-100",mood:["conscious","soulful","Chicago"],
+blueprint:"92 BPM conscious hip-hop, smooth jazz-inflected beats, thoughtful introspective delivery, J Dilla and Kanye production, Chicago South Side storytelling, Be album neo-soul warmth, positive intellectual lyricism, Soulquarians collective energy"},
+
+{name:"Converge",genre:"Metal",bpm:"180-220",mood:["chaotic","hardcore","intense"],
+blueprint:"200 BPM metalcore and mathcore, chaotic time signature shifts, Jacob Bannon's anguished screaming, Kurt Ballou's dissonant guitar textures, Jane Doe genre-defining intensity, blistering speed alternating with crushing breakdowns, emotional hardcore catharsis"},
+
+{name:"Cordae",genre:"Hip-Hop",bpm:"85-110",mood:["lyrical","young","thoughtful"],
+blueprint:"95 BPM boom-bap influenced modern rap, mature lyrical content beyond his years, jazzy sample-based production, thoughtful introspective bars, The Lost Boy storytelling, YBN collective origin, conscious hip-hop revival, old-school values modern sound"},
+
+{name:"Courtney Barnett",genre:"Indie",bpm:"100-130",mood:["deadpan","Australian","observational"],
+blueprint:"115 BPM slacker indie rock, stream-of-consciousness observational lyrics, deadpan Australian vocal delivery, jangly distorted guitar, Pedestrian at Best explosive energy, witty mundane poetry, Melbourne garage rock, conversational singing style"},
+
+{name:"CupcakKe",genre:"Hip-Hop",bpm:"120-150",mood:["explicit","rapid","Chicago"],
+blueprint:"135 BPM aggressive rap, rapid-fire delivery with extreme lyrical explicitness, hard-hitting bass-heavy beats, unapologetic sexual confidence, Chicago underground energy, viral freestyle ability, comedic shock value meets genuine skill"},
+
+{name:"Cypress Hill",genre:"Hip-Hop",bpm:"80-100",mood:["psychedelic","West Coast","stoner"],
+blueprint:"90 BPM psychedelic West Coast hip-hop, B-Real's distinctive nasal vocal delivery, DJ Muggs dark sample-based production, marijuana culture anthems, Latin hip-hop pioneers, Insane in the Brain bounce, rock-rap crossover, eerie minor-key beats"},
+
+{name:"D'Angelo",genre:"R&B",bpm:"70-95",mood:["neo-soul","groove","organic"],
+blueprint:"80 BPM neo-soul, deeply layered organic production, Questlove live drum feel, detuned slightly behind-the-beat groove, Voodoo album sonic warmth, whispered intimate vocal stacks, jazz-funk chord voicings, analog recording aesthetic, Black Messiah return"},
+
+{name:"Damso",genre:"Hip-Hop",bpm:"75-100",mood:["dark","Belgian","melodic"],
+blueprint:"85 BPM Belgian-Congolese rap, dark atmospheric production, melodic Auto-Tune flow, French-language introspective lyrics, Brussels street perspective, Booba protégé evolution, QALF album depth, Afro-European hip-hop identity"},
+
+{name:"Danny Brown",genre:"Hip-Hop",bpm:"100-140",mood:["manic","experimental","Detroit"],
+blueprint:"120 BPM experimental rap, manic high-pitched hyena vocal delivery, Paul White and JPEGMAFIA production, Atrocity Exhibition industrial textures, Detroit storytelling, drug culture confessionals, punk energy in hip-hop, chaotic flow switches"},
+
+{name:"Daphni",genre:"Electronic",bpm:"120-130",mood:["playful","house","percussive"],
+blueprint:"125 BPM playful house music, Dan Snaith's Caribou alias for dance floors, percussive polyrhythmic grooves, warm analog synths, jacking house energy, unexpected sample flips, Ye Ye club anthem energy, ecstatic dancefloor minimalism"},
+
+{name:"Dave",genre:"Hip-Hop",bpm:"80-110",mood:["lyrical","UK","storytelling"],
+blueprint:"95 BPM UK rap, deeply personal storytelling over piano-driven beats, South London perspective, Psychodrama concept album craft, Nigerian heritage themes, intelligent verbose lyricism, BRIT Award-winning mainstream crossover, emotional depth"},
+
+{name:"David Guetta",genre:"Electronic",bpm:"126-132",mood:["mainstream","festival","EDM"],
+blueprint:"128 BPM mainstream EDM, massive pop-EDM crossover productions, four-on-the-floor house beats, big room festival drops, vocal-driven dance anthems, Titanium soaring energy, French Touch evolved to stadium scale, pop star collaborations"},
+
+{name:"Dead Kennedys",genre:"Punk",bpm:"160-200",mood:["satirical","hardcore","political"],
+blueprint:"180 BPM political hardcore punk, Jello Biafra's sarcastic sneering vocal, East Bay Ray's surf-influenced angular guitar, biting satirical lyrics, Holiday in Cambodia dark humor, Fresh Fruit for Rotting Vegetables urgency, San Francisco punk politics"},
+
+{name:"Deadmau5",genre:"Electronic",bpm:"126-132",mood:["progressive","dark","minimal"],
+blueprint:"128 BPM progressive house, long evolving builds with minimal drops, dark brooding synth textures, intricate sound design, Strobe atmospheric journey, mouse helmet iconography, Toronto electronic scene, anti-EDM progressive integrity"},
+
+{name:"Dean Lewis",genre:"Pop",bpm:"80-110",mood:["emotional","acoustic","Australian"],
+blueprint:"95 BPM emotional pop ballad, raw vulnerable vocal with Australian accent, acoustic guitar-driven songwriting, Waves viral heartbreak, stripped-back production building to anthemic chorus, sincere emotional delivery, singer-songwriter pop crossover"},
+
+{name:"Death Cab for Cutie",genre:"Indie",bpm:"90-130",mood:["melancholic","literary","Pacific Northwest"],
+blueprint:"110 BPM indie rock, Ben Gibbard's nasal tenor vocal, jangly guitar arpeggios, literary poetic lyrics about love and loss, Transatlanticism emotional distance, I Will Follow You Into the Dark acoustic intimacy, Pacific Northwest indie canon"},
+
+{name:"Death Grips",genre:"Hip-Hop",bpm:"120-160",mood:["abrasive","industrial","chaotic"],
+blueprint:"140 BPM experimental industrial hip-hop, MC Ride's aggressive screamed delivery, Zach Hill's chaotic drumming, Andy Morin's distorted glitchy production, Exmilitary raw aggression, noise-rap maximalism, punk meets hip-hop extremity"},
+
+{name:"Deerhunter",genre:"Indie",bpm:"90-130",mood:["ambient","punk","dreamy"],
+blueprint:"110 BPM ambient punk, Bradford Cox's vulnerable nasal vocal, shimmering reverb-soaked guitars, noise-pop textures, Halcyon Digest emotional warmth, ambient interludes between garage rock energy, Atlanta art-rock experimentalism"},
+
+{name:"Deftones",genre:"Metal",bpm:"80-130",mood:["atmospheric","shoegaze","heavy"],
+blueprint:"105 BPM atmospheric metal, Chino Moreno's vocal contrast between ethereal singing and aggressive screaming, Stephen Carpenter's heavy detuned 8-string guitar, shoegaze textures with nu-metal heaviness, White Pony beauty and brutality"},
+
+{name:"Delta Goodrem",genre:"Pop",bpm:"80-120",mood:["powerful","Australian","piano"],
+blueprint:"100 BPM piano-driven pop ballad, powerful trained soprano vocal, lush orchestral arrangements, Australian pop institution, Born to Try debut energy, emotional vocal runs, inspirational lyrical themes, classical training meets pop accessibility"},
+
+{name:"Desiigner",genre:"Hip-Hop",bpm:"130-150",mood:["energetic","trap","animated"],
+blueprint:"140 BPM high-energy trap, Panda viral bounce, excited animated ad-libs, Future-influenced melodic trap delivery, intense energetic vocal performance, Brooklyn trap with Atlanta influence, maximalist bass-heavy production"},
+
+{name:"Dessa",genre:"Hip-Hop",bpm:"85-110",mood:["literary","Minneapolis","art-rap"],
+blueprint:"95 BPM art-rap, literary spoken-word influenced delivery, Doomtree collective experimentalism, sung-rap hybrid with trained vocal ability, philosophical introspective lyrics, Minneapolis indie hip-hop, orchestral hip-hop arrangements"},
+
+{name:"Devin Townsend",genre:"Metal",bpm:"100-180",mood:["cosmic","progressive","epic"],
+blueprint:"140 BPM progressive metal maximalism, wall-of-sound layered guitar production, extreme vocal range from whisper to banshee scream, Ocean Machine atmospheric scope, Ziltoid humor, cosmic spiritual themes, Canadian metal genius, self-produced sonic worlds"},
+
+{name:"Digable Planets",genre:"Hip-Hop",bpm:"85-95",mood:["jazz-rap","bohemian","smooth"],
+blueprint:"90 BPM jazz-rap, cool laid-back delivery over live jazz samples, upright bass walks, bebop horn loops, bohemian intellectual aesthetic, Blowout Comb Native Tongues evolution, Brooklyn jazz-hop sophistication, Ishmael Butler's smooth poetry"},
+
+{name:"Doechii",genre:"Hip-Hop",bpm:"100-140",mood:["versatile","Florida","animated"],
+blueprint:"120 BPM versatile rap, animated theatrical delivery, genre-hopping between rap styles, Florida energy, TDE label backing, Persuasive viral impact, bold visual artistry, comedic personality meets lyrical substance, Gen-Z rap innovator"},
+
+{name:"Don Toliver",genre:"Hip-Hop",bpm:"80-110",mood:["spacey","Houston","melodic"],
+blueprint:"92 BPM spacey melodic trap, smooth Auto-Tune crooning, Houston psychedelic rap lineage, Travis Scott Cactus Jack mentorship, dreamy atmospheric beats, No Idea viral bounce, hazy nocturnal production, Love Sick album evolution"},
+
+{name:"Donna Summer",genre:"Pop",bpm:"120-135",mood:["disco","diva","pioneering"],
+blueprint:"126 BPM disco, Giorgio Moroder electronic production, powerful diva vocal over sequenced synths, I Feel Love electronic music pioneer moment, four-on-the-floor disco pulse, orchestral strings meets synthesizer, dance music queen vocal power"},
+
+{name:"Doves",genre:"Indie",bpm:"90-120",mood:["epic","Manchester","atmospheric"],
+blueprint:"105 BPM atmospheric indie rock, Manchester post-rave melancholia, sweeping string arrangements, Jimi Goodwin's rich baritone, There Goes the Fear euphoric build, layered textural guitars, cinematic emotional scale, northern English grandeur"},
+
+{name:"Earthgang",genre:"Hip-Hop",bpm:"90-130",mood:["eccentric","Atlanta","Spillage Village"],
+blueprint:"110 BPM experimental Atlanta rap, Olu and WowGr8's contrasting eccentric flows, Dreamville label creativity, psychedelic production choices, Spillage Village collective energy, genre-blending hip-hop funk soul, animated playful delivery"},
+
+{name:"El-P",genre:"Hip-Hop",bpm:"90-120",mood:["dystopian","industrial","technical"],
+blueprint:"105 BPM industrial hip-hop, dense layered dystopian production, Run The Jewels co-architect, Definitive Jux label founder, harsh digital textures, paranoid futuristic lyrics, technical rapid-fire delivery, Fantastic Damage sonic chaos"},
+
+{name:"Electric Light Orchestra",genre:"Classic Rock",bpm:"100-130",mood:["orchestral","pop-rock","cosmic"],
+blueprint:"115 BPM orchestral pop-rock, Jeff Lynne's layered production with strings and cellos, Beatles-influenced melodic songwriting, Mr. Blue Sky euphoric optimism, synthesizer meets classical instruments, space-age concept albums, baroque pop maximalism"},
+
+{name:"Eno",genre:"Ambient",bpm:"0-60",mood:["generative","pioneering","textural"],
+blueprint:"Ambient music pioneer, Music for Airports generative composition, Oblique Strategies creative process, minimal evolving textures, tape manipulation and synthesis, Another Green World art-pop transition, Roxy Music glam origins, producer as artist concept inventor"},
+
+{name:"Eric Church",genre:"Country",bpm:"90-130",mood:["outlaw","rock-influenced","intense"],
+blueprint:"110 BPM outlaw country-rock, gravelly intense vocal delivery, electric guitar-driven country, Springsteen-influenced arena energy, Chief album dark storytelling, Desperate Man rock edge, independent-minded Nashville outsider, marathon concert legend"},
+
+{name:"Erykah Badu",genre:"R&B",bpm:"70-100",mood:["spiritual","neo-soul","cosmic"],
+blueprint:"82 BPM neo-soul priestess, warm contralto vocal over live jazz-funk instrumentation, spoken word interludes, spiritual cosmic lyrics, Baduizm defining neo-soul, analog warmth, J Dilla beat influence, incense-burning Soulquarians aesthetic, Dallas mysticism"},
+
+{name:"Ethel Cain",genre:"Alternative",bpm:"70-100",mood:["Southern gothic","haunting","cinematic"],
+blueprint:"85 BPM Southern gothic dream pop, haunting reverbed vocals, dark Americana storytelling, Preacher's Daughter concept album, shoegaze guitar textures, religious trauma themes, cinematic slow-burn compositions, transgender artist perspective"},
+
+{name:"Eve",genre:"Hip-Hop",bpm:"90-110",mood:["fierce","Philly","versatile"],
+blueprint:"100 BPM Ruff Ryders hip-hop, fierce confident delivery, Philly swagger, Let Me Blow Ya Mind pop crossover, DMX label grit with feminine power, versatile flow switching between rap and singing, early 2000s hip-hop energy"},
+
+{name:"Fatboy Slim",genre:"Electronic",bpm:"120-140",mood:["big beat","party","sample-heavy"],
+blueprint:"130 BPM big beat, dense sample collage production, Praise You iconic breakbeat, funk and soul samples chopped over heavy electronic beats, party anthem energy, Brighton beach rave culture, Norman Cook DJ set intensity, Rockafeller Skank chaos"},
+
+{name:"Faye Webster",genre:"Indie",bpm:"70-100",mood:["slacker","Atlanta","country-tinged"],
+blueprint:"85 BPM slacker indie-country, dreamy pedal steel guitar, understated deadpan delivery, Atlanta R&B influence on indie folk, I Know I'm Funny haha laid-back charm, slide guitar textures, melancholic wit, unhurried pacing"},
+
+{name:"Feid",genre:"Latin",bpm:"95-115",mood:["reggaeton","Colombian","smooth"],
+blueprint:"105 BPM Colombian reggaeton, smooth melodic vocal delivery, perreo beats with modern production, Ferxxocalipsis viral energy, Medellín nightlife aesthetic, catchy danceable hooks, Latin urban crossover, romantic reggaeton crooning"},
+
+{name:"Fela Kuti",genre:"Afrobeats",bpm:"100-130",mood:["political","hypnotic","Afrobeat pioneer"],
+blueprint:"115 BPM original Afrobeat, extended hypnotic grooves with Tony Allen drumming, James Brown funk meets Yoruba rhythms, political protest lyrics, call-and-response horn sections, Afrika 70 band, 20-minute song structures, Lagos political resistance music"},
+
+{name:"FKA twigs",genre:"R&B",bpm:"80-120",mood:["avant-garde","physical","futuristic"],
+blueprint:"100 BPM avant-garde R&B, delicate soprano over glitchy electronic production, industrial bass drops, pole dancing physicality, LP1 future-R&B defining, Arca collaboration textures, vulnerability meets alien aesthetic, UK experimental pop"},
+
+{name:"Florence + The Machine",genre:"Pop",bpm:"100-140",mood:["operatic","dramatic","baroque"],
+blueprint:"120 BPM baroque pop-rock, Florence Welch's massive operatic mezzo-soprano, pounding tribal drums, harp arpeggios, dramatic dynamic builds, Dog Days Are Over euphoric release, Pre-Raphaelite visual aesthetic, theatrical emotional maximalism"},
+
+{name:"Flying Lotus",genre:"Electronic",bpm:"80-140",mood:["psychedelic","jazz","LA"],
+blueprint:"110 BPM psychedelic beat music, Brainfeeder label sonic innovation, jazz-trained composition with hip-hop beat structures, Alice Coltrane nephew lineage, Cosmogramma cosmic jazz-electronic fusion, glitchy layered production, Los Angeles beat scene pioneer"},
+
+{name:"Frank Turner",genre:"Folk",bpm:"120-160",mood:["punk-folk","British","anthemic"],
+blueprint:"140 BPM punk-folk, raspy passionate vocal delivery, acoustic guitar strummed with punk energy, Million Dead post-hardcore origins, Recovery anthemic singalong, British working-class storytelling, folk-punk arena energy, protest singer tradition"},
+
+{name:"Fuzz",genre:"Rock",bpm:"100-130",mood:["garage","heavy","psych"],
+blueprint:"115 BPM heavy psych-garage, Ty Segall drumming and vocals, fuzzed-out overdriven guitar walls, Sabbath-meets-Stooges heaviness, vintage analog recording, lo-fi production aesthetic, San Francisco garage rock, primal three-piece power"},
+
+{name:"Gabriels",genre:"Soul",bpm:"80-110",mood:["cinematic","gospel","modern soul"],
+blueprint:"95 BPM modern cinematic soul, Jacob Lusk's extraordinary gospel-trained countertenor, sweeping orchestral arrangements, Angels & Queens grandeur, classic Motown and Philadelphia soul reimagined, West Coast queer soul perspective"},
+
+{name:"Gang Starr",genre:"Hip-Hop",bpm:"85-100",mood:["boom-bap","lyrical","New York"],
+blueprint:"92 BPM quintessential boom-bap, Guru's monotone jazz-influenced delivery, DJ Premier's signature scratched hooks and hard-hitting drum chops, Moment of Truth lyrical depth, New York golden-age hip-hop foundation, jazz sample mastery"},
+
+{name:"Genesis Owusu",genre:"Alternative",bpm:"90-130",mood:["eclectic","Ghanaian-Australian","art-punk"],
+blueprint:"110 BPM genre-defying art-punk-rap-soul, theatrical stage presence, Smiling With No Teeth album range, punk energy meets R&B smoothness, Ghanaian-Australian dual identity, Canberra underground, ARIA Award innovation, unpredictable sonic palette"},
+
+{name:"George Clinton",genre:"Funk",bpm:"100-125",mood:["cosmic","psychedelic","mothership"],
+blueprint:"112 BPM cosmic P-Funk, Mothership Connection extraterrestrial funk mythology, massive horn sections, Bootsy Collins bass, thick layered funk groove, Atomic Dog bounce, psychedelic rock meets soul groove, funk collective mastermind"},
+
+{name:"George Strait",genre:"Country",bpm:"90-130",mood:["traditional","smooth","Texas"],
+blueprint:"110 BPM traditional country, smooth baritone vocal delivery, classic honky-tonk arrangements, fiddle and steel guitar, King of Country consistency, Amarillo By Morning timelessness, Texas two-step dance rhythms, Nashville traditional anchor"},
+
+{name:"Ghetts",genre:"Hip-Hop",bpm:"130-145",mood:["grime","intense","UK"],
+blueprint:"140 BPM grime, aggressive rapid-fire delivery over dark electronic beats, London East End street poetry, Conflict of Interest maturity, UK grime scene veteran, complex multisyllabic patterns, intense live energy, British hip-hop authenticity"},
+
+{name:"Gorillaz",genre:"Alternative",bpm:"90-130",mood:["virtual","eclectic","Damon Albarn"],
+blueprint:"110 BPM virtual band genre collage, Damon Albarn songwriting with global collaborators, hip-hop beats meets indie melancholy, Feel Good Inc bass groove, cartoon visual identity, genre-fluid approach spanning dub reggae hip-hop pop, Plastic Beach concept"},
+
+{name:"Grimes",genre:"Electronic",bpm:"110-140",mood:["cyberpunk","DIY","ethereal"],
+blueprint:"125 BPM cyberpunk art-pop, pitched-up ethereal vocals over industrial electronic beats, DIY production aesthetic, Art Angels pop perfection, Genesis visual futurism, anime and sci-fi influences, Vancouver bedroom pop origin, Visions lo-fi brilliance"},
+
+{name:"Grupo Niche",genre:"Latin",bpm:"90-110",mood:["salsa","Colombian","classic"],
+blueprint:"100 BPM Colombian salsa, tight horn arrangements, conga and timbale percussion, Cali salsa sound, Jairo Varela songwriting, Gotas de Lluvia romantic salsa, sophisticated harmonic progressions, Latin American dance music institution"},
+
+{name:"Gustavo Cerati",genre:"Rock",bpm:"90-130",mood:["Argentine","dreamy","post-rock"],
+blueprint:"110 BPM Argentine rock with electronic textures, Soda Stereo frontman legacy, shimmering delay-heavy guitar, Spanish-language dream pop, Bocanada electronic evolution, Latin American rock icon, atmospheric production, poetic introspective lyrics"},
+
+{name:"Gwen Stefani",genre:"Pop",bpm:"110-130",mood:["ska-pop","fun","90s"],
+blueprint:"120 BPM ska-influenced pop, No Doubt frontwoman charisma, Don't Speak acoustic drama, Hollaback Girl marching band pop, bratty confident vocal delivery, 90s ska-punk to solo pop evolution, fashion-forward visual identity"},
+
+{name:"Haim",genre:"Pop",bpm:"100-130",mood:["70s","sisterly","California"],
+blueprint:"115 BPM retro California pop-rock, three-sister harmonies, Fleetwood Mac influence, warm 70s soft-rock production, The Wire synth-pop bounce, Women in Music Pt. III evolution, live drum power, Danielle Haim's husky vocal lead"},
+
+{name:"Hercules and Love Affair",genre:"Electronic",bpm:"120-130",mood:["disco","queer","NYC"],
+blueprint:"125 BPM nu-disco house, Blind dancefloor anthem, queer nightlife energy, New York disco revival, deep house warmth, soulful vocal features, Andy Butler's eclectic production, Frankie Knuckles spiritual lineage, inclusive dancefloor joy"},
+
+{name:"Hit-Boy",genre:"Hip-Hop",bpm:"85-110",mood:["polished","West Coast","producer-rapper"],
+blueprint:"95 BPM polished West Coast rap, super-producer beats with crisp mixing, Niggas in Paris co-producer, Nas collaboration renaissance, clean hard-hitting drums, melodic sample flips, Sacramento to industry pipeline, beat mastery"},
+
+{name:"Honne",genre:"R&B",bpm:"85-110",mood:["electronic-soul","London","nocturnal"],
+blueprint:"95 BPM electronic soul, warm synth pads over minimal beats, soft breathy male vocals, London late-night aesthetic, Japanese cultural appreciation, Warm on a Cold Night intimacy, indie-electronic R&B fusion, lo-fi romantic vibes"},
+
+{name:"Hot Chip",genre:"Electronic",bpm:"115-130",mood:["cerebral","disco-punk","joyful"],
+blueprint:"122 BPM cerebral dance music, nerdy British vocal delivery over pulsing synths, Over and Over hypnotic repetition, disco-punk energy, emotional sincerity in electronic music, Made in the Dark pop hooks, live band electronic performance"},
+
+{name:"IDLES",genre:"Punk",bpm:"130-170",mood:["political","post-punk","Bristol"],
+blueprint:"150 BPM post-punk, Joe Talbot's spoken-shouted political vocals, dual guitar dissonance, Joy as an Act of Resistance confrontational optimism, Bristol working-class rage, Danny Nedelko immigrant anthem, brutalist sonic aesthetic, vulnerability in aggression"},
+
+{name:"Imogen Heap",genre:"Electronic",bpm:"80-120",mood:["innovative","vocal","textural"],
+blueprint:"100 BPM electronic art-pop, pioneering vocal processing and looping, Hide and Seek vocoder innovation, one-woman-orchestra live performance, glitchy organic textures, Frou Frou collaboration, musical technology innovator, Mi.Mu glove inventor"},
+
+{name:"Interpol",genre:"Indie",bpm:"100-130",mood:["dark","post-punk revival","NYC"],
+blueprint:"115 BPM post-punk revival, Carlos D's driving bass lines, Daniel Kessler's interlocking guitar melodies, Paul Banks' baritone croon, Turn on the Bright Lights NYC darkness, Joy Division meets Romanticism, sharp-dressed nocturnal rock"},
+
+{name:"J Hus",genre:"Afrobeats",bpm:"95-120",mood:["UK Afrobeats","storytelling","London"],
+blueprint:"108 BPM UK Afrobeats-rap fusion, Gambian-British cultural blend, Did You See viral bounce, Common Sense album storytelling, London street perspective over Afro-swing beats, melodic versatile delivery, TSB collective energy"},
+
+{name:"Jack Johnson",genre:"Folk",bpm:"85-110",mood:["beachy","acoustic","Hawaiian"],
+blueprint:"95 BPM acoustic surf-folk, gentle fingerpicked guitar, warm relaxed Hawaiian vocal delivery, Brushfire Records laid-back aesthetic, Banana Pancakes morning ease, minimal organic production, beach bonfire vibes, Better Together simplicity"},
+
+{name:"Jackson 5",genre:"Pop",bpm:"100-130",mood:["Motown","youthful","infectious"],
+blueprint:"115 BPM Motown pop-soul, young Michael Jackson's electric vocal delivery, tight Motown house band groove, ABC infectious pop hooks, I Want You Back bass line perfection, family harmony group, Berry Gordy production, joyful irresistible energy"},
+
+{name:"James Blake",genre:"Electronic",bpm:"70-110",mood:["minimal","emotional","UK bass"],
+blueprint:"85 BPM post-dubstep minimalism, fragile falsetto vocal with heavy sub-bass contrast, glitchy chopped vocal samples, Limit to Your Love sub-bass reimagining, sparse emotional electronic production, UK bass music meets singer-songwriter vulnerability"},
+
+{name:"Janelle Monáe",genre:"R&B",bpm:"90-130",mood:["afro-futurist","theatrical","funk"],
+blueprint:"110 BPM afro-futurist funk-pop, theatrical concept album storytelling, Wondaland arts collective, Prince mentorship lineage, Tightrope groove, android alter-ego Cindi Mayweather, genre-fluid from funk to new wave to rap, Dirty Computer liberation"},
+
+{name:"Japanese Breakfast",genre:"Indie",bpm:"100-130",mood:["dreamy","Korean-American","joyful"],
+blueprint:"115 BPM indie pop with shoegaze textures, Michelle Zauner's warm vocal, Jubilee album joy after grief, Korean-American identity themes, Crying in H Mart memoir crossover, synth-laden dream pop, Paprika orchestral maximalism"},
+
+{name:"Jessie Ware",genre:"Pop",bpm:"105-125",mood:["disco","sophisticated","UK"],
+blueprint:"115 BPM modern disco-pop, sophisticated sultry vocal delivery, What's Your Pleasure album disco revival, four-on-the-floor grooves with 80s production, London elegance, Spotlight intimate club energy, UK pop sophistication meets dancefloor heat"},
+
+{name:"Jhené Aiko",genre:"R&B",bpm:"65-90",mood:["meditative","ethereal","West Coast"],
+blueprint:"78 BPM meditative R&B, whispered ethereal vocal delivery, sparse minimalist production, singing bowls and spiritual textures, Chilombo healing frequencies album, West Coast chill vibes, trip-hop influenced beats, introspective quiet storm"},
+
+{name:"Jim Jones",genre:"Hip-Hop",bpm:"85-105",mood:["Harlem","dipset","street"],
+blueprint:"95 BPM Dipset Harlem rap, We Fly High anthem energy, Cam'ron collaboration synergy, street rap bravado, Capo Status swagger, New York hip-hop tradition, ad-lib heavy delivery, Diplomat Records era nostalgia"},
+
+{name:"Joao Gilberto",genre:"Jazz",bpm:"80-110",mood:["bossa nova","intimate","Brazilian"],
+blueprint:"90 BPM bossa nova, revolutionary quiet guitar technique, whispered intimate vocal delivery, The Girl from Ipanema defining recording, Brazilian samba reimagined as cool jazz, minimal arrangements highlighting guitar and voice, bossa nova founder"},
+
+{name:"Jorja Smith",genre:"R&B",bpm:"80-110",mood:["soulful","UK","grounded"],
+blueprint:"95 BPM UK neo-soul, warm rich vocal with jazz inflections, Walsall working-class groundedness, Blue Lights socially conscious R&B, Drake co-sign crossover, organic live instrumentation, British soul tradition, emotionally honest songwriting"},
+
+{name:"Joy Crookes",genre:"R&B",bpm:"80-110",mood:["soulful","South London","storytelling"],
+blueprint:"95 BPM South London neo-soul, jazz-influenced vocal delivery, Skin album intimate storytelling, Bangladeshi-Irish heritage themes, vintage soul production with modern edge, Amy Winehouse lineage, socially aware songwriting, British soul renaissance"},
+
+{name:"Joy Division",genre:"Alternative",bpm:"100-140",mood:["post-punk","dark","Manchester"],
+blueprint:"120 BPM post-punk, Peter Hook's high-register melodic bass lines, Bernard Sumner's slashing guitar, Stephen Morris's motorik drumming, Ian Curtis's baritone desperation, Unknown Pleasures Martin Hannett production, Factory Records Manchester darkness"},
+
+{name:"Juice WRLD",genre:"Hip-Hop",bpm:"80-160",mood:["emo-rap","melodic","freestyle"],
+blueprint:"140 BPM emo-rap, extended freestyle ability, Auto-Tune emotional melody over guitar-driven trap, Lucid Dreams viral melancholy, 999 brand, rapid-fire melodic delivery, genre-spanning beat selection, Chicago emo-trap pioneer, vulnerable confessional lyrics"},
+
+{name:"Jungle",genre:"Electronic",bpm:"105-125",mood:["modern soul","groove","UK"],
+blueprint:"115 BPM modern soul-electronic, pitched-up falsetto vocal samples, tight funk bass grooves, Busy Earnin' vintage cool, retro-futuristic soul production, UK collective anonymity aesthetic, Back on 74 TikTok revival, dance music meets live soul band"},
+
+{name:"Justice",genre:"Electronic",bpm:"120-135",mood:["French","heavy","rock-electronic"],
+blueprint:"128 BPM French electro-house, massively distorted compressed bass, D.A.N.C.E. pop perfection, cross-shaped visual branding, rock guitar energy in electronic music, Ed Banger Records, heavy side-chain compression, Parisian dance-rock fusion"},
+
+{name:"Kali Uchis",genre:"R&B",bpm:"80-115",mood:["bilingual","dreamy","vintage"],
+blueprint:"95 BPM bilingual dream-pop R&B, warm vintage vocal delivery in English and Spanish, Tyler the Creator collaboration, Telepatía viral smoothness, retro 60s girl-group meets modern R&B, Colombian-American identity, Isolation album sophistication"},
+
+{name:"Karen O",genre:"Rock",bpm:"110-150",mood:["wild","art-punk","NYC"],
+blueprint:"130 BPM art-punk, untamed vocal howling and whispering, Yeah Yeah Yeahs frontwoman ferocity, Maps vulnerable beauty, Karen O live chaos energy, punk meets art-school aesthetics, New York garage rock scene, emotional extremes"},
+
+{name:"Kate Bush",genre:"Pop",bpm:"80-130",mood:["theatrical","visionary","British"],
+blueprint:"105 BPM art-pop, extraordinary vocal range spanning soprano to deep register, Wuthering Heights literary drama, Running Up That Hill Fairlight CMI innovation, theatrical physically expressive performance, Hounds of Love conceptual brilliance, visionary production"},
+
+{name:"Kaytraminé",genre:"Hip-Hop",bpm:"100-125",mood:["groovy","collaboration","dance-rap"],
+blueprint:"115 BPM dance-rap collaboration, Kaytranada's bouncy house production with Aminé's playful delivery, funk-electronic hybrid beats, 4Eva mixtape party energy, dancefloor hip-hop fusion, Montreal-Portland creative bridge"},
+
+{name:"Kelela",genre:"R&B",bpm:"90-130",mood:["futuristic","club","experimental"],
+blueprint:"110 BPM futuristic R&B, ethereal vocal over UK bass and club music production, Raven album dancefloor liberation, Arca and Kingdom collaborations, diasporic club music, experimental R&B pushing genre boundaries, LMK electronic soul"},
+
+{name:"Kenny Beats",genre:"Hip-Hop",bpm:"90-140",mood:["producer","versatile","collaborative"],
+blueprint:"110 BPM versatile hip-hop production, The Cave freestyle series creator, genre-spanning beat making from hard trap to mellow indie, collaborative chemistry with diverse artists, Vince Staples and Rico Nasty collaborations, Connecticut production mastery"},
+
+{name:"Kenny Rogers",genre:"Country",bpm:"80-110",mood:["storytelling","smooth","crossover"],
+blueprint:"95 BPM country storytelling, smooth warm baritone, The Gambler narrative songwriting perfection, Islands in the Stream Dolly duet crossover, country-pop accessibility, Lucille heartbreak balladry, crossover star charisma"},
+
+{name:"Keyon Harrold",genre:"Jazz",bpm:"70-120",mood:["trumpet","modern","cinematic"],
+blueprint:"95 BPM modern jazz trumpet, Miles Davis biopic performer, warm rich trumpet tone, The Mugician album modern jazz fusion, hip-hop influenced jazz, cinematic scoring ability, Ferguson protest music, contemporary jazz innovation"},
+
+{name:"Kid Cudi",genre:"Hip-Hop",bpm:"80-110",mood:["cosmic","introspective","humming"],
+blueprint:"95 BPM psychedelic hip-hop, signature humming melodic delivery, Man on the Moon cosmic loneliness, Day 'N' Nite nocturnal anthem, Ratatat and Emile Haynie production, mental health openness, Cleveland outsider perspective, space-themed introspection"},
+
+{name:"King Gizzard & the Lizard Wizard",genre:"Rock",bpm:"100-180",mood:["prolific","psychedelic","Australian"],
+blueprint:"130 BPM psychedelic rock polymaths, genre-hopping from thrash to jazz to microtonal, seven members dual drumming, prolific album output, Nonagon Infinity infinite loop concept, Melbourne garage-psych, environmentalist themes, analog recording obsession"},
+
+{name:"King Krule",genre:"Alternative",bpm:"70-110",mood:["nocturnal","London","jazz-punk"],
+blueprint:"85 BPM nocturnal jazz-punk, Archy Marshall's deep baritone vocal belying young age, sparse jazz guitar over trip-hop beats, The OOZ London night wandering, red-haired South London icon, genre-fluid from punk to dub to jazz, 6 Feet Beneath the Moon debut"},
+
+{name:"Koffee",genre:"Reggae",bpm:"75-95",mood:["positive","young","reggae revival"],
+blueprint:"85 BPM modern reggae, bright optimistic vocal delivery, Toast Grammy-winning debut, Spanish Town Jamaica roots, acoustic reggae-pop crossover, youthful positive energy, Protoje mentorship, reggae revival generation, Rapture EP freshness"},
+
+{name:"Kraftwerk",genre:"Electronic",bpm:"110-130",mood:["pioneering","robotic","German"],
+blueprint:"120 BPM electronic music pioneers, robotic vocal processing, Autobahn extended electronic composition, Trans-Europe Express rhythmic precision, minimalist synthesizer sequences, Man-Machine visual concept, Düsseldorf Kling Klang studio, blueprint for all electronic music"},
+
+{name:"Lauryn Hill",genre:"Hip-Hop",bpm:"80-105",mood:["conscious","neo-soul","Fugees"],
+blueprint:"92 BPM neo-soul hip-hop, masterful rap-to-singing transitions, The Miseducation of Lauryn Hill genre-defining album, Fugees Everything Is Everything, live band hip-hop, gospel-influenced vocal, socially conscious lyrics, New Jersey musical genius"},
+
+{name:"Leon Bridges",genre:"Soul",bpm:"70-100",mood:["retro","Texas","smooth"],
+blueprint:"85 BPM retro soul revival, Coming Home vintage 60s soul aesthetic, smooth warm tenor, Fort Worth Texas soul, classic song structure, Sam Cooke vocal lineage, analog recording warmth, Gold-Diggers Sound evolution to modern R&B"},
+
+{name:"Lil Nas X",genre:"Pop",bpm:"100-140",mood:["genre-blending","viral","bold"],
+blueprint:"120 BPM genre-blending pop-rap, Old Town Road country-trap viral phenomenon, Montero bold visual artistry, Industry Baby horn-driven pop-rap, unapologetic queer identity, meme culture fluency, Atlanta to global superstar pipeline"},
+
+{name:"Lil Peep",genre:"Hip-Hop",bpm:"70-95",mood:["emo-rap","lo-fi","sad"],
+blueprint:"80 BPM emo-rap pioneer, lo-fi guitar samples over trap 808s, vulnerable emotional vocal delivery, Awful Things melodic sadness, GothBoiClique collective, emo and punk influence on hip-hop, Crybaby mixtape raw emotion, Long Island to SoundCloud fame"},
+
+{name:"Lil Yachty",genre:"Hip-Hop",bpm:"90-140",mood:["bubblegum","playful","Atlanta"],
+blueprint:"120 BPM bubblegum trap, Auto-Tune melodic sing-rap, playful carefree energy, One Night viral moment, Minnesota psychedelic rock album pivot, Let's Start Here genre leap, Lil Boat nautical aesthetic, Atlanta SoundCloud era icon"},
+
+{name:"Linkin Park",genre:"Rock",bpm:"100-140",mood:["nu-metal","emotional","hybrid"],
+blueprint:"120 BPM nu-metal hybrid theory, Chester Bennington's powerful screaming-to-singing dynamic, Mike Shinoda's rap verses, DJ scratching and electronic elements, In the End piano-driven emotional anthem, heavy guitar meets electronic production, Hybrid Theory defining album"},
+
+{name:"Little Simz",genre:"Hip-Hop",bpm:"85-130",mood:["lyrical","North London","independent"],
+blueprint:"105 BPM UK rap, Inflo production on Sometimes I Might Be Introvert, orchestral ambitious arrangements, North London storytelling, fiercely independent spirit, Woman Mercury Prize winner, complex flow patterns, Islington to global recognition"},
+
+{name:"Lucky Dube",genre:"Reggae",bpm:"80-100",mood:["African reggae","conscious","pan-African"],
+blueprint:"90 BPM African reggae, South African anti-apartheid message, warm resonant vocal delivery, Prisoner social justice anthem, Bob Marley influence adapted to African context, mbaqanga roots meets reggae, pan-African consciousness, township to world stage"},
+
+{name:"M83",genre:"Electronic",bpm:"100-130",mood:["shoegaze-electronic","cinematic","nostalgic"],
+blueprint:"115 BPM shoegaze-electronic, Midnight City iconic synth riff, 80s nostalgia filtered through French electronic production, dreamy wall-of-sound synths, cinematic scope, Hurry Up We're Dreaming double album ambition, reverbed vocals over massive synth layers"},
+
+{name:"Mach-Hommy",genre:"Hip-Hop",bpm:"80-100",mood:["abstract","Haitian","underground"],
+blueprint:"90 BPM abstract underground rap, Haitian Creole and English bilingual delivery, lo-fi grimy production aesthetic, Pray for Haiti masterwork, mysterious persona, Griselda affiliation, dense lyrical imagery, Caribbean-influenced East Coast boom-bap"},
+
+{name:"Madlib",genre:"Hip-Hop",bpm:"80-100",mood:["crate-digging","psychedelic","production"],
+blueprint:"88 BPM psychedelic boom-bap, obsessive vinyl crate-digging samples, Madvillainy MF DOOM collaboration genius, Quasimoto alter-ego, Stones Throw Records, jazz and world music sample mastery, Beat Konducta series, Oxnard beat scientist"},
+
+{name:"Maggie Rogers",genre:"Pop",bpm:"100-130",mood:["folk-electronic","joyful","nature"],
+blueprint:"115 BPM folk-electronic pop, Alaska Pharrell-approved debut, banjo meets synthesizer, joyful euphoric energy, dance-folk hybrid, Heard It in a Past Life nature imagery, full-body movement songwriting, Surrender rock evolution, Maine roots"},
+
+{name:"Mahalia",genre:"R&B",bpm:"80-110",mood:["UK soul","warm","honest"],
+blueprint:"95 BPM UK neo-soul, warm honest vocal delivery, Sober gentle acoustic R&B, Leicester Jamaican heritage, gospel-influenced tone, Love and Compromise album maturity, understated emotional power, British soul new generation"},
+
+{name:"Marc Rebillet",genre:"Electronic",bpm:"100-130",mood:["improvisational","comedic","loop"],
+blueprint:"115 BPM improvisational loop-based electronic funk, live one-man-show performance, comedic theatrical delivery, Roland SP-404 loop station mastery, audience-interactive sets, bathrobe-wearing persona, Dallas to viral fame, spontaneous composition genius"},
+
+{name:"Mariah Carey",genre:"Pop",bpm:"80-130",mood:["diva","whistle register","holiday"],
+blueprint:"100 BPM pop-R&B diva, five-octave vocal range with signature whistle register, melismatic vocal runs, All I Want for Christmas perennial anthem, Butterfly hip-hop evolution, Emancipation of Mimi comeback, self-produced vocal arrangements, Long Island legend"},
+
+{name:"Mark Ronson",genre:"Pop",bpm:"110-130",mood:["retro-funk","producer","groove"],
+blueprint:"120 BPM retro-modern funk production, Uptown Funk Bruno Mars collaboration smash, Amy Winehouse Back to Black co-architect, vintage soul and funk samples, live horn arrangements, British-American pop production, producer as artist, Dap-Kings collaboration"},
+
+{name:"Masego",genre:"Jazz",bpm:"80-110",mood:["TrapHouseJazz","smooth","saxophone"],
+blueprint:"95 BPM TrapHouseJazz fusion, live saxophone over trap hi-hats, smooth crooning vocal, Tadow viral sax-trap moment, jazz improvisation meets hip-hop production, multi-instrumentalist approach, Jamaican heritage, Virginia Beach jazz-hop pioneer"},
+
+{name:"Mavis Staples",genre:"Gospel",bpm:"70-110",mood:["civil rights","powerful","uplifting"],
+blueprint:"90 BPM gospel-soul, Staple Singers family harmony legacy, powerful contralto voice seasoned by decades, civil rights movement soundtrack, I'll Take You There crossover groove, Jeff Tweedy later collaborations, freedom songs, Chicago gospel tradition"},
+
+{name:"Megan Moroney",genre:"Country",bpm:"90-120",mood:["modern","Tennessee","heartfelt"],
+blueprint:"105 BPM modern country, Tennessee Whiskey viral breakout, heartfelt storytelling over contemporary Nashville production, relatable millennial country perspective, Lucky debut album success, authentic Georgia roots, country radio crossover"},
+
+{name:"Meshell Ndegeocello",genre:"R&B",bpm:"75-105",mood:["bass","poetic","genre-fluid"],
+blueprint:"88 BPM bass-driven alternative R&B, virtuoso electric bass playing, poetic spoken-word influenced vocals, genre-fluid from funk to folk to jazz, Plantation Lullabies debut, political and personal lyricism, gender-fluid artistry, DC go-go roots"},
+
+{name:"Method Man",genre:"Hip-Hop",bpm:"85-100",mood:["charismatic","Wu-Tang","smooth"],
+blueprint:"92 BPM Wu-Tang grimy boom-bap, smooth charismatic flow, Tical debut album RZA production, raspy distinctive vocal tone, Method Man & Redman chemistry, Enter the Wu-Tang verses, Staten Island street poetry, hip-hop's most charismatic MC"},
+
+{name:"MGMT",genre:"Indie",bpm:"100-130",mood:["psychedelic","synth-pop","playful"],
+blueprint:"115 BPM psychedelic synth-pop, Kids iconic synth riff, Electric Feel bass groove, Oracular Spectacular debut brilliance, neo-psychedelia meets indie pop, deliberately uncommercial follow-ups, Wesleyan University art-school origins"},
+
+{name:"Michael Kiwanuka",genre:"Soul",bpm:"70-100",mood:["cinematic","British","soul-folk"],
+blueprint:"85 BPM cinematic soul, warm baritone over lush orchestral arrangements, Cold Little Heart epic slow-burn, Kiwanuka album self-titled confidence, Danger Mouse and Inflo production, British-Ugandan heritage, folk-soul hybrid, 70s soul revival"},
+
+{name:"Miyavi",genre:"Rock",bpm:"120-160",mood:["Japanese","slap guitar","visual kei"],
+blueprint:"140 BPM Japanese rock, revolutionary slap guitar technique on acoustic and electric, visual kei origins, genre-crossing from rock to electronic to hip-hop, samurai guitarist persona, international crossover, Firebird percussion-guitar fusion"},
+
+{name:"Moby",genre:"Electronic",bpm:"90-130",mood:["cinematic","sample","emotional"],
+blueprint:"110 BPM electronic with blues and gospel samples, Play album defining late-90s electronic, Porcelain delicate beauty, Natural Blues gospel-electronic fusion, vegan activist artist, atmospheric emotional dance music, film soundtrack versatility"},
+
+{name:"Mos Def",genre:"Hip-Hop",bpm:"85-105",mood:["conscious","poetic","Brooklyn"],
+blueprint:"95 BPM conscious hip-hop, poetic precise delivery, Black Star Talib Kweli collaboration, Black on Both Sides solo masterwork, Mathematics production, Brooklyn lyricism, acting and music dual career, Muslim faith influence, hip-hop renaissance man"},
+
+{name:"Moses Sumney",genre:"Alternative",bpm:"60-100",mood:["falsetto","orchestral","queer"],
+blueprint:"80 BPM art-folk-soul, extraordinary falsetto vocal range, græ double album genre-defying scope, sparse arrangements building to orchestral climaxes, queer Black male vulnerability, looping live performance, Aromanticism debut intimacy, genre-unclassifiable beauty"},
+
+{name:"Mount Kimbie",genre:"Electronic",bpm:"80-120",mood:["post-dubstep","UK","textural"],
+blueprint:"100 BPM post-dubstep electronic, granular textural production, King Krule vocal collaborations, Crooks & Lovers debut organic electronic, UK bass music evolution, guitar and electronic hybrid, South London experimental scene, intimate electronic warmth"},
+
+{name:"Mr. Eazi",genre:"Afrobeats",bpm:"100-115",mood:["Banku music","cross-cultural","smooth"],
+blueprint:"108 BPM Banku music fusion, Ghanaian highlife meets Nigerian pop, smooth laid-back vocal delivery, Skin Tight viral simplicity, Lagos to London pipeline, emPawa Africa talent incubator, cross-cultural West African pop, Pour Me Water singalong"},
+
+{name:"Musiq Soulchild",genre:"R&B",bpm:"75-100",mood:["neo-soul","smooth","Philadelphia"],
+blueprint:"88 BPM neo-soul, warm smooth tenor with jazz inflections, Halfcrazy romantic balladry, Philadelphia soul tradition, Aijuswanaseing organic production, Soulstar album classic R&B songwriting, consistent quality, vintage soul meets 2000s R&B"},
+
+{name:"My Chemical Romance",genre:"Rock",bpm:"120-160",mood:["theatrical","emo","concept"],
+blueprint:"140 BPM theatrical emo-rock, Gerard Way's dramatic vocal delivery, The Black Parade rock opera concept, Welcome to the Black Parade anthem, gothic punk aesthetic, Three Cheers for Sweet Revenge intensity, New Jersey theatrical punk, comic book visual identity"},
+
+{name:"Nathy Peluso",genre:"Latin",bpm:"90-130",mood:["Argentine","fierce","eclectic"],
+blueprint:"110 BPM eclectic Latin urban, fierce theatrical vocal delivery, Buenos Aires to Barcelona journey, SANA SANA debut intensity, genre-hopping from reggaeton to jazz to flamenco, bold visual artistry, Argentine swagger, Vivir Así Es Morir de Amor drama"},
+
+{name:"Nelly Furtado",genre:"Pop",bpm:"90-130",mood:["world-influenced","versatile","Canadian"],
+blueprint:"110 BPM world-influenced pop, I'm Like a Bird folk-pop debut, Promiscuous Timbaland-produced transformation, Portuguese-Canadian multicultural perspective, genre-versatile from folk to R&B to dance, Loose album commercial peak, experimental Maneater edge"},
+
+{name:"Neneh Cherry",genre:"Alternative",bpm:"90-120",mood:["avant-pop","Swedish","hip-hop soul"],
+blueprint:"105 BPM avant-garde pop-hip-hop-soul fusion, Buffalo Stance genre-blending debut, Four Tet Blank Project collaboration, Swedish-Sierra Leonean heritage, trip-hop adjacent atmospherics, feminist punk ethos, Broken Politics mature art-pop"},
+
+{name:"Nick Cave",genre:"Alternative",bpm:"60-120",mood:["gothic","literary","Australian"],
+blueprint:"90 BPM gothic rock-folk, deep baritone narrative vocal, Bad Seeds ensemble backing, Red Right Hand cinematic darkness, literary storytelling tradition, Australian post-punk origins, Skeleton Tree grief album, violent and tender lyrical extremes"},
+
+{name:"Nick Drake",genre:"Folk",bpm:"70-100",mood:["melancholic","acoustic","English"],
+blueprint:"85 BPM English acoustic folk, intricate alternate tuning fingerpicking, whispered intimate vocal barely above breath, Pink Moon devastating simplicity, orchestral arrangements on Five Leaves Left, pastoral English melancholia, tragically brief catalog"},
+
+{name:"Night Lovell",genre:"Hip-Hop",bpm:"70-90",mood:["dark","Ottawa","phonk"],
+blueprint:"80 BPM dark cloud rap, deep bass-heavy production, Dark Light aggressive energy, Ottawa underground scene, phonk and Memphis rap influence, menacing atmospheric beats, nocturnal aesthetic, Concept Vague mysterious persona"},
+
+{name:"Nine Inch Nails",genre:"Rock",bpm:"90-140",mood:["industrial","intense","electronic"],
+blueprint:"120 BPM industrial rock, Trent Reznor's visceral emotional vocal, heavily processed guitar and synth textures, Closer provocative intensity, The Downward Spiral concept album, Hurt devastating vulnerability, film scoring evolution, analog-digital fusion"},
+
+{name:"Nipsey Hussle",genre:"Hip-Hop",bpm:"80-100",mood:["West Coast","entrepreneurial","marathon"],
+blueprint:"90 BPM West Coast G-funk influenced rap, smooth deliberate flow, Victory Lap debut album triumph, Crenshaw and Slauson entrepreneurial vision, community investment messaging, Marathon Continuing legacy, South LA storytelling, independent hustle philosophy"},
+
+{name:"Norah Jones",genre:"Jazz",bpm:"70-100",mood:["smooth","crossover","intimate"],
+blueprint:"85 BPM jazz-pop crossover, warm smoky alto vocal, Come Away with Me piano-driven intimate jazz-folk, Don't Know Why gentle swing, Ravi Shankar lineage, Blue Note Records label, late-night intimate acoustic setting, sophisticated easy listening"},
+
+{name:"Normani",genre:"R&B",bpm:"90-120",mood:["dance","polished","powerful"],
+blueprint:"105 BPM dance-pop R&B, Motivation viral choreography anthem, precise polished vocal delivery, Fifth Harmony evolution to solo stardom, Janet Jackson dance influence, sleek pop-R&B production, visual artistry focus, dopamine album anticipation"},
+
+{name:"Notorious B.I.G.",genre:"Hip-Hop",bpm:"85-100",mood:["storytelling","Brooklyn","mafioso"],
+blueprint:"92 BPM East Coast mafioso rap, effortless smooth flow, Juicy rags-to-riches storytelling, Ready to Die debut masterwork, Big Poppa player anthem, Puff Daddy shiny suit era, Brooklyn street narrative, greatest MC debate centerpiece"},
+
+{name:"Odesza",genre:"Electronic",bpm:"100-128",mood:["melodic","festival","uplifting"],
+blueprint:"118 BPM melodic electronic, A Moment Apart cinematic builds, Say My Name vocal-driven dance, uplifting euphoric production, marching drums live performance, Seattle electronic duo, indie-electronic crossover, festival headline visual spectacle"},
+
+{name:"Omar",genre:"Soul",bpm:"80-110",mood:["UK soul","groove","independent"],
+blueprint:"95 BPM UK soul pioneer, silky smooth tenor vocal, There's Nothing Like This defining British soul, sophisticated jazz-funk grooves, independent career longevity, Canterbury roots, Stevie Wonder influence adapted to British context, best kept soul secret"},
+
+{name:"Opeth",genre:"Metal",bpm:"70-160",mood:["progressive","death-to-prog","Swedish"],
+blueprint:"110 BPM progressive death metal to prog rock evolution, Mikael Åkerfeldt's clean-to-growl vocal mastery, Blackwater Park genre peak, Ghost Reveries prog ambition, acoustic passages within extreme metal, Swedish darkness, 15-minute epic compositions"},
+
+{name:"Oscar Peterson",genre:"Jazz",bpm:"100-240",mood:["virtuoso","swing","Canadian"],
+blueprint:"160 BPM jazz piano virtuosity, extraordinary technical command, trio format perfection, Night Train swinging elegance, Hymn to Freedom civil rights anthem, Montreal jazz tradition, Art Tatum lineage, effortless speed and harmonic sophistication"},
+
+{name:"Patti Smith",genre:"Punk",bpm:"100-140",mood:["poet","proto-punk","CBGB"],
+blueprint:"120 BPM punk poetry, Because the Night Springsteen collaboration, Gloria proto-punk reimagining, spoken-word poetry meets garage rock, CBGB New York scene, Horses debut album revolution, literary punk, feminist rock pioneer, Rimbaud-influenced lyricism"},
+
+{name:"Peggy Gou",genre:"Electronic",bpm:"120-130",mood:["house","Korean","groove"],
+blueprint:"125 BPM house music, It Makes You Forget groove anthem, Korean-German DJ cultural bridge, Starry Night vocal house, playful warm production, retro-modern house aesthetic, fashion crossover appeal, Berlin club scene meets K-culture"},
+
+{name:"PinkPantheress",genre:"Electronic",bpm:"140-170",mood:["UK garage","nostalgic","viral"],
+blueprint:"155 BPM UK garage and jungle nostalgia, soft delicate vocal over breakbeats, Boy's a liar 2-step bounce, TikTok viral brevity, 90s rave samples reimagined, Bath to London pipeline, nostalgic dance music through Gen-Z lens, minute-long pop perfection"},
+
+{name:"Pharrell Williams",genre:"Hip-Hop",bpm:"100-130",mood:["funky","Neptunes","producer"],
+blueprint:"115 BPM Neptunes production, minimalist funk-driven beats, falsetto vocal delivery, Happy global pop anthem, N.E.R.D. rock-funk-hip-hop fusion, Virginia Beach sound, In My Mind creative vision, fashion and music intersection, iconic four-count intro"},
+
+{name:"Phish",genre:"Rock",bpm:"90-160",mood:["jam band","improvisational","Vermont"],
+blueprint:"120 BPM improvisational jam rock, extended live improvisations spanning 20+ minutes, Trey Anastasio's fluid guitar, complex composed sections launching into jams, Vermont eccentricity, Grateful Dead lineage, dedicated touring community, genre-spanning musical vocabulary"},
+
+{name:"Poppy",genre:"Metal",bpm:"120-170",mood:["genre-fluid","internet","art"],
+blueprint:"145 BPM genre-fluid art-pop-metal, bubblegum pop to industrial metal whiplash, internet art persona, Bloodmoney metalcore intensity, I Disagree album genre chaos, YouTube origin story, kawaii-to-heavy dynamic, post-internet musical performance art"},
+
+{name:"Pusha T",genre:"Hip-Hop",bpm:"75-100",mood:["coke rap","Clipse","lyrical"],
+blueprint:"88 BPM cocaine rap, clinical precise delivery over minimal Pharrell and Kanye beats, Clipse duo legacy, Daytona concise perfection, Virginia Beach drug narrative, If You Know You Know cultural moment, G.O.O.D. Music president, unflinching street poetry"},
+
+{name:"Questlove",genre:"Hip-Hop",bpm:"80-110",mood:["live drums","Roots","musical director"],
+blueprint:"95 BPM live hip-hop drumming, The Roots Tonight Show musical director, organic boom-bap drum patterns, Things Fall Apart album, neo-soul drumming backbone, Philadelphia live hip-hop, crate-digging encyclopedic knowledge, Soulquarians rhythm architect"},
+
+{name:"Rakim",genre:"Hip-Hop",bpm:"90-105",mood:["golden age","technical","pioneering"],
+blueprint:"98 BPM golden age hip-hop, pioneering internal rhyme schemes, Paid in Full genre-redefining album, Eric B. DJ partnership, smooth controlled flow, God MC spiritual consciousness, Long Island lyrical revolution, hip-hop's first true technician"},
+
+{name:"Rauw Alejandro",genre:"Latin",bpm:"95-120",mood:["Puerto Rican","reggaeton","dance"],
+blueprint:"108 BPM Puerto Rican reggaeton-pop, smooth vocal delivery with dance ability, Todo de Ti pop-reggaeton crossover, Saturno album conceptual ambition, Latin urban genre innovation, choreography-driven visual artistry, San Juan nightlife energy"},
+
+{name:"Ray LaMontagne",genre:"Folk",bpm:"70-100",mood:["raspy","soulful","acoustic"],
+blueprint:"85 BPM folk-soul, raspy gravelly vocal over gentle acoustic arrangements, Trouble debut album Van Morrison warmth, Dan Auerbach production collaboration, New Hampshire pastoral solitude, introspective emotional depth, Gossip in the Grain warmth"},
+
+{name:"Real Estate",genre:"Indie",bpm:"100-120",mood:["jangly","suburban","breezy"],
+blueprint:"110 BPM jangly indie rock, clean reverbed guitar arpeggios, suburban New Jersey nostalgia, Days album crystalline guitar pop, breezy laid-back delivery, Ridgewood indie scene, Domino Records, pastoral suburban soundscape, easy rolling grooves"},
+
+{name:"Remy Ma",genre:"Hip-Hop",bpm:"90-110",mood:["fierce","Bronx","battle"],
+blueprint:"100 BPM Bronx battle rap, fierce aggressive delivery, All the Way Up comeback anthem, Terror Squad legacy, Conceited lyrical demolition, female rap pioneer, prison-to-comeback narrative, sharp punchline heavy bars, New York hip-hop tradition"},
+
+{name:"Rex Orange County",genre:"Indie",bpm:"90-120",mood:["bedroom pop","British","warm"],
+blueprint:"105 BPM bedroom pop, warm slightly nasal vocal delivery, Loving Is Easy sweet simplicity, Pony album indie-pop charm, Tyler the Creator collaboration origin, multi-instrumentalist approach, Hampshire bedroom recordings to arena shows"},
+
+{name:"Rico Nasty",genre:"Hip-Hop",bpm:"120-160",mood:["punk-rap","aggressive","DMV"],
+blueprint:"140 BPM punk-rap, aggressive animated delivery shifting between singing and screaming, Kenny Beats collaboration, Smack a Bitch mosh pit energy, DMV scene, 100 Gecs hyperpop crossover, genre-defying rage music, colorful punk aesthetic"},
+
+{name:"Rina Sawayama",genre:"Pop",bpm:"110-140",mood:["Y2K","Japanese-British","maximalist"],
+blueprint:"125 BPM Y2K pop-metal maximalism, Japanese-British identity exploration, XS nu-metal pop fusion, SAWAYAMA genre-spanning debut, Chosen Family emotional ballad, 2000s pop nostalgia, Dirty Hit label, Elton John collaboration, immigrant identity anthems"},
+
+{name:"Robert Glasper",genre:"Jazz",bpm:"70-110",mood:["modern jazz","hip-hop","experimental"],
+blueprint:"90 BPM modern jazz-hip-hop fusion, Black Radio album genre-bridging, Rhodes electric piano warmth, J Dilla influenced groove, Experiment collective, Houston jazz lineage, hip-hop head jazz musician, live improvisation meets R&B production"},
+
+{name:"Robyn",genre:"Pop",bpm:"120-135",mood:["dance-pop","Swedish","heartbreak"],
+blueprint:"128 BPM Swedish electro-pop, Dancing On My Own greatest dance-cry anthem, Honey album meditative club, independent artist business model, heartbreak on the dancefloor aesthetic, Konichiwa Records, Stockholm dance-pop perfection, Body Talk trilogy"},
+
+{name:"Róisín Murphy",genre:"Electronic",bpm:"115-130",mood:["disco","avant-garde","Irish"],
+blueprint:"122 BPM avant-garde disco, Irish art-pop vocalist, Overpowered disco perfection, Moloko duo legacy, Murphy's Law pandemic singles, fashion-forward visual identity, DJ Koze collaboration, eccentric dancefloor theatrics, sophisticated club music"},
+
+{name:"Run The Jewels",genre:"Hip-Hop",bpm:"90-120",mood:["aggressive","political","duo"],
+blueprint:"105 BPM aggressive political rap, Killer Mike and El-P partnership perfection, RTJ4 protest album, dense layered industrial production, call-and-response duo chemistry, fist-and-gun iconography, free album releases, punk energy in hip-hop form"},
+
+{name:"Ryuichi Sakamoto",genre:"Ambient",bpm:"50-90",mood:["cinematic","Japanese","minimal"],
+blueprint:"70 BPM minimal piano and electronic composition, Yellow Magic Orchestra electronic pop pioneer, Merry Christmas Mr. Lawrence iconic melody, The Last Emperor Oscar-winning score, async late career beauty, environmental soundscapes, Japanese electronic music master"},
+
+{name:"Sabaton",genre:"Metal",bpm:"140-180",mood:["power metal","historical","Swedish"],
+blueprint:"160 BPM power metal, military history themed lyrics, Joakim Brodén's powerful baritone, anthemic singalong choruses, Bismarck epic naval history, Swedish metal tradition, historical warfare storytelling, uplifting triumphant energy, war metal subgenre"},
+
+{name:"Sam Fender",genre:"Rock",bpm:"100-140",mood:["Springsteen","working class","Newcastle"],
+blueprint:"120 BPM heartland rock with saxophone, Seventeen Going Under working-class anthem, Newcastle Geordie perspective, Bruce Springsteen lineage, mental health themes, anthemic guitar-driven rock, North Shields storytelling, Hypersonic Missiles debut energy"},
+
+{name:"Sampa The Great",genre:"Hip-Hop",bpm:"85-120",mood:["Zambian","powerful","afro-rap"],
+blueprint:"105 BPM Zambian-Australian hip-hop, powerful commanding delivery, An Afro Future album Zambian return, Energy featuring Nadeem Din-Gabisi, pan-African identity, Melbourne to Lusaka creative journey, Botswana upbringing, afro-futurist rap vision"},
+
+{name:"Sampha",genre:"R&B",bpm:"80-120",mood:["piano","emotional","South London"],
+blueprint:"100 BPM electronic soul, intimate piano-driven composition, Process debut album grief and beauty, Blood on Me frenetic energy, South London heritage, SBTRKT collaboration origins, Lahai album evolution, tender vocal over experimental production"},
+
+{name:"Schoolboy Q",genre:"Hip-Hop",bpm:"80-100",mood:["gangsta","Hoover St","dark"],
+blueprint:"90 BPM dark gangsta rap, raspy aggressive delivery, Oxymoron album Hoover Street storytelling, TDE label cornerstone, Collard Greens Kendrick collaboration, South Central Los Angeles, CrasH Talk evolution, bucket hat iconography"},
+
+{name:"Seal",genre:"Pop",bpm:"90-120",mood:["powerful","soulful","90s"],
+blueprint:"105 BPM pop-soul, powerful distinctive baritone-tenor vocal, Kiss from a Rose operatic pop, Trevor Horn production polish, Crazy atmospheric debut, 90s adult contemporary excellence, London to global crossover, emotional vocal intensity"},
+
+{name:"Sevdaliza",genre:"Alternative",bpm:"80-120",mood:["art-pop","Iranian-Dutch","cinematic"],
+blueprint:"100 BPM dark art-pop, Iranian-Dutch cultural fusion, classically trained mezzo-soprano, electronic bass-heavy production, Shahmaran album mythology, haunting visual artistry, trip-hop influenced atmospherics, athletic background physicality in performance"},
+
+{name:"Shaggy",genre:"Reggae",bpm:"90-110",mood:["dancehall","party","Jamaican"],
+blueprint:"100 BPM dancehall-pop, It Wasn't Me infectious singalong, Boombastic smooth bassline, distinctive gruff vocal delivery, Jamaican dancehall crossover king, party anthem specialist, Mr. Lover Lover persona, reggae-pop accessibility"},
+
+{name:"Sheryl Crow",genre:"Rock",bpm:"100-130",mood:["heartland","California","90s rock"],
+blueprint:"115 BPM heartland rock-pop, warm slightly raspy vocal delivery, All I Wanna Do laid-back groove, If It Makes You Happy emotional grit, California country-rock influence, 90s female rock icon, radio-friendly songwriter craft, Tuesday Night Music Club debut"},
+
+{name:"Sigur Rós",genre:"Ambient",bpm:"60-100",mood:["Icelandic","post-rock","ethereal"],
+blueprint:"75 BPM Icelandic post-rock, Jónsi's ethereal falsetto and bowed guitar, Hoppípolla ascending beauty, Hopelandic invented language, glacial ambient textures, orchestral crescendos from silence, Takk album emotional scale, Ágætis byrjun atmospheric wonder"},
+
+{name:"Skepta",genre:"Hip-Hop",bpm:"130-145",mood:["grime","London","Tottenham"],
+blueprint:"140 BPM grime, Shutdown festival anthem, Konnichiwa Mercury Prize winner, Tottenham boy4life pride, Boy Better Know collective, stark minimal grime beats, Nigerian-British dual identity, That's Not Me stripped-back grime revival"},
+
+{name:"Slowdive",genre:"Alternative",bpm:"80-120",mood:["shoegaze","ethereal","90s"],
+blueprint:"100 BPM shoegaze, Souvlaki ethereal guitar washes, Rachel Goswell and Neil Halstead dual vocals, delay and reverb-drenched guitars, My Bloody Valentine peers, Alison gorgeous simplicity, 90s reunion and continuation, dreamy wall-of-sound immersion"},
+
+{name:"Smino",genre:"Hip-Hop",bpm:"90-120",mood:["melodic","St. Louis","soulful"],
+blueprint:"105 BPM melodic St. Louis rap-soul, elastic inventive flow, Monte Booker production partnership, blkswn debut soul-rap fusion, Luv 4 Rent groove, Zero Fatigue collective, Midwest musical perspective, genre-fluid singing-rapping, playful creative wordplay"},
+
+{name:"Solange",genre:"R&B",bpm:"80-110",mood:["art","Houston","Black identity"],
+blueprint:"95 BPM art-R&B, A Seat at the Table cultural statement, Cranes in the Sky graceful soul, Houston identity pride, avant-garde visual artistry, When I Get Home experimental ambient, Black womanhood celebration, Knowles family artistic lineage"},
+
+{name:"Son Volt",genre:"Country",bpm:"90-120",mood:["alt-country","Belleville","roots"],
+blueprint:"105 BPM alt-country roots rock, Jay Farrar's weathered baritone, Trace debut album country-rock perfection, Uncle Tupelo split legacy, Belleville Illinois heartland, Windfall lonely highway folk-rock, fiddle and pedal steel over electric guitar, working-class Americana"},
+
+{name:"Sophie Ellis-Bextor",genre:"Pop",bpm:"120-130",mood:["disco","British","dance-pop"],
+blueprint:"125 BPM disco-pop, Murder on the Dancefloor perennial disco anthem, crystalline soprano vocal, Groovejet number one, kitchen disco pandemic revival, glamorous retro-disco aesthetic, British pop royalty, sophisticated dance-pop songwriting"},
+
+{name:"Spoon",genre:"Indie",bpm:"100-130",mood:["minimalist","Austin","precise"],
+blueprint:"115 BPM minimalist indie rock, Britt Daniel's clipped vocal delivery, sparse precise arrangements with maximum impact, The Way We Get By lean guitar pop, Hot Thoughts rhythm experimentation, Austin Texas scene, Merge Records, consistently excellent catalog"},
+
+{name:"St. Vincent",genre:"Alternative",bpm:"90-130",mood:["art-rock","guitar","avant-garde"],
+blueprint:"110 BPM art-rock, Annie Clark's angular guitar playing, Strange Mercy dark pop, Digital Witness synth-driven art-rock, Berklee-trained musicianship, visual reinvention each album, Daddy's Home 70s New York sleaze, controlled precision meets emotional chaos"},
+
+{name:"Steel Pulse",genre:"Reggae",bpm:"75-95",mood:["roots reggae","UK","conscious"],
+blueprint:"85 BPM UK roots reggae, Handsworth Revolution Birmingham reggae, David Hinds' conscious lyrics, Your House social commentary, British reggae pioneers, Rastafari spiritual foundation, True Democracy global reach, politically charged roots music"},
+
+{name:"Stevie Nicks",genre:"Classic Rock",bpm:"80-130",mood:["mystical","California","witchy"],
+blueprint:"105 BPM mystical California rock, distinctive husky mezzo-soprano, Edge of Seventeen iconic guitar riff, Fleetwood Mac and solo dual legacy, Landslide acoustic vulnerability, shawl-twirling stage presence, witchy bohemian aesthetic, Rhiannon otherworldly poetry"},
+
+{name:"Stormzy",genre:"Hip-Hop",bpm:"130-145",mood:["grime","London","inspirational"],
+blueprint:"140 BPM UK grime, Shut Up freestyle anthem, Big for Your Boots commanding energy, #Merky label empire, Glastonbury headline history-making, South London Croydon roots, gospel-influenced grime, Heavy Is the Head album ambition, Vossi Bop viral"},
+
+{name:"Sudan Archives",genre:"Alternative",bpm:"90-120",mood:["violin","Sudanese","experimental"],
+blueprint:"105 BPM experimental R&B with violin, self-taught violin over electronic beats, Natural Brown Prom Queen genre-defying album, Sudanese musical heritage, Cincinnati to LA journey, Stones Throw Records, Glitter viral moment, afro-futurist string experimentation"},
+
+{name:"Sun Ra",genre:"Jazz",bpm:"80-200",mood:["cosmic","avant-garde","Afro-futurist"],
+blueprint:"Variable BPM cosmic jazz, Arkestra big band, Space Is the Place Afro-futurist philosophy, free jazz improvisation, Saturn mythology, hundreds of album catalog, Birmingham Alabama to Chicago to outer space, electronic music pioneer in jazz context"},
+
+{name:"Syd",genre:"R&B",bpm:"80-110",mood:["chill","The Internet","queer"],
+blueprint:"95 BPM chill R&B, smooth understated vocal delivery, Broken Hearts Club solo evolution, The Internet collective leader, Odd Future origins, queer perspective in R&B, laid-back West Coast production, Ego Death band album, LGBTQ+ R&B representation"},
+
+{name:"Sylvan Esso",genre:"Electronic",bpm:"100-125",mood:["folk-electronic","Durham","dance"],
+blueprint:"112 BPM folk-electronic, Amelia Meath's folk vocal over Nick Sanborn's electronic beats, Coffee synth-folk perfection, Durham North Carolina DIY scene, acoustic warmth meets synthetic pulse, live electronic performance energy, indie-dance hybrid"},
+
+{name:"T-Pain",genre:"Hip-Hop",bpm:"90-120",mood:["Auto-Tune pioneer","melodic","fun"],
+blueprint:"105 BPM Auto-Tune melodic rap-singing, Buy U a Drank defining Auto-Tune moment, Nappy Boy Records, Tallahassee Florida, actually excellent unprocessed vocalist, Bartender smooth hook mastery, pioneered vocal processing in hip-hop, fun party energy"},
+
+{name:"Tash Sultana",genre:"Rock",bpm:"90-130",mood:["one-person band","Australian","psychedelic"],
+blueprint:"110 BPM psychedelic rock-soul, live looping one-person multi-instrumentalist, Jungle viral busking video, Flow State album groove meditation, Melbourne street performance origins, guitar-bass-drums-vocals all performed live, gender-fluid artistry"},
+
+{name:"Tchami",genre:"Electronic",bpm:"124-130",mood:["future house","French","bass"],
+blueprint:"126 BPM future house, Afterlife bass-heavy house anthem, Confession label founder, organ-like bass synths defining future house sound, French electronic music tradition, gospel-influenced house, deep pulsing bass lines, sophisticated club production"},
+
+{name:"Tears for Fears",genre:"Pop",bpm:"100-130",mood:["new wave","emotional","80s"],
+blueprint:"115 BPM new wave synth-pop, Everybody Wants to Rule the World perfect pop, Shout anthemic intensity, primal scream therapy influence, lush 80s production, Roland Orzabal and Curt Smith harmonies, Songs from the Big Chair album mastery, emotional intelligence in pop"},
+
+{name:"Teddy Pendergrass",genre:"Soul",bpm:"75-110",mood:["bedroom","powerful","Philadelphia"],
+blueprint:"88 BPM Philadelphia soul, powerful seductive baritone, Close the Door bedroom soul anthem, Harold Melvin & the Blue Notes lead singer, Turn Off the Lights sensual groove, Philadelphia International Records, masculine vulnerability, smooth romantic soul power"},
+
+{name:"Thee Sacred Souls",genre:"Soul",bpm:"70-95",mood:["Chicano soul","retro","San Diego"],
+blueprint:"82 BPM Chicano soul revival, vintage Daptone-style production, Josh Lane's smooth falsetto, Can I Call You Rose tender beauty, San Diego soul scene, 60s soul and doo-wop influence, Daptone Records, stripped-back retro-soul authenticity"},
+
+{name:"Thom Yorke",genre:"Electronic",bpm:"80-130",mood:["anxious","glitchy","solo"],
+blueprint:"105 BPM solo electronic art, Radiohead frontman solo explorations, The Eraser glitchy anxious electronic, Anima dystopian dance, Suspiria film scoring, falsetto over chopped electronic textures, political anxiety in sound, Atoms for Peace collaboration"},
+
+{name:"Thundercat",genre:"Jazz",bpm:"80-120",mood:["bass","fusion","funky"],
+blueprint:"100 BPM jazz-funk-soul fusion, virtuoso 6-string bass playing, Drunk album genre-blending humor, Them Changes groove anthem, Kendrick Lamar TPAB collaboration, anime and video game references, LA jazz-funk scene, Flying Lotus frequent collaborator"},
+
+{name:"Tierra Whack",genre:"Hip-Hop",bpm:"90-140",mood:["creative","Philly","visual"],
+blueprint:"115 BPM creative hip-hop, Whack World 15 one-minute songs visual album concept, Philadelphia underground, playful inventive flows, colorful visual artistry, genre-bending creativity, childlike wonder meets lyrical skill, avant-garde rap vision"},
+
+{name:"Tinariwen",genre:"Blues",bpm:"85-110",mood:["desert","Tuareg","hypnotic"],
+blueprint:"95 BPM Tuareg desert blues, hypnotic repetitive electric guitar patterns, Saharan rock, political Tuareg identity, Tassili album open desert recording, call-and-response group vocal, nomadic musical tradition meets electric guitar, African blues roots"},
+
+{name:"Tinashe",genre:"R&B",bpm:"90-120",mood:["independent","dance","alternative R&B"],
+blueprint:"105 BPM alternative R&B, 2 On club-R&B anthem, independent label release strategy, Aquarius album dark electronic R&B, dance-trained physicality, DIY mixing and production skills, 333 self-released album, Kentucky to LA, futuristic R&B-pop"},
+
+{name:"Tokimonsta",genre:"Electronic",bpm:"90-120",mood:["LA beats","cerebral","resilient"],
+blueprint:"105 BPM LA beat scene electronic, Brainfeeder label graduate, cerebral textural production, brain surgery recovery and artistic rebirth, Young Art Records label founder, Korean-American identity, hip-hop influenced electronic, Lune Rouge atmospheric beats"}
 ];
 
 // Sort artists alphabetically by name
@@ -2489,26 +3365,26 @@ const LANG_NAMES = {
   en: 'English', es: 'Spanish', pt: 'Portuguese', fr: 'French',
   ko: 'Korean', ja: 'Japanese', zh: 'Chinese (Mandarin)', hi: 'Hindi',
   ar: 'Arabic', de: 'German', it: 'Italian', tr: 'Turkish',
-  ru: 'Russian', sw: 'Swahili', tl: 'Tagalog', yo: 'Yoruba'
+  ru: 'Russian', pl: 'Polish', nl: 'Dutch', sv: 'Swedish',
+  da: 'Danish', no: 'Norwegian', fi: 'Finnish', el: 'Greek',
+  cs: 'Czech', hu: 'Hungarian', ro: 'Romanian', uk: 'Ukrainian',
+  th: 'Thai', vi: 'Vietnamese', id: 'Indonesian', ms: 'Malay',
+  sw: 'Swahili', tl: 'Tagalog', yo: 'Yoruba', he: 'Hebrew',
+  bn: 'Bengali', ta: 'Tamil'
 };
 
 function setupLanguageSelector() {
   const langNote = document.getElementById('lang-note');
+  const langDropdown = document.getElementById('lang-dropdown');
 
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      selectedLang = btn.dataset.lang;
-      localStorage.setItem("selectedLang", JSON.stringify(selectedLang));
-
-      // Show warning if non-English + built-in engine
-      if (selectedLang !== 'en' && selectedLLM === 'builtin') {
-        langNote.style.display = 'block';
-      } else {
-        langNote.style.display = 'none';
-      }
-    });
+  langDropdown.addEventListener('change', () => {
+    selectedLang = langDropdown.value;
+    localStorage.setItem("selectedLang", JSON.stringify(selectedLang));
+    if (selectedLang !== 'en' && selectedLLM === 'builtin') {
+      langNote.style.display = 'block';
+    } else {
+      langNote.style.display = 'none';
+    }
   });
 
   // Restore saved language
@@ -2517,9 +3393,7 @@ function setupLanguageSelector() {
     try { if (localStorage.getItem("selectedLang")) data.selectedLang = JSON.parse(localStorage.getItem("selectedLang")); } catch(e) {}
     if (data.selectedLang) {
       selectedLang = data.selectedLang;
-      document.querySelectorAll('.lang-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.lang === selectedLang);
-      });
+      langDropdown.value = selectedLang;
       if (selectedLang !== 'en' && selectedLLM === 'builtin') {
         langNote.style.display = 'block';
       }

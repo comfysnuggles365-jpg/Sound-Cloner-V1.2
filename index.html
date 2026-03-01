@@ -1134,6 +1134,8 @@ body::before {
 /* Language Selector */
 .lang-selector { margin-top: 10px; }
 .lang-selector-title { font-size: 11px; font-weight: 600; color: var(--dim); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+.lang-dropdown { width: 100%; padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-size: 12px; font-family: inherit; cursor: pointer; appearance: auto; }
+.lang-dropdown:focus { border-color: var(--accent); outline: none; }
 .lang-grid {
   display: flex;
   flex-wrap: wrap;
@@ -2102,24 +2104,42 @@ body::before {
 
             <div class="lang-selector" id="lang-selector">
               <div class="lang-selector-title">🌍 Lyric Language</div>
-              <div class="lang-grid">
-                <button class="lang-btn active" data-lang="en"><span class="lang-flag">🇺🇸</span> English</button>
-                <button class="lang-btn" data-lang="es"><span class="lang-flag">🇪🇸</span> Spanish</button>
-                <button class="lang-btn" data-lang="pt"><span class="lang-flag">🇧🇷</span> Portuguese</button>
-                <button class="lang-btn" data-lang="fr"><span class="lang-flag">🇫🇷</span> French</button>
-                <button class="lang-btn" data-lang="ko"><span class="lang-flag">🇰🇷</span> Korean</button>
-                <button class="lang-btn" data-lang="ja"><span class="lang-flag">🇯🇵</span> Japanese</button>
-                <button class="lang-btn" data-lang="zh"><span class="lang-flag">🇨🇳</span> Chinese</button>
-                <button class="lang-btn" data-lang="hi"><span class="lang-flag">🇮🇳</span> Hindi</button>
-                <button class="lang-btn" data-lang="ar"><span class="lang-flag">🇸🇦</span> Arabic</button>
-                <button class="lang-btn" data-lang="de"><span class="lang-flag">🇩🇪</span> German</button>
-                <button class="lang-btn" data-lang="it"><span class="lang-flag">🇮🇹</span> Italian</button>
-                <button class="lang-btn" data-lang="tr"><span class="lang-flag">🇹🇷</span> Turkish</button>
-                <button class="lang-btn" data-lang="ru"><span class="lang-flag">🇷🇺</span> Russian</button>
-                <button class="lang-btn" data-lang="sw"><span class="lang-flag">🇰🇪</span> Swahili</button>
-                <button class="lang-btn" data-lang="tl"><span class="lang-flag">🇵🇭</span> Tagalog</button>
-                <button class="lang-btn" data-lang="yo"><span class="lang-flag">🇳🇬</span> Yoruba</button>
-              </div>
+              <select class="lang-dropdown" id="lang-dropdown">
+                <option value="en">🇺🇸 English</option>
+                <option value="es">🇪🇸 Spanish</option>
+                <option value="pt">🇧🇷 Portuguese</option>
+                <option value="fr">🇫🇷 French</option>
+                <option value="ko">🇰🇷 Korean</option>
+                <option value="ja">🇯🇵 Japanese</option>
+                <option value="zh">🇨🇳 Chinese</option>
+                <option value="hi">🇮🇳 Hindi</option>
+                <option value="ar">🇸🇦 Arabic</option>
+                <option value="de">🇩🇪 German</option>
+                <option value="it">🇮🇹 Italian</option>
+                <option value="tr">🇹🇷 Turkish</option>
+                <option value="ru">🇷🇺 Russian</option>
+                <option value="pl">🇵🇱 Polish</option>
+                <option value="nl">🇳🇱 Dutch</option>
+                <option value="sv">🇸🇪 Swedish</option>
+                <option value="da">🇩🇰 Danish</option>
+                <option value="no">🇳🇴 Norwegian</option>
+                <option value="fi">🇫🇮 Finnish</option>
+                <option value="el">🇬🇷 Greek</option>
+                <option value="cs">🇨🇿 Czech</option>
+                <option value="hu">🇭🇺 Hungarian</option>
+                <option value="ro">🇷🇴 Romanian</option>
+                <option value="uk">🇺🇦 Ukrainian</option>
+                <option value="th">🇹🇭 Thai</option>
+                <option value="vi">🇻🇳 Vietnamese</option>
+                <option value="id">🇮🇩 Indonesian</option>
+                <option value="ms">🇲🇾 Malay</option>
+                <option value="sw">🇰🇪 Swahili</option>
+                <option value="tl">🇵🇭 Tagalog</option>
+                <option value="yo">🇳🇬 Yoruba</option>
+                <option value="he">🇮🇱 Hebrew</option>
+                <option value="bn">🇧🇩 Bengali</option>
+                <option value="ta">🇮🇳 Tamil</option>
+              </select>
               <div class="lang-note" id="lang-note">⚠ Non-English lyrics require an LLM (Gemini is free). Built-in engine only generates English.</div>
             </div>
           </div>
