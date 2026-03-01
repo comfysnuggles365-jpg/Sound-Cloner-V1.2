@@ -3780,6 +3780,13 @@ const RP = {
     this.render();
   },
 
+  moveTrack(from, to) {
+    const track = this.tracks.splice(from, 1)[0];
+    this.tracks.splice(to, 0, track);
+    this.save();
+    this.render();
+  },
+
   addFiles(files) {
     files.forEach(file => {
       const ext = file.name.split('.').pop().toUpperCase();
@@ -3879,6 +3886,10 @@ const RP = {
         const borderStyle = hasFile ? (t.audioFileType === 'wav' ? 'border-left:2px solid #f472b6' : 'border-left:2px solid #0088ff') : 'border-left:2px solid rgba(255,77,109,0.3)';
         const hasLyrics = !!(t.lyrics && t.lyrics.trim());
         return `<div class="rp-track-card" style="${borderStyle}" data-idx="${i}">
+          <div class="rp-track-reorder">
+            <button class="rp-track-move" data-idx="${i}" data-dir="up" title="Move up" ${i === 0 ? 'disabled' : ''}>▲</button>
+            <button class="rp-track-move" data-idx="${i}" data-dir="down" title="Move down" ${i === this.tracks.length - 1 ? 'disabled' : ''}>▼</button>
+          </div>
           <span class="rp-track-num">${num}</span>
           <button class="rp-track-remove" data-idx="${i}" title="Remove">✕</button>
           <input class="rp-track-title-input" data-idx="${i}" value="${(t.title || '').replace(/"/g, '&quot;')}" placeholder="Track title...">
@@ -3981,6 +3992,19 @@ const RP = {
             document.body.removeChild(picker);
           });
           picker.click();
+        });
+      });
+      // ── MOVE UP/DOWN BUTTONS ──
+      list.querySelectorAll('.rp-track-move').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(btn.dataset.idx);
+          const dir = btn.dataset.dir;
+          if (dir === 'up' && idx > 0) {
+            this.moveTrack(idx, idx - 1);
+          } else if (dir === 'down' && idx < this.tracks.length - 1) {
+            this.moveTrack(idx, idx + 1);
+          }
         });
       });
     }

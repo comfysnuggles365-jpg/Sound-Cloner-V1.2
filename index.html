@@ -745,6 +745,16 @@ body::before {
 .rp-track-card:hover { border-color: rgba(255,255,255,0.12); }
 @keyframes fadeSlideIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 .rp-track-num { position: absolute; top: 7px; right: 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--dim); background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+.rp-track-reorder { position: absolute; top: 4px; right: 28px; display: flex; gap: 2px; align-items: center; }
+.rp-track-move { background: none; border: 1px solid var(--border); color: var(--dim); font-size: 8px; cursor: pointer; padding: 2px 4px; border-radius: 3px; line-height: 1; font-family: inherit; }
+.rp-track-move:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); background: rgba(0,229,204,0.1); }
+.rp-track-move:disabled { opacity: 0.15; cursor: default; }
+.rp-track-drag { cursor: grab; color: var(--dim); font-size: 12px; padding: 2px 4px; border-radius: 3px; user-select: none; position: absolute; top: 7px; left: 6px; opacity: 0.4; transition: opacity 0.15s; }
+.rp-track-drag:hover { opacity: 1; color: var(--accent); }
+.rp-track-drag:active { cursor: grabbing; }
+.rp-track-card.rp-dragging { opacity: 0.3; }
+.rp-track-card.rp-drag-over-top { border-top: 2px solid var(--accent) !important; margin-top: -2px; }
+.rp-track-card.rp-drag-over-bottom { border-bottom: 2px solid var(--accent) !important; margin-bottom: -2px; }
 .rp-track-title { font-weight: 600; font-size: 12px; margin-bottom: 2px; padding-right: 28px; }
 .rp-track-title-input { font-weight: 600; font-size: 12px; background: transparent; border: none; border-bottom: 1px solid transparent; color: var(--text); outline: none; width: calc(100% - 40px); font-family: inherit; padding: 2px 0; }
 .rp-track-title-input:focus { border-bottom-color: var(--accent); }
