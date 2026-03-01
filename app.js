@@ -3669,8 +3669,6 @@ const RP = {
       }
 
       if (files.length > 0) {
-        // Sort files alphabetically for consistent order
-        files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
         this.addFiles(files);
       } else {
         this.showToast('⚠ No audio files found — drop MP3, WAV, FLAC, or M4A files');
