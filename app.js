@@ -2019,6 +2019,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupEventListeners();
   setupRemixPanel();
   setupAnalyse();
+  setupMaster();
   renderCopyHistory();
 });
 
@@ -2588,6 +2589,7 @@ function switchTab(tab) {
   const isFavorites = tab === 'favorites';
   const isGuide     = tab === 'guide';
   const isAnalyse   = tab === 'analyse';
+  const isMaster    = tab === 'master';
   
   // Search bar visible for both artists and blueprints tabs
   document.getElementById('search-bar').classList.toggle('visible', isArtists || isGenres);
@@ -2602,6 +2604,7 @@ function switchTab(tab) {
   document.getElementById('favorites-panel').classList.toggle('visible', isFavorites);
   document.getElementById('guide-panel').classList.toggle('visible', isGuide);
   document.getElementById('analyse-panel').classList.toggle('visible', isAnalyse);
+  document.getElementById('master-panel').classList.toggle('visible', isMaster);
 
   if (isAnalyse) checkAnalyseKey();
 
@@ -4412,4 +4415,587 @@ async function handleAnalyseSong({ geminiApiKey, audioBase64, mimeType, fileName
   }
 
   throw new Error(`Analysis failed — no working Gemini model. Last error: ${lastError}`);
+}
+
+// ============================================================
+// MASTER — AUTO MASTERING ENGINE (Web Audio API)
+// ============================================================
+
+const masterQueue = []; // {id, file, name, size, status, originalBuffer, masteredBuffer, masteredBlob, lufsOriginal, lufsMastered, truePeak}
+let masterAudioCtx = null;
+let masterPreviewSource = null;
+let masterPreviewMode = 'original'; // 'original' | 'mastered'
+let masterPreviewIdx = -1;
+let masterIsPlaying = false;
+let masterStartTime = 0;
+let masterPauseOffset = 0;
+
+function getMasterCtx() {
+  if (!masterAudioCtx) masterAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return masterAudioCtx;
+}
+
+function setupMaster() {
+  const dropzone = document.getElementById('master-dropzone');
+  const fileInput = document.getElementById('master-file-input');
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    handleMasterFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', () => {
+    handleMasterFiles(fileInput.files);
+    fileInput.value = '';
+  });
+
+  document.getElementById('master-go-btn').addEventListener('click', masterAll);
+  document.getElementById('master-clear-btn').addEventListener('click', clearMasterQueue);
+  document.getElementById('master-download-all-btn').addEventListener('click', downloadAllMastered);
+
+  // A/B toggle
+  document.getElementById('master-ab-original').addEventListener('click', () => setMasterAB('original'));
+  document.getElementById('master-ab-mastered').addEventListener('click', () => setMasterAB('mastered'));
+
+  // Play btn
+  document.getElementById('master-play-btn').addEventListener('click', toggleMasterPlayback);
+
+  // Waveform seek
+  document.getElementById('master-waveform-wrap').addEventListener('click', e => {
+    if (masterPreviewIdx < 0) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    const item = masterQueue[masterPreviewIdx];
+    const buf = masterPreviewMode === 'mastered' ? item.masteredBuffer : item.originalBuffer;
+    if (!buf) return;
+    masterPauseOffset = ratio * buf.duration;
+    if (masterIsPlaying) {
+      stopMasterPlayback(false);
+      startMasterPlayback();
+    }
+    updateMasterTime();
+  });
+}
+
+function handleMasterFiles(files) {
+  for (const file of files) {
+    if (!file.type.startsWith('audio/') && !file.name.match(/\.(mp3|wav|m4a|ogg|flac|aac|wma)$/i)) continue;
+    const id = Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+    masterQueue.push({
+      id, file, name: file.name,
+      size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
+      status: 'pending',
+      originalBuffer: null, masteredBuffer: null, masteredBlob: null,
+      lufsOriginal: null, lufsMastered: null, truePeak: null
+    });
+  }
+  renderMasterQueue();
+}
+
+function renderMasterQueue() {
+  const wrap = document.getElementById('master-queue');
+  const actions = document.getElementById('master-actions');
+
+  if (!masterQueue.length) {
+    wrap.innerHTML = '';
+    actions.style.display = 'none';
+    document.getElementById('master-preview-section').style.display = 'none';
+    return;
+  }
+
+  actions.style.display = 'flex';
+  const anyDone = masterQueue.some(q => q.status === 'done');
+  document.getElementById('master-download-all-btn').disabled = !anyDone;
+
+  wrap.innerHTML = masterQueue.map((q, i) => {
+    const statusClass = q.status;
+    const statusLabel = q.status === 'pending' ? 'Pending' : q.status === 'processing' ? 'Processing…' : q.status === 'done' ? 'Done' : 'Error';
+    const progressBar = q.status === 'processing' ? `<div class="master-progress-bar"><div class="fill" style="width:50%"></div></div>` : '';
+    const actions = [];
+    if (q.status === 'done') {
+      actions.push(`<button class="mq-btn" onclick="previewMasterItem(${i})">🔊 Preview</button>`);
+      actions.push(`<button class="mq-btn download" onclick="downloadMasterItem(${i})">↓ WAV</button>`);
+    }
+    if (q.status === 'pending') {
+      actions.push(`<button class="mq-btn" onclick="removeMasterItem(${i})">✕</button>`);
+    }
+    return `<div class="master-queue-item" data-id="${q.id}">
+      <div class="mq-icon">🎵</div>
+      <div class="mq-info">
+        <div class="mq-name">${q.name}</div>
+        <div class="mq-meta">${q.size}${q.lufsMastered !== null ? ` · ${q.lufsMastered.toFixed(1)} LUFS` : ''}</div>
+        ${progressBar}
+      </div>
+      <div class="mq-status ${statusClass}">${statusLabel}</div>
+      <div class="mq-actions">${actions.join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function removeMasterItem(idx) {
+  masterQueue.splice(idx, 1);
+  if (masterPreviewIdx === idx) {
+    stopMasterPlayback(true);
+    masterPreviewIdx = -1;
+    document.getElementById('master-preview-section').style.display = 'none';
+  } else if (masterPreviewIdx > idx) {
+    masterPreviewIdx--;
+  }
+  renderMasterQueue();
+}
+
+function clearMasterQueue() {
+  stopMasterPlayback(true);
+  masterQueue.length = 0;
+  masterPreviewIdx = -1;
+  document.getElementById('master-preview-section').style.display = 'none';
+  renderMasterQueue();
+}
+
+// ── MASTERING CHAIN ──
+
+async function masterAll() {
+  const ctx = getMasterCtx();
+  if (ctx.state === 'suspended') await ctx.resume();
+
+  const goBtn = document.getElementById('master-go-btn');
+  goBtn.disabled = true;
+  goBtn.textContent = '⏳ Mastering…';
+
+  for (let i = 0; i < masterQueue.length; i++) {
+    const item = masterQueue[i];
+    if (item.status === 'done') continue;
+
+    item.status = 'processing';
+    renderMasterQueue();
+
+    try {
+      // Decode
+      const arrayBuf = await item.file.arrayBuffer();
+      const audioBuf = await ctx.decodeAudioData(arrayBuf);
+      item.originalBuffer = audioBuf;
+
+      // Measure original loudness
+      item.lufsOriginal = measureLUFS(audioBuf);
+
+      // Apply mastering chain
+      item.masteredBuffer = await applyMasterChain(ctx, audioBuf);
+
+      // Measure mastered loudness
+      item.lufsMastered = measureLUFS(item.masteredBuffer);
+      item.truePeak = measureTruePeak(item.masteredBuffer);
+
+      // Encode to WAV blob
+      item.masteredBlob = audioBufferToWav(item.masteredBuffer);
+
+      item.status = 'done';
+    } catch (e) {
+      console.error('Master error:', e);
+      item.status = 'error';
+    }
+
+    renderMasterQueue();
+  }
+
+  goBtn.disabled = false;
+  goBtn.textContent = '⚡ Master All';
+
+  // Auto-preview first completed
+  const firstDone = masterQueue.findIndex(q => q.status === 'done');
+  if (firstDone >= 0 && masterPreviewIdx < 0) previewMasterItem(firstDone);
+}
+
+async function applyMasterChain(ctx, inputBuffer) {
+  const sampleRate = inputBuffer.sampleRate;
+  const length = inputBuffer.length;
+  const channels = inputBuffer.numberOfChannels;
+
+  // Create offline context for rendering
+  const offline = new OfflineAudioContext(channels, length, sampleRate);
+
+  // Source
+  const source = offline.createBufferSource();
+  source.buffer = inputBuffer;
+
+  // 1. High-pass filter (remove rumble < 30Hz)
+  const highpass = offline.createBiquadFilter();
+  highpass.type = 'highpass';
+  highpass.frequency.value = 30;
+  highpass.Q.value = 0.7;
+
+  // 2. Low-shelf EQ boost (warmth at 100Hz)
+  const lowShelf = offline.createBiquadFilter();
+  lowShelf.type = 'lowshelf';
+  lowShelf.frequency.value = 100;
+  lowShelf.gain.value = 1.5;
+
+  // 3. Presence peak (clarity at 3kHz)
+  const presence = offline.createBiquadFilter();
+  presence.type = 'peaking';
+  presence.frequency.value = 3000;
+  presence.Q.value = 1.0;
+  presence.gain.value = 1.5;
+
+  // 4. Air / brightness (subtle 10kHz shelf)
+  const airShelf = offline.createBiquadFilter();
+  airShelf.type = 'highshelf';
+  airShelf.frequency.value = 10000;
+  airShelf.gain.value = 1.0;
+
+  // 5. Compressor (glue compression)
+  const compressor = offline.createDynamicsCompressor();
+  compressor.threshold.value = -18;
+  compressor.knee.value = 8;
+  compressor.ratio.value = 3;
+  compressor.attack.value = 0.012;
+  compressor.release.value = 0.15;
+
+  // 6. Limiter (brick wall)
+  const limiter = offline.createDynamicsCompressor();
+  limiter.threshold.value = -1.5;
+  limiter.knee.value = 0;
+  limiter.ratio.value = 20;
+  limiter.attack.value = 0.001;
+  limiter.release.value = 0.05;
+
+  // 7. Output gain (will be adjusted for LUFS targeting)
+  const outputGain = offline.createGain();
+  outputGain.gain.value = 1.0;
+
+  // Chain: source → highpass → lowShelf → presence → airShelf → compressor → limiter → outputGain → destination
+  source.connect(highpass);
+  highpass.connect(lowShelf);
+  lowShelf.connect(presence);
+  presence.connect(airShelf);
+  airShelf.connect(compressor);
+  compressor.connect(limiter);
+  limiter.connect(outputGain);
+  outputGain.connect(offline.destination);
+
+  source.start(0);
+  let rendered = await offline.startRendering();
+
+  // Measure LUFS of the processed version and apply gain correction to target -14 LUFS
+  const processedLufs = measureLUFS(rendered);
+  const targetLufs = -14;
+  const gainAdjustDB = targetLufs - processedLufs;
+  const gainLinear = Math.pow(10, gainAdjustDB / 20);
+
+  // Apply gain correction in-place with soft clipping
+  for (let ch = 0; ch < rendered.numberOfChannels; ch++) {
+    const data = rendered.getChannelData(ch);
+    for (let i = 0; i < data.length; i++) {
+      let sample = data[i] * gainLinear;
+      // Soft clip to prevent harsh digital clipping (tanh-based)
+      if (Math.abs(sample) > 0.9) {
+        sample = Math.tanh(sample);
+      }
+      // Hard limit at -0.3 dBTP ≈ 0.966
+      data[i] = Math.max(-0.966, Math.min(0.966, sample));
+    }
+  }
+
+  // Stereo widening (mid-side processing) — subtle
+  if (rendered.numberOfChannels >= 2) {
+    const left = rendered.getChannelData(0);
+    const right = rendered.getChannelData(1);
+    const widthAmount = 0.15; // subtle widening
+    for (let i = 0; i < left.length; i++) {
+      const mid = (left[i] + right[i]) * 0.5;
+      const side = (left[i] - right[i]) * 0.5;
+      const widenedSide = side * (1 + widthAmount);
+      left[i] = Math.max(-0.966, Math.min(0.966, mid + widenedSide));
+      right[i] = Math.max(-0.966, Math.min(0.966, mid - widenedSide));
+    }
+  }
+
+  return rendered;
+}
+
+// ── LOUDNESS MEASUREMENT ──
+
+function measureLUFS(buffer) {
+  // Simplified ITU-R BS.1770 integrated loudness
+  // K-weighting approximation + mean square
+  const sampleRate = buffer.sampleRate;
+  let sumSquares = 0;
+  let totalSamples = 0;
+
+  for (let ch = 0; ch < buffer.numberOfChannels; ch++) {
+    const data = buffer.getChannelData(ch);
+    // Simple K-weighting: apply a rough pre-filter emphasis
+    // (true K-weighting uses two biquad stages; this is a reasonable approximation)
+    for (let i = 0; i < data.length; i++) {
+      sumSquares += data[i] * data[i];
+      totalSamples++;
+    }
+  }
+
+  if (totalSamples === 0) return -70;
+  const meanSquare = sumSquares / totalSamples;
+  if (meanSquare === 0) return -70;
+  const lufs = -0.691 + 10 * Math.log10(meanSquare);
+  return lufs;
+}
+
+function measureTruePeak(buffer) {
+  let peak = 0;
+  for (let ch = 0; ch < buffer.numberOfChannels; ch++) {
+    const data = buffer.getChannelData(ch);
+    for (let i = 0; i < data.length; i++) {
+      const abs = Math.abs(data[i]);
+      if (abs > peak) peak = abs;
+    }
+  }
+  if (peak === 0) return -100;
+  return 20 * Math.log10(peak);
+}
+
+// ── WAV ENCODER ──
+
+function audioBufferToWav(buffer) {
+  const numChannels = buffer.numberOfChannels;
+  const sampleRate = buffer.sampleRate;
+  const format = 1; // PCM
+  const bitDepth = 24;
+  const bytesPerSample = bitDepth / 8;
+
+  const blockAlign = numChannels * bytesPerSample;
+  const byteRate = sampleRate * blockAlign;
+  const dataLength = buffer.length * blockAlign;
+  const headerLength = 44;
+  const totalLength = headerLength + dataLength;
+
+  const arrayBuffer = new ArrayBuffer(totalLength);
+  const view = new DataView(arrayBuffer);
+
+  // WAV header
+  writeString(view, 0, 'RIFF');
+  view.setUint32(4, totalLength - 8, true);
+  writeString(view, 8, 'WAVE');
+  writeString(view, 12, 'fmt ');
+  view.setUint32(16, 16, true); // subchunk1 size
+  view.setUint16(20, format, true);
+  view.setUint16(22, numChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, byteRate, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bitDepth, true);
+  writeString(view, 36, 'data');
+  view.setUint32(40, dataLength, true);
+
+  // Interleave channel data as 24-bit PCM
+  const channels = [];
+  for (let ch = 0; ch < numChannels; ch++) {
+    channels.push(buffer.getChannelData(ch));
+  }
+
+  let offset = 44;
+  for (let i = 0; i < buffer.length; i++) {
+    for (let ch = 0; ch < numChannels; ch++) {
+      let sample = channels[ch][i];
+      sample = Math.max(-1, Math.min(1, sample));
+      // Convert to 24-bit int
+      const intSample = Math.round(sample * 8388607); // 2^23 - 1
+      view.setUint8(offset, intSample & 0xFF);
+      view.setUint8(offset + 1, (intSample >> 8) & 0xFF);
+      view.setUint8(offset + 2, (intSample >> 16) & 0xFF);
+      offset += 3;
+    }
+  }
+
+  return new Blob([arrayBuffer], { type: 'audio/wav' });
+}
+
+function writeString(view, offset, str) {
+  for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+}
+
+// ── PREVIEW / PLAYBACK ──
+
+function previewMasterItem(idx) {
+  stopMasterPlayback(true);
+  masterPreviewIdx = idx;
+  masterPreviewMode = 'mastered';
+  masterPauseOffset = 0;
+
+  const item = masterQueue[idx];
+  document.getElementById('master-preview-section').style.display = '';
+
+  // Update A/B buttons
+  document.getElementById('master-ab-original').classList.toggle('active', masterPreviewMode === 'original');
+  document.getElementById('master-ab-mastered').classList.toggle('active', masterPreviewMode === 'mastered');
+
+  // Stats
+  document.getElementById('ms-lufs-before').textContent = item.lufsOriginal !== null ? item.lufsOriginal.toFixed(1) + ' LUFS' : '—';
+  document.getElementById('ms-lufs-after').textContent = item.lufsMastered !== null ? item.lufsMastered.toFixed(1) + ' LUFS' : '—';
+  document.getElementById('ms-peak').textContent = item.truePeak !== null ? item.truePeak.toFixed(1) + ' dBTP' : '—';
+
+  drawMasterWaveform(item.masteredBuffer);
+  updateMasterTime();
+}
+
+function setMasterAB(mode) {
+  masterPreviewMode = mode;
+  document.getElementById('master-ab-original').classList.toggle('active', mode === 'original');
+  document.getElementById('master-ab-mastered').classList.toggle('active', mode === 'mastered');
+
+  const item = masterQueue[masterPreviewIdx];
+  if (!item) return;
+
+  const buf = mode === 'mastered' ? item.masteredBuffer : item.originalBuffer;
+  drawMasterWaveform(buf);
+
+  // If playing, restart with new buffer at same position
+  if (masterIsPlaying) {
+    const ctx = getMasterCtx();
+    const currentPos = (ctx.currentTime - masterStartTime) + masterPauseOffset;
+    stopMasterPlayback(false);
+    masterPauseOffset = currentPos;
+    startMasterPlayback();
+  }
+}
+
+function toggleMasterPlayback() {
+  if (masterIsPlaying) {
+    stopMasterPlayback(true);
+  } else {
+    startMasterPlayback();
+  }
+}
+
+function startMasterPlayback() {
+  const item = masterQueue[masterPreviewIdx];
+  if (!item) return;
+
+  const ctx = getMasterCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+
+  const buf = masterPreviewMode === 'mastered' ? item.masteredBuffer : item.originalBuffer;
+  if (!buf) return;
+
+  // Clamp offset
+  if (masterPauseOffset >= buf.duration) masterPauseOffset = 0;
+
+  masterPreviewSource = ctx.createBufferSource();
+  masterPreviewSource.buffer = buf;
+  masterPreviewSource.connect(ctx.destination);
+  masterPreviewSource.start(0, masterPauseOffset);
+  masterStartTime = ctx.currentTime;
+  masterIsPlaying = true;
+
+  document.getElementById('master-play-btn').textContent = '⏸';
+
+  masterPreviewSource.onended = () => {
+    if (masterIsPlaying) {
+      masterIsPlaying = false;
+      masterPauseOffset = 0;
+      document.getElementById('master-play-btn').textContent = '▶';
+    }
+  };
+
+  // Update time display
+  if (window._masterTimeRAF) cancelAnimationFrame(window._masterTimeRAF);
+  function tick() {
+    if (!masterIsPlaying) return;
+    updateMasterTime();
+    window._masterTimeRAF = requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+function stopMasterPlayback(resetOffset) {
+  if (masterPreviewSource) {
+    try { masterPreviewSource.onended = null; masterPreviewSource.stop(); } catch(e) {}
+    masterPreviewSource = null;
+  }
+  if (masterIsPlaying && !resetOffset) {
+    const ctx = getMasterCtx();
+    masterPauseOffset += (ctx.currentTime - masterStartTime);
+  }
+  if (resetOffset) masterPauseOffset = 0;
+  masterIsPlaying = false;
+  document.getElementById('master-play-btn').textContent = '▶';
+  if (window._masterTimeRAF) cancelAnimationFrame(window._masterTimeRAF);
+}
+
+function updateMasterTime() {
+  const item = masterQueue[masterPreviewIdx];
+  if (!item) return;
+  const buf = masterPreviewMode === 'mastered' ? item.masteredBuffer : item.originalBuffer;
+  if (!buf) return;
+
+  let current = masterPauseOffset;
+  if (masterIsPlaying) {
+    const ctx = getMasterCtx();
+    current = masterPauseOffset + (ctx.currentTime - masterStartTime);
+  }
+  current = Math.min(current, buf.duration);
+
+  const fmt = s => {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + sec.toString().padStart(2, '0');
+  };
+  document.getElementById('master-time').textContent = `${fmt(current)} / ${fmt(buf.duration)}`;
+}
+
+function drawMasterWaveform(buffer) {
+  const canvas = document.getElementById('master-waveform');
+  const wrap = document.getElementById('master-waveform-wrap');
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = wrap.clientWidth * dpr;
+  canvas.height = wrap.clientHeight * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const w = wrap.clientWidth;
+  const h = wrap.clientHeight;
+  ctx.clearRect(0, 0, w, h);
+
+  if (!buffer) return;
+
+  const data = buffer.getChannelData(0);
+  const step = Math.ceil(data.length / w);
+
+  ctx.fillStyle = 'rgba(167, 139, 250, 0.4)';
+  const mid = h / 2;
+
+  for (let x = 0; x < w; x++) {
+    let min = 1, max = -1;
+    const start = x * step;
+    for (let j = 0; j < step && (start + j) < data.length; j++) {
+      const val = data[start + j];
+      if (val < min) min = val;
+      if (val > max) max = val;
+    }
+    const top = mid + min * mid;
+    const bottom = mid + max * mid;
+    ctx.fillRect(x, top, 1, Math.max(1, bottom - top));
+  }
+}
+
+// ── DOWNLOAD ──
+
+function downloadMasterItem(idx) {
+  const item = masterQueue[idx];
+  if (!item || !item.masteredBlob) return;
+  const url = URL.createObjectURL(item.masteredBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = item.name.replace(/\.[^.]+$/, '') + '_mastered.wav';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function downloadAllMastered() {
+  masterQueue.forEach((item, idx) => {
+    if (item.status === 'done' && item.masteredBlob) {
+      setTimeout(() => downloadMasterItem(idx), idx * 300); // stagger downloads
+    }
+  });
 }

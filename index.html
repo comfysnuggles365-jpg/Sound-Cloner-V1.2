@@ -171,6 +171,219 @@ body::before {
 .tab.active.tab-genres { color: var(--gold); }
 .tab.active.tab-batch { color: var(--red); }
 .tab.active.tab-favorites { color: #fb923c; }
+.tab.active.tab-master { color: #a78bfa; }
+
+/* ===== MASTER PANEL ===== */
+#master-panel { display: none; height: 100%; overflow-y: auto; padding: 20px; }
+#master-panel.visible { display: block; }
+.master-header { margin-bottom: 20px; }
+.master-header h2 { font-family: 'Bebas Neue'; font-size: 28px; letter-spacing: 2px; color: #a78bfa; margin-bottom: 4px; }
+.master-header p { font-size: 0.82rem; color: var(--dim); line-height: 1.5; }
+
+.master-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 44px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+  margin-bottom: 16px;
+  position: relative;
+}
+.master-dropzone:hover, .master-dropzone.dragover {
+  border-color: #a78bfa;
+  background: rgba(167,139,250,0.04);
+}
+.master-dropzone .drop-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.master-dropzone .drop-text { font-size: 0.9rem; color: var(--mid); }
+.master-dropzone .drop-sub { font-size: 0.75rem; color: var(--dim); margin-top: 4px; }
+.master-dropzone input[type="file"] { display: none; }
+
+.master-queue { margin-top: 8px; }
+.master-queue-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s;
+}
+.master-queue-item:hover { border-color: #a78bfa44; }
+.master-queue-item .mq-icon { font-size: 1.3rem; flex-shrink: 0; }
+.master-queue-item .mq-info { flex: 1; min-width: 0; }
+.master-queue-item .mq-name { font-weight: 600; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.master-queue-item .mq-meta { font-size: 0.72rem; color: var(--dim); margin-top: 2px; }
+.master-queue-item .mq-status { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 6px; flex-shrink: 0; }
+.master-queue-item .mq-status.pending { color: var(--dim); background: var(--bg3); }
+.master-queue-item .mq-status.processing { color: #a78bfa; background: rgba(167,139,250,0.12); }
+.master-queue-item .mq-status.done { color: #22c55e; background: rgba(34,197,94,0.12); }
+.master-queue-item .mq-status.error { color: var(--red); background: rgba(255,77,109,0.12); }
+.master-queue-item .mq-remove { cursor: pointer; color: var(--dim); font-size: 1.1rem; padding: 4px 8px; border-radius: 6px; transition: color 0.2s; flex-shrink: 0; }
+.master-queue-item .mq-remove:hover { color: var(--red); }
+.master-queue-item .mq-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.master-queue-item .mq-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--mid);
+  font-family: inherit;
+  transition: border-color 0.2s, color 0.2s;
+}
+.master-queue-item .mq-btn:hover { border-color: #a78bfa; color: #a78bfa; }
+.master-queue-item .mq-btn.download { border-color: #22c55e55; color: #22c55e; }
+.master-queue-item .mq-btn.download:hover { border-color: #22c55e; background: rgba(34,197,94,0.08); }
+
+.master-progress-bar {
+  width: 100%;
+  height: 3px;
+  background: var(--bg3);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.master-progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a78bfa, #818cf8);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.master-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+.master-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+.master-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.master-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.master-btn.primary { background: linear-gradient(135deg, #a78bfa, #818cf8); color: #000; }
+.master-btn.secondary { background: var(--bg3); border: 1px solid var(--border); color: var(--mid); }
+.master-btn.secondary:hover:not(:disabled) { border-color: #a78bfa; color: #a78bfa; }
+
+.master-preview {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 16px;
+}
+.master-preview-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a78bfa;
+  margin-bottom: 12px;
+}
+.master-ab-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.master-ab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--mid);
+  text-align: center;
+}
+.master-ab-btn.active { border-color: #a78bfa; color: #a78bfa; background: rgba(167,139,250,0.08); }
+.master-ab-btn:hover { border-color: #a78bfa55; }
+.master-transport {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.master-play-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 2px solid #a78bfa;
+  background: rgba(167,139,250,0.1);
+  color: #a78bfa;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.master-play-btn:hover { background: rgba(167,139,250,0.2); }
+.master-waveform-wrap {
+  flex: 1;
+  height: 48px;
+  background: var(--bg3);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.master-waveform-wrap canvas { width: 100%; height: 100%; display: block; }
+.master-time {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--dim);
+  flex-shrink: 0;
+  min-width: 70px;
+  text-align: right;
+}
+.master-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+.master-stat {
+  text-align: center;
+  padding: 10px 6px;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.master-stat-val { font-family: var(--mono); font-size: 0.88rem; font-weight: 600; color: #a78bfa; }
+.master-stat-label { font-size: 0.68rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+
+.master-tip {
+  padding: 10px 14px;
+  background: rgba(167,139,250,0.05);
+  border-left: 3px solid #a78bfa;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.8rem;
+  color: var(--mid);
+  margin-top: 16px;
+}
+
+/* Light theme overrides for master panel */
+:root.light .master-queue-item { background: var(--card); border-color: var(--border2); }
+:root.light .master-dropzone { border-color: var(--border2); }
+:root.light .master-preview { background: var(--card); border-color: var(--border2); }
+:root.light .master-queue-item .mq-btn { background: var(--card); border-color: var(--border2); color: var(--text); }
 
 #header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 .header-stat {
@@ -1575,6 +1788,7 @@ body::before {
     <div class="tab tab-batch" data-tab="batch">⚡ Batch</div>
     <div class="tab tab-favorites" data-tab="favorites">★ Favorites</div>
     <div class="tab tab-analyse" data-tab="analyse">🔬 Analyse</div>
+    <div class="tab tab-master" data-tab="master">🎛 Master</div>
     <div class="tab tab-guide" data-tab="guide">📖 Guide</div>
   </div>
 
@@ -1717,6 +1931,62 @@ body::before {
         </div>
         <div class="analyse-tip">💡 Copy either prompt and paste it into the <strong>⚡ Batch</strong> tab's style prompt box, or directly into Suno. Mix and match — use one artist's voice with another's production style!</div>
       </div>
+    </div>
+
+    <!-- MASTER PANEL -->
+    <div id="master-panel">
+      <div class="master-header">
+        <h2>🎛 AUTO MASTER</h2>
+        <p>Drop your tracks and get streaming-optimized masters instantly. Uses Web Audio API for EQ, compression, stereo enhancement, and loudness targeting (-14 LUFS for Spotify/Apple Music).</p>
+      </div>
+
+      <div id="master-dropzone" class="master-dropzone">
+        <div class="drop-icon">🎛</div>
+        <div class="drop-text">Drop audio files here or click to browse</div>
+        <div class="drop-sub">MP3, WAV, M4A, OGG, FLAC — drop multiple files for batch mastering</div>
+        <input type="file" id="master-file-input" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac,.aac,.wma" multiple>
+      </div>
+
+      <div id="master-queue" class="master-queue"></div>
+
+      <div class="master-actions" id="master-actions" style="display:none;">
+        <button class="master-btn primary" id="master-go-btn">⚡ Master All</button>
+        <button class="master-btn secondary" id="master-clear-btn">✕ Clear</button>
+        <button class="master-btn secondary" id="master-download-all-btn" disabled>↓ Download All</button>
+      </div>
+
+      <div id="master-preview-section" style="display:none;">
+        <div class="master-preview">
+          <div class="master-preview-title">🔊 A/B Preview</div>
+          <div class="master-ab-row">
+            <button class="master-ab-btn active" id="master-ab-original">Original</button>
+            <button class="master-ab-btn" id="master-ab-mastered">Mastered</button>
+          </div>
+          <div class="master-transport">
+            <button class="master-play-btn" id="master-play-btn">▶</button>
+            <div class="master-waveform-wrap" id="master-waveform-wrap">
+              <canvas id="master-waveform"></canvas>
+            </div>
+            <div class="master-time" id="master-time">0:00 / 0:00</div>
+          </div>
+          <div class="master-stats" id="master-stats">
+            <div class="master-stat">
+              <div class="master-stat-val" id="ms-lufs-before">—</div>
+              <div class="master-stat-label">LUFS Before</div>
+            </div>
+            <div class="master-stat">
+              <div class="master-stat-val" id="ms-lufs-after">—</div>
+              <div class="master-stat-label">LUFS After</div>
+            </div>
+            <div class="master-stat">
+              <div class="master-stat-val" id="ms-peak">—</div>
+              <div class="master-stat-label">True Peak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="master-tip">💡 Targets <strong>-14 LUFS</strong> integrated loudness (Spotify/Apple Music standard). The chain applies: High-pass → EQ shaping → Multiband-style compression → Stereo widening → Limiter → Loudness normalization. Export as WAV for best quality.</div>
     </div>
 
     <div id="guide-panel">
