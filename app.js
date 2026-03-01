@@ -4454,7 +4454,9 @@ function setupMaster() {
 
   document.getElementById('master-go-btn').addEventListener('click', masterAll);
   document.getElementById('master-clear-btn').addEventListener('click', clearMasterQueue);
-  document.getElementById('master-download-all-btn').addEventListener('click', downloadAllMastered);
+  document.getElementById('master-download-zip-btn').addEventListener('click', downloadAllAsZip);
+  document.getElementById('master-download-individual-btn').addEventListener('click', downloadAllIndividually);
+  document.getElementById('master-download-all-btn').addEventListener('click', downloadAllAtOnce);
 
   // A/B toggle
   document.getElementById('master-ab-original').addEventListener('click', () => setMasterAB('original'));
@@ -4498,17 +4500,29 @@ function handleMasterFiles(files) {
 function renderMasterQueue() {
   const wrap = document.getElementById('master-queue');
   const actions = document.getElementById('master-actions');
+  const dlRow = document.getElementById('master-download-row');
 
   if (!masterQueue.length) {
     wrap.innerHTML = '';
     actions.style.display = 'none';
+    dlRow.style.display = 'none';
     document.getElementById('master-preview-section').style.display = 'none';
     return;
   }
 
   actions.style.display = 'flex';
   const anyDone = masterQueue.some(q => q.status === 'done');
+  const doneCount = masterQueue.filter(q => q.status === 'done').length;
+  dlRow.style.display = doneCount > 0 ? '' : 'none';
+  document.getElementById('master-download-zip-btn').disabled = !anyDone;
+  document.getElementById('master-download-individual-btn').disabled = !anyDone;
   document.getElementById('master-download-all-btn').disabled = !anyDone;
+  
+  // Hint text
+  const hint = document.getElementById('master-dl-hint');
+  if (doneCount > 0) {
+    hint.textContent = `${doneCount} file${doneCount > 1 ? 's' : ''} ready · ZIP uses folder name above · "All at Once" triggers ${doneCount} simultaneous download${doneCount > 1 ? 's' : ''}`;
+  }
 
   wrap.innerHTML = masterQueue.map((q, i) => {
     const statusClass = q.status;
@@ -4825,6 +4839,10 @@ function previewMasterItem(idx) {
   const item = masterQueue[idx];
   document.getElementById('master-preview-section').style.display = '';
 
+  // Show song name in preview title
+  const displayName = item.name.replace(/\.[^.]+$/, '');
+  document.getElementById('master-preview-name').textContent = displayName;
+
   // Update A/B buttons
   document.getElementById('master-ab-original').classList.toggle('active', masterPreviewMode === 'original');
   document.getElementById('master-ab-mastered').classList.toggle('active', masterPreviewMode === 'mastered');
@@ -4992,10 +5010,103 @@ function downloadMasterItem(idx) {
   URL.revokeObjectURL(url);
 }
 
-function downloadAllMastered() {
-  masterQueue.forEach((item, idx) => {
-    if (item.status === 'done' && item.masteredBlob) {
-      setTimeout(() => downloadMasterItem(idx), idx * 300); // stagger downloads
+// Download as ZIP (folder inside)
+async function downloadAllAsZip() {
+  const doneItems = masterQueue.filter(item => item.status === 'done' && item.masteredBlob);
+  if (!doneItems.length) return;
+
+  const btn = document.getElementById('master-download-zip-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Zipping…';
+
+  try {
+    const folderName = (document.getElementById('master-folder-name').value || 'Mastered').trim().replace(/[\/\\:*?"<>|]/g, '_');
+    const zip = new JSZip();
+    const folder = zip.folder(folderName);
+
+    doneItems.forEach(item => {
+      const fileName = item.name.replace(/\.[^.]+$/, '') + '_mastered.wav';
+      folder.file(fileName, item.masteredBlob);
+    });
+
+    const content = await zip.generateAsync({ type: 'blob' }, metadata => {
+      btn.textContent = `⏳ ${Math.round(metadata.percent)}%`;
+    });
+
+    const url = URL.createObjectURL(content);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = folderName + '.zip';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    console.error('Zip error:', e);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '📦 Download ZIP';
+}
+
+// Download one at a time (click per file)
+function downloadAllIndividually() {
+  const doneItems = masterQueue.filter(item => item.status === 'done' && item.masteredBlob);
+  if (!doneItems.length) return;
+
+  let currentIdx = 0;
+  const btn = document.getElementById('master-download-individual-btn');
+
+  function downloadNext() {
+    if (currentIdx >= doneItems.length) {
+      btn.textContent = '📄 Download Individually';
+      btn.disabled = false;
+      btn.onclick = downloadAllIndividually;
+      return;
     }
+    const item = doneItems[currentIdx];
+    const url = URL.createObjectURL(item.masteredBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = item.name.replace(/\.[^.]+$/, '') + '_mastered.wav';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    currentIdx++;
+    btn.textContent = `📄 ${currentIdx}/${doneItems.length} — Click for next`;
+  }
+
+  btn.textContent = `📄 1/${doneItems.length} — Downloading…`;
+  downloadNext();
+  // Subsequent clicks trigger next download
+  btn.onclick = () => downloadNext();
+}
+
+// Download all simultaneously
+function downloadAllAtOnce() {
+  const doneItems = masterQueue.filter(item => item.status === 'done' && item.masteredBlob);
+  if (!doneItems.length) return;
+
+  const btn = document.getElementById('master-download-all-btn');
+  btn.textContent = `⚡ Downloading ${doneItems.length}…`;
+  btn.disabled = true;
+
+  doneItems.forEach((item, i) => {
+    setTimeout(() => {
+      const url = URL.createObjectURL(item.masteredBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = item.name.replace(/\.[^.]+$/, '') + '_mastered.wav';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, i * 200); // small stagger to avoid browser blocking
   });
+
+  setTimeout(() => {
+    btn.textContent = '⚡ Download All at Once';
+    btn.disabled = false;
+  }, doneItems.length * 200 + 500);
 }
