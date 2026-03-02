@@ -1,0 +1,18 @@
+{
+  "languages": [
+    {"code": "en", "name": "English", "native": "English", "flag": "us", "file": "en.json", "dir": "ltr"},
+    {"code": "es", "name": "Spanish", "native": "Español", "flag": "es", "file": "es.json", "dir": "ltr"},
+    {"code": "fr", "name": "French", "native": "Français", "flag": "fr", "file": "fr.json", "dir": "ltr"},
+    {"code": "pt", "name": "Portuguese", "native": "Português", "flag": "br", "file": "pt.json", "dir": "ltr"},
+    {"code": "de", "name": "German", "native": "Deutsch", "flag": "de", "file": "de.json", "dir": "ltr"},
+    {"code": "it", "name": "Italian", "native": "Italiano", "flag": "it", "file": "it.json", "dir": "ltr"},
+    {"code": "pl", "name": "Polish", "native": "Polski", "flag": "pl", "file": "pl.json", "dir": "ltr"},
+    {"code": "sv", "name": "Swedish", "native": "Svenska", "flag": "se", "file": "sv.json", "dir": "ltr"},
+    {"code": "ru", "name": "Russian", "native": "Русский", "flag": "ru", "file": "ru.json", "dir": "ltr"},
+    {"code": "ar", "name": "Arabic", "native": "العربية", "flag": "sa", "file": "ar.json", "dir": "rtl"},
+    {"code": "ja", "name": "Japanese", "native": "日本語", "flag": "jp", "file": "ja.json", "dir": "ltr"},
+    {"code": "ko", "name": "Korean", "native": "한국어", "flag": "kr", "file": "ko.json", "dir": "ltr"},
+    {"code": "zh", "name": "Mandarin", "native": "中文", "flag": "cn", "file": "zh.json", "dir": "ltr"},
+    {"code": "hi", "name": "Hindi", "native": "हिन्दी", "flag": "in", "file": "hi.json", "dir": "ltr"}
+  ]
+}
