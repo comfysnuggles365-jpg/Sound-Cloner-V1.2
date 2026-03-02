@@ -1590,6 +1590,32 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .vl-act.primary:hover{box-shadow:0 4px 20px rgba(255,107,138,0.25);transform:translateY(-1px)}
 .vl-act.secondary{background:var(--b1);color:var(--t2)}.vl-act.secondary:hover{background:var(--b2)}
 .vl-act.tertiary{background:transparent;border:1px solid var(--b1);color:var(--t3)}.vl-act.tertiary:hover{border-color:var(--g4);color:var(--g4)}
+/* ===== REMIX OVERLAY ===== */
+#sc-remix-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#sc-remix-overlay.visible{display:flex}
+#sc-remix-panel{background:var(--bg2);border:1px solid var(--b2);border-radius:16px;padding:24px;width:520px;max-width:90vw;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.sc-remix-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.sc-remix-title{font-size:18px;font-weight:700;color:var(--t1)}
+#sc-remix-close{background:none;border:1px solid var(--b2);color:var(--t2);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+#sc-remix-close:hover{border-color:var(--g4);color:var(--g4)}
+.sc-remix-song-name{font-size:14px;color:var(--g1);margin-bottom:16px;font-weight:600}
+.sc-remix-section{margin-bottom:14px}
+.sc-remix-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--t2);margin-bottom:8px}
+.sc-remix-chips{display:flex;flex-wrap:wrap;gap:6px}
+.sc-remix-chip{padding:5px 10px;border-radius:8px;font-size:11px;cursor:pointer;border:1px solid var(--b2);background:var(--bg);color:var(--t2);transition:all 0.2s;font-weight:500}
+.sc-remix-chip:hover{border-color:var(--t2);color:var(--t1)}
+.sc-remix-chip.active{background:var(--g1);color:#fff;border-color:var(--g1)}
+#sc-remix-style-input{width:100%;min-height:70px;padding:10px;border-radius:10px;border:1px solid var(--b2);background:var(--bg);color:var(--t1);font-size:12px;font-family:inherit;resize:vertical;box-sizing:border-box}
+#sc-remix-style-input:focus{outline:none;border-color:var(--g1)}
+.sc-remix-action-row{display:flex;gap:8px;margin-top:16px}
+#sc-remix-generate-btn{flex:1;padding:10px;border-radius:10px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-weight:700;font-size:13px;cursor:pointer;border:none;transition:opacity 0.2s}
+#sc-remix-generate-btn:hover{opacity:0.88}
+#sc-remix-cancel-btn{padding:10px 20px;border-radius:10px;background:none;border:1px solid var(--b2);color:var(--t2);font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s}
+#sc-remix-cancel-btn:hover{border-color:var(--t2);color:var(--t1)}
+.bp-gen-btn.remix-btn:hover{border-color:var(--g1);color:var(--g1)}
+.bp-gen-btn.regen-btn:hover{border-color:#f59e0b;color:#f59e0b}
+.bp-gen-btn.remove-btn{font-size:10px}
+.bp-gen-btn.remove-btn:hover{border-color:#ef4444;color:#ef4444}
 </style>
 </head>
 <body>
@@ -6824,68 +6850,97 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
     setTimeout(()=>{
       try{
         const songs=generateSongsV2(basePrompt, batchSongCount, new Set(), Date.now());
-        let h='';
-        songs.forEach((s,i)=>{
-          const num=String(i+1).padStart(2,'0');
-          const escapedLyrics=s.lyrics.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-          const escapedStyle=finalPrompt.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-          h+=`<div class="bp-card generated" style="animation-delay:${i*0.06}s">
-            <div class="bp-gen-head">
-              <div class="bp-gen-num">${num}</div>
-              <div class="bp-gen-title">${s.title}</div>
-              <div class="bp-gen-copy" data-idx="${i}" title="Copy all">📋</div>
-            </div>
-            <div class="bp-gen-body">
-              <div class="bp-gen-section">Lyrics</div>
-              <div class="bp-gen-lyrics">${escapedLyrics}</div>
-              <div class="bp-gen-section" style="margin-top:6px">Style Prompt</div>
-              <div class="bp-gen-style">${escapedStyle}</div>
-            </div>
-            <div class="bp-gen-actions">
-              <button class="bp-gen-btn primary" data-copy-lyrics="${i}">📋 Copy Lyrics</button>
-              <button class="bp-gen-btn" data-copy-style="${i}">🎹 Copy Style</button>
-              <button class="bp-gen-btn" data-copy-all="${i}">📦 Copy All</button>
-            </div>
-          </div>`;
-        });
-        grid.innerHTML=h;
-        numEl.textContent=String(songs.length);
-        statusEl.textContent=songs.length+' songs generated ✓';
-        statusEl.classList.remove('bp-generating');
+        // Store songs globally for remix/regen/remove
+        window._scSetBatchSongs(songs, finalPrompt);
+        window._scBatchGrid=grid;
+        window._scBatchNumEl=numEl;
+        window._scBatchStatusEl=statusEl;
+        window._scBatchFinalPrompt=finalPrompt;
 
-        // Wire copy buttons
-        grid.querySelectorAll('.bp-gen-copy').forEach(b=>{
-          b.addEventListener('click',()=>{
-            const idx=parseInt(b.dataset.idx);
-            const s=songs[idx];
-            navigator.clipboard.writeText(s.title+'\n\n'+s.lyrics+'\n\n---\nStyle: '+finalPrompt).catch(()=>{});
-            b.textContent='✓';setTimeout(()=>b.textContent='📋',1200);
+        window._scRerenderBatch=function(){
+          const _songs=window._scGetBatchSongs();
+          const _fp=window._scBatchFinalPrompt;
+          const _grid=window._scBatchGrid;
+          const _numEl=window._scBatchNumEl;
+          const _statusEl=window._scBatchStatusEl;
+          let h='';
+          _songs.forEach((s,i)=>{
+            const num=String(i+1).padStart(2,'0');
+            const eLyrics=s.lyrics.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            const eStyle=_fp.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            h+=`<div class="bp-card generated" style="animation-delay:${i*0.06}s">
+              <div class="bp-gen-head">
+                <div class="bp-gen-num">${num}</div>
+                <div class="bp-gen-title">${s.title}</div>
+                <div class="bp-gen-copy" data-idx="${i}" title="Copy all">📋</div>
+              </div>
+              <div class="bp-gen-body">
+                <div class="bp-gen-section">Lyrics</div>
+                <div class="bp-gen-lyrics">${eLyrics}</div>
+                <div class="bp-gen-section" style="margin-top:6px">Style Prompt</div>
+                <div class="bp-gen-style">${eStyle}</div>
+              </div>
+              <div class="bp-gen-actions">
+                <button class="bp-gen-btn primary" data-copy-lyrics="${i}">📋 Lyrics</button>
+                <button class="bp-gen-btn" data-copy-style="${i}">🎹 Style</button>
+                <button class="bp-gen-btn" data-copy-all="${i}">📦 All</button>
+                <button class="bp-gen-btn remix-btn" data-remix="${i}">🎛 Remix</button>
+                <button class="bp-gen-btn regen-btn" data-regen="${i}">🔄 Regen</button>
+                <button class="bp-gen-btn remove-btn" data-remove="${i}">✕</button>
+              </div>
+            </div>`;
           });
-        });
-        grid.querySelectorAll('[data-copy-lyrics]').forEach(b=>{
-          b.addEventListener('click',()=>{
-            const idx=parseInt(b.dataset.copyLyrics);
-            navigator.clipboard.writeText(songs[idx].lyrics).catch(()=>{});
-            const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
-            setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+          _grid.innerHTML=h;
+          _numEl.textContent=String(_songs.length);
+          _statusEl.textContent=_songs.length+' songs generated ✓';
+          _statusEl.classList.remove('bp-generating');
+          // Wire all buttons
+          _grid.querySelectorAll('.bp-gen-copy').forEach(b=>{
+            b.addEventListener('click',()=>{
+              const idx=parseInt(b.dataset.idx);const s=_songs[idx];
+              navigator.clipboard.writeText(s.title+'\n\n'+s.lyrics+'\n\n---\nStyle: '+_fp).catch(()=>{});
+              b.textContent='✓';setTimeout(()=>b.textContent='📋',1200);
+            });
           });
-        });
-        grid.querySelectorAll('[data-copy-style]').forEach(b=>{
-          b.addEventListener('click',()=>{
-            navigator.clipboard.writeText(finalPrompt).catch(()=>{});
-            const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
-            setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+          _grid.querySelectorAll('[data-copy-lyrics]').forEach(b=>{
+            b.addEventListener('click',()=>{
+              const idx=parseInt(b.dataset.copyLyrics);
+              navigator.clipboard.writeText(_songs[idx].lyrics).catch(()=>{});
+              const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
+              setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+            });
           });
-        });
-        grid.querySelectorAll('[data-copy-all]').forEach(b=>{
-          b.addEventListener('click',()=>{
-            const idx=parseInt(b.dataset.copyAll);
-            const s=songs[idx];
-            navigator.clipboard.writeText('Title: '+s.title+'\n\nStyle of Music: '+finalPrompt+'\n\nLyrics:\n'+s.lyrics).catch(()=>{});
-            const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
-            setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+          _grid.querySelectorAll('[data-copy-style]').forEach(b=>{
+            b.addEventListener('click',()=>{
+              navigator.clipboard.writeText(_fp).catch(()=>{});
+              const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
+              setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+            });
           });
-        });
+          _grid.querySelectorAll('[data-copy-all]').forEach(b=>{
+            b.addEventListener('click',()=>{
+              const idx=parseInt(b.dataset.copyAll);const s=_songs[idx];
+              navigator.clipboard.writeText('Title: '+s.title+'\n\nStyle of Music: '+_fp+'\n\nLyrics:\n'+s.lyrics).catch(()=>{});
+              const o=b.textContent;b.textContent='✓ Copied';b.style.background='var(--g2)';
+              setTimeout(()=>{b.textContent=o;b.style.background=''},1200);
+            });
+          });
+          _grid.querySelectorAll('[data-remix]').forEach(b=>{
+            b.addEventListener('click',()=>window._scOpenRemix(parseInt(b.dataset.remix)));
+          });
+          _grid.querySelectorAll('[data-regen]').forEach(b=>{
+            b.addEventListener('click',()=>{
+              b.textContent='⏳';b.disabled=true;
+              window._scRegenSong(parseInt(b.dataset.regen));
+            });
+          });
+          _grid.querySelectorAll('[data-remove]').forEach(b=>{
+            b.addEventListener('click',()=>window._scRemoveSong(parseInt(b.dataset.remove)));
+          });
+        };
+
+        // Initial render
+        window._scRerenderBatch();
 
         // Scroll to results
         grid.scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -7608,6 +7663,155 @@ spRenderHistory();
   input.addEventListener('blur',()=>{if(!input.value.trim()&&saved){input.value='••••••••••••••••••••'}});
 })();
 
+</script>
+<!-- REMIX OVERLAY -->
+<div id="sc-remix-overlay">
+  <div id="sc-remix-panel">
+    <div class="sc-remix-header">
+      <div class="sc-remix-title">🎛 Remix Song</div>
+      <button id="sc-remix-close">✕</button>
+    </div>
+    <div class="sc-remix-song-name" id="sc-remix-song-name"></div>
+    <div class="sc-remix-section">
+      <div class="sc-remix-label">Change Mood / Vibe</div>
+      <div class="sc-remix-chips" id="sc-remix-mood-chips">
+        <div class="sc-remix-chip active" data-remix-mood="">Keep same mood</div>
+        <div class="sc-remix-chip" data-remix-mood="darker and more melancholy">🌑 Darker</div>
+        <div class="sc-remix-chip" data-remix-mood="more upbeat and energetic">⚡ More Upbeat</div>
+        <div class="sc-remix-chip" data-remix-mood="more romantic and intimate">💜 More Romantic</div>
+        <div class="sc-remix-chip" data-remix-mood="angrier and more aggressive">🔥 Angrier</div>
+        <div class="sc-remix-chip" data-remix-mood="more hopeful and triumphant">🏆 More Hopeful</div>
+        <div class="sc-remix-chip" data-remix-mood="more spiritual and reflective">✨ Spiritual</div>
+        <div class="sc-remix-chip" data-remix-mood="more cinematic and epic">🎬 Cinematic</div>
+        <div class="sc-remix-chip" data-remix-mood="more nostalgic and wistful">📼 Nostalgic</div>
+        <div class="sc-remix-chip" data-remix-mood="more euphoric and euphoric release">🌟 Euphoric</div>
+        <div class="sc-remix-chip" data-remix-mood="rawer and grittier with more edge">🎸 Rawer</div>
+        <div class="sc-remix-chip" data-remix-mood="more minimal and stripped back">🔇 More Minimal</div>
+        <div class="sc-remix-chip" data-remix-mood="late night atmospheric and moody">🌙 Late Night</div>
+        <div class="sc-remix-chip" data-remix-mood="more playful and fun with lighter energy">😄 More Playful</div>
+      </div>
+    </div>
+    <div class="sc-remix-section">
+      <div class="sc-remix-label">Change Theme / Topic</div>
+      <div class="sc-remix-chips" id="sc-remix-theme-chips">
+        <div class="sc-remix-chip active" data-remix-theme="">Keep same theme</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about love and relationships">💜 Love</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about struggle and resilience">💪 Struggle</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about success and ambition">🏆 Success</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about loss and heartbreak">💔 Heartbreak</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about freedom and escape">🦅 Freedom</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about identity and self-discovery">🪞 Identity</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about nostalgia and memory">📼 Nostalgia</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about faith and spiritual journey">✨ Faith</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about home roots and where you came from">🏡 Home & Roots</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about revenge and settling scores">⚡ Revenge</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about personal growth and becoming">🌱 Growth</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about loneliness and isolation">🌑 Loneliness</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about loyalty friendship and brotherhood">🤝 Loyalty</div>
+        <div class="sc-remix-chip" data-remix-theme="with lyrics about money power and the come up">💰 Money & Power</div>
+      </div>
+    </div>
+    <div class="sc-remix-section">
+      <div class="sc-remix-label">Style Prompt (editable)</div>
+      <textarea id="sc-remix-style-input"></textarea>
+    </div>
+    <div class="sc-remix-action-row">
+      <button id="sc-remix-generate-btn">⚡ Regenerate with Remix</button>
+      <button id="sc-remix-cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== REMIX PANEL LOGIC =====
+(function(){
+  let _scRemixIdx=-1;
+  let _scBatchSongs=[];
+  let _scBatchStyle='';
+  let _scNonce=Date.now();
+  const grid=document.querySelector('.bp-gen-grid')||document.getElementById('bp-gen-grid');
+
+  // Expose setter for batch generation to pass songs array
+  window._scSetBatchSongs=function(songs,style){_scBatchSongs=songs;_scBatchStyle=style;};
+  window._scGetBatchSongs=function(){return _scBatchSongs;};
+
+  function openRemix(idx){
+    _scRemixIdx=idx;
+    const song=_scBatchSongs[idx];
+    if(!song)return;
+    document.getElementById('sc-remix-song-name').textContent='"'+song.title+'"';
+    document.getElementById('sc-remix-style-input').value=_scBatchStyle;
+    document.querySelectorAll('.sc-remix-chip[data-remix-mood]').forEach(c=>c.classList.toggle('active',c.dataset.remixMood===''));
+    document.querySelectorAll('.sc-remix-chip[data-remix-theme]').forEach(c=>c.classList.toggle('active',c.dataset.remixTheme===''));
+    document.getElementById('sc-remix-overlay').classList.add('visible');
+  }
+  function closeRemix(){
+    document.getElementById('sc-remix-overlay').classList.remove('visible');
+    _scRemixIdx=-1;
+  }
+  window._scOpenRemix=openRemix;
+
+  // Chip selection
+  document.getElementById('sc-remix-mood-chips').addEventListener('click',e=>{
+    const c=e.target.closest('.sc-remix-chip');if(!c)return;
+    document.querySelectorAll('#sc-remix-mood-chips .sc-remix-chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+  });
+  document.getElementById('sc-remix-theme-chips').addEventListener('click',e=>{
+    const c=e.target.closest('.sc-remix-chip');if(!c)return;
+    document.querySelectorAll('#sc-remix-theme-chips .sc-remix-chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+  });
+
+  // Close handlers
+  document.getElementById('sc-remix-close').addEventListener('click',closeRemix);
+  document.getElementById('sc-remix-cancel-btn').addEventListener('click',closeRemix);
+  document.getElementById('sc-remix-overlay').addEventListener('click',e=>{
+    if(e.target===document.getElementById('sc-remix-overlay'))closeRemix();
+  });
+
+  // Generate remix
+  document.getElementById('sc-remix-generate-btn').addEventListener('click',()=>{
+    if(_scRemixIdx<0)return;
+    const moodMod=document.querySelector('#sc-remix-mood-chips .sc-remix-chip.active')?.dataset.remixMood||'';
+    const themeMod=document.querySelector('#sc-remix-theme-chips .sc-remix-chip.active')?.dataset.remixTheme||'';
+    let style=document.getElementById('sc-remix-style-input').value.trim();
+    if(moodMod)style+=', '+moodMod;
+    if(themeMod)style+=', '+themeMod;
+    const btn=document.getElementById('sc-remix-generate-btn');
+    btn.textContent='⏳ Remixing...';btn.disabled=true;
+    const usedTitles=new Set(_scBatchSongs.map(s=>s.title));
+    try{
+      const newSongs=generateSongsV2(style,1,usedTitles,_scNonce++);
+      if(newSongs.length>0){
+        newSongs[0].style=style;
+        _scBatchSongs[_scRemixIdx]=newSongs[0];
+        closeRemix();
+        window._scRerenderBatch();
+      }
+    }catch(e){console.error(e);}
+    btn.textContent='⚡ Regenerate with Remix';btn.disabled=false;
+  });
+
+  // Regenerate single song
+  window._scRegenSong=function(idx){
+    const style=_scBatchStyle;
+    const usedTitles=new Set(_scBatchSongs.map(s=>s.title));
+    try{
+      const newSongs=generateSongsV2(style,1,usedTitles,_scNonce++);
+      if(newSongs.length>0){
+        _scBatchSongs[idx]=newSongs[0];
+        window._scRerenderBatch();
+      }
+    }catch(e){console.error(e);}
+  };
+
+  // Remove single song
+  window._scRemoveSong=function(idx){
+    _scBatchSongs.splice(idx,1);
+    window._scRerenderBatch();
+  };
+})();
 </script>
 </body>
 </html>
