@@ -82,10 +82,10 @@ body{font-family:var(--body);background:var(--bg);color:var(--t1);display:flex;f
 :root.light .bg-orb{opacity:0.045}
 
 /* === HEADER === */
-header{display:flex;align-items:center;height:56px;padding:0 24px;position:relative;z-index:10;gap:0;flex-shrink:0}
+header{display:flex;align-items:center;height:52px;padding:0 10px;position:relative;z-index:10;gap:0;flex-shrink:0}
 header::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:1px;background:var(--b1)}
 
-.brand{display:flex;align-items:center;gap:12px;margin-right:28px}
+.brand{display:flex;align-items:center;gap:8px;margin-right:8px;flex-shrink:0}
 .brand-mark{
   width:30px;height:30px;border-radius:9px;
   background:var(--grad-main);
@@ -96,7 +96,7 @@ header::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:
 .brand-mark:hover{transform:rotate(-5deg) scale(1.1);box-shadow:0 8px 30px rgba(124,92,252,0.35)}
 .brand-mark svg{width:16px;height:16px;color:white}
 .brand-name{
-  font-family:var(--display);font-weight:600;font-size:18px;
+  font-family:var(--display);font-weight:600;font-size:15px;
   letter-spacing:-0.03em;
 }
 .brand-v{
@@ -106,15 +106,14 @@ header::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:
 }
 
 /* Nav */
-nav{display:flex;gap:3px;background:linear-gradient(180deg,rgba(10,10,18,0.98),rgba(6,6,14,0.99));border-radius:14px;padding:4px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(20px);box-shadow:0 4px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.04);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;flex:1;min-width:0}
-nav::-webkit-scrollbar{display:none}
+nav{display:flex;gap:2px;background:linear-gradient(180deg,rgba(10,10,18,0.98),rgba(6,6,14,0.99));border-radius:14px;padding:3px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(20px);box-shadow:0 4px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.04);flex:1;min-width:0;overflow:hidden}
 nav button{
-  padding:10px 16px;font-family:var(--display);font-size:12px;font-weight:600;
+  padding:8px 6px;font-family:var(--display);font-size:10.5px;font-weight:600;
   color:rgba(255,255,255,0.4);cursor:pointer;border-radius:10px;border:1px solid transparent;background:transparent;
-  transition:all 0.35s var(--smooth);display:flex;align-items:center;gap:8px;
-  letter-spacing:-0.01em;position:relative;white-space:nowrap;flex-shrink:0;
+  transition:all 0.35s var(--smooth);display:flex;align-items:center;gap:4px;
+  letter-spacing:-0.01em;position:relative;white-space:nowrap;flex:1 1 0;justify-content:center;overflow:hidden;min-width:0;
 }
-.nav-ico{font-size:16px;display:inline-flex;transition:all 0.35s var(--smooth);filter:saturate(0.6)}
+.nav-ico{font-size:13px;display:inline-flex;transition:all 0.35s var(--smooth);filter:saturate(0.6);flex-shrink:0}
 nav button:hover{
   color:rgba(255,255,255,0.85);
   background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));
@@ -130,7 +129,6 @@ nav button.on{
 nav button.on .nav-ico{filter:saturate(1.2) brightness(1.15) drop-shadow(0 0 6px rgba(124,92,252,0.4));transform:scale(1.05)}
 nav button.on::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2px;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:2px;box-shadow:0 0 8px rgba(0,228,170,0.3)}
 nav button:active{transform:scale(0.97)}
-/* Staggered entrance */
 nav button{animation:navSlide .45s var(--smooth) both}
 nav button:nth-child(1){animation-delay:.02s}
 nav button:nth-child(2){animation-delay:.04s}
@@ -143,10 +141,10 @@ nav button:nth-child(8){animation-delay:.16s}
 nav button:nth-child(9){animation-delay:.18s}
 nav button:nth-child(10){animation-delay:.2s}
 @keyframes navSlide{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.nav-count{font-family:var(--mono);font-size:9px;font-weight:800;color:var(--g2);padding:2px 6px;background:rgba(0,228,170,0.1);border-radius:6px;letter-spacing:0.02em;margin-left:2px}
+.nav-count{font-family:var(--mono);font-size:8px;font-weight:800;color:var(--g2);padding:1px 5px;background:rgba(0,228,170,0.1);border-radius:6px;letter-spacing:0.02em;margin-left:1px}
 
 /* Right */
-.hdr-r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0}
 .hdr-chip{
   display:flex;align-items:center;gap:6px;height:32px;padding:0 14px;
   background:var(--bg2);border:1px solid var(--b1);border-radius:10px;
@@ -155,7 +153,7 @@ nav button:nth-child(10){animation-delay:.2s}
 .hdr-chip:hover{border-color:var(--b2)}
 .hdr-chip b{font-family:var(--mono);font-weight:700;font-size:13px;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .h-btn{
-  width:38px;height:38px;display:grid;place-items:center;border-radius:11px;
+  width:32px;height:32px;display:grid;place-items:center;border-radius:9px;
   border:1.5px solid var(--b2);background:var(--bg3);color:var(--t1);cursor:pointer;
   transition:all 0.25s var(--smooth);
 }
@@ -1331,7 +1329,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .slot-sel-prompt.border-a{border-left:2px solid #E040FB}
 .slot-sel-prompt.border-b{border-left:2px solid var(--g5)}
 .slot-sel-prompt.border-c{border-left:2px solid var(--g4)}
-.slot-browser{padding:8px}
+.slot-browser{padding:10px;background:rgba(255,255,255,0.01)}
 .slot-tabs{display:flex;gap:2px;background:var(--bg);border-radius:8px;padding:2px;margin-bottom:8px}
 .slot-tab{flex:1;height:28px;display:grid;place-items:center;border-radius:6px;font-family:var(--body);font-size:11px;font-weight:600;color:var(--t4);cursor:pointer;border:none;background:transparent;transition:all 0.2s}
 .slot-tab:hover{color:var(--t2)}
@@ -1343,8 +1341,8 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .slot-genre-pill{height:22px;padding:0 8px;border-radius:100px;font-family:var(--body);font-size:10px;font-weight:600;color:var(--t4);background:var(--bg);border:1px solid var(--b1);cursor:pointer;transition:all 0.2s}
 .slot-genre-pill:hover{border-color:var(--b2);color:var(--t2)}
 .slot-genre-pill.on{border-color:var(--g1);color:var(--g1);background:rgba(124,92,252,0.06)}
-.slot-list{max-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
-.slot-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all 0.15s}
+.slot-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;scrollbar-width:thin}
+.slot-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all 0.15s;color:var(--t1)}
 .slot-item:hover{background:rgba(124,92,252,0.04)}
 .slot-item.selected{background:rgba(124,92,252,0.08)}
 .slot-item-av{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:var(--display);font-size:11px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
@@ -2367,7 +2365,6 @@ const ART=[
   {n:'Ramones',g:'Punk',c:'#EF4444',c2:'#FF6B8A',b:178,m:["punk","new york","minimalist"],p:'178 BPM proto-punk and punk rock, Blitzkrieg Bop hey ho lets go, I Wanna Be Sedated nervous breakdown, Forest Hills Queens New York roots, two-minute song format discipline, downstroke guitar only approach, leather jackets jeans sneakers uniform aesthetic, CBGB club founders',bio:''},
   {n:'NOFX',g:'Punk',c:'#EF4444',c2:'#FF6B8A',b:180,m:["punk","skate-punk","los angeles"],p:'180 BPM skate punk and melodic hardcore, Linoleum skate punk energy, The Decline 18-minute punk suite, Punk in Drublic defining album, Fat Mike Fat Wreck Chords label founder, El Hefe guitar and trumpet, Los Angeles punk scene, satirical political lyrics',bio:''},
   {n:'Billie Joe Armstrong',g:'Punk',c:'#EF4444',c2:'#FF6B8A',b:168,m:["pop-punk","berkeley","songwriter"],p:'168 BPM pop-punk, Green Day leader songwriter, Basket Case anxiety written at 924 Gilman Street, American Idiot rock opera writer, three-chord melodic punk songwriting mastery, political and personal lyricism balance',bio:''},
-,
   {n:'2 Chainz',g:'Hip-Hop',c:'#FF6B8A',c2:'#c94070',b:78,m:["witty","trap","atlanta"],p:'78 BPM Atlanta trap, punchy 808 bass patterns, clever punchline-heavy delivery with comedic timing, layered ad-libs, hard-hitting trap snares with booming low end, witty metaphors over dark minor-key synths, T.R.U. label energy, strip club anthem vibes',bio:''},
   {n:'070 Shake',g:'Alternative',c:'#E879F9',c2:'#00D4AA',b:105,m:["ethereal","experimental","haunting"],p:'105 BPM experimental art-pop, distorted ethereal vocals floating over glitchy synth textures, pitched vocal layers, sparse drum programming with heavy reverb, atmospheric builds, gender-fluid vocal delivery, cinematic emotional intensity, G.O.O.D. Music experimentalism',bio:''},
   {n:'Adekunle Gold',g:'Afrobeats',c:'#F0C060',c2:'#FF6B8A',b:108,m:["smooth","romantic","highlife"],p:'108 BPM Afro-pop with highlife guitar licks, warm honey vocal delivery, clean acoustic guitar arpeggios blended with modern Afrobeats production, romantic lyrics, Lagos sophistication, vintage highlife meets contemporary Nigerian pop',bio:''},
@@ -3036,12 +3033,12 @@ document.querySelectorAll('.fv-filter').forEach(f=>{f.addEventListener('click',(
 document.querySelectorAll('.fv-sort-btn').forEach(s=>{s.addEventListener('click',()=>{document.querySelectorAll('.fv-sort-btn').forEach(x=>x.classList.remove('on'));s.classList.add('on')})});
 document.querySelectorAll('.bp-act.copy,.fv-act,.card-back-btn').forEach(b=>{b.addEventListener('click',()=>{const orig=b.textContent;b.textContent='✓ Done!';b.style.color='var(--g2)';setTimeout(()=>{b.textContent=orig;b.style.color=''},1200)})});
 // Fullscreen toggle
-document.getElementById('fsBtn').addEventListener('click',()=>{
+document.getElementById('fsBtn')?.addEventListener('click',()=>{
   if(!document.fullscreenElement){document.documentElement.requestFullscreen().catch(()=>{})}
   else{document.exitFullscreen().catch(()=>{})}
 });
 
-document.getElementById('themeBtn').addEventListener('click',()=>{
+document.getElementById('themeBtn')?.addEventListener('click',()=>{
   document.documentElement.classList.toggle('light');
   const isLight=document.documentElement.classList.contains('light');
   document.getElementById('themeSun').style.display=isLight?'none':'block';
@@ -3097,7 +3094,8 @@ document.querySelectorAll('.star-ib').forEach(b=>{b.addEventListener('click',()=
 })});
 
 // Shuffle animation
-document.querySelector('.h-btn:last-of-type').addEventListener('click',()=>{
+const _shuffleBtn=document.querySelector('.h-btn:last-of-type');
+if(_shuffleBtn) _shuffleBtn.addEventListener('click',()=>{
   const cards=[...document.querySelectorAll('#cg .card')];
   cards.forEach((c,i)=>{
     c.style.setProperty('--rot',(Math.random()-0.5)*8+'deg');
@@ -3117,7 +3115,7 @@ document.querySelector('.h-btn:last-of-type').addEventListener('click',()=>{
   },400);
 });
 // Paste from clipboard
-document.getElementById('pasteBtn').addEventListener('click',async()=>{
+document.getElementById('pasteBtn')?.addEventListener('click',async()=>{
   try{
     const text=await navigator.clipboard.readText();
     if(text){
@@ -3265,11 +3263,11 @@ function buildDD(ddId,listId,selId,hidId,hasNone){
       }
     }
   });
-  list.querySelector('.flag-dd-search').addEventListener('input',e=>{
+  list.querySelector('.flag-dd-search')?.addEventListener('input',e=>{
     const q=e.target.value.toLowerCase();
     list.querySelectorAll('.flag-dd-item').forEach(i=>{i.style.display=i.textContent.toLowerCase().includes(q)?'flex':'none'});
   });
-  list.querySelector('.flag-dd-search').addEventListener('click',e=>e.stopPropagation());
+  list.querySelector('.flag-dd-search')?.addEventListener('click',e=>e.stopPropagation());
   list.querySelectorAll('.flag-dd-item').forEach(item=>{
     item.addEventListener('click',e=>{
       e.stopPropagation();
@@ -3339,7 +3337,7 @@ lang2El.addEventListener('change',updateMixer);
 langRange.addEventListener('input',updateSlider);
 
 // Generate — build final prompt with language instructions
-document.getElementById('genBtn').addEventListener('click',()=>{
+document.getElementById('genBtn')?.addEventListener('click',()=>{
   const ta=document.querySelector('.bx-ta');
   const basePrompt=ta.value.trim();
   if(!basePrompt){ta.focus();ta.style.borderColor='var(--g3)';setTimeout(()=>ta.style.borderColor='',1500);return}
@@ -3508,7 +3506,7 @@ function showLangToast(langName){
   const mxArtists=ART.map(a=>({id:a.n.toLowerCase().replace(/[^a-z]/g,''),n:a.n,g:a.g,c:a.c,c2:a.c2,b:a.b,m:a.m,p:a.p,type:'artist'}));
   const mxBps=MX_BLUEPRINTS.map(b=>({...b,type:'blueprint'}));
   const mxAll=[...mxArtists,...mxBps];
-  const mxGenres=[...new Set(mxAll.map(i=>i.g))].sort();
+  const mxGenres=[...new Set(mxAll.filter(i=>i&&i.g).map(i=>i.g))].sort();
   const mxSel={A:null,B:null,C:null};
 
   function mxBuildSlot(slot){
@@ -3538,7 +3536,7 @@ function showLangToast(langName){
     const genre=activeG?activeG.dataset.g:'all';
     const search=document.querySelector(`#vMixer .slot-search[data-slot="${slot}"]`).value.toLowerCase();
     let items=type==='artists'?mxArtists:mxBps;
-    if(genre!=='all') items=items.filter(i=>i.g===genre);
+    if(genre!=='all') items=items.filter(i=>i&&i.g===genre);
     if(search) items=items.filter(i=>i.n.toLowerCase().includes(search)||i.g.toLowerCase().includes(search)||i.m.some(m=>m.includes(search)));
     list.innerHTML=items.map(item=>{
       const initials=item.n.split(' ').map(w=>w[0]).join('').slice(0,2);
