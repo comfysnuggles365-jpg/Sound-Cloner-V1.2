@@ -2016,31 +2016,95 @@ header{animation:bootUp .4s var(--expo) .05s both}
     </div>
     <div class="view" id="vAnalyse">
       <div class="a-hero"><div class="a-over" data-i18n="analyse_hero_sub">AI Song Analysis</div><div class="a-title">Reverse-Engineer<br>Any <em>Sound</em>.</div><div class="a-desc">Drop a vocal or full track — AI will extract a <strong class="a-hl-voice" data-i18n="analyse_hero_desc_2">Voice Prompt</strong> and <strong class="a-hl-style" data-i18n="analyse_hero_desc_4">Song Style Prompt</strong> ready to paste directly into Suno.</div></div>
+
+      <!-- API Key -->
       <div class="a-key-card">
-        <div class="a-key-top"><div class="a-key-dot"></div><span class="a-key-label" data-i18n="analyse_api_label">Gemini API Key</span><span class="a-key-free" data-i18n="analyse_api_free">FREE</span><span class="a-key-status" id="aKeyStatus"></span></div>
-        <div class="a-key-row"><input type="password" class="a-key-input" id="aKeyInput" placeholder="Paste Gemini API key..."><button class="a-key-save" id="aKeySave" data-i18n="analyse_api_save">Save</button></div>
-        <div class="a-key-help"><strong>Get your FREE key:</strong><br>1. Go to <strong>aistudio.google.com</strong><br>2. Sign in with Google<br>3. Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong><br><span class="a-key-warn">⚠ Use AI Studio ONLY — not Google Cloud Console</span></div>
+        <div class="a-key-top">
+          <div class="a-key-dot"></div>
+          <span class="a-key-label" data-i18n="analyse_api_label">Gemini API Key</span>
+          <span class="a-key-free" data-i18n="analyse_api_free">FREE</span>
+          <span class="a-key-status">✓ Key saved</span>
+        </div>
+        <div class="a-key-row">
+          <input type="password" class="a-key-input" placeholder="Paste Gemini API key..." value="••••••••••••••••••••">
+          <button class="a-key-save" data-i18n="analyse_api_save">Save</button>
+        </div>
+        <div class="a-key-help">
+          <strong>Get your FREE key:</strong><br>
+          1. Go to <strong>aistudio.google.com</strong><br>
+          2. Sign in with Google<br>
+          3. Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong><br>
+          <span class="a-key-warn">⚠ Use AI Studio ONLY — not Google Cloud Console</span>
+        </div>
       </div>
-      <div class="a-drop" id="aDrop"><div class="a-drop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="a-drop-title" data-i18n="analyse_drop_title">Drop an audio file here</div><div class="a-drop-sub" data-i18n="analyse_drop_sub">MP3, WAV, M4A, OGG, FLAC — any size</div><input type="file" id="aFileInput" accept="audio/*" style="display:none"></div>
-      <div class="a-file" id="aFileCard" style="display:none"><div class="a-file-icon">🎵</div><div class="a-file-info"><div class="a-file-name" id="aFileName"></div><div class="a-file-size" id="aFileMeta"></div></div><button class="a-file-remove" id="aFileRemove">✕</button></div>
-      <button class="a-go-btn" id="aGoBtn" style="display:none" data-i18n="analyse_go">🔬 Analyse Song</button>
-      <div class="a-progress" id="aProgress" style="display:none"><div style="display:flex;align-items:center;gap:10px"><div class="spinner"></div><span>Analysing audio with Gemini AI...</span></div></div>
-      <div class="a-results" id="aResults" style="display:none">
-        <div class="a-result voice"><div class="a-result-top"><div class="a-result-label voice-label" data-i18n="analyse_voice_label">🎤 Voice Prompt</div><button class="a-result-copy" id="aCopyVoice" data-i18n="analyse_copy">📋 Copy</button></div><div class="a-result-text" id="aVoiceText"></div></div>
-        <div class="a-result style"><div class="a-result-top"><div class="a-result-label style-label" data-i18n="analyse_style_label">🎹 Song Style Prompt</div><button class="a-result-copy" id="aCopyStyle" data-i18n="analyse_copy">📋 Copy</button></div><div class="a-result-text" id="aStyleText"></div></div>
-        <div class="a-breakdown"><div class="a-breakdown-title" data-i18n="analyse_breakdown_title">🔍 Audio Breakdown</div><div class="a-breakdown-grid">
-          <div class="a-stat-card"><div class="a-stat-icon">🎵</div><div class="a-stat-info"><div class="a-stat-val" id="aTempo"></div><div class="a-stat-label" data-i18n="analyse_tempo">Tempo</div></div></div>
-          <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val" id="aKey"></div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
-          <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val" id="aDuration"></div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
-          <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val" id="aGenre"></div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
-          <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val" id="aMood"></div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
-          <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val" id="aEnergy"></div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
-        </div></div>
-        <div class="a-tip">💡 Copy either prompt and paste into the <strong>⚡ Batch</strong> tab or directly into Suno.</div>
-        <div class="a-combined"><div class="a-combined-header"><div class="a-combined-label">🎵 Combined Suno Prompt</div><div class="a-combined-sub">Voice + Style merged into one ready-to-paste prompt</div></div><div class="a-combined-text" id="aCombinedText"></div><div class="a-combined-actions"><button class="a-cact primary" id="aCopyCombined">📋 Copy Combined Prompt</button><button class="a-cact batch" id="aSendBatch">⚡ Send to Batch Generator</button><button class="a-cact fav" id="aSaveFav">⭐ Save to Favorites</button></div></div>
+
+      <!-- Drop Zone -->
+      <div class="a-drop">
+        <div class="a-drop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <div class="a-drop-title" data-i18n="analyse_drop_title">Drop an audio file here</div>
+        <div class="a-drop-sub" data-i18n="analyse_drop_sub">MP3, WAV, M4A, OGG, FLAC — any size</div>
+      </div>
+
+      <!-- File loaded state (mock) -->
+      <div class="a-file">
+        <div class="a-file-icon">🎵</div>
+        <div class="a-file-info">
+          <div class="a-file-name">midnight_drive_vocals.wav</div>
+          <div class="a-file-size">4.2 MB · WAV · 3:12</div>
+        </div>
+        <button class="a-file-remove">✕</button>
+      </div>
+
+      <button class="a-go-btn" data-i18n="analyse_go">🔬 Analyse Song</button>
+
+      <!-- Results (mock - showing populated state) -->
+      <div class="a-results">
+        <div class="a-result voice">
+          <div class="a-result-top">
+            <div class="a-result-label voice-label" data-i18n="analyse_voice_label">🎤 Voice Prompt</div>
+            <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
+          </div>
+          <div class="a-result-text">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone</div>
+        </div>
+        <div class="a-result style">
+          <div class="a-result-top">
+            <div class="a-result-label style-label" data-i18n="analyse_style_label">🎹 Song Style Prompt</div>
+            <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
+          </div>
+          <div class="a-result-text">Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
+        </div>
+
+        <div class="a-breakdown">
+          <div class="a-breakdown-title" data-i18n="analyse_breakdown_title">🔍 Audio Breakdown</div>
+          <div class="a-breakdown-grid">
+            <div class="a-stat-card"><div class="a-stat-icon">🎵</div><div class="a-stat-info"><div class="a-stat-val">85 BPM</div><div class="a-stat-label" data-i18n="analyse_tempo">Tempo</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val">E♭ Minor</div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val">3:12</div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val">Lo-fi R&B</div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val">Nocturnal</div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val">Low</div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
+          </div>
+        </div>
+
+        <div class="a-tip">💡 Copy either prompt and paste into the <strong>⚡ Batch</strong> tab or directly into Suno. Mix and match — use one artist's voice with another's production style!</div>
+
+        <!-- Combined Prompt + Actions -->
+        <div class="a-combined">
+          <div class="a-combined-header">
+            <div class="a-combined-label">🎵 Combined Suno Prompt</div>
+            <div class="a-combined-sub">Voice + Style merged into one ready-to-paste prompt</div>
+          </div>
+          <div class="a-combined-text" id="aCombinedText">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone, Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
+          <div class="a-combined-actions">
+            <button class="a-cact primary" id="aCopyCombined">📋 Copy Combined Prompt</button>
+            <button class="a-cact batch" id="aSendBatch">⚡ Send to Batch Generator</button>
+            <button class="a-cact fav" id="aSaveFav">⭐ Save to Favorites</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- SPOTIFY ANALYZER -->
     <div class="view" id="vSpotify">
       <div class="sp-hero">
         <div class="sp-over">AI Style Extraction</div>
@@ -2200,20 +2264,16 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <div class="view" id="vMaster">
       <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track<br>Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
-      <div class="drop-zone" id="masterDrop"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div><input type="file" id="masterFileInput" multiple accept="audio/*" style="display:none"></div>
-      <div class="queue" id="masterQueue"></div>
-      <div class="btns" id="masterBtns" style="display:none"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
-      <div class="prev-card" id="masterPreview" style="display:none">
-        <div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPrevName"></div></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0">
-          <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:12px"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:6px">Original</div><canvas id="waveOrigCanvas" style="width:100%;height:80px;display:block;border-radius:6px;background:var(--bg3)"></canvas><div style="font-family:var(--mono);font-size:1.1rem;font-weight:800;margin-top:8px;color:var(--t2)" id="waveOrigLufs"></div></div>
-          <div style="background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:12px"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--g1);margin-bottom:6px">Mastered</div><canvas id="waveMastCanvas" style="width:100%;height:80px;display:block;border-radius:6px;background:var(--bg3)"></canvas><div style="font-family:var(--mono);font-size:1.1rem;font-weight:800;margin-top:8px;color:var(--g1)" id="waveMastLufs"></div></div>
-        </div>
-        <div class="ab-sw"><button class="ab-btn on" id="abOrigBtn" data-i18n="master_original">Original</button><button class="ab-btn" id="abMastBtn" data-i18n="master_mastered">Mastered</button></div>
-        <div class="tp"><button class="tp-play" id="masterPlayBtn">&#9654;</button><div class="tp-wave" id="masterWaveWrap"><div class="tp-fill" id="masterFill"></div></div><div class="tp-time" id="masterTime">0:00 / 0:00</div></div>
-        <div class="meters"><div class="meter"><div class="meter-v" id="meterBefore">&mdash;</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterAfter">&mdash;</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">&mdash;</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div><div class="meter"><div class="meter-v" id="meterGain">&mdash;</div><div class="meter-l">Gain dB</div></div></div>
+      <div class="drop-zone"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
+      <div class="queue">
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Midnight Drive.wav</div><div class="qi-meta">4.2 MB · 3:12</div></div><div class="qi-badge done" data-i18n="master_done">Done</div><div class="qi-acts"><button class="qb ghost">Preview</button><button class="qb fill">Download</button></div></div>
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Sunset Boulevard.mp3</div><div class="qi-meta">3.8 MB · 2:48</div></div><div class="qi-badge proc" data-i18n="master_processing">Processing</div></div>
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Neon Dreams (feat. Luna).flac</div><div class="qi-meta">12.1 MB · 4:05</div></div><div class="qi-badge wait" data-i18n="master_pending">Pending</div></div>
       </div>
-      <div class="hint">Targets <strong>-14 LUFS</strong> &mdash; Spotify, Apple Music &amp; YouTube ready. Chain: 30Hz HP &rarr; 7-band EQ &rarr; glue comp &rarr; 3-band multiband &rarr; saturation &rarr; M/S widening &rarr; iterative LUFS targeting &rarr; true peak limiter (-0.3 dBTP) &rarr; 24-bit WAV w/ TPDF dither.</div>
+      <div class="btns"><button class="btn-main" data-i18n="master_all">Master All</button><button class="btn-sec" data-i18n="master_clear">Clear</button></div>
+      <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
+      <div class="prev-card"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name">Midnight Drive</div></div><div class="ab-sw"><button class="ab-btn" data-i18n="master_original">Original</button><button class="ab-btn on" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play">▶</button><div class="tp-wave"><canvas id="wv"></canvas><div class="tp-fill"></div><div class="tp-needle"></div></div><div class="tp-time">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
+      <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
     </div>
 
     <!-- ═══════════ GUIDE TAB ═══════════ -->
@@ -7369,11 +7429,6 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
           _numEl.textContent=String(_songs.length);
           _statusEl.textContent=_songs.length+' songs generated ✓';
           _statusEl.classList.remove('bp-generating');
-          // Add Download JSON button at top of results
-          let djb=document.getElementById('batchDlJson');
-          if(!djb){djb=document.createElement('button');djb.id='batchDlJson';djb.className='btn-sec';djb.style.cssText='margin:8px 0 12px;font-size:0.78rem;padding:6px 16px';_grid.parentElement.insertBefore(djb,_grid)}
-          djb.textContent='\u2B07 Download .json';
-          djb.onclick=function(){const exp={songs:_songs.map((s,i)=>({number:i+1,title:s.title,lyrics:s.lyrics,style_prompt:_fp})),exported_at:new Date().toISOString(),total:_songs.length};const bl=new Blob([JSON.stringify(exp,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='batch-songs.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);djb.textContent='\u2713 Downloaded!';setTimeout(()=>djb.textContent='\u2B07 Download .json',1500)};
           // Wire all buttons
           _grid.querySelectorAll('.bp-gen-copy').forEach(b=>{
             b.addEventListener('click',()=>{
@@ -8013,109 +8068,6 @@ document.getElementById('vlSave').addEventListener('click',function(){this.textC
 vlBuildPrompt();
 })();
 
-
-// ===== SONG ANALYZER ENGINE =====
-(function(){
-let aFile=null,aAudioBuf=null;
-const aCtx=()=>new (window.AudioContext||window.webkitAudioContext)();
-
-// API Key management
-const sk=localStorage.getItem('sc_gemini_key')||'';
-const ki=document.getElementById('aKeyInput');
-const ks=document.getElementById('aKeyStatus');
-if(sk){ki.value='\u2022'.repeat(20);ks.textContent='\u2713 Key saved';ks.style.color='var(--g1)'}
-document.getElementById('aKeySave').addEventListener('click',function(){
-  const v=ki.value.trim();if(!v||v==='\u2022'.repeat(20))return;
-  localStorage.setItem('sc_gemini_key',v);
-  ki.value='\u2022'.repeat(20);ks.textContent='\u2713 Key saved';ks.style.color='var(--g1)';
-  this.textContent='\u2713 Saved';setTimeout(()=>this.textContent='Save',1200);
-});
-
-// Drop zone
-const dz=document.getElementById('aDrop'),fi=document.getElementById('aFileInput');
-dz.addEventListener('click',()=>fi.click());
-dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='var(--g1)'});
-dz.addEventListener('dragleave',()=>dz.style.borderColor='');
-dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='';if(e.dataTransfer.files.length)loadFile(e.dataTransfer.files[0])});
-fi.addEventListener('change',e=>{if(e.target.files.length)loadFile(e.target.files[0])});
-
-function loadFile(f){
-  if(!f.type.startsWith('audio/')&&!f.name.match(/\.(mp3|wav|flac|m4a|ogg|aac)$/i))return;
-  aFile=f;
-  document.getElementById('aFileName').textContent=f.name;
-  const ext=f.name.split('.').pop().toUpperCase();
-  const szMB=(f.size/1048576).toFixed(1);
-  // Get duration
-  const ac=aCtx();const reader=new FileReader();
-  reader.onload=async function(){
-    try{aAudioBuf=await ac.decodeAudioData(reader.result.slice(0));
-    const dur=aAudioBuf.duration;const mm=Math.floor(dur/60);const ss=Math.floor(dur%60);
-    document.getElementById('aFileMeta').textContent=szMB+' MB \u00B7 '+ext+' \u00B7 '+mm+':'+(ss<10?'0':'')+ss;
-    }catch(e){document.getElementById('aFileMeta').textContent=szMB+' MB \u00B7 '+ext}
-    ac.close();
-  };reader.readAsArrayBuffer(f);
-  dz.style.display='none';
-  document.getElementById('aFileCard').style.display='';
-  document.getElementById('aGoBtn').style.display='';
-  document.getElementById('aResults').style.display='none';
-}
-
-document.getElementById('aFileRemove').addEventListener('click',()=>{
-  aFile=null;aAudioBuf=null;
-  dz.style.display='';
-  document.getElementById('aFileCard').style.display='none';
-  document.getElementById('aGoBtn').style.display='none';
-  document.getElementById('aResults').style.display='none';
-});
-
-// Analyse
-document.getElementById('aGoBtn').addEventListener('click',async()=>{
-  if(!aFile)return;
-  const key=localStorage.getItem('sc_gemini_key');
-  if(!key){ks.textContent='\u26A0 Enter API key first';ks.style.color='var(--w1)';return}
-  const prog=document.getElementById('aProgress');
-  const goBtn=document.getElementById('aGoBtn');
-  goBtn.style.display='none';prog.style.display='';
-  try{
-    const ab=await aFile.arrayBuffer();const b64=btoa(new Uint8Array(ab).reduce((d,b)=>d+String.fromCharCode(b),''));
-    const mime=aFile.type||'audio/mpeg';
-    const resp=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+key,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{parts:[{inlineData:{mimeType:mime,data:b64}},{text:'Listen to this audio carefully. Analyze it and respond ONLY with a JSON object (no markdown fences, no extra text):\n{\n  "voice_prompt": "detailed Suno-ready vocal description",\n  "style_prompt": "detailed Suno-ready production/genre/BPM description",\n  "tempo": "BPM value",\n  "key": "musical key",\n  "duration": "m:ss",\n  "genre": "genre name",\n  "mood": "mood descriptor",\n  "energy": "Low/Medium/High"\n}'}]}],generationConfig:{temperature:0.3}})
-    });
-    const data=await resp.json();
-    let txt=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
-    txt=txt.replace(/```json\n?|```\n?/g,'').trim();
-    const j=JSON.parse(txt);
-    document.getElementById('aVoiceText').textContent=j.voice_prompt||'';
-    document.getElementById('aStyleText').textContent=j.style_prompt||'';
-    document.getElementById('aTempo').textContent=j.tempo||'';
-    document.getElementById('aKey').textContent=j.key||'';
-    document.getElementById('aDuration').textContent=j.duration||'';
-    document.getElementById('aGenre').textContent=j.genre||'';
-    document.getElementById('aMood').textContent=j.mood||'';
-    document.getElementById('aEnergy').textContent=j.energy||'';
-    document.getElementById('aCombinedText').textContent=(j.voice_prompt||'')+', '+(j.style_prompt||'');
-    prog.style.display='none';
-    document.getElementById('aResults').style.display='';
-  }catch(e){
-    console.error('Analyse error:',e);
-    prog.style.display='none';goBtn.style.display='';
-    alert('Analysis failed: '+e.message);
-  }
-});
-
-// Copy buttons
-document.getElementById('aCopyVoice')?.addEventListener('click',function(){
-  navigator.clipboard.writeText(document.getElementById('aVoiceText').textContent).catch(()=>{});
-  this.textContent='\u2713 Copied';setTimeout(()=>this.textContent='\uD83D\uDCCB Copy',1200);
-});
-document.getElementById('aCopyStyle')?.addEventListener('click',function(){
-  navigator.clipboard.writeText(document.getElementById('aStyleText').textContent).catch(()=>{});
-  this.textContent='\u2713 Copied';setTimeout(()=>this.textContent='\uD83D\uDCCB Copy',1200);
-});
-})();
-
 // ===== SONG ANALYZER COMBINED ACTIONS =====
 document.getElementById('aCopyCombined')?.addEventListener('click',function(){
   const text=document.getElementById('aCombinedText').textContent;
@@ -8578,83 +8530,6 @@ ytRenderHistory();
     window._scRerenderBatch();
   };
 })();
-
-/* ═══════════ AUDIO MASTER ENGINE v3 ═══════════ */
-(function(){
-const MF=[];
-let mCtx=null,curSrc=null,isPlay=false,playAB='original',prevIdx=-1,raf=null,pStart=0;
-function fmt(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
-function fmtSz(b){return b>1048576?(b/1048576).toFixed(1)+' MB':(b/1024).toFixed(0)+' KB'}
-function calcLUFS(buf){let s=0,n=0;for(let c=0;c<buf.numberOfChannels;c++){const d=buf.getChannelData(c);for(let i=0;i<d.length;i++){s+=d[i]*d[i];n++}}const r=Math.sqrt(s/n);return r>0?-0.691+10*Math.log10(r*r):-70}
-function peakDB(buf){let p=0;for(let c=0;c<buf.numberOfChannels;c++){const d=buf.getChannelData(c);for(let i=0;i<d.length;i++){const a=Math.abs(d[i]);if(a>p)p=a}}return p>0?20*Math.log10(p):-120}
-function drawWave(cv,buf,col,fill){const x=cv.getContext('2d'),dp=devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dp;cv.height=h*dp;x.scale(dp,dp);x.clearRect(0,0,w,h);const d=buf.getChannelData(0),st=Math.ceil(d.length/w),mid=h/2;x.beginPath();x.moveTo(0,mid);for(let i=0;i<w;i++){let mn=1,mx=-1;for(let j=0;j<st;j++){const idx=i*st+j;if(idx<d.length){const v=d[idx];if(v<mn)mn=v;if(v>mx)mx=v}}x.lineTo(i,mid-mx*(mid-2))}for(let i=w-1;i>=0;i--){let mn=1;for(let j=0;j<st;j++){const idx=i*st+j;if(idx<d.length){const v=d[idx];if(v<mn)mn=v}}x.lineTo(i,mid-mn*(mid-2))}x.closePath();x.fillStyle=fill;x.fill();x.beginPath();for(let i=0;i<w;i++){let rm=0;for(let j=0;j<st;j++){const idx=i*st+j;if(idx<d.length)rm+=d[idx]*d[idx]}rm=Math.sqrt(rm/st);x.moveTo(i,mid-rm*(mid-2));x.lineTo(i,mid+rm*(mid-2))}x.strokeStyle=col;x.lineWidth=1.2;x.stroke()}
-
-// Biquad helpers for multiband
-function mkLP(fc,sr){const w=Math.tan(Math.PI*fc/sr),w2=w*w,r=Math.SQRT2,a0=1+r*w+w2;return{b0:w2/a0,b1:2*w2/a0,b2:w2/a0,a1:2*(w2-1)/a0,a2:(1-r*w+w2)/a0}}
-function mkHP(fc,sr){const w=Math.tan(Math.PI*fc/sr),w2=w*w,r=Math.SQRT2,a0=1+r*w+w2;return{b0:1/a0,b1:-2/a0,b2:1/a0,a1:2*(w2-1)/a0,a2:(1-r*w+w2)/a0}}
-function bq(data,co){const o=new Float32Array(data.length);let x1=0,x2=0,y1=0,y2=0;for(let i=0;i<data.length;i++){const x=data[i];o[i]=co.b0*x+co.b1*x1+co.b2*x2-co.a1*y1-co.a2*y2;x2=x1;x1=x;y2=y1;y1=o[i]}return o}
-function splitBands(d,sr){const lpc=mkLP(200,sr),hpc1=mkHP(200,sr),lpc2=mkLP(3500,sr),hpc2=mkHP(3500,sr);const lo=bq(bq(d,lpc),lpc);const hp1=bq(bq(d,hpc1),hpc1);const mid=bq(bq(hp1,lpc2),lpc2);const hi=bq(bq(hp1,hpc2),hpc2);return{lo,mid,hi}}
-function compBand(d,thr,rat,atkMs,relMs,sr){const atk=Math.exp(-1/(sr*atkMs/1000)),rel=Math.exp(-1/(sr*relMs/1000));let env=0;for(let i=0;i<d.length;i++){const ab=Math.abs(d[i]);env=ab>env?env*atk+(1-atk)*ab:env*rel+(1-rel)*ab;const eDB=env>0?20*Math.log10(env):-120;if(eDB>thr){const gr=(eDB-thr)*(1-1/rat);d[i]*=Math.pow(10,-gr/20)}}}
-function truePeakLim(d,ceil,sr){const la=Math.round(sr*0.001),rel=Math.round(sr*0.05);const gr=new Float32Array(d.length);gr.fill(1);for(let i=0;i<d.length;i++){const a=Math.abs(d[i]);if(a>ceil){const g=ceil/a;const s=Math.max(0,i-la);for(let j=s;j<=i;j++)if(g<gr[j])gr[j]=g}}for(let i=1;i<d.length;i++){const rc=1-Math.exp(-1/rel);gr[i]=Math.min(gr[i],gr[i-1]+(1-gr[i-1])*rc)}for(let i=0;i<d.length;i++)d[i]*=gr[i]}
-
-async function masterAudio(origBuf){
-  const sr=origBuf.sampleRate,ch=origBuf.numberOfChannels,len=origBuf.length;
-  // Pass 1: EQ + glue via Web Audio
-  const off=new OfflineAudioContext(ch,len,sr);const src=off.createBufferSource();src.buffer=origBuf;
-  const hp=off.createBiquadFilter();hp.type='highpass';hp.frequency.value=30;hp.Q.value=0.71;
-  const lo=off.createBiquadFilter();lo.type='lowshelf';lo.frequency.value=100;lo.gain.value=2;
-  const mud=off.createBiquadFilter();mud.type='peaking';mud.frequency.value=300;mud.Q.value=1.5;mud.gain.value=-2;
-  const body=off.createBiquadFilter();body.type='peaking';body.frequency.value=800;body.Q.value=0.8;body.gain.value=1;
-  const pres=off.createBiquadFilter();pres.type='peaking';pres.frequency.value=3000;pres.Q.value=0.7;pres.gain.value=2.5;
-  const dh=off.createBiquadFilter();dh.type='peaking';dh.frequency.value=6500;dh.Q.value=2;dh.gain.value=-1.5;
-  const air=off.createBiquadFilter();air.type='highshelf';air.frequency.value=12000;air.gain.value=2;
-  const glue=off.createDynamicsCompressor();glue.threshold.value=-20;glue.knee.value=10;glue.ratio.value=2;glue.attack.value=0.01;glue.release.value=0.15;
-  src.connect(hp);hp.connect(lo);lo.connect(mud);mud.connect(body);body.connect(pres);pres.connect(dh);dh.connect(air);air.connect(glue);glue.connect(off.destination);
-  src.start(0);const p1=await off.startRendering();
-
-  // Pass 2: Multiband compression + saturation
-  const out=new AudioBuffer({length:len,numberOfChannels:ch,sampleRate:sr});
-  for(let c=0;c<ch;c++){const inp=p1.getChannelData(c),od=out.getChannelData(c);const{lo:bLo,mid:bMid,hi:bHi}=splitBands(inp,sr);compBand(bLo,-20,3,10,100,sr);compBand(bMid,-22,3,5,80,sr);compBand(bHi,-26,2.5,2,60,sr);for(let i=0;i<bMid.length;i++)bMid[i]=Math.tanh(bMid[i]*1.3)/Math.tanh(1.3);for(let i=0;i<len;i++)od[i]=bLo[i]+bMid[i]+bHi[i]}
-
-  // Stereo widening
-  if(ch>=2){const L=out.getChannelData(0),R=out.getChannelData(1);for(let i=0;i<len;i++){const m=(L[i]+R[i])*0.5,s=(L[i]-R[i])*0.5*1.3;L[i]=m+s;R[i]=m-s}}
-
-  // Pass 3: Iterative LUFS targeting
-  const TGT=-14;let curL=calcLUFS(out);let gDB=TGT-curL;gDB=Math.min(Math.max(gDB,-6),20);let gLin=Math.pow(10,gDB/20);
-  for(let c=0;c<ch;c++){const d=out.getChannelData(c);for(let i=0;i<d.length;i++)d[i]*=gLin}
-  for(let pass=0;pass<2;pass++){const mL=calcLUFS(out);const corr=TGT-mL;if(Math.abs(corr)<0.5)break;const cL=Math.pow(10,Math.min(Math.max(corr,-3),3)/20);gDB+=corr;for(let c=0;c<ch;c++){const d=out.getChannelData(c);for(let i=0;i<d.length;i++)d[i]*=cL}}
-
-  // Pass 4: True peak limiting
-  const ceil=0.933;for(let c=0;c<ch;c++)truePeakLim(out.getChannelData(c),ceil,sr);
-  return{rendered:out,makeupDB:gDB};
-}
-
-function renderQ(){const q=document.getElementById('masterQueue'),bt=document.getElementById('masterBtns');q.innerHTML='';if(!MF.length){bt.style.display='none';return}bt.style.display='';MF.forEach((f,i)=>{const sc=f.status==='done'?'done':f.status==='processing'?'proc':'wait';const st=f.status==='done'?'Done':f.status==='processing'?'Processing...':'Pending';const acts=f.status==='done'?'<div class="qi-acts"><button class="qb ghost" data-idx="'+i+'" data-act="preview">Preview</button><button class="qb fill" data-idx="'+i+'" data-act="download">Download</button></div>':'';const el=document.createElement('div');el.className='qi';el.innerHTML='<div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">'+f.name+'</div><div class="qi-meta">'+fmtSz(f.size)+' · '+fmt(f.dur||0)+'</div></div><div class="qi-badge '+sc+'">'+st+'</div>'+acts;q.appendChild(el)});q.querySelectorAll('[data-act]').forEach(b=>{b.onclick=()=>{const idx=+b.dataset.idx;b.dataset.act==='preview'?showPrev(idx):dlMast(idx)}})}
-
-function showPrev(idx){prevIdx=idx;const f=MF[idx];const p=document.getElementById('masterPreview');p.style.display='';document.getElementById('masterPrevName').textContent=f.name;document.getElementById('meterBefore').textContent=f.lufsO.toFixed(1);document.getElementById('meterAfter').textContent=f.lufsM.toFixed(1);document.getElementById('meterPeak').textContent=f.peakM.toFixed(1);document.getElementById('meterGain').textContent=(f.gainDB>0?'+':'')+f.gainDB.toFixed(1);document.getElementById('waveOrigLufs').textContent=f.lufsO.toFixed(1)+' LUFS';document.getElementById('waveMastLufs').textContent=f.lufsM.toFixed(1)+' LUFS';document.getElementById('masterTime').textContent='0:00 / '+fmt(f.dur);document.getElementById('masterFill').style.width='0%';setTimeout(()=>{drawWave(document.getElementById('waveOrigCanvas'),f.origBuf,'rgba(255,255,255,0.5)','rgba(255,255,255,0.08)');drawWave(document.getElementById('waveMastCanvas'),f.mastBuf,'rgba(0,228,170,0.9)','rgba(0,228,170,0.15)')},50);playAB='original';document.getElementById('abOrigBtn').classList.add('on');document.getElementById('abMastBtn').classList.remove('on');stopP()}
-
-function stopP(){if(curSrc){try{curSrc.stop()}catch(e){}}curSrc=null;isPlay=false;document.getElementById('masterPlayBtn').textContent='\u25B6';if(raf)cancelAnimationFrame(raf)}
-function togPlay(){if(isPlay){stopP();return}if(prevIdx<0)return;const f=MF[prevIdx];if(!mCtx)mCtx=new AudioContext();if(mCtx.state==='suspended')mCtx.resume();const buf=playAB==='mastered'?f.mastBuf:f.origBuf;curSrc=mCtx.createBufferSource();curSrc.buffer=buf;curSrc.connect(mCtx.destination);pStart=mCtx.currentTime;curSrc.start(0);isPlay=true;document.getElementById('masterPlayBtn').textContent='\u23F8';curSrc.onended=()=>{stopP();document.getElementById('masterFill').style.width='0%'};(function tk(){if(!isPlay)return;const el=mCtx.currentTime-pStart;document.getElementById('masterFill').style.width=Math.min(100,el/buf.duration*100)+'%';document.getElementById('masterTime').textContent=fmt(el)+' / '+fmt(buf.duration);raf=requestAnimationFrame(tk)})()}
-
-function dlMast(idx){const f=MF[idx],buf=f.mastBuf,nCh=buf.numberOfChannels,sr=buf.sampleRate,len=buf.length;const bps=3,ba=nCh*bps,ds=len*ba,ab=new ArrayBuffer(44+ds),v=new DataView(ab);function ws(o,s){for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))}ws(0,'RIFF');v.setUint32(4,36+ds,true);ws(8,'WAVE');ws(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,nCh,true);v.setUint32(24,sr,true);v.setUint32(28,sr*ba,true);v.setUint16(32,ba,true);v.setUint16(34,24,true);ws(36,'data');v.setUint32(40,ds,true);let off=44;for(let i=0;i<len;i++)for(let c=0;c<nCh;c++){let s=Math.max(-1,Math.min(1,buf.getChannelData(c)[i]));const dither=(Math.random()-0.5)*2/8388607;s=Math.max(-1,Math.min(1,s+dither));const i24=Math.round(s<0?s*8388608:s*8388607);v.setUint8(off,i24&0xFF);v.setUint8(off+1,(i24>>8)&0xFF);v.setUint8(off+2,(i24>>16)&0xFF);off+=3}const url=URL.createObjectURL(new Blob([ab],{type:'audio/wav'}));const a=document.createElement('a');a.href=url;a.download=f.name.replace(/\.[^.]+$/,'')+'_mastered.wav';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url)}
-
-async function processAll(){for(let i=0;i<MF.length;i++){if(MF[i].status!=='pending')continue;MF[i].status='processing';renderQ();try{const{rendered,makeupDB}=await masterAudio(MF[i].origBuf);MF[i].mastBuf=rendered;MF[i].lufsO=calcLUFS(MF[i].origBuf);MF[i].lufsM=calcLUFS(rendered);MF[i].peakM=peakDB(rendered);MF[i].gainDB=makeupDB;MF[i].status='done'}catch(e){console.error('Master error:',e);MF[i].mastBuf=MF[i].origBuf;MF[i].lufsO=calcLUFS(MF[i].origBuf);MF[i].lufsM=MF[i].lufsO;MF[i].peakM=peakDB(MF[i].origBuf);MF[i].gainDB=0;MF[i].status='done'}renderQ()}if(MF.length&&MF[0].status==='done')showPrev(0)}
-
-async function addFiles(files){if(!mCtx)mCtx=new AudioContext();if(mCtx.state==='suspended')await mCtx.resume();for(const file of files){if(!file.type.startsWith('audio/')&&!file.name.match(/\.(mp3|wav|flac|m4a|ogg|aac|wma)$/i))continue;try{const ab=await file.arrayBuffer();const audioBuf=await mCtx.decodeAudioData(ab);MF.push({name:file.name,size:file.size,dur:audioBuf.duration,origBuf:audioBuf,mastBuf:null,status:'pending',lufsO:0,lufsM:0,peakM:0,gainDB:0})}catch(e){console.error('Decode error:',file.name,e)}}renderQ()}
-
-const dz=document.getElementById('masterDrop'),fi=document.getElementById('masterFileInput');
-dz.addEventListener('click',()=>fi.click());
-fi.addEventListener('change',e=>{if(e.target.files.length)addFiles(e.target.files)});
-dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='var(--g1)'});
-dz.addEventListener('dragleave',()=>{dz.style.borderColor=''});
-dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='';if(e.dataTransfer.files.length)addFiles(e.dataTransfer.files)});
-document.getElementById('masterAllBtn').addEventListener('click',processAll);
-document.getElementById('masterClearBtn').addEventListener('click',()=>{stopP();MF.length=0;renderQ();document.getElementById('masterPreview').style.display='none'});
-document.getElementById('masterPlayBtn').addEventListener('click',togPlay);
-document.getElementById('abOrigBtn').addEventListener('click',()=>{stopP();playAB='original';document.getElementById('abOrigBtn').classList.add('on');document.getElementById('abMastBtn').classList.remove('on')});
-document.getElementById('abMastBtn').addEventListener('click',()=>{stopP();playAB='mastered';document.getElementById('abMastBtn').classList.add('on');document.getElementById('abOrigBtn').classList.remove('on')});
-})();
-
 </script>
 </body>
 </html>
