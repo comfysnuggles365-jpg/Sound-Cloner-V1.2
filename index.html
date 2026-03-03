@@ -1886,7 +1886,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
         <div class="bx">
           <div class="bx-t" data-i18n="batch_style_prompt">Style Prompt</div>
           <textarea class="bx-ta" data-i18n-ph="batch_style_placeholder" placeholder="e.g. Ethereal lo-fi R&B with whispered vocals, soft 808s, ambient pads, and reverb-drenched melodies..."></textarea>
-          <button class="paste-btn" id="pasteBtn" data-i18n="batch_paste">📋 Paste from Clipboard</button>
+          <div style="display:flex;gap:8px;align-items:center"><button class="paste-btn" id="pasteBtn" data-i18n="batch_paste">📋 Paste from Clipboard</button><button class="paste-btn" id="quickGenBtn" style="background:var(--grad-main);color:#fff;border-color:transparent;margin-left:8px" title="Generate Batch">⚡ Generate</button></div>
         </div>
         <div class="bx"><div class="bx-t" data-i18n="batch_songs_count">🎵 Songs to Generate</div><div class="cnt-row"><button class="cnt on">5</button><button class="cnt">10</button><button class="cnt">15</button><button class="cnt">20</button><button class="cnt">50</button></div></div>
 
@@ -9357,18 +9357,14 @@ document.querySelectorAll('[data-fvs]').forEach(function(b){
   };
 })();
 
-  var jsonData={version:1,prompts:prompts};
-  var blob=new Blob([JSON.stringify(jsonData,null,2)],{type:'application/json'});
-  var url=URL.createObjectURL(blob);
-  var a=document.createElement('a');
-  a.href=url;
-  a.download='suno-batch-'+songs.length+'songs-'+Date.now()+'.json';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  this.textContent='\u2713 Downloaded!';
-  var self=this;setTimeout(function(){self.textContent='\u2b07 Download .JSON For Suno Prompter Tool'},1500);
-});
 
+
+// Quick Generate button near paste
+document.getElementById('quickGenBtn')?.addEventListener('click',function(){
+  var gb=document.getElementById('genBtn');
+  if(gb)gb.click();
+});
+document.getElementById('quickGenBtn')?.addEventListener('click',function(){var gb=document.getElementById('genBtn');if(gb)gb.click()});
 console.log("Sound Cloner V2: Enhancement layer loaded");
 
 </script>
