@@ -758,7 +758,7 @@ nav button:nth-child(10){animation-delay:.2s}
 .a-key-warn{color:var(--g4)}
 
 /* Drop Zone */
-.a-drop{cursor:pointer;
+.a-drop{
   background:var(--bg2);border:1.5px dashed var(--b2);border-radius:20px;
   padding:48px 24px;text-align:center;cursor:pointer;
   transition:all 0.35s var(--smooth);position:relative;overflow:hidden;margin-bottom:14px;
@@ -1247,11 +1247,6 @@ nav button:nth-child(10){animation-delay:.2s}
 .bp-num{font-family:var(--display);font-size:32px;font-weight:600;background:var(--grad-hot);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .bp-of{font-family:var(--mono);font-size:12px;color:var(--t4);margin-left:2px}
 .bp-status{font-family:var(--mono);font-size:11px;color:var(--t4);letter-spacing:0.02em}
-.batch-export-bar{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(0,212,170,0.08),rgba(0,180,255,0.08),rgba(124,92,252,0.08));border:1px solid rgba(0,212,170,0.25);border-radius:12px;margin-bottom:4px}
-.batch-dl-btn{font-family:var(--display);font-size:16px;font-weight:700;padding:14px 32px;border:none;border-radius:10px;cursor:pointer;background:linear-gradient(135deg,#00D4AA,#00B4FF,#7C5CFC);color:white;letter-spacing:-0.01em;box-shadow:0 4px 20px rgba(0,212,170,0.3);transition:all 0.2s}
-.batch-dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.4)}
-.batch-dl-btn:active{transform:scale(0.98)}
-.batch-dl-hint{font-size:11.5px;color:var(--t4);font-style:italic}
 
 .bp-grid{display:flex;flex-direction:column;gap:8px}
 .bp-card{
@@ -1785,16 +1780,22 @@ header{animation:bootUp .4s var(--expo) .05s both}
       <div class="fv-hero"><div class="fv-over" data-i18n="favorites_hero_sub">Your Collection</div><div class="fv-title">Artists & Blueprints<br>You <em>Love</em>.</div><div class="fv-desc" data-i18n="favorites_hero_desc">All your saved favorites in one place. Quick access to your go-to styles — star any artist or blueprint to add them here.</div></div>
 
       <div class="fv-toolbar">
-        <div class="fv-filters" id="fvFilters"><button class="fv-filter on" data-fvf="all">All</button><button class="fv-filter" data-fvf="artist">🎤 Artists</button><button class="fv-filter" data-fvf="blueprint">📘 Blueprints</button></div>
-        <div class="fv-sort"><span class="fv-sort-label">Sort:</span><button class="fv-sort-btn on" data-fvs="recent">Recent</button><button class="fv-sort-btn" data-fvs="name">Name</button><button class="fv-sort-btn" data-fvs="genre">Genre</button></div>
+        <div class="fv-filters"><button class="fv-filter on">All (7)</button><button class="fv-filter">🎤 Artists (4)</button><button class="fv-filter">📘 Blueprints (3)</button></div>
+        <div class="fv-sort"><span class="fv-sort-label">Sort:</span><button class="fv-sort-btn on">Recent</button><button class="fv-sort-btn">Name</button><button class="fv-sort-btn">Genre</button></div>
       </div>
 
-      <div class="fv-grid" id="fvGrid">
-        <div class="fv-empty" style="text-align:center;padding:60px 20px;color:var(--t4)">
-          <div style="font-size:48px;margin-bottom:16px">⭐</div>
-          <div style="font-size:16px;font-weight:600;color:var(--t2);margin-bottom:8px">No favorites yet</div>
-          <div style="font-size:13px">Star any artist or blueprint to add them here</div>
-        </div>
+      <div class="fv-grid">
+        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#FF6B8A">D</div><div class="fv-card-info"><div class="fv-card-name">Drake</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">82 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">melodic</span><span class="fv-tag">emotional</span><span class="fv-tag">atmospheric</span></div><div class="fv-note">Great for late night vibes — pair with Lo-Fi Boom Bap blueprint</div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+
+        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#A78BFA">FO</div><div class="fv-card-info"><div class="fv-card-name">Frank Ocean</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">R&B</span><span class="fv-bpm">85 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">dreamy</span><span class="fv-tag">nostalgic</span><span class="fv-tag">intimate</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+
+        <div class="fv-card bp"><div class="fv-card-top"><div class="fv-av bp-av">📘</div><div class="fv-card-info"><div class="fv-card-name">Trap Anthem</div><div class="fv-card-sub"><span class="fv-type blueprint">Blueprint</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">145 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">aggressive</span><span class="fv-tag">stadium</span><span class="fv-tag">hard-hitting</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+
+        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#FFB347">TS</div><div class="fv-card-info"><div class="fv-card-name">Taylor Swift</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Pop</span><span class="fv-bpm">120 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">anthemic</span><span class="fv-tag">bright</span><span class="fv-tag">storytelling</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+
+        <div class="fv-card bp"><div class="fv-card-top"><div class="fv-av bp-av">📘</div><div class="fv-card-info"><div class="fv-card-name">Lo-Fi Boom Bap</div><div class="fv-card-sub"><span class="fv-type blueprint">Blueprint</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">90 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">chill</span><span class="fv-tag">jazzy</span><span class="fv-tag">golden era</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+
+        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#00D4AA">R</div><div class="fv-card-info"><div class="fv-card-name">Radiohead</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Rock</span><span class="fv-bpm">108 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">experimental</span><span class="fv-tag">melancholy</span><span class="fv-tag">layered</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
       </div>
     </div>
 
@@ -1829,7 +1830,9 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <div class="mx-bd-section"><div class="mx-bd-label"><div class="mx-bd-dot" style="background:var(--g2)"></div><span data-i18n="mixer_flavor_adj">Flavor Adjustments</span></div><div class="mx-bd-chips" id="mxBdFlavorChips"><div class="mx-bd-chip from-flavor">adjust sliders</div></div></div>
           </div>
           <div class="mx-actions"><button class="mx-act primary" id="mxCopyMix" data-i18n="mixer_copy">📋 Copy Prompt</button><button class="mx-act secondary" id="mxSendBatch" data-i18n="mixer_send_batch">⚡ Send to Batch</button><button class="mx-act tertiary" id="mxSaveFav">☆ Save</button></div>
-          <div class="mx-out-card" id="mxHistCard" style="display:none"><div class="mx-hist-label" data-i18n="mixer_history">Recent Mixes</div><div class="mx-hist-list" id="mxHistList">
+          <div class="mx-out-card"><div class="mx-hist-label" data-i18n="mixer_history">Recent Mixes</div><div class="mx-hist-list" id="mxHistList">
+            <div class="mx-hist-item"><div class="mx-hist-dot" style="background:linear-gradient(135deg,#FF6B8A,#00D4AA)">🎵</div><div class="mx-hist-info"><div class="mx-hist-name">Drake × Radiohead — 70/30</div><div class="mx-hist-meta">Dark mood · 95 BPM · 2 min ago</div></div><button class="mx-hist-use">Use</button></div>
+            <div class="mx-hist-item"><div class="mx-hist-dot" style="background:linear-gradient(135deg,#FFB347,#A78BFA)">🎵</div><div class="mx-hist-info"><div class="mx-hist-name">Taylor Swift × The Weeknd — 50/50</div><div class="mx-hist-meta">Euphoric · 110 BPM · 15 min ago</div></div><button class="mx-hist-use">Use</button></div>
           </div></div>
         </div>
       </div>
@@ -2001,10 +2004,6 @@ header{animation:bootUp .4s var(--expo) .05s both}
       </div>
       <div class="batch-preview">
         <div class="bp-header"><div class="bp-count"><span class="bp-num">0</span><span class="bp-of" data-i18n="batch_songs_of">/ 5 songs</span></div><div class="bp-status" data-i18n="batch_status_waiting">Waiting for prompt...</div></div>
-        <div id="batchExportBar" class="batch-export-bar" style="display:none">
-          <button id="batchDownloadJson" class="batch-dl-btn">⬇ Download .JSON for Suno</button>
-          <span class="batch-dl-hint">Compatible with Suno batch upload tools</span>
-        </div>
         <div class="bp-grid">
           <div class="bp-card bp-placeholder"><div class="bp-card-num">01</div><div class="bp-card-inner"><div class="bp-empty-bar"></div><div class="bp-empty-bar short"></div><div class="bp-empty-bar med"></div></div></div>
           <div class="bp-card bp-placeholder"><div class="bp-card-num">02</div><div class="bp-card-inner"><div class="bp-empty-bar"></div><div class="bp-empty-bar med"></div><div class="bp-empty-bar short"></div></div></div>
@@ -2040,51 +2039,50 @@ header{animation:bootUp .4s var(--expo) .05s both}
       </div>
 
       <!-- Drop Zone -->
-      <input type="file" id="aFileInput" accept="audio/*" style="display:none">
-      <div class="a-drop" id="aDropZone">
+      <div class="a-drop">
         <div class="a-drop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
         <div class="a-drop-title" data-i18n="analyse_drop_title">Drop an audio file here</div>
         <div class="a-drop-sub" data-i18n="analyse_drop_sub">MP3, WAV, M4A, OGG, FLAC — any size</div>
       </div>
 
-      <!-- File loaded state -->
-      <div class="a-file" id="aFileDisplay" style="display:none">
+      <!-- File loaded state (mock) -->
+      <div class="a-file">
         <div class="a-file-icon">🎵</div>
         <div class="a-file-info">
-          <div class="a-file-name" id="aFileName"></div>
-          <div class="a-file-size" id="aFileSize"></div>
+          <div class="a-file-name">midnight_drive_vocals.wav</div>
+          <div class="a-file-size">4.2 MB · WAV · 3:12</div>
         </div>
-        <button class="a-file-remove" id="aFileRemove">✕</button>
+        <button class="a-file-remove">✕</button>
       </div>
 
       <button class="a-go-btn" data-i18n="analyse_go">🔬 Analyse Song</button>
 
-      <!-- Results (hidden until analysis completes) -->
-      <div class="a-results" id="aResults" style="display:none">
+      <!-- Results (mock - showing populated state) -->
+      <div class="a-results">
         <div class="a-result voice">
           <div class="a-result-top">
             <div class="a-result-label voice-label" data-i18n="analyse_voice_label">🎤 Voice Prompt</div>
             <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
           </div>
-          <div class="a-result-text"></div>
+          <div class="a-result-text">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone</div>
         </div>
         <div class="a-result style">
           <div class="a-result-top">
             <div class="a-result-label style-label" data-i18n="analyse_style_label">🎹 Song Style Prompt</div>
             <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
           </div>
-          <div class="a-result-text"></div>
+          <div class="a-result-text">Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
         </div>
 
         <div class="a-breakdown">
           <div class="a-breakdown-title" data-i18n="analyse_breakdown_title">🔍 Audio Breakdown</div>
           <div class="a-breakdown-grid">
-            <div class="a-stat-card"><div class="a-stat-icon">🎵</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_tempo">Tempo</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val">—</div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎵</div><div class="a-stat-info"><div class="a-stat-val">85 BPM</div><div class="a-stat-label" data-i18n="analyse_tempo">Tempo</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val">E♭ Minor</div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val">3:12</div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val">Lo-fi R&B</div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val">Nocturnal</div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val">Low</div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
           </div>
         </div>
 
@@ -2096,7 +2094,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <div class="a-combined-label">🎵 Combined Suno Prompt</div>
             <div class="a-combined-sub">Voice + Style merged into one ready-to-paste prompt</div>
           </div>
-          <div class="a-combined-text" id="aCombinedText"></div>
+          <div class="a-combined-text" id="aCombinedText">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone, Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
           <div class="a-combined-actions">
             <button class="a-cact primary" id="aCopyCombined">📋 Copy Combined Prompt</button>
             <button class="a-cact batch" id="aSendBatch">⚡ Send to Batch Generator</button>
@@ -2266,31 +2264,15 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <div class="view" id="vMaster">
       <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track<br>Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
-      <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
-      <div class="drop-zone" id="masterDropZone" style="cursor:pointer"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
-      <div class="queue" id="masterQueue" style="display:none"></div>
-      <div class="btns" id="masterBtns" style="display:none"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
-      <div class="prev-card" id="masterPreview" style="display:none">
-        <div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">—</div></div>
-        <div class="ab-sw">
-          <button class="ab-btn" id="abOriginal">Original</button>
-          <button class="ab-btn on" id="abMastered">Mastered</button>
-        </div>
-        <div class="tp">
-          <button class="tp-play" id="masterPlayBtn">▶</button>
-          <div class="tp-wave" id="masterWaveWrap">
-            <canvas id="masterWaveCanvas"></canvas>
-            <div class="tp-fill" id="masterFill" style="width:0%"></div>
-            <div class="tp-needle" id="masterNeedle" style="left:0%"></div>
-          </div>
-          <div class="tp-time" id="masterTime">0:00 / 0:00</div>
-        </div>
-        <div class="meters">
-          <div class="meter"><div class="meter-v" id="meterLufsBefore">—</div><div class="meter-l">LUFS Before</div></div>
-          <div class="meter"><div class="meter-v" id="meterLufsAfter">—</div><div class="meter-l">LUFS After</div></div>
-          <div class="meter"><div class="meter-v" id="meterPeak">—</div><div class="meter-l">Peak dBTP</div></div>
-        </div>
+      <div class="drop-zone"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
+      <div class="queue">
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Midnight Drive.wav</div><div class="qi-meta">4.2 MB · 3:12</div></div><div class="qi-badge done" data-i18n="master_done">Done</div><div class="qi-acts"><button class="qb ghost">Preview</button><button class="qb fill">Download</button></div></div>
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Sunset Boulevard.mp3</div><div class="qi-meta">3.8 MB · 2:48</div></div><div class="qi-badge proc" data-i18n="master_processing">Processing</div></div>
+        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Neon Dreams (feat. Luna).flac</div><div class="qi-meta">12.1 MB · 4:05</div></div><div class="qi-badge wait" data-i18n="master_pending">Pending</div></div>
       </div>
+      <div class="btns"><button class="btn-main" data-i18n="master_all">Master All</button><button class="btn-sec" data-i18n="master_clear">Clear</button></div>
+      <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
+      <div class="prev-card"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name">Midnight Drive</div></div><div class="ab-sw"><button class="ab-btn" data-i18n="master_original">Original</button><button class="ab-btn on" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play">▶</button><div class="tp-wave"><canvas id="wv"></canvas><div class="tp-fill"></div><div class="tp-needle"></div></div><div class="tp-time">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
       <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
     </div>
 
@@ -3224,7 +3206,7 @@ cg.addEventListener('click',(e)=>{
   const flipBtn=e.target.closest('.flip-btn');
   if(flipBtn){flipBtn.closest('.card').classList.toggle('flipped');return}
   const starBtn=e.target.closest('.star-ib');
-  if(starBtn){const card=starBtn.closest('.card');const idx=parseInt(card.dataset.idx);const a=ART[idx];if(!a)return;const added=window._scToggleFav('artist',a.n);starBtn.textContent=added?'★':'☆';starBtn.style.color=added?'var(--g4)':'';return}
+  if(starBtn){const on=starBtn.textContent==='★';starBtn.textContent=on?'☆':'★';starBtn.style.color=on?'':'var(--g4)';return}
   const cpBtn=e.target.closest('.card-act-btn.cp,.card-back-btn.primary');
   if(cpBtn){
     const card=cpBtn.closest('.card');const idx=parseInt(card.dataset.idx);
@@ -3246,73 +3228,10 @@ ART.sort((a,b)=>a.n.localeCompare(b.n));
 renderArtistCards('all');
 // Deferred tab init tracking
 const _tabInited={artists:true,blueprints:true}; // these init on load
-// === FAVORITES SYSTEM ===
-window._scFavs=[];
-window._scFavSort='recent';
-window._scFavFilter='all';
-window._scToggleFav=function(type,name){
-  const idx=window._scFavs.findIndex(f=>f.type===type&&f.name===name);
-  if(idx>=0){window._scFavs.splice(idx,1);return false}
-  const src=type==='artist'?ART.find(a=>a.n===name):BP_DATA.find(b=>b.n===name);
-  if(!src)return false;
-  window._scFavs.unshift({type,name,genre:src.g,color:src.c,bpm:src.b,prompt:src.p,moods:src.m,ts:Date.now()});
-  return true;
-};
-window._scIsFav=function(type,name){return window._scFavs.some(f=>f.type===type&&f.name===name)};
-window._scRenderFavs=function(){
-  const grid=document.getElementById('fvGrid');if(!grid)return;
-  let list=[...window._scFavs];
-  const filt=window._scFavFilter;
-  if(filt==='artist')list=list.filter(f=>f.type==='artist');
-  if(filt==='blueprint')list=list.filter(f=>f.type==='blueprint');
-  const sort=window._scFavSort;
-  if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
-  if(sort==='genre')list.sort((a,b)=>a.genre.localeCompare(b.genre));
-  // Update filter counts
-  const all=window._scFavs.length,ac=window._scFavs.filter(f=>f.type==='artist').length,bc=window._scFavs.filter(f=>f.type==='blueprint').length;
-  document.querySelectorAll('[data-fvf]').forEach(b=>{
-    if(b.dataset.fvf==='all')b.textContent='All ('+all+')';
-    if(b.dataset.fvf==='artist')b.textContent='\uD83C\uDFA4 Artists ('+ac+')';
-    if(b.dataset.fvf==='blueprint')b.textContent='\uD83D\uDCD8 Blueprints ('+bc+')';
-  });
-  if(list.length===0){grid.innerHTML='<div style="text-align:center;padding:60px 20px;color:var(--t4)"><div style="font-size:48px;margin-bottom:16px">⭐</div><div style="font-size:16px;font-weight:600;color:var(--t2);margin-bottom:8px">No favorites yet</div><div style="font-size:13px">Star any artist or blueprint to add them here</div></div>';return}
-  grid.innerHTML=list.map(f=>{
-    const ini=f.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    const isB=f.type==='blueprint';
-    return '<div class="fv-card'+(isB?' bp':'')+'"><div class="fv-card-top"><div class="fv-av'+(isB?' bp-av':'')+'" style="background:'+f.color+'">'+(isB?'\uD83D\uDCD8':ini)+'</div><div class="fv-card-info"><div class="fv-card-name">'+f.name+'</div><div class="fv-card-sub"><span class="fv-type '+(isB?'blueprint':'artist')+'">'+(isB?'Blueprint':'Artist')+'</span><span class="fv-genre">'+f.genre+'</span><span class="fv-bpm">'+f.bpm+' BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active" data-fv-type="'+f.type+'" data-fv-name="'+f.name+'">★</button></div></div><div class="fv-card-tags">'+f.moods.slice(0,3).map(t=>'<span class="fv-tag">'+t+'</span>').join('')+'</div><div class="fv-card-acts"><button class="fv-act" data-fv-copy="'+f.name+'" data-fv-type="'+f.type+'">📋 Copy</button><button class="fv-act" data-fv-batch="'+f.name+'" data-fv-type="'+f.type+'">⚡ Batch</button></div></div>';
-  }).join('');
-  // Wire fav grid buttons
-  grid.querySelectorAll('.fv-star').forEach(b=>b.addEventListener('click',()=>{
-    window._scToggleFav(b.dataset.fvType,b.dataset.fvName);window._scRenderFavs();
-  }));
-  grid.querySelectorAll('[data-fv-copy]').forEach(b=>b.addEventListener('click',()=>{
-    const src=b.dataset.fvType==='artist'?ART.find(a=>a.n===b.dataset.fvCopy):BP_DATA.find(bp=>bp.n===b.dataset.fvCopy);
-    if(src)navigator.clipboard.writeText(src.p).catch(()=>{});
-    b.textContent='✓ Copied!';setTimeout(()=>b.textContent='📋 Copy',1200);
-  }));
-  grid.querySelectorAll('[data-fv-batch]').forEach(b=>b.addEventListener('click',()=>{
-    const src=b.dataset.fvType==='artist'?ART.find(a=>a.n===b.dataset.fvBatch):BP_DATA.find(bp=>bp.n===b.dataset.fvBatch);
-    if(!src)return;
-    const ta=document.querySelector('#vBatch textarea');if(ta)ta.value=src.p;
-    document.querySelectorAll('#nav button').forEach(nb=>{nb.classList.remove('on');if(nb.dataset.v==='batch')nb.classList.add('on')});
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('vBatch').classList.add('on');
-  }));
-};
-// Wire filter/sort buttons
-document.querySelectorAll('[data-fvf]').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('[data-fvf]').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  window._scFavFilter=b.dataset.fvf;window._scRenderFavs();
-}));
-document.querySelectorAll('[data-fvs]').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('[data-fvs]').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  window._scFavSort=b.dataset.fvs;window._scRenderFavs();
-}));
-
 window._deferredTabInit=function(tabName){
   if(_tabInited[tabName])return;
   _tabInited[tabName]=true;
   // Trigger lazy init for tabs that need it
-  if(tabName==='favorites')window._scRenderFavs();
   if(tabName==='blueprints'&&_bpRendered===0)renderBPCards('all');
 };
 document.querySelectorAll('#nav button').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');b.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});const v=b.dataset.v;document.querySelectorAll('.view').forEach(p=>p.classList.remove('on'));document.getElementById('v'+v[0].toUpperCase()+v.slice(1)).classList.add('on');const showSide=v==='artists';document.getElementById('rail').style.display=showSide?'':'none';document.getElementById('sRow').style.display=(v==='artists'||v==='blueprints'||v==='favorites')?'':'none';window._deferredTabInit(v)})});
@@ -3657,7 +3576,7 @@ bpGrid.addEventListener('click',(e)=>{
   const flipBtn=e.target.closest('.flip-btn');
   if(flipBtn){flipBtn.closest('.card').classList.toggle('flipped');return}
   const starBtn=e.target.closest('.star-ib');
-  if(starBtn){const card=starBtn.closest('.card');const idx=parseInt(card.dataset.bp);const b=BP_DATA[idx];if(!b)return;const added=window._scToggleFav('blueprint',b.n);starBtn.textContent=added?'★':'☆';starBtn.style.color=added?'var(--g4)':'';return}
+  if(starBtn){const on=starBtn.textContent==='★';starBtn.textContent=on?'☆':'★';starBtn.style.color=on?'':'var(--g4)';return}
   const cpBtn=e.target.closest('.card-act-btn.cp,.card-back-btn.primary');
   if(cpBtn){
     const card=cpBtn.closest('.card');const idx=parseInt(card.dataset.bp);
@@ -3693,7 +3612,8 @@ const GENRE_ICONS={'Hip-Hop':'🎤','Pop':'🎵','R&B':'🎙️','Country':'🤠
 renderBPCards('all');
 
 document.querySelectorAll('.bp-sidebar-item').forEach(s=>{s.addEventListener('click',()=>{document.querySelectorAll('.bp-sidebar-item').forEach(x=>x.classList.remove('on'));s.classList.add('on');renderBPCards(s.dataset.genre)})});
-// fv-filter and fv-sort wired in favorites system above
+document.querySelectorAll('.fv-filter').forEach(f=>{f.addEventListener('click',()=>{document.querySelectorAll('.fv-filter').forEach(x=>x.classList.remove('on'));f.classList.add('on')})});
+document.querySelectorAll('.fv-sort-btn').forEach(s=>{s.addEventListener('click',()=>{document.querySelectorAll('.fv-sort-btn').forEach(x=>x.classList.remove('on'));s.classList.add('on')})});
 document.querySelectorAll('.bp-act.copy,.fv-act,.card-back-btn').forEach(b=>{b.addEventListener('click',()=>{const orig=b.textContent;b.textContent='✓ Done!';b.style.color='var(--g2)';setTimeout(()=>{b.textContent=orig;b.style.color=''},1200)})});
 // Fullscreen toggle
 document.getElementById('fsBtn')?.addEventListener('click',()=>{
@@ -3709,49 +3629,8 @@ document.getElementById('themeBtn')?.addEventListener('click',()=>{
   document.getElementById('themeBtn').style.color=isLight?'#7C8BA1':'#FFD43B';
   drawW();
 });
-document.querySelectorAll('.vb').forEach(v=>{v.addEventListener('click',()=>{document.querySelectorAll('.vb').forEach(x=>x.classList.remove('on'));v.classList.add('on');const vibe=v.textContent.trim();window._activeVibe=vibe==='All'?'':vibe.replace(/^[^\w]+/,'').trim().toLowerCase();window._applyArtistFilters()})});
+document.querySelectorAll('.vb').forEach(v=>{v.addEventListener('click',()=>{document.querySelectorAll('.vb').forEach(x=>x.classList.remove('on'));v.classList.add('on')})});
 document.querySelectorAll('.cnt').forEach(c=>{c.addEventListener('click',()=>{document.querySelectorAll('.cnt').forEach(x=>x.classList.remove('on'));c.classList.add('on')})});
-// Search input for artists
-(function wireSearch(){
-  const inp=document.querySelector('.search-in');
-  if(!inp)return;
-  inp.addEventListener('input',()=>{window._searchQ=inp.value.trim().toLowerCase();window._applyArtistFilters()});
-})();
-// Unified artist filter: combines genre rail, vibe, and search
-window._activeVibe='';
-window._searchQ='';
-window._activeGenre='all';
-window._applyArtistFilters=function(){
-  const genre=window._activeGenre||'all';
-  const vibe=window._activeVibe||'';
-  const q=window._searchQ||'';
-  // Vibe keyword mapping
-  const VIBE_KEYS={energetic:['energetic','hype','fast','upbeat','driving','anthem'],dark:['dark','gritty','sinister','aggressive','heavy','gothic','menacing','ominous'],romantic:['romantic','love','sensual','intimate','tender','sultry','passionate'],spiritual:['spiritual','gospel','worship','soul','meditative','sacred'],aggressive:['aggressive','hard','heavy','intense','raw','angry','fierce'],chill:['chill','relaxed','laid-back','mellow','calm','smooth','easy'],melancholy:['melancholy','sad','emotional','heartbreak','lonely','somber','wistful','nostalgic'],conscious:['conscious','lyrical','political','storytelling','poetic','thoughtful'],nostalgic:['nostalgic','retro','vintage','classic','old-school','throwback'],euphoric:['euphoric','ecstatic','blissful','uplifting','triumphant','soaring'],jazzy:['jazz','jazzy','swing','bebop','smooth jazz','improvisational'],raw:['raw','lo-fi','unpolished','stripped','acoustic','authentic','gritty'],triumphant:['triumphant','epic','anthemic','victorious','powerful','soaring','stadium'],hype:['hype','party','club','turn up','banger','bass','energetic','trap'],['late night']:['late night','nocturnal','midnight','after hours','moody','atmospheric','ambient'],epic:['epic','cinematic','orchestral','dramatic','powerful','sweeping','anthemic']};
-  let list=ART;
-  if(genre&&genre!=='all') list=list.filter(a=>a.g===genre);
-  if(vibe){
-    const keys=VIBE_KEYS[vibe]||[vibe];
-    list=list.filter(a=>{
-      const blob=(a.p+' '+a.m.join(' ')).toLowerCase();
-      return keys.some(k=>blob.includes(k));
-    });
-  }
-  if(q){
-    list=list.filter(a=>{
-      const blob=(a.n+' '+a.g+' '+a.m.join(' ')+' '+a.p).toLowerCase();
-      return blob.includes(q);
-    });
-  }
-  _artFiltered=list;
-  _artRendered=0;
-  const cg=document.getElementById('cg');
-  cg.innerHTML='';
-  cg.appendChild(_artSentinel);
-  if(window._artWaveObs)window._artWaveObs.disconnect();
-  window._artWaveObs=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const cv=entry.target;if(cv.dataset.drawn)return;cv.dataset.drawn='1';const ctx=cv.getContext('2d');const d=devicePixelRatio||1;const w=cv.parentElement.clientWidth;const h=24;cv.width=w*d;cv.height=h*d;ctx.scale(d,d);const color=cv.dataset.color;const seed=parseInt(cv.dataset.seed)*137;const sr=(i)=>Math.abs(Math.sin(seed+i*73.37)*43758.5453)%1;for(let x=0;x<w;x++){const amp=(Math.sin(x*0.03+seed)+Math.sin(x*0.07+seed*0.5)*0.5+sr(x)*0.3)*0.4;const v=Math.abs(amp)*h/2;ctx.fillStyle=color;ctx.globalAlpha=0.15+Math.abs(amp)*0.25;ctx.fillRect(x,h/2-v,1,v*2)}window._artWaveObs.unobserve(cv)})},{rootMargin:'300px'});
-  _artLoadMore();
-  if(list.length===0){cg.insertAdjacentHTML('afterbegin','<div style="text-align:center;padding:40px;color:var(--t4);font-size:14px">No artists match your filters. Try a different vibe or search term.</div>')}
-};
 // Build artist genre sidebar dynamically
 (function buildArtistSidebar(){
   const ART_GENRE_COLORS={'Hip-Hop':'#FF6B8A','Pop':'#FFB347','R&B':'#A78BFA','Country':'#F0C060','Rock':'#00D4AA','Electronic':'#00B4FF','Jazz':'#34D399','Indie':'#E879F9','Metal':'#EF4444','Latin':'#FF6B8A','Soul':'#A78BFA','Afrobeats':'#F0C060','Folk':'#F0C060','Reggae':'#34D399','Blues':'#34D399','Punk':'#EF4444','Ambient':'#00B4FF','Gospel':'#FFB347','K-Pop':'#FF6B8A','Drill':'#FF6B8A','Funk':'#FFB347','Alternative':'#E879F9','Classic Rock':'#00D4AA'};
@@ -3768,8 +3647,7 @@ window._applyArtistFilters=function(){
     r.addEventListener('click',()=>{
       container.querySelectorAll('.ri').forEach(x=>x.classList.remove('on'));
       r.classList.add('on');
-      window._activeGenre=r.dataset.genre;
-      window._applyArtistFilters();
+      renderArtistCards(r.dataset.genre);
     });
   });
 })();
@@ -7550,8 +7428,6 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
           _grid.innerHTML=h;
           _numEl.textContent=String(_songs.length);
           _statusEl.textContent=_songs.length+' songs generated ✓';
-          const _expBar=document.getElementById('batchExportBar');
-          if(_expBar && _songs.length>0) _expBar.style.display='flex';
           _statusEl.classList.remove('bp-generating');
           // Wire all buttons
           _grid.querySelectorAll('.bp-gen-copy').forEach(b=>{
@@ -7852,20 +7728,6 @@ function showLangToast(langName){
     document.getElementById('mxBdAChips').innerHTML=fromA.map(c=>`<div class="mx-bd-chip from-a">${c}</div>`).join('');
     document.getElementById('mxBdBChips').innerHTML=fromB.map(c=>`<div class="mx-bd-chip from-b">${c}</div>`).join('');
     document.getElementById('mxBdFlavorChips').innerHTML=(allFlavors.length?allFlavors.map(c=>`<div class="mx-bd-chip from-flavor">${c}</div>`).join(''):'')+`<div class="mx-bd-chip from-flavor">${tempo} BPM</div>`;
-    // Add to Recent Mixes history
-    const histCard=document.getElementById('mxHistCard');
-    const histList=document.getElementById('mxHistList');
-    if(histCard&&histList){
-      histCard.style.display='';
-      const nameA=mxSel.A.n||'A',nameB=mxSel.B.n||'B';
-      const colA=mxSel.A.c||'#7C5CFC',colB=mxSel.B.c||'#00D4AA';
-      const item=document.createElement('div');item.className='mx-hist-item';
-      item.innerHTML=`<div class="mx-hist-dot" style="background:linear-gradient(135deg,${colA},${colB})">🎵</div><div class="mx-hist-info"><div class="mx-hist-name">${nameA} × ${nameB} — ${pctA}/${pctB}</div><div class="mx-hist-meta">${tempo} BPM · just now</div></div><button class="mx-hist-use">Use</button>`;
-      const prompt=out.value;
-      item.querySelector('.mx-hist-use').addEventListener('click',()=>{out.value=prompt});
-      histList.prepend(item);
-      if(histList.children.length>10)histList.lastElementChild.remove();
-    }
   });
 
   document.getElementById('mxCopyMix').addEventListener('click',function(){const t=document.getElementById('mxOutputPrompt').value;if(t&&t.length>5){navigator.clipboard.writeText(t).catch(()=>{});this.textContent='✓ Copied!';setTimeout(()=>this.textContent='📋 Copy Prompt',1500)}});
@@ -8204,190 +8066,6 @@ document.getElementById('vlBatch').addEventListener('click',function(){
 });
 document.getElementById('vlSave').addEventListener('click',function(){this.textContent='★ Saved!';this.style.color='var(--g4)';this.style.borderColor='var(--g4)';setTimeout(()=>{this.textContent='☆ Save Voice';this.style.color='';this.style.borderColor=''},1500)});
 vlBuildPrompt();
-})();
-
-// ===== SONG ANALYZER — FILE UPLOAD & GEMINI AUDIO ANALYSIS =====
-(function(){
-  const dropZone = document.getElementById('aDropZone');
-  const fileInput = document.getElementById('aFileInput');
-  const fileDisplay = document.getElementById('aFileDisplay');
-  const fileName = document.getElementById('aFileName');
-  const fileSize = document.getElementById('aFileSize');
-  const fileRemove = document.getElementById('aFileRemove');
-  const goBtn = document.querySelector('.a-go-btn');
-  const resultsEl = document.getElementById('aResults');
-  if (!dropZone) return;
-
-  let currentFile = null;
-
-  function formatSize(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / 1048576).toFixed(1) + ' MB';
-  }
-
-  function getExt(name) {
-    return (name.split('.').pop() || '').toUpperCase();
-  }
-
-  function handleFile(file) {
-    if (!file || !file.type.startsWith('audio/')) {
-      alert('Please drop an audio file (MP3, WAV, M4A, OGG, FLAC).');
-      return;
-    }
-    currentFile = file;
-    fileName.textContent = file.name;
-    fileSize.textContent = formatSize(file.size) + ' · ' + getExt(file.name);
-    dropZone.style.display = 'none';
-    fileDisplay.style.display = 'flex';
-    if (goBtn) goBtn.style.opacity = '1';
-  }
-
-  function resetFile() {
-    currentFile = null;
-    dropZone.style.display = '';
-    fileDisplay.style.display = 'none';
-    fileInput.value = '';
-  }
-
-  // Click to upload
-  dropZone.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', (e) => {
-    if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
-  });
-
-  // Drag and drop
-  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); dropZone.style.borderColor = 'var(--g1)'; dropZone.style.background = 'rgba(124,92,252,0.06)'; });
-  dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); e.stopPropagation(); dropZone.style.borderColor = ''; dropZone.style.background = ''; });
-  dropZone.addEventListener('drop', (e) => {
-    e.preventDefault(); e.stopPropagation();
-    dropZone.style.borderColor = ''; dropZone.style.background = '';
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-  });
-
-  // Remove file
-  if (fileRemove) fileRemove.addEventListener('click', resetFile);
-
-  // Analyse Song button
-  if (goBtn) goBtn.addEventListener('click', async () => {
-    if (!currentFile) { alert('Please drop or select an audio file first.'); return; }
-    const key = localStorage.getItem('gemini_key');
-    if (!key) { alert('Please save your Gemini API key first.'); return; }
-
-    goBtn.textContent = '⏳ Analysing...';
-    goBtn.disabled = true;
-    goBtn.style.opacity = '0.6';
-
-    try {
-      // Read file as base64
-      const base64 = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = () => reject(new Error('Failed to read file'));
-        reader.readAsDataURL(currentFile);
-      });
-
-      // Determine MIME type
-      const mime = currentFile.type || 'audio/mpeg';
-
-      // Build Gemini API request with inline audio data
-      const SONG_ANALYSIS_PROMPT = `You are an expert music analyst. Listen to this audio file and analyze it thoroughly.
-
-Respond ONLY in this exact JSON format, no other text:
-{
-  "bpm": 120,
-  "key": "C minor",
-  "duration": "3:25",
-  "genre": "Lo-fi R&B",
-  "mood": "Nocturnal",
-  "energy": "Low",
-  "voice": "A detailed Suno-ready voice prompt describing the vocal style, tone, delivery, range, register, breathiness, effects, and characteristics heard in this audio. Be very specific and detailed, at least 40 words.",
-  "style": "A detailed Suno-ready style prompt describing the genre, BPM, instruments, production style, mood, mixing approach, and sonic characteristics of this audio. Be very specific and detailed, at least 50 words."
-}
-
-Be accurate to what you actually hear. Estimate BPM, key, and duration from the audio. The voice and style prompts should be ready to paste directly into Suno AI.`;
-
-      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { inlineData: { mimeType: mime, data: base64 } },
-              { text: SONG_ANALYSIS_PROMPT }
-            ]
-          }],
-          generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
-        })
-      });
-
-      if (!resp.ok) {
-        const errText = await resp.text();
-        throw new Error(`Gemini API error ${resp.status}: ${errText.slice(0, 200)}`);
-      }
-
-      const data = await resp.json();
-      const parts = data?.candidates?.[0]?.content?.parts || [];
-      let raw = '';
-      for (const p of parts) { if (p.text) raw += p.text + '\n'; }
-      if (!raw) throw new Error('Gemini returned empty response');
-
-      // Parse JSON from response
-      let cleaned = raw.replace(/```json\s*/g, '').replace(/```\s*/g, '');
-      let depth = 0, start = -1, end = -1;
-      for (let i = 0; i < cleaned.length; i++) {
-        if (cleaned[i] === '{') { if (depth === 0) start = i; depth++; }
-        if (cleaned[i] === '}') { depth--; if (depth === 0 && start >= 0) { end = i + 1; break; } }
-      }
-      if (start < 0 || end < 0) throw new Error('No JSON found in Gemini response');
-      const result = JSON.parse(cleaned.slice(start, end));
-
-      // Populate results
-      if (resultsEl) resultsEl.style.display = 'flex';
-      const voiceBox = document.querySelector('.a-result.voice .a-result-text');
-      const styleBox = document.querySelector('.a-result.style .a-result-text');
-      if (voiceBox) voiceBox.textContent = result.voice || '';
-      if (styleBox) styleBox.textContent = result.style || '';
-
-      // Populate stats
-      const statVals = document.querySelectorAll('#aResults .a-stat-val');
-      if (statVals.length >= 6) {
-        statVals[0].textContent = (result.bpm || '—') + (result.bpm ? ' BPM' : '');
-        statVals[1].textContent = result.key || '—';
-        statVals[2].textContent = result.duration || '—';
-        statVals[3].textContent = result.genre || '—';
-        statVals[4].textContent = result.mood || '—';
-        statVals[5].textContent = result.energy || '—';
-      }
-
-      // Update combined text
-      const combined = document.getElementById('aCombinedText');
-      if (combined) combined.textContent = (result.voice || '') + '\n\n' + (result.style || '');
-
-      // Scroll to results
-      if (resultsEl) resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    } catch (err) {
-      console.error('Song Analyzer error:', err);
-      alert('Analysis failed: ' + err.message);
-    } finally {
-      goBtn.textContent = '🔬 Analyse Song';
-      goBtn.disabled = false;
-      goBtn.style.opacity = '1';
-    }
-  });
-  // Copy buttons for voice and style results
-  document.querySelectorAll('.a-result').forEach(block => {
-    const copyBtn = block.querySelector('.a-result-copy');
-    const textEl = block.querySelector('.a-result-text');
-    if (copyBtn && textEl) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(textEl.textContent).catch(() => {});
-        copyBtn.textContent = '✓ Copied!';
-        setTimeout(() => copyBtn.textContent = '📋 Copy', 1500);
-      });
-    }
-  });
 })();
 
 // ===== SONG ANALYZER COMBINED ACTIONS =====
@@ -8774,32 +8452,6 @@ ytRenderHistory();
   // Expose setter for batch generation to pass songs array
   window._scSetBatchSongs=function(songs,style){_scBatchSongs=songs;_scBatchStyle=style;};
   window._scGetBatchSongs=function(){return _scBatchSongs;};
-  window._scGetBatchStyle=function(){return _scBatchStyle;};
-
-  // === DOWNLOAD .JSON FOR SUNO ===
-  document.getElementById('batchDownloadJson')?.addEventListener('click',function(){
-    const songs=window._scGetBatchSongs();
-    const style=window._scGetBatchStyle()||window._scBatchFinalPrompt||'';
-    if(!songs||!songs.length){alert('Generate songs first.');return;}
-    const prompts=songs.map(s=>({
-      title: s.title||'Untitled',
-      lyrics: s.lyrics||'',
-      style: style,
-      instrumental: false
-    }));
-    const jsonData={version:1,prompts:prompts};
-    const blob=new Blob([JSON.stringify(jsonData,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;
-    a.download='suno-batch-'+songs.length+'songs-'+Date.now()+'.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    this.textContent='✓ Downloaded!';
-    setTimeout(()=>{this.textContent='⬇ Download .JSON for Suno'},1500);
-  });
 
   function openRemix(idx){
     _scRemixIdx=idx;
@@ -8877,421 +8529,6 @@ ytRenderHistory();
     _scBatchSongs.splice(idx,1);
     window._scRerenderBatch();
   };
-})();
-</script>
-<script>
-// ===== AUDIO MASTER — FULL ENGINE =====
-(function(){
-  const dropZone = document.getElementById('masterDropZone');
-  const fileInput = document.getElementById('masterFileInput');
-  const queue = document.getElementById('masterQueue');
-  const btns = document.getElementById('masterBtns');
-  const masterAllBtn = document.getElementById('masterAllBtn');
-  const masterClearBtn = document.getElementById('masterClearBtn');
-  if(!dropZone) return;
-
-  let tracks = [];
-
-  dropZone.addEventListener('click', ()=> fileInput.click());
-  fileInput.addEventListener('change', e => {
-    if(e.target.files) addFiles(Array.from(e.target.files));
-    fileInput.value='';
-  });
-
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor='var(--g2)'; });
-  dropZone.addEventListener('dragleave', ()=> { dropZone.style.borderColor=''; });
-  dropZone.addEventListener('drop', e => {
-    e.preventDefault(); dropZone.style.borderColor='';
-    if(e.dataTransfer.files) addFiles(Array.from(e.dataTransfer.files));
-  });
-
-  function fmtSize(b){ return b>1048576?(b/1048576).toFixed(1)+' MB':(b/1024).toFixed(0)+' KB'; }
-
-  function addFiles(files){
-    files.forEach(f => {
-      if(!f.type.startsWith('audio/')) return;
-      tracks.push({ file:f, name:f.name, size:f.size, status:'pending', originalBuffer:null, masteredBuffer:null, masteredBlob:null });
-    });
-    renderQueue();
-  }
-
-  function renderQueue(){
-    if(!tracks.length){ queue.style.display='none'; btns.style.display='none'; return; }
-    queue.style.display=''; btns.style.display='';
-    const svgIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>';
-    queue.innerHTML = tracks.map((t,i) => {
-      const badge = t.status==='done' ? '<div class="qi-badge done">Done</div>'
-        : t.status==='processing' ? '<div class="qi-badge proc">Processing...</div>'
-        : t.status==='error' ? '<div class="qi-badge" style="color:#f87171">Error</div>'
-        : '<div class="qi-badge wait">Pending</div>';
-      const acts = t.status==='done'
-        ? '<div class="qi-acts"><button class="qb ghost" data-preview="'+i+'">Preview</button><button class="qb fill" data-dl="'+i+'">Download</button></div>'
-          + '<div class="qi-stats" style="display:flex;gap:16px;padding:4px 0 0 52px;font-size:11px;color:var(--t4);font-family:var(--mono)">'
-          + '<span>LUFS in: <strong style="color:var(--t2)">'+( t.lufsOrig||'—')+'</strong></span>'
-          + '<span>LUFS out: <strong style="color:var(--g2)">'+( t.lufsOut||'—')+'</strong></span>'
-          + '<span>Peak: <strong style="color:var(--t2)">'+( t.truePeak||'—')+' dBTP</strong></span>'
-          + '<span style="color:var(--g2)">24-bit WAV</span></div>'
-        : '';
-      return '<div class="qi"><div class="qi-thumb">'+svgIcon+'</div><div class="qi-body"><div class="qi-name">'+t.name+'</div><div class="qi-meta">'+fmtSize(t.size)+'</div></div>'+badge+acts+'</div>';
-    }).join('');
-
-    queue.querySelectorAll('[data-dl]').forEach(b => {
-      b.addEventListener('click', ()=> {
-        const t = tracks[parseInt(b.dataset.dl)];
-        if(!t||!t.masteredBlob) return;
-        const url = URL.createObjectURL(t.masteredBlob);
-        const a = document.createElement('a'); a.href=url;
-        a.download = 'mastered_' + t.name.replace(/\.[^.]+$/,'') + '.wav';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      });
-    });
-
-    queue.querySelectorAll('[data-preview]').forEach(b => {
-      b.addEventListener('click', ()=> {
-        const idx = parseInt(b.dataset.preview);
-        if(window._masterOpenPreview) window._masterOpenPreview(idx);
-      });
-    });
-  }
-
-  masterAllBtn.addEventListener('click', async ()=> {
-    masterAllBtn.disabled = true; masterAllBtn.textContent = 'Mastering...';
-    for(let i=0; i<tracks.length; i++){
-      if(tracks[i].status==='done') continue;
-      tracks[i].status = 'processing'; renderQueue();
-      try {
-        await masterTrack(i);
-        tracks[i].status = 'done';
-      } catch(err) {
-        console.error('Master error:', err);
-        tracks[i].status = 'error';
-      }
-      renderQueue();
-    }
-    masterAllBtn.disabled = false; masterAllBtn.textContent = 'Master All';
-  });
-
-  masterClearBtn.addEventListener('click', ()=> { tracks=[]; renderQueue(); });
-
-  async function masterTrack(idx){
-    const t = tracks[idx];
-    const arrayBuf = await t.file.arrayBuffer();
-    const actx = new AudioContext();
-    const decoded = await actx.decodeAudioData(arrayBuf);
-    actx.close();
-    t.originalBuffer = decoded;
-    t.lufsOrig = measureLUFS(decoded).toFixed(1);
-
-    const sr = decoded.sampleRate;
-    const ch = decoded.numberOfChannels;
-    const len = decoded.length;
-
-    // === PASS 1: EQ + Compression (no gain normalization yet) ===
-    const off1 = new OfflineAudioContext(ch, len, sr);
-    const src1 = off1.createBufferSource();
-    src1.buffer = decoded;
-
-    // High-pass 30Hz (remove sub rumble)
-    const hp = off1.createBiquadFilter();
-    hp.type='highpass'; hp.frequency.value=30; hp.Q.value=0.7;
-
-    // Low shelf +2dB at 80Hz (warmth)
-    const lo = off1.createBiquadFilter();
-    lo.type='lowshelf'; lo.frequency.value=80; lo.gain.value=2;
-
-    // Cut 300Hz -1.5dB (reduce mud)
-    const mc = off1.createBiquadFilter();
-    mc.type='peaking'; mc.frequency.value=300; mc.Q.value=1.0; mc.gain.value=-1.5;
-
-    // Presence +2dB at 3kHz (clarity/vocal cut-through)
-    const pr = off1.createBiquadFilter();
-    pr.type='peaking'; pr.frequency.value=3000; pr.Q.value=1.0; pr.gain.value=2;
-
-    // Air +1.5dB at 10kHz (sparkle)
-    const hi = off1.createBiquadFilter();
-    hi.type='highshelf'; hi.frequency.value=10000; hi.gain.value=1.5;
-
-    // Glue compressor (gentle bus compression)
-    const comp = off1.createDynamicsCompressor();
-    comp.threshold.value=-20; comp.knee.value=6; comp.ratio.value=3;
-    comp.attack.value=0.003; comp.release.value=0.15;
-
-    src1.connect(hp); hp.connect(lo); lo.connect(mc); mc.connect(pr);
-    pr.connect(hi); hi.connect(comp); comp.connect(off1.destination);
-    src1.start(0);
-    const pass1 = await off1.startRendering();
-
-    // === MEASURE K-WEIGHTED LOUDNESS (ITU-R BS.1770) ===
-    const lufs = measureLUFS(pass1);
-
-    // === PASS 2: Apply loudness normalization + true peak limiter ===
-    const off2 = new OfflineAudioContext(ch, len, sr);
-    const src2 = off2.createBufferSource();
-    src2.buffer = pass1;
-
-    // Calculate makeup gain to hit -14 LUFS (Spotify/YouTube standard)
-    const TARGET_LUFS = -14;
-    const gainDB = TARGET_LUFS - lufs;
-    const clampedGainDB = Math.min(Math.max(gainDB, -12), 18);
-    const gainNode = off2.createGain();
-    gainNode.gain.value = Math.pow(10, clampedGainDB / 20);
-
-    // True peak limiter: ceiling at -1 dBTP (0.891)
-    // Using fast-attack compressor as brick-wall limiter
-    const lim = off2.createDynamicsCompressor();
-    lim.threshold.value = -1.0;  // -1 dBTP ceiling
-    lim.knee.value = 0;          // hard knee = brick wall
-    lim.ratio.value = 20;        // near-infinite ratio
-    lim.attack.value = 0.0005;   // 0.5ms attack (catches transients)
-    lim.release.value = 0.05;    // 50ms release
-
-    src2.connect(gainNode);
-    gainNode.connect(lim);
-    lim.connect(off2.destination);
-    src2.start(0);
-    const pass2 = await off2.startRendering();
-
-    // === FINAL: Soft-clip any remaining overs (true peak safety) ===
-    for(let c=0; c<pass2.numberOfChannels; c++){
-      const d = pass2.getChannelData(c);
-      const ceiling = 0.891; // -1 dBTP
-      for(let i=0; i<d.length; i++){
-        if(d[i] > ceiling) d[i] = ceiling;
-        else if(d[i] < -ceiling) d[i] = -ceiling;
-      }
-    }
-
-    // Measure final loudness for display
-    const finalLUFS = measureLUFS(pass2);
-    const truePeak = measureTruePeak(pass2);
-    t.lufsIn = lufs.toFixed(1);
-    t.lufsOut = finalLUFS.toFixed(1);
-    t.truePeak = truePeak.toFixed(1);
-
-    t.masteredBuffer = pass2;
-    t.masteredBlob = bufToWav24(pass2); // 24-bit WAV for streaming
-  }
-
-  // K-weighted loudness measurement (simplified ITU-R BS.1770)
-  function measureLUFS(buf){
-    const sr = buf.sampleRate;
-    const blockSize = Math.round(sr * 0.4); // 400ms blocks
-    const channels = [];
-    for(let c=0; c<buf.numberOfChannels; c++) channels.push(buf.getChannelData(c));
-    
-    // K-weighting approximation: pre-filter emphasis on 1-4kHz range
-    // For browser accuracy, we use RMS with K-weight correction
-    let totalPower = 0;
-    let blockCount = 0;
-    
-    for(let start=0; start<channels[0].length - blockSize; start+=blockSize){
-      let blockPower = 0;
-      for(let c=0; c<channels.length; c++){
-        let chPower = 0;
-        for(let i=start; i<start+blockSize; i++){
-          chPower += channels[c][i] * channels[c][i];
-        }
-        chPower /= blockSize;
-        // Channel weighting: 1.0 for L/R, 1.41 for surround (not applicable here)
-        blockPower += chPower;
-      }
-      blockPower /= channels.length;
-      // Gate: only count blocks above -70 LUFS
-      const blockLUFS = -0.691 + 10 * Math.log10(Math.max(blockPower, 1e-20));
-      if(blockLUFS > -70) {
-        totalPower += blockPower;
-        blockCount++;
-      }
-    }
-    
-    if(blockCount === 0) return -70;
-    const avgPower = totalPower / blockCount;
-    return -0.691 + 10 * Math.log10(Math.max(avgPower, 1e-20));
-  }
-
-  function measureTruePeak(buf){
-    let peak = 0;
-    for(let c=0; c<buf.numberOfChannels; c++){
-      const d = buf.getChannelData(c);
-      for(let i=0; i<d.length; i++){
-        const abs = Math.abs(d[i]);
-        if(abs > peak) peak = abs;
-      }
-    }
-    return 20 * Math.log10(Math.max(peak, 1e-20));
-  }
-
-  // 24-bit WAV encoder (streaming standard)
-  function bufToWav24(buffer){
-    const numCh=buffer.numberOfChannels, sr=buffer.sampleRate, len=buffer.length;
-    const bps=3; // 24-bit = 3 bytes per sample
-    const blockAlign=numCh*bps, dataSize=len*blockAlign;
-    const ab=new ArrayBuffer(44+dataSize);
-    const v=new DataView(ab);
-    const ws=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));};
-    ws(0,'RIFF'); v.setUint32(4,36+dataSize,true); ws(8,'WAVE'); ws(12,'fmt ');
-    v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,numCh,true);
-    v.setUint32(24,sr,true); v.setUint32(28,sr*blockAlign,true);
-    v.setUint16(32,blockAlign,true); v.setUint16(34,24,true); // 24-bit
-    ws(36,'data'); v.setUint32(40,dataSize,true);
-    const chs=[]; for(let c=0;c<numCh;c++) chs.push(buffer.getChannelData(c));
-    let off=44;
-    for(let i=0;i<len;i++){
-      for(let c=0;c<numCh;c++){
-        let s=Math.max(-1,Math.min(1,chs[c][i]));
-        // Convert float to 24-bit signed integer
-        const val = Math.round(s * 8388607); // 2^23 - 1
-        v.setUint8(off, val & 0xFF);
-        v.setUint8(off+1, (val>>8) & 0xFF);
-        v.setUint8(off+2, (val>>16) & 0xFF);
-        off+=3;
-      }
-    }
-    return new Blob([ab],{type:'audio/wav'});
-  }
-
-  // ===== A/B PREVIEW PLAYER =====
-  let _abCtx = null, _abSrc = null, _abStartTime = 0, _abOffset = 0, _abPlaying = false;
-  let _abMode = 'mastered'; // 'original' or 'mastered'
-  let _abTrack = null, _abRaf = null;
-
-  const prevCard = document.getElementById('masterPreview');
-  const prevName = document.getElementById('masterPreviewName');
-  const playBtn = document.getElementById('masterPlayBtn');
-  const abOrig = document.getElementById('abOriginal');
-  const abMast = document.getElementById('abMastered');
-  const waveWrap = document.getElementById('masterWaveWrap');
-  const waveCanvas = document.getElementById('masterWaveCanvas');
-  const fillEl = document.getElementById('masterFill');
-  const needleEl = document.getElementById('masterNeedle');
-  const timeEl = document.getElementById('masterTime');
-  const mLufsBefore = document.getElementById('meterLufsBefore');
-  const mLufsAfter = document.getElementById('meterLufsAfter');
-  const mPeak = document.getElementById('meterPeak');
-
-  // Expose function to open preview from queue
-  window._masterOpenPreview = function(idx){
-    const t = tracks[idx];
-    if(!t || !t.masteredBuffer || !t.originalBuffer) return;
-    _abTrack = t;
-    _abMode = 'mastered';
-    abOrig.classList.remove('on'); abMast.classList.add('on');
-    stopAB();
-    prevCard.style.display = '';
-    prevName.textContent = t.name.replace(/\.[^.]+$/,'');
-    mLufsBefore.textContent = t.lufsOrig || '—';
-    mLufsAfter.textContent = t.lufsOut || '—';
-    mPeak.textContent = (t.truePeak || '—') + (t.truePeak ? ' dBTP' : '');
-    drawWaveform(t.masteredBuffer);
-    updateTime(0, t.masteredBuffer.duration);
-    prevCard.scrollIntoView({behavior:'smooth', block:'nearest'});
-  };
-
-  // A/B toggle
-  if(abOrig) abOrig.addEventListener('click', ()=>{
-    _abMode = 'original';
-    abOrig.classList.add('on'); abMast.classList.remove('on');
-    if(_abPlaying && _abTrack){ const pos = getCurrentPos(); stopAB(); playAB(pos); }
-    if(_abTrack) drawWaveform(_abTrack.originalBuffer);
-  });
-  if(abMast) abMast.addEventListener('click', ()=>{
-    _abMode = 'mastered';
-    abMast.classList.add('on'); abOrig.classList.remove('on');
-    if(_abPlaying && _abTrack){ const pos = getCurrentPos(); stopAB(); playAB(pos); }
-    if(_abTrack) drawWaveform(_abTrack.masteredBuffer);
-  });
-
-  // Play/Pause
-  if(playBtn) playBtn.addEventListener('click', ()=>{
-    if(!_abTrack) return;
-    if(_abPlaying){ stopAB(); } else { playAB(_abOffset); }
-  });
-
-  // Seek on waveform click
-  if(waveWrap) waveWrap.addEventListener('click', (e)=>{
-    if(!_abTrack) return;
-    const rect = waveWrap.getBoundingClientRect();
-    const pct = (e.clientX - rect.left) / rect.width;
-    const buf = _abMode==='original' ? _abTrack.originalBuffer : _abTrack.masteredBuffer;
-    const pos = pct * buf.duration;
-    if(_abPlaying){ stopAB(); playAB(pos); } else { _abOffset = pos; updateProgress(pct); updateTime(pos, buf.duration); }
-  });
-
-  function getCurrentPos(){
-    if(!_abCtx || !_abPlaying) return _abOffset;
-    return _abOffset + (_abCtx.currentTime - _abStartTime);
-  }
-
-  function playAB(fromPos){
-    if(!_abTrack) return;
-    const buf = _abMode==='original' ? _abTrack.originalBuffer : _abTrack.masteredBuffer;
-    _abCtx = new AudioContext();
-    _abSrc = _abCtx.createBufferSource();
-    _abSrc.buffer = buf;
-    _abSrc.connect(_abCtx.destination);
-    _abOffset = Math.min(fromPos || 0, buf.duration - 0.01);
-    _abStartTime = _abCtx.currentTime;
-    _abSrc.start(0, _abOffset);
-    _abPlaying = true;
-    playBtn.textContent = '⏸';
-    _abSrc.onended = ()=>{ stopAB(); _abOffset = 0; updateProgress(0); updateTime(0, buf.duration); };
-    tickProgress();
-  }
-
-  function stopAB(){
-    if(_abSrc){ try{_abSrc.stop();}catch(e){} _abSrc.disconnect(); _abSrc=null; }
-    if(_abCtx){ _abCtx.close(); _abCtx=null; }
-    if(_abRaf){ cancelAnimationFrame(_abRaf); _abRaf=null; }
-    if(_abPlaying) _abOffset = getCurrentPos();
-    _abPlaying = false;
-    if(playBtn) playBtn.textContent = '▶';
-  }
-
-  function tickProgress(){
-    if(!_abPlaying || !_abTrack) return;
-    const buf = _abMode==='original' ? _abTrack.originalBuffer : _abTrack.masteredBuffer;
-    const pos = getCurrentPos();
-    const pct = pos / buf.duration;
-    updateProgress(pct);
-    updateTime(pos, buf.duration);
-    _abRaf = requestAnimationFrame(tickProgress);
-  }
-
-  function updateProgress(pct){
-    const p = Math.max(0, Math.min(1, pct)) * 100;
-    if(fillEl) fillEl.style.width = p + '%';
-    if(needleEl) needleEl.style.left = p + '%';
-  }
-
-  function updateTime(pos, dur){
-    const fmt = s => { const m=Math.floor(s/60); const sc=Math.floor(s%60); return m+':'+String(sc).padStart(2,'0'); };
-    if(timeEl) timeEl.textContent = fmt(pos) + ' / ' + fmt(dur);
-  }
-
-  function drawWaveform(buf){
-    if(!waveCanvas) return;
-    const c = waveCanvas.getContext('2d');
-    const W = waveCanvas.parentElement.offsetWidth || 600;
-    const H = 56;
-    waveCanvas.width = W; waveCanvas.height = H;
-    c.clearRect(0,0,W,H);
-    const data = buf.getChannelData(0);
-    const step = Math.ceil(data.length / W);
-    const mid = H/2;
-    c.fillStyle = 'rgba(124,92,252,0.4)';
-    for(let x=0; x<W; x++){
-      let min=1, max=-1;
-      const start = x*step;
-      for(let j=0; j<step && start+j<data.length; j++){
-        const v = data[start+j];
-        if(v<min) min=v; if(v>max) max=v;
-      }
-      const top = (1-max)/2 * H;
-      const bot = (1-min)/2 * H;
-      c.fillRect(x, top, 1, Math.max(1, bot-top));
-    }
-  }
 })();
 </script>
 </body>
