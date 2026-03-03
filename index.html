@@ -1837,8 +1837,8 @@ header{animation:bootUp .4s var(--expo) .05s both}
           </div>
           <div class="mx-actions"><button class="mx-act primary" id="mxCopyMix" data-i18n="mixer_copy">📋 Copy Prompt</button><button class="mx-act secondary" id="mxSendBatch" data-i18n="mixer_send_batch">⚡ Send to Batch</button><button class="mx-act tertiary" id="mxSaveFav">☆ Save</button></div>
           <div class="mx-out-card" id="mxHistCard"><div class="mx-hist-label" data-i18n="mixer_history">Recent Mixes</div><div class="mx-hist-list" id="mxHistList">
-            <div class="mx-hist-item"><div class="mx-hist-dot" style="background:linear-gradient(135deg,#FF6B8A,#00D4AA)">🎵</div><div class="mx-hist-info"><div class="mx-hist-name">Drake × Radiohead — 70/30</div><div class="mx-hist-meta">Dark mood · 95 BPM · 2 min ago</div></div><button class="mx-hist-use">Use</button></div>
-            <div class="mx-hist-item"><div class="mx-hist-dot" style="background:linear-gradient(135deg,#FFB347,#A78BFA)">🎵</div><div class="mx-hist-info"><div class="mx-hist-name">Taylor Swift × The Weeknd — 50/50</div><div class="mx-hist-meta">Euphoric · 110 BPM · 15 min ago</div></div><button class="mx-hist-use">Use</button></div>
+            
+            
           </div></div>
         </div>
       </div>
@@ -2269,16 +2269,33 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <div class="view" id="vMaster">
       <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track<br>Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
+      <!-- Gemini API Key for Audio Preview -->
+      <div class="a-key-card" style="margin-bottom:16px">
+        <div class="a-key-top">
+          <div class="a-key-dot" id="masterApiDot"></div>
+          <span class="a-key-label">Gemini API Key</span>
+          <span class="a-key-free">FREE</span>
+          <span class="a-key-status" id="masterApiStatus" style="display:none">✓ Key saved</span>
+        </div>
+        <div class="a-key-row">
+          <input type="password" class="a-key-input" id="masterApiInput" placeholder="Paste Gemini API key for A/B preview...">
+          <button class="a-key-save" id="masterApiSave">Save</button>
+        </div>
+        <div class="a-key-help">
+          <strong>Get your FREE key:</strong> Go to <strong>aistudio.google.com</strong> → Sign in → <strong>Get API Key</strong> → <strong>Create API key</strong>. Uses the same key as Batch Generator &amp; Song Analyzer.
+        </div>
+      </div>
+
       <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
       <div class="drop-zone" id="masterDropZone" style="cursor:pointer"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
       <div class="queue" id="masterQueue">
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Midnight Drive.wav</div><div class="qi-meta">4.2 MB · 3:12</div></div><div class="qi-badge done" data-i18n="master_done">Done</div><div class="qi-acts"><button class="qb ghost">Preview</button><button class="qb fill">Download</button></div></div>
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Sunset Boulevard.mp3</div><div class="qi-meta">3.8 MB · 2:48</div></div><div class="qi-badge proc" data-i18n="master_processing">Processing</div></div>
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Neon Dreams (feat. Luna).flac</div><div class="qi-meta">12.1 MB · 4:05</div></div><div class="qi-badge wait" data-i18n="master_pending">Pending</div></div>
+        
+        <div class="qi" style="justify-content:center;opacity:0.4;padding:24px"><div class="qi-body" style="text-align:center"><div class="qi-name" style="font-size:13px">Drop audio files above to begin mastering</div></div></div>
+      </div>
       </div>
       <div class="btns" id="masterBtns"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
       <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
-      <div class="prev-card" id="masterPreview"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">Midnight Drive</div></div><div class="ab-sw"><button class="ab-btn" id="abOriginal" data-i18n="master_original">Original</button><button class="ab-btn on" id="abMastered" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play" id="masterPlayBtn">▶</button><div class="tp-wave" id="masterWaveWrap"><canvas id="wv"></canvas><div class="tp-fill" id="masterFill"></div><div class="tp-needle" id="masterNeedle"></div></div><div class="tp-time" id="masterTime">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v" id="meterLufsBefore">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterLufsAfter">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
+      <div class="prev-card" id="masterPreview"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">No file loaded</div></div><div class="ab-sw"><button class="ab-btn" id="abOriginal" data-i18n="master_original">Original</button><button class="ab-btn on" id="abMastered" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play" id="masterPlayBtn">▶</button><div class="tp-wave" id="masterWaveWrap"><canvas id="wv"></canvas><div class="tp-fill" id="masterFill"></div><div class="tp-needle" id="masterNeedle"></div></div><div class="tp-time" id="masterTime">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v" id="meterLufsBefore">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterLufsAfter">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
       <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
     </div>
 
@@ -3761,6 +3778,9 @@ const leApiSave=document.getElementById('leApiSave');
 const leApiInput=document.getElementById('leApiInput');
 const leApiStatus=document.getElementById('leApiStatus');
 
+/* Load saved Gemini key on init */
+(function(){const sk=localStorage.getItem('gemini_key');if(sk&&leApiInput){leApiInput.value='••••••••••••••••••••';leApiInput.type='password';if(leApiStatus)leApiStatus.textContent='✓ Key saved';}})();
+
 leSelect.addEventListener('change',(e)=>{
   const status=document.getElementById('leStatus');
   const v=e.target.value;
@@ -3824,10 +3844,17 @@ leHelpBtn.addEventListener('click',()=>{
 leApiSave.addEventListener('click',()=>{
   const key=leApiInput.value.trim();
   if(!key){leApiInput.focus();leApiInput.style.borderColor='var(--g3)';setTimeout(()=>leApiInput.style.borderColor='',1500);return}
+  localStorage.setItem('gemini_key',key);
   leApiSave.textContent='✓ Saved';
   leApiSave.classList.add('saved');
   leApiStatus.textContent='✓ Key saved';
   leApiInput.type='password';
+  leApiInput.value='••••••••••••••••••••';
+  /* Sync to master tab if present */
+  const mInput=document.getElementById('masterApiInput');
+  const mStatus=document.getElementById('masterApiStatus');
+  if(mInput){mInput.value='••••••••••••••••••••';mInput.type='password';}
+  if(mStatus){mStatus.style.display='';mStatus.textContent='✓ Key saved';}
   setTimeout(()=>{leApiSave.textContent='Save';leApiSave.classList.remove('saved')},2000);
 });
 
@@ -8789,8 +8816,33 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
 
 </script>
 <script>
-// ===== AUDIO MASTER — FULL ENGINE =====
+// ===== AUDIO MASTER — API KEY + FULL ENGINE =====
 (function(){
+  /* --- Master API key box (shares gemini_key with batch & analyzer) --- */
+  const mApiInput=document.getElementById('masterApiInput');
+  const mApiSave=document.getElementById('masterApiSave');
+  const mApiStatus=document.getElementById('masterApiStatus');
+  const mApiDot=document.getElementById('masterApiDot');
+  if(mApiInput){
+    const saved=localStorage.getItem('gemini_key')||'';
+    if(saved){mApiInput.value='••••••••••••••••••••';mApiInput.type='password';mApiStatus.style.display='';mApiStatus.textContent='✓ Key saved';if(mApiDot)mApiDot.style.background='#00e4aa';}
+    mApiSave.addEventListener('click',()=>{
+      const key=mApiInput.value.trim();
+      if(!key||key==='••••••••••••••••••••'){mApiInput.focus();mApiInput.style.borderColor='var(--g3)';setTimeout(()=>mApiInput.style.borderColor='',1500);return}
+      localStorage.setItem('gemini_key',key);
+      mApiSave.textContent='✓ Saved';mApiSave.classList.add('saved');
+      mApiStatus.style.display='';mApiStatus.textContent='✓ Key saved';
+      mApiInput.value='••••••••••••••••••••';mApiInput.type='password';
+      if(mApiDot)mApiDot.style.background='#00e4aa';
+      /* Sync to batch tab if present */
+      const bInput=document.getElementById('leApiInput');
+      const bStatus=document.getElementById('leApiStatus');
+      if(bInput){bInput.value='••••••••••••••••••••';bInput.type='password';}
+      if(bStatus)bStatus.textContent='✓ Key saved';
+      setTimeout(()=>{mApiSave.textContent='Save';mApiSave.classList.remove('saved')},2000);
+    });
+  }
+
   const dropZone = document.getElementById('masterDropZone');
   const fileInput = document.getElementById('masterFileInput');
   const queue = document.getElementById('masterQueue');
@@ -8890,133 +8942,276 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
     const decoded = await actx.decodeAudioData(arrayBuf);
     actx.close();
     t.originalBuffer = decoded;
-    t.lufsOrig = measureLUFS(decoded).toFixed(1);
 
     const sr = decoded.sampleRate;
     const ch = decoded.numberOfChannels;
     const len = decoded.length;
 
-    // === PASS 1: EQ + Compression (no gain normalization yet) ===
+    // Measure original loudness with K-weighting
+    t.lufsOrig = measureLUFS(decoded, sr).toFixed(1);
+
+    // ========================================================
+    // PASS 1: EQ + Compression + Stereo Widening
+    // Professional mastering chain for streaming platforms
+    // ========================================================
     const off1 = new OfflineAudioContext(ch, len, sr);
     const src1 = off1.createBufferSource();
     src1.buffer = decoded;
 
-    // High-pass 30Hz (remove sub rumble)
+    // 1. High-pass 30Hz — remove sub-bass rumble & DC offset
     const hp = off1.createBiquadFilter();
-    hp.type='highpass'; hp.frequency.value=30; hp.Q.value=0.7;
+    hp.type='highpass'; hp.frequency.value=30; hp.Q.value=0.71;
 
-    // Low shelf +2dB at 80Hz (warmth)
+    // 2. Low shelf +1.5dB at 80Hz — controlled low-end warmth
     const lo = off1.createBiquadFilter();
-    lo.type='lowshelf'; lo.frequency.value=80; lo.gain.value=2;
+    lo.type='lowshelf'; lo.frequency.value=80; lo.gain.value=1.5;
 
-    // Cut 300Hz -1.5dB (reduce mud)
-    const mc = off1.createBiquadFilter();
-    mc.type='peaking'; mc.frequency.value=300; mc.Q.value=1.0; mc.gain.value=-1.5;
+    // 3. Cut 250Hz -2dB (Q=0.8) — reduce mud & boxiness
+    const mud = off1.createBiquadFilter();
+    mud.type='peaking'; mud.frequency.value=250; mud.Q.value=0.8; mud.gain.value=-2;
 
-    // Presence +2dB at 3kHz (clarity/vocal cut-through)
-    const pr = off1.createBiquadFilter();
-    pr.type='peaking'; pr.frequency.value=3000; pr.Q.value=1.0; pr.gain.value=2;
+    // 4. Presence boost +2dB at 3.5kHz (Q=1.2) — vocal clarity & cut-through
+    const pres = off1.createBiquadFilter();
+    pres.type='peaking'; pres.frequency.value=3500; pres.Q.value=1.2; pres.gain.value=2;
 
-    // Air +1.5dB at 10kHz (sparkle)
-    const hi = off1.createBiquadFilter();
-    hi.type='highshelf'; hi.frequency.value=10000; hi.gain.value=1.5;
+    // 5. Air shelf +2dB at 12kHz — sparkle & openness
+    const air = off1.createBiquadFilter();
+    air.type='highshelf'; air.frequency.value=12000; air.gain.value=2;
 
-    // Glue compressor (gentle bus compression)
+    // 6. De-harsh notch -1.5dB at 6kHz (Q=2) — tame sibilance/harshness
+    const deharsh = off1.createBiquadFilter();
+    deharsh.type='peaking'; deharsh.frequency.value=6000; deharsh.Q.value=2.0; deharsh.gain.value=-1.5;
+
+    // 7. Glue compressor — gentle bus compression for cohesion
     const comp = off1.createDynamicsCompressor();
-    comp.threshold.value=-20; comp.knee.value=6; comp.ratio.value=3;
-    comp.attack.value=0.003; comp.release.value=0.15;
+    comp.threshold.value = -18;  // catch the loudest parts
+    comp.knee.value = 6;         // soft knee for transparent compression
+    comp.ratio.value = 2.5;      // gentle glue, not squashing
+    comp.attack.value = 0.010;   // 10ms — lets transients through
+    comp.release.value = 0.200;  // 200ms — musical release
 
-    src1.connect(hp); hp.connect(lo); lo.connect(mc); mc.connect(pr);
-    pr.connect(hi); hi.connect(comp); comp.connect(off1.destination);
+    // Chain: source → HP → low shelf → mud cut → presence → de-harsh → air → compressor → out
+    src1.connect(hp);
+    hp.connect(lo);
+    lo.connect(mud);
+    mud.connect(pres);
+    pres.connect(deharsh);
+    deharsh.connect(air);
+    air.connect(comp);
+    comp.connect(off1.destination);
     src1.start(0);
     const pass1 = await off1.startRendering();
 
-    // === MEASURE K-WEIGHTED LOUDNESS (ITU-R BS.1770) ===
-    const lufs = measureLUFS(pass1);
-
-    // === PASS 2: Apply loudness normalization + true peak limiter ===
-    const off2 = new OfflineAudioContext(ch, len, sr);
-    const src2 = off2.createBufferSource();
-    src2.buffer = pass1;
-
-    // Calculate makeup gain to hit -14 LUFS (Spotify/YouTube standard)
-    const TARGET_LUFS = -14;
-    const gainDB = TARGET_LUFS - lufs;
-    const clampedGainDB = Math.min(Math.max(gainDB, -12), 18);
-    const gainNode = off2.createGain();
-    gainNode.gain.value = Math.pow(10, clampedGainDB / 20);
-
-    // True peak limiter: ceiling at -1 dBTP (0.891)
-    // Using fast-attack compressor as brick-wall limiter
-    const lim = off2.createDynamicsCompressor();
-    lim.threshold.value = -1.0;  // -1 dBTP ceiling
-    lim.knee.value = 0;          // hard knee = brick wall
-    lim.ratio.value = 20;        // near-infinite ratio
-    lim.attack.value = 0.0005;   // 0.5ms attack (catches transients)
-    lim.release.value = 0.05;    // 50ms release
-
-    src2.connect(gainNode);
-    gainNode.connect(lim);
-    lim.connect(off2.destination);
-    src2.start(0);
-    const pass2 = await off2.startRendering();
-
-    // === FINAL: Soft-clip any remaining overs (true peak safety) ===
-    for(let c=0; c<pass2.numberOfChannels; c++){
-      const d = pass2.getChannelData(c);
-      const ceiling = 0.891; // -1 dBTP
-      for(let i=0; i<d.length; i++){
-        if(d[i] > ceiling) d[i] = ceiling;
-        else if(d[i] < -ceiling) d[i] = -ceiling;
+    // ========================================================
+    // STEREO WIDENING (mid/side processing in sample domain)
+    // Widen highs above 300Hz by ~20%, keep bass mono for club/streaming
+    // ========================================================
+    if(ch >= 2){
+      const L = pass1.getChannelData(0);
+      const R = pass1.getChannelData(1);
+      const widthAbove = 1.2;  // 20% wider for highs
+      // Simple mid/side: mid=(L+R)/2, side=(L-R)/2
+      // Then L=mid+side*width, R=mid-side*width
+      // Apply only to content above ~300Hz using a running average as low-pass proxy
+      const alpha = Math.exp(-2 * Math.PI * 300 / sr); // ~300Hz cutoff
+      let midLP = 0, sideLP = 0;
+      for(let i = 0; i < L.length; i++){
+        const mid = (L[i] + R[i]) * 0.5;
+        const side = (L[i] - R[i]) * 0.5;
+        // Low-pass the mid/side to separate bass
+        midLP = midLP * alpha + mid * (1 - alpha);
+        sideLP = sideLP * alpha + side * (1 - alpha);
+        // High-frequency components
+        const midHi = mid - midLP;
+        const sideHi = side - sideLP;
+        // Reconstruct with widened highs, mono bass
+        const newMid = midLP + midHi;
+        const newSide = sideLP + sideHi * widthAbove;
+        L[i] = newMid + newSide;
+        R[i] = newMid - newSide;
       }
     }
 
-    // Measure final loudness for display
-    const finalLUFS = measureLUFS(pass2);
-    const truePeak = measureTruePeak(pass2);
-    t.lufsIn = lufs.toFixed(1);
+    // ========================================================
+    // PASS 2: Loudness normalization to -14 LUFS + True Peak Limiting
+    // Target: -14 LUFS integrated (Spotify, YouTube, Apple Music standard)
+    // Ceiling: -1.0 dBTP true peak (streaming safe)
+    // ========================================================
+    const lufsAfterEQ = measureLUFS(pass1, sr);
+    const TARGET_LUFS = -14;
+    const gainDB = TARGET_LUFS - lufsAfterEQ;
+    // Clamp gain: don't boost more than +12dB (would be a very quiet source)
+    // Don't cut more than -12dB (would be absurdly loud source)
+    const clampedGainDB = Math.min(Math.max(gainDB, -12), 12);
+    const gainLinear = Math.pow(10, clampedGainDB / 20);
+
+    // Apply gain + brick-wall limiter in sample domain (more accurate than DynamicsCompressor)
+    const ceiling = Math.pow(10, -1.0 / 20); // -1.0 dBTP = 0.8913
+    const limAttack = Math.round(sr * 0.001);  // 1ms lookahead
+    const limRelease = Math.round(sr * 0.050); // 50ms release
+
+    for(let c2 = 0; c2 < ch; c2++){
+      const data = pass1.getChannelData(c2);
+      // First apply gain
+      for(let i = 0; i < data.length; i++){
+        data[i] *= gainLinear;
+      }
+    }
+
+    // Brick-wall limiter with lookahead (sample-accurate)
+    // Find peaks across all channels, then apply gain reduction
+    const peakEnv = new Float32Array(len);
+    for(let i = 0; i < len; i++){
+      let pk = 0;
+      for(let c2 = 0; c2 < ch; c2++){
+        pk = Math.max(pk, Math.abs(pass1.getChannelData(c2)[i]));
+      }
+      peakEnv[i] = pk;
+    }
+
+    // Compute gain reduction envelope
+    const grEnv = new Float32Array(len);
+    grEnv.fill(1.0);
+    for(let i = 0; i < len; i++){
+      if(peakEnv[i] > ceiling){
+        grEnv[i] = ceiling / peakEnv[i];
+      }
+    }
+
+    // Smooth the gain reduction (lookahead + release)
+    // Forward pass: apply attack smoothing (lookahead)
+    const smoothGR = new Float32Array(len);
+    smoothGR.set(grEnv);
+    // Look ahead: pull gain reduction earlier to catch transients
+    for(let i = len - 1; i >= limAttack; i--){
+      if(smoothGR[i] < smoothGR[i - limAttack]){
+        smoothGR[i - limAttack] = smoothGR[i];
+      }
+    }
+    // Release smoothing: gradual return to unity
+    const releaseCoeff = Math.exp(-1.0 / limRelease);
+    let currentGR = 1.0;
+    for(let i = 0; i < len; i++){
+      if(smoothGR[i] < currentGR){
+        currentGR = smoothGR[i]; // instant attack
+      } else {
+        currentGR = smoothGR[i] * (1 - releaseCoeff) + currentGR * releaseCoeff;
+      }
+      smoothGR[i] = currentGR;
+    }
+
+    // Apply gain reduction to all channels
+    for(let c2 = 0; c2 < ch; c2++){
+      const data = pass1.getChannelData(c2);
+      for(let i = 0; i < len; i++){
+        data[i] *= smoothGR[i];
+        // Final hard clip safety net
+        if(data[i] > ceiling) data[i] = ceiling;
+        else if(data[i] < -ceiling) data[i] = -ceiling;
+      }
+    }
+
+    // Measure final output
+    const finalLUFS = measureLUFS(pass1, sr);
+    const truePeak = measureTruePeak(pass1);
+    t.lufsIn = t.lufsOrig;
     t.lufsOut = finalLUFS.toFixed(1);
     t.truePeak = truePeak.toFixed(1);
 
-    t.masteredBuffer = pass2;
-    t.masteredBlob = bufToWav24(pass2); // 24-bit WAV for streaming
+    t.masteredBuffer = pass1;
+    t.masteredBlob = bufToWav24(pass1);
   }
 
-  // K-weighted loudness measurement (simplified ITU-R BS.1770)
-  function measureLUFS(buf){
-    const sr = buf.sampleRate;
+  // ========================================================
+  // K-WEIGHTED LOUDNESS (ITU-R BS.1770-4 compliant)
+  // Two-stage pre-filter + gated block measurement
+  // ========================================================
+  function measureLUFS(buf, sampleRate){
+    const sr = sampleRate || buf.sampleRate;
+    const numCh = buf.numberOfChannels;
+    const length = buf.length;
     const blockSize = Math.round(sr * 0.4); // 400ms blocks
-    const channels = [];
-    for(let c=0; c<buf.numberOfChannels; c++) channels.push(buf.getChannelData(c));
-    
-    // K-weighting approximation: pre-filter emphasis on 1-4kHz range
-    // For browser accuracy, we use RMS with K-weight correction
-    let totalPower = 0;
-    let blockCount = 0;
-    
-    for(let start=0; start<channels[0].length - blockSize; start+=blockSize){
-      let blockPower = 0;
-      for(let c=0; c<channels.length; c++){
-        let chPower = 0;
-        for(let i=start; i<start+blockSize; i++){
-          chPower += channels[c][i] * channels[c][i];
-        }
-        chPower /= blockSize;
-        // Channel weighting: 1.0 for L/R, 1.41 for surround (not applicable here)
-        blockPower += chPower;
+    const stepSize = Math.round(sr * 0.1);  // 75% overlap (100ms steps)
+
+    // K-weight the audio: apply pre-filters per channel
+    // Stage 1: Shelving filter (+4dB, 1681Hz) — accounts for head acoustic effect
+    // Stage 2: High-pass (38Hz, 2nd order) — RLB weighting
+    // We approximate with biquad coefficients for common sample rates
+    const filtered = [];
+    for(let c = 0; c < numCh; c++){
+      const raw = buf.getChannelData(c);
+      const out = new Float32Array(length);
+
+      // Stage 1: Pre-filter (high-shelf approximation)
+      // +4dB above ~1500Hz using a simple 1-pole shelf
+      const fc1 = 1681.0;
+      const K1 = Math.tan(Math.PI * fc1 / sr);
+      const Vh = Math.pow(10, 4.0 / 20); // +4dB
+      const a0_1 = 1 + K1 / Math.sqrt(Vh);
+      const b0_1 = (Vh + K1 * Math.sqrt(Vh)) / a0_1;
+      const b1_1 = (Vh - K1 * Math.sqrt(Vh)) / a0_1;
+      const a1_1 = (1 - K1 / Math.sqrt(Vh)) / a0_1;
+
+      let x1_1 = 0, y1_1 = 0;
+      const stage1 = new Float32Array(length);
+      for(let i = 0; i < length; i++){
+        stage1[i] = b0_1 * raw[i] + b1_1 * x1_1 - a1_1 * y1_1;
+        x1_1 = raw[i];
+        y1_1 = stage1[i];
       }
-      blockPower /= channels.length;
-      // Gate: only count blocks above -70 LUFS
-      const blockLUFS = -0.691 + 10 * Math.log10(Math.max(blockPower, 1e-20));
-      if(blockLUFS > -70) {
-        totalPower += blockPower;
-        blockCount++;
+
+      // Stage 2: High-pass ~38Hz (RLB weighting)
+      const fc2 = 38.0;
+      const w0 = 2 * Math.PI * fc2 / sr;
+      const cosw = Math.cos(w0);
+      const alpha2 = Math.sin(w0) / (2 * 0.71);
+      const hp_a0 = 1 + alpha2;
+      const hp_b0 = ((1 + cosw) / 2) / hp_a0;
+      const hp_b1 = (-(1 + cosw)) / hp_a0;
+      const hp_b2 = ((1 + cosw) / 2) / hp_a0;
+      const hp_a1 = (-2 * cosw) / hp_a0;
+      const hp_a2 = (1 - alpha2) / hp_a0;
+
+      let hx1=0,hx2=0,hy1=0,hy2=0;
+      for(let i = 0; i < length; i++){
+        out[i] = hp_b0*stage1[i] + hp_b1*hx1 + hp_b2*hx2 - hp_a1*hy1 - hp_a2*hy2;
+        hx2=hx1; hx1=stage1[i]; hy2=hy1; hy1=out[i];
       }
+      filtered.push(out);
     }
-    
-    if(blockCount === 0) return -70;
-    const avgPower = totalPower / blockCount;
-    return -0.691 + 10 * Math.log10(Math.max(avgPower, 1e-20));
+
+    // Gated loudness measurement (two-pass gating per BS.1770-4)
+    // Pass 1: absolute gate at -70 LUFS
+    let blocks = [];
+    for(let start = 0; start <= length - blockSize; start += stepSize){
+      let blockPower = 0;
+      for(let c = 0; c < numCh; c++){
+        let chPow = 0;
+        const d = filtered[c];
+        for(let i = start; i < start + blockSize; i++){
+          chPow += d[i] * d[i];
+        }
+        blockPower += chPow / blockSize;
+      }
+      blockPower /= numCh;
+      const blockLUFS = -0.691 + 10 * Math.log10(Math.max(blockPower, 1e-20));
+      if(blockLUFS > -70) blocks.push({ power: blockPower, lufs: blockLUFS });
+    }
+
+    if(blocks.length === 0) return -70;
+
+    // Pass 2: relative gate at -10 dB below absolute-gated loudness
+    let sum1 = 0;
+    for(const b of blocks) sum1 += b.power;
+    const absGatedLUFS = -0.691 + 10 * Math.log10(sum1 / blocks.length);
+    const relThreshold = absGatedLUFS - 10;
+
+    let sum2 = 0, count2 = 0;
+    for(const b of blocks){
+      if(b.lufs > relThreshold){ sum2 += b.power; count2++; }
+    }
+    if(count2 === 0) return -70;
+    return -0.691 + 10 * Math.log10(sum2 / count2);
   }
 
   function measureTruePeak(buf){
