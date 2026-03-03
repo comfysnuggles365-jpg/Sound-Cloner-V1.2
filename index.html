@@ -1886,7 +1886,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
         <div class="bx">
           <div class="bx-t" data-i18n="batch_style_prompt">Style Prompt</div>
           <textarea class="bx-ta" data-i18n-ph="batch_style_placeholder" placeholder="e.g. Ethereal lo-fi R&B with whispered vocals, soft 808s, ambient pads, and reverb-drenched melodies..."></textarea>
-          <div style="display:flex;gap:8px;align-items:center"><button class="paste-btn" id="pasteBtn" data-i18n="batch_paste">📋 Paste from Clipboard</button><button class="paste-btn" id="quickGenBtn" style="background:var(--grad-main);color:#fff;border-color:transparent;margin-left:8px" title="Generate Batch">⚡ Generate</button></div>
+          <button class="paste-btn" id="pasteBtn" data-i18n="batch_paste">📋 Paste from Clipboard</button><button class="paste-btn" id="quickGenBtn" style="background:var(--grad-main);color:#fff;border-color:transparent;margin-left:8px" title="Generate Batch">⚡ Generate</button>
         </div>
         <div class="bx"><div class="bx-t" data-i18n="batch_songs_count">🎵 Songs to Generate</div><div class="cnt-row"><button class="cnt on">5</button><button class="cnt">10</button><button class="cnt">15</button><button class="cnt">20</button><button class="cnt">50</button></div></div>
 
@@ -7624,14 +7624,7 @@ function showLangToast(langName){
 // ============================================================
 (function(){
   // Build mixer items from ART data + blueprints
-  const MX_BLUEPRINTS=[
-    {id:'bp_trap',n:'Trap Anthem',g:'Hip-Hop',c:'#3e3e55',c2:'#28283a',b:145,m:['aggressive','stadium'],p:'Trap beat, heavy 808 bass, hi-hat rolls, dark synth pads, aggressive vocal delivery, stadium anthem energy, hard-hitting drums, sliding bass glides'},
-    {id:'bp_lofi',n:'Lo-Fi Boom Bap',g:'Hip-Hop',c:'#3e3e55',c2:'#28283a',b:90,m:['chill','jazzy'],p:'Lo-fi boom bap, dusty vinyl samples, jazz piano chops, mellow bass, crispy snare, golden era hip-hop, head-nodding groove'},
-    {id:'bp_melodic',n:'Melodic Rap',g:'Hip-Hop',c:'#3e3e55',c2:'#28283a',b:82,m:['emotional','dreamy'],p:'Melodic rap, emotional autotune vocals, lush synth pads, soft 808, reverb-heavy, introspective, late night atmosphere'},
-    {id:'bp_drill',n:'UK Drill',g:'Hip-Hop',c:'#3e3e55',c2:'#28283a',b:140,m:['dark','menacing'],p:'UK drill, sliding 808 bass, eerie piano melodies, bouncing hi-hats, dark menacing atmosphere, precise flow'},
-    {id:'bp_synth',n:'Synthwave Pop',g:'Pop',c:'#3e3e55',c2:'#28283a',b:118,m:['retro','euphoric'],p:'80s synthwave with pulsing arpeggios, gated reverb drums, neon-lit atmosphere, soaring vocal hooks, analog warmth, retro-futuristic production'},
-    {id:'bp_soul',n:'Neo-Soul',g:'R&B',c:'#3e3e55',c2:'#28283a',b:78,m:['warm','organic'],p:'Neo-soul with warm Rhodes piano, organic live drums, deep bass grooves, lush vocal harmonies, jazz-influenced chord changes, intimate laid-back feel'},
-  ];
+  const MX_BLUEPRINTS=BP_DATA.map(b=>({id:b.n.toLowerCase().replace(/[^a-z]/g,""),n:b.n,g:b.g,c:b.c||"#3e3e55",c2:b.c2||"#28283a",b:b.b,m:b.m,p:b.p}));
   const mxArtists=ART.map(a=>({id:a.n.toLowerCase().replace(/[^a-z]/g,''),n:a.n,g:a.g,c:a.c,c2:a.c2,b:a.b,m:a.m,p:a.p,type:'artist'}));
   const mxBps=MX_BLUEPRINTS.map(b=>({...b,type:'blueprint'}));
   const mxAll=[...mxArtists,...mxBps];
