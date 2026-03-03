@@ -105,28 +105,31 @@ header::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:
 }
 
 /* Nav */
-nav{display:flex;gap:2px;background:linear-gradient(180deg,rgba(10,10,18,0.98),rgba(6,6,14,0.99));border-radius:14px;padding:3px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(20px);box-shadow:0 4px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.04);flex:1;min-width:0;overflow:hidden}
+/* Nav — scrollable pill bar */
+nav{display:flex;gap:6px;padding:6px 8px;flex:1;min-width:0;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+nav::-webkit-scrollbar{display:none}
 nav button{
-  padding:8px 6px;font-family:var(--display);font-size:10.5px;font-weight:600;
-  color:rgba(255,255,255,0.4);cursor:pointer;border-radius:10px;border:1px solid transparent;background:transparent;
-  transition:all 0.35s var(--smooth);display:flex;align-items:center;gap:4px;
-  letter-spacing:-0.01em;position:relative;white-space:nowrap;flex:1 1 0;justify-content:center;overflow:hidden;min-width:0;
+  padding:7px 14px;font-family:var(--display);font-size:11px;font-weight:600;
+  color:rgba(255,255,255,0.5);cursor:pointer;border-radius:10px;border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.03);
+  transition:all 0.3s var(--smooth);display:flex;align-items:center;gap:5px;
+  letter-spacing:-0.01em;position:relative;white-space:nowrap;flex-shrink:0;
 }
-.nav-ico{font-size:13px;display:inline-flex;transition:all 0.35s var(--smooth);filter:saturate(0.6);flex-shrink:0}
+.nav-ico{font-size:14px;display:inline-flex;transition:all 0.3s var(--smooth);flex-shrink:0}
 nav button:hover{
-  color:rgba(255,255,255,0.85);
-  background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));
-  border-color:rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.9);
+  background:rgba(255,255,255,0.07);
+  border-color:rgba(255,255,255,0.1);
 }
-nav button:hover .nav-ico{filter:saturate(1);transform:scale(1.1)}
+nav button:hover .nav-ico{transform:scale(1.15)}
 nav button.on{
   color:#fff;font-weight:700;
-  background:linear-gradient(135deg,rgba(124,92,252,0.14),rgba(0,228,170,0.06),rgba(124,92,252,0.08));
-  border:1px solid rgba(124,92,252,0.22);
-  box-shadow:0 0 24px rgba(124,92,252,0.1),0 2px 12px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.08);
+  background:linear-gradient(135deg,rgba(124,92,252,0.18),rgba(0,228,170,0.1));
+  border:1px solid rgba(124,92,252,0.3);
+  box-shadow:0 0 20px rgba(124,92,252,0.12),0 2px 8px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.08);
 }
-nav button.on .nav-ico{filter:saturate(1.2) brightness(1.15) drop-shadow(0 0 6px rgba(124,92,252,0.4));transform:scale(1.05)}
-nav button.on::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2px;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:2px;box-shadow:0 0 8px rgba(0,228,170,0.3)}
+nav button.on .nav-ico{filter:brightness(1.2) drop-shadow(0 0 6px rgba(124,92,252,0.5));transform:scale(1.1)}
+nav button.on::after{content:'';position:absolute;bottom:-1px;left:8px;right:8px;height:2px;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:2px;box-shadow:0 0 8px rgba(0,228,170,0.4)}
 nav button:active{transform:scale(0.97)}
 nav button{animation:navSlide .45s var(--smooth) both}
 nav button:nth-child(1){animation-delay:.02s}
@@ -139,14 +142,15 @@ nav button:nth-child(7){animation-delay:.14s}
 nav button:nth-child(8){animation-delay:.16s}
 nav button:nth-child(9){animation-delay:.18s}
 nav button:nth-child(10){animation-delay:.2s}
+nav button:nth-child(11){animation-delay:.22s}
 @keyframes navSlide{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.nav-count{font-family:var(--mono);font-size:8px;font-weight:800;color:var(--g2);padding:1px 5px;background:rgba(0,228,170,0.1);border-radius:6px;letter-spacing:0.02em;margin-left:1px}
+.nav-count{font-family:var(--mono);font-size:8px;font-weight:800;color:var(--g2);padding:1px 5px;background:rgba(0,228,170,0.12);border-radius:6px;letter-spacing:0.02em;margin-left:2px}
 
 /* Nav light mode overrides — must come AFTER base nav styles */
-:root.light nav{background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(245,243,240,0.98))!important;border-color:rgba(0,0,0,0.08)!important;box-shadow:0 4px 24px rgba(0,0,0,0.06),inset 0 1px 0 rgba(255,255,255,0.8)!important}
-:root.light nav button{color:rgba(0,0,0,0.4)!important}
-:root.light nav button:hover{color:rgba(0,0,0,0.75)!important;background:linear-gradient(135deg,rgba(0,0,0,0.03),rgba(0,0,0,0.01))!important;border-color:rgba(0,0,0,0.06)!important}
-:root.light nav button.on{color:#111!important;background:linear-gradient(135deg,rgba(98,68,224,0.08),rgba(0,168,136,0.05),rgba(98,68,224,0.04))!important;border-color:rgba(98,68,224,0.18)!important;box-shadow:0 0 16px rgba(98,68,224,0.06),0 2px 8px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.6)!important}
+:root.light nav{background:transparent!important}
+:root.light nav button{color:rgba(0,0,0,0.45)!important;background:rgba(0,0,0,0.03)!important;border-color:rgba(0,0,0,0.06)!important}
+:root.light nav button:hover{color:rgba(0,0,0,0.8)!important;background:rgba(0,0,0,0.06)!important;border-color:rgba(0,0,0,0.1)!important}
+:root.light nav button.on{color:#111!important;background:linear-gradient(135deg,rgba(98,68,224,0.1),rgba(0,168,136,0.06))!important;border-color:rgba(98,68,224,0.2)!important;box-shadow:0 0 16px rgba(98,68,224,0.08),0 2px 8px rgba(0,0,0,0.05),inset 0 1px 0 rgba(255,255,255,0.7)!important}
 :root.light nav button.on .nav-ico{filter:saturate(1.2) brightness(0.95)!important}
 :root.light header::after{background:rgba(0,0,0,0.06)!important}
 
@@ -1666,6 +1670,13 @@ header{animation:bootUp .4s var(--expo) .05s both}
 :root.light .guide-tip-purple{background:rgba(139,92,246,0.06)}
 :root.light .guide-tip-orange{background:rgba(251,146,60,0.06)}
 /* Guide mockups */
+.mst-waves{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.mst-wave-col{background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:12px;overflow:hidden}
+.mst-wave-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:6px}
+.mst-wave-label-g{color:var(--g1)}
+.mst-wave-col canvas{width:100%;height:80px;display:block;border-radius:6px;background:var(--bg3)}
+.mst-wave-lufs{font-family:var(--mono);font-size:1.1rem;font-weight:800;margin-top:8px;color:var(--t2)}
+.mst-wave-lufs-g{color:var(--g1)}
 .guide-mock{background:var(--bg2);border:1px solid var(--b1);border-radius:12px;overflow:hidden;margin:0 0 16px}
 .guide-mock-bar{display:flex;align-items:center;gap:7px;padding:8px 14px;background:var(--bg3);border-bottom:1px solid var(--b1)}
 .guide-mock-dot{width:8px;height:8px;border-radius:50%}
@@ -2264,16 +2275,33 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <div class="view" id="vMaster">
       <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track<br>Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
-      <div class="drop-zone"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
-      <div class="queue">
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Midnight Drive.wav</div><div class="qi-meta">4.2 MB · 3:12</div></div><div class="qi-badge done" data-i18n="master_done">Done</div><div class="qi-acts"><button class="qb ghost">Preview</button><button class="qb fill">Download</button></div></div>
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Sunset Boulevard.mp3</div><div class="qi-meta">3.8 MB · 2:48</div></div><div class="qi-badge proc" data-i18n="master_processing">Processing</div></div>
-        <div class="qi"><div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">Neon Dreams (feat. Luna).flac</div><div class="qi-meta">12.1 MB · 4:05</div></div><div class="qi-badge wait" data-i18n="master_pending">Pending</div></div>
+      <div class="drop-zone" id="masterDrop"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div><input type="file" id="masterFileInput" multiple accept="audio/*" style="display:none"></div>
+      <div class="queue" id="masterQueue"></div>
+      <div class="btns" id="masterBtns" style="display:none"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
+      <div class="prev-card" id="masterPreview" style="display:none">
+        <div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPrevName"></div></div>
+        <div class="mst-waves">
+          <div class="mst-wave-col">
+            <div class="mst-wave-label">Original</div>
+            <canvas id="waveOrigCanvas" height="80"></canvas>
+            <div class="mst-wave-lufs" id="waveOrigLufs"></div>
+          </div>
+          <div class="mst-wave-col">
+            <div class="mst-wave-label mst-wave-label-g">Mastered</div>
+            <canvas id="waveMastCanvas" height="80"></canvas>
+            <div class="mst-wave-lufs mst-wave-lufs-g" id="waveMastLufs"></div>
+          </div>
+        </div>
+        <div class="ab-sw"><button class="ab-btn on" id="abOrigBtn" data-i18n="master_original">Original</button><button class="ab-btn" id="abMastBtn" data-i18n="master_mastered">Mastered</button></div>
+        <div class="tp"><button class="tp-play" id="masterPlayBtn">&#9654;</button><div class="tp-wave" id="masterWaveWrap"><div class="tp-fill" id="masterFill"></div></div><div class="tp-time" id="masterTime">0:00 / 0:00</div></div>
+        <div class="meters">
+          <div class="meter"><div class="meter-v" id="meterBefore">&mdash;</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div>
+          <div class="meter"><div class="meter-v" id="meterAfter">&mdash;</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div>
+          <div class="meter"><div class="meter-v" id="meterPeak">&mdash;</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div>
+          <div class="meter"><div class="meter-v" id="meterGain">&mdash;</div><div class="meter-l">Gain dB</div></div>
+        </div>
       </div>
-      <div class="btns"><button class="btn-main" data-i18n="master_all">Master All</button><button class="btn-sec" data-i18n="master_clear">Clear</button></div>
-      <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
-      <div class="prev-card"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name">Midnight Drive</div></div><div class="ab-sw"><button class="ab-btn" data-i18n="master_original">Original</button><button class="ab-btn on" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play">▶</button><div class="tp-wave"><canvas id="wv"></canvas><div class="tp-fill"></div><div class="tp-needle"></div></div><div class="tp-time">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
-      <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
+      <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube.<br>Chain: 30Hz high-pass → 7-band EQ → glue compression → 3-band multiband compression → mid saturation → M/S stereo widening → iterative loudness targeting → true peak limiter (-0.3 dBTP) → TPDF dithered 24-bit WAV.</div>
     </div>
 
     <!-- ═══════════ GUIDE TAB ═══════════ -->
@@ -8530,6 +8558,339 @@ ytRenderHistory();
     window._scRerenderBatch();
   };
 })();
+
+/* ═══════════ AUDIO MASTER ENGINE v3 — Pro ═══════════ */
+(function(){
+const masterFiles=[];
+let masterCtx=null,currentSource=null,isPlaying=false,playingAB='original',previewIdx=-1,rafId=null,playStart=0;
+
+function fmt(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
+function fmtSize(b){return b>1048576?(b/1048576).toFixed(1)+' MB':(b/1024).toFixed(0)+' KB'}
+
+/* ── Measurement ── */
+function calcLUFS(buf){
+  // ITU-R BS.1770 simplified — K-weighted RMS
+  let sum=0,count=0;
+  for(let c=0;c<buf.numberOfChannels;c++){
+    const d=buf.getChannelData(c);
+    // Channel weight: L/R=1.0 (simplified, no surround)
+    for(let i=0;i<d.length;i++){sum+=d[i]*d[i];count++}
+  }
+  const rms=Math.sqrt(sum/count);
+  return rms>0?-0.691+10*Math.log10(rms*rms):-70;
+}
+function peakDBTP(buf){
+  let peak=0;
+  for(let c=0;c<buf.numberOfChannels;c++){
+    const d=buf.getChannelData(c);
+    for(let i=0;i<d.length;i++){const a=Math.abs(d[i]);if(a>peak)peak=a}
+  }
+  return peak>0?20*Math.log10(peak):-120;
+}
+function getRMS(data,start,end){
+  let sum=0;for(let i=start;i<end;i++)sum+=data[i]*data[i];
+  return Math.sqrt(sum/(end-start));
+}
+
+/* ── Waveform Drawing ── */
+function drawWaveform(canvas,buf,color,fillColor){
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const w=canvas.clientWidth,h=canvas.clientHeight;
+  canvas.width=w*dpr;canvas.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+  const data=buf.getChannelData(0);const step=Math.ceil(data.length/w);const mid=h/2;
+  // Filled outer envelope
+  ctx.beginPath();ctx.moveTo(0,mid);
+  for(let i=0;i<w;i++){let mn=1,mx=-1;for(let j=0;j<step;j++){const idx=i*step+j;if(idx<data.length){const v=data[idx];if(v<mn)mn=v;if(v>mx)mx=v}}ctx.lineTo(i,mid-mx*(mid-2))}
+  for(let i=w-1;i>=0;i--){let mn=1;for(let j=0;j<step;j++){const idx=i*step+j;if(idx<data.length){const v=data[idx];if(v<mn)mn=v}}ctx.lineTo(i,mid-mn*(mid-2))}
+  ctx.closePath();ctx.fillStyle=fillColor;ctx.fill();
+  // RMS center
+  ctx.beginPath();
+  for(let i=0;i<w;i++){let rms=0;for(let j=0;j<step;j++){const idx=i*step+j;if(idx<data.length)rms+=data[idx]*data[idx]}rms=Math.sqrt(rms/step);ctx.moveTo(i,mid-rms*(mid-2));ctx.lineTo(i,mid+rms*(mid-2))}
+  ctx.strokeStyle=color;ctx.lineWidth=1.2;ctx.stroke();
+}
+
+/* ── DSP Utilities (sample-level) ── */
+
+// True peak limiter with 1ms lookahead
+function truePeakLimit(channelData, ceiling, sampleRate){
+  const lookahead=Math.round(sampleRate*0.001); // 1ms
+  const release=Math.round(sampleRate*0.05); // 50ms release
+  const data=channelData;
+  const len=data.length;
+  const gainReduction=new Float32Array(len);
+  gainReduction.fill(1);
+  // Find peaks and calculate gain reduction needed
+  for(let i=0;i<len;i++){
+    const absVal=Math.abs(data[i]);
+    if(absVal>ceiling){
+      const gr=ceiling/absVal;
+      // Apply lookahead — reduce gain BEFORE the peak
+      const start=Math.max(0,i-lookahead);
+      for(let j=start;j<=i;j++){
+        if(gr<gainReduction[j])gainReduction[j]=gr;
+      }
+    }
+  }
+  // Smooth the gain reduction (release)
+  for(let i=1;i<len;i++){
+    const releaseCoeff=1-Math.exp(-1/(release));
+    gainReduction[i]=Math.min(gainReduction[i],gainReduction[i-1]+(1-gainReduction[i-1])*releaseCoeff);
+  }
+  for(let i=0;i<len;i++)data[i]*=gainReduction[i];
+}
+
+// Soft-knee saturation (analog warmth)
+function saturate(data, drive){
+  const d=drive; // 1.0=clean, 2.0=warm, 3.0=hot
+  for(let i=0;i<data.length;i++){
+    let x=data[i]*d;
+    // Hyperbolic tangent soft-clip
+    data[i]=Math.tanh(x)/Math.tanh(d);
+  }
+}
+
+// 3-band split using Linkwitz-Riley crossover concept (sample-level)
+function splitBands(monoData, sr){
+  const len=monoData.length;
+  const lo=new Float32Array(len);
+  const mid=new Float32Array(len);
+  const hi=new Float32Array(len);
+  // 2nd-order Butterworth cascade (LR4-like) at 200Hz and 3500Hz
+  function makeLPCoeffs(fc,sr){const w=Math.tan(Math.PI*fc/sr);const w2=w*w;const r=Math.SQRT2;const a0=1+r*w+w2;return{b0:w2/a0,b1:2*w2/a0,b2:w2/a0,a1:2*(w2-1)/a0,a2:(1-r*w+w2)/a0}}
+  function makeHPCoeffs(fc,sr){const w=Math.tan(Math.PI*fc/sr);const w2=w*w;const r=Math.SQRT2;const a0=1+r*w+w2;return{b0:1/a0,b1:-2/a0,b2:1/a0,a1:2*(w2-1)/a0,a2:(1-r*w+w2)/a0}}
+  function biquad(data,c){const out=new Float32Array(data.length);let x1=0,x2=0,y1=0,y2=0;for(let i=0;i<data.length;i++){const x=data[i];out[i]=c.b0*x+c.b1*x1+c.b2*x2-c.a1*y1-c.a2*y2;x2=x1;x1=x;y2=y1;y1=out[i]}return out}
+  // Two cascaded biquads = 4th order (LR4)
+  const lp1c=makeLPCoeffs(200,sr);const hp1c=makeHPCoeffs(200,sr);
+  const lp2c=makeLPCoeffs(3500,sr);const hp2c=makeHPCoeffs(3500,sr);
+  const loPass=biquad(biquad(monoData,lp1c),lp1c);
+  const hiPass1=biquad(biquad(monoData,hp1c),hp1c);
+  const midPass=biquad(biquad(hiPass1,lp2c),lp2c);
+  const hiPass=biquad(biquad(hiPass1,hp2c),hp2c);
+  for(let i=0;i<len;i++){lo[i]=loPass[i];mid[i]=midPass[i];hi[i]=hiPass[i]}
+  return{lo,mid,hi};
+}
+function compressBand(data, threshold, ratio, attackMs, releaseMs, sr){
+  const attack=Math.exp(-1/(sr*attackMs/1000));
+  const release=Math.exp(-1/(sr*releaseMs/1000));
+  let env=0;
+  for(let i=0;i<data.length;i++){
+    const abs=Math.abs(data[i]);
+    if(abs>env)env=env*attack+(1-attack)*abs;
+    else env=env*release+(1-release)*abs;
+    const envDB=env>0?20*Math.log10(env):-120;
+    if(envDB>threshold){
+      const overDB=envDB-threshold;
+      const gr=overDB*(1-1/ratio);
+      const gainLinear=Math.pow(10,-gr/20);
+      data[i]*=gainLinear;
+    }
+  }
+}
+
+/* ── MAIN MASTERING FUNCTION ── */
+async function masterAudio(origBuf){
+  const sr=origBuf.sampleRate, ch=origBuf.numberOfChannels, len=origBuf.length;
+
+  /* PASS 1: EQ + glue compression via Web Audio API (sounds better than sample-level for filters) */
+  const offCtx=new OfflineAudioContext(ch,len,sr);
+  const src=offCtx.createBufferSource();src.buffer=origBuf;
+
+  // High-pass 30Hz (rumble removal)
+  const hp=offCtx.createBiquadFilter();hp.type='highpass';hp.frequency.value=30;hp.Q.value=0.71;
+  // Low shelf: warmth
+  const loBst=offCtx.createBiquadFilter();loBst.type='lowshelf';loBst.frequency.value=100;loBst.gain.value=2;
+  // Cut mud at 300Hz
+  const mudCut=offCtx.createBiquadFilter();mudCut.type='peaking';mudCut.frequency.value=300;mudCut.Q.value=1.5;mudCut.gain.value=-2;
+  // Body at 800Hz
+  const body=offCtx.createBiquadFilter();body.type='peaking';body.frequency.value=800;body.Q.value=0.8;body.gain.value=1;
+  // Presence at 3kHz
+  const pres=offCtx.createBiquadFilter();pres.type='peaking';pres.frequency.value=3000;pres.Q.value=0.7;pres.gain.value=2.5;
+  // De-harsh at 6-7kHz
+  const deHarsh=offCtx.createBiquadFilter();deHarsh.type='peaking';deHarsh.frequency.value=6500;deHarsh.Q.value=2;deHarsh.gain.value=-1.5;
+  // Air shelf at 12kHz
+  const air=offCtx.createBiquadFilter();air.type='highshelf';air.frequency.value=12000;air.gain.value=2;
+
+  // Glue compressor (gentle, 2:1)
+  const glue=offCtx.createDynamicsCompressor();
+  glue.threshold.value=-20;glue.knee.value=10;glue.ratio.value=2;glue.attack.value=0.01;glue.release.value=0.15;
+
+  src.connect(hp);hp.connect(loBst);loBst.connect(mudCut);mudCut.connect(body);
+  body.connect(pres);pres.connect(deHarsh);deHarsh.connect(air);air.connect(glue);
+  glue.connect(offCtx.destination);
+  src.start(0);
+  const pass1=await offCtx.startRendering();
+
+  /* PASS 2: Multi-band compression + saturation + stereo widening (sample-level) */
+  // Work on a copy
+  const outBuf=new AudioBuffer({length:len,numberOfChannels:ch,sampleRate:sr});
+  for(let c=0;c<ch;c++){
+    const inp=pass1.getChannelData(c);
+    const out=outBuf.getChannelData(c);
+
+    // Split into 3 bands
+    const{lo,mid,hi}=splitBands(inp,sr);
+
+    // Compress each band differently
+    compressBand(lo, -20, 3, 10, 100, sr);   // Lows: slow attack, moderate ratio
+    compressBand(mid, -22, 3, 5, 80, sr);    // Mids: medium attack
+    compressBand(hi, -26, 2.5, 2, 60, sr);   // Highs: fast attack, gentle ratio
+
+    // Subtle saturation on mids for warmth
+    saturate(mid, 1.3);
+
+    // Recombine
+    for(let i=0;i<len;i++) out[i]=lo[i]+mid[i]+hi[i];
+  }
+
+  // Stereo widening (frequency-dependent: widen highs more than lows)
+  if(ch>=2){
+    const L=outBuf.getChannelData(0), R=outBuf.getChannelData(1);
+    // Split L/R into M/S, widen, recombine
+    for(let i=0;i<len;i++){
+      const m=(L[i]+R[i])*0.5;
+      const s=(L[i]-R[i])*0.5;
+      // Widen by 30%
+      const sWide=s*1.3;
+      L[i]=m+sWide;
+      R[i]=m-sWide;
+    }
+  }
+
+  /* PASS 3: Loudness normalization — iterative to nail -14 LUFS */
+  const TARGET_LUFS=-14;
+  let currentLUFS=calcLUFS(outBuf);
+  let gainDB=TARGET_LUFS-currentLUFS;
+  // Clamp: don't boost more than +20dB or cut more than -6dB
+  gainDB=Math.min(Math.max(gainDB,-6),20);
+  let gainLin=Math.pow(10,gainDB/20);
+
+  // Apply gain
+  for(let c=0;c<ch;c++){
+    const d=outBuf.getChannelData(c);
+    for(let i=0;i<d.length;i++) d[i]*=gainLin;
+  }
+
+  // Iterative refinement (2 more passes)
+  for(let pass=0;pass<2;pass++){
+    const measuredLUFS=calcLUFS(outBuf);
+    const correction=TARGET_LUFS-measuredLUFS;
+    if(Math.abs(correction)<0.5)break; // Close enough
+    const corrLin=Math.pow(10,Math.min(Math.max(correction,-3),3)/20);
+    gainDB+=correction;
+    for(let c=0;c<ch;c++){
+      const d=outBuf.getChannelData(c);
+      for(let i=0;i<d.length;i++) d[i]*=corrLin;
+    }
+  }
+
+  /* PASS 4: True peak limiting at -0.3 dBTP (0.933) */
+  const ceiling=0.933; // -0.3 dBTP
+  for(let c=0;c<ch;c++){
+    truePeakLimit(outBuf.getChannelData(c), ceiling, sr);
+  }
+
+  // Final LUFS check — if limiting pushed us below target, note it
+  const finalLUFS=calcLUFS(outBuf);
+
+  return{rendered:outBuf, makeupDB:gainDB};
+}
+
+/* ── Queue & UI ── */
+function renderQueue(){
+  const q=document.getElementById('masterQueue'),btns=document.getElementById('masterBtns');q.innerHTML='';
+  if(!masterFiles.length){btns.style.display='none';return}btns.style.display='';
+  masterFiles.forEach((f,i)=>{
+    const sc=f.status==='done'?'done':f.status==='processing'?'proc':'wait';
+    const st=f.status==='done'?'Done':f.status==='processing'?'Processing...':'Pending';
+    const acts=f.status==='done'?'<div class="qi-acts"><button class="qb ghost" data-idx="'+i+'" data-act="preview">Preview</button><button class="qb fill" data-idx="'+i+'" data-act="download">Download</button></div>':'';
+    const el=document.createElement('div');el.className='qi';
+    el.innerHTML='<div class="qi-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="qi-body"><div class="qi-name">'+f.name+'</div><div class="qi-meta">'+fmtSize(f.size)+' \u00b7 '+fmt(f.duration||0)+'</div></div><div class="qi-badge '+sc+'">'+st+'</div>'+acts;
+    q.appendChild(el);
+  });
+  q.querySelectorAll('[data-act]').forEach(btn=>{btn.onclick=()=>{const idx=+btn.dataset.idx;btn.dataset.act==='preview'?showPreview(idx):downloadMastered(idx)}});
+}
+
+function showPreview(idx){
+  previewIdx=idx;const f=masterFiles[idx];
+  document.getElementById('masterPreview').style.display='';
+  document.getElementById('masterPrevName').textContent=f.name;
+  document.getElementById('meterBefore').textContent=f.lufsOrig.toFixed(1);
+  document.getElementById('meterAfter').textContent=f.lufsMast.toFixed(1);
+  document.getElementById('meterPeak').textContent=f.peakMast.toFixed(1);
+  document.getElementById('meterGain').textContent=(f.gainDB>0?'+':'')+f.gainDB.toFixed(1);
+  document.getElementById('waveOrigLufs').textContent=f.lufsOrig.toFixed(1)+' LUFS';
+  document.getElementById('waveMastLufs').textContent=f.lufsMast.toFixed(1)+' LUFS';
+  document.getElementById('masterTime').textContent='0:00 / '+fmt(f.duration);
+  document.getElementById('masterFill').style.width='0%';
+  setTimeout(()=>{
+    drawWaveform(document.getElementById('waveOrigCanvas'),f.origBuf,'rgba(255,255,255,0.5)','rgba(255,255,255,0.08)');
+    drawWaveform(document.getElementById('waveMastCanvas'),f.masteredBuf,'rgba(0,228,170,0.9)','rgba(0,228,170,0.15)');
+  },50);
+  playingAB='original';document.getElementById('abOrigBtn').classList.add('on');document.getElementById('abMastBtn').classList.remove('on');stopPlay();
+}
+
+function stopPlay(){if(currentSource){try{currentSource.stop()}catch(e){}}currentSource=null;isPlaying=false;document.getElementById('masterPlayBtn').textContent='\u25B6';if(rafId)cancelAnimationFrame(rafId)}
+function togglePlay(){
+  if(isPlaying){stopPlay();return}if(previewIdx<0)return;
+  const f=masterFiles[previewIdx];if(!masterCtx)masterCtx=new AudioContext();if(masterCtx.state==='suspended')masterCtx.resume();
+  const buf=playingAB==='mastered'?f.masteredBuf:f.origBuf;
+  currentSource=masterCtx.createBufferSource();currentSource.buffer=buf;currentSource.connect(masterCtx.destination);
+  playStart=masterCtx.currentTime;currentSource.start(0);isPlaying=true;document.getElementById('masterPlayBtn').textContent='\u23F8';
+  currentSource.onended=()=>{stopPlay();document.getElementById('masterFill').style.width='0%'};
+  (function tick(){if(!isPlaying)return;const el=masterCtx.currentTime-playStart;document.getElementById('masterFill').style.width=Math.min(100,el/buf.duration*100)+'%';document.getElementById('masterTime').textContent=fmt(el)+' / '+fmt(buf.duration);rafId=requestAnimationFrame(tick)})();
+}
+function downloadMastered(idx){
+  const f=masterFiles[idx],buf=f.masteredBuf,nCh=buf.numberOfChannels,sr=buf.sampleRate,len=buf.length;
+  const bps=3,ba=nCh*bps,ds=len*ba,ab=new ArrayBuffer(44+ds),v=new DataView(ab);
+  function ws(o,s){for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))}
+  ws(0,'RIFF');v.setUint32(4,36+ds,true);ws(8,'WAVE');ws(12,'fmt ');v.setUint32(16,16,true);
+  v.setUint16(20,1,true);v.setUint16(22,nCh,true);v.setUint32(24,sr,true);
+  v.setUint32(28,sr*ba,true);v.setUint16(32,ba,true);v.setUint16(34,24,true);
+  ws(36,'data');v.setUint32(40,ds,true);let off=44;
+  for(let i=0;i<len;i++)for(let c=0;c<nCh;c++){let s=Math.max(-1,Math.min(1,buf.getChannelData(c)[i]));const dither=(Math.random()-0.5)*2/8388607;s=Math.max(-1,Math.min(1,s+dither));const i24=Math.round(s<0?s*8388608:s*8388607);v.setUint8(off,i24&0xFF);v.setUint8(off+1,(i24>>8)&0xFF);v.setUint8(off+2,(i24>>16)&0xFF);off+=3}
+  const url=URL.createObjectURL(new Blob([ab],{type:'audio/wav'}));const a=document.createElement('a');a.href=url;
+  a.download=f.name.replace(/\.[^.]+$/,'')+'_mastered.wav';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+async function processAll(){
+  for(let i=0;i<masterFiles.length;i++){
+    if(masterFiles[i].status!=='pending')continue;masterFiles[i].status='processing';renderQueue();
+    try{
+      const{rendered,makeupDB}=await masterAudio(masterFiles[i].origBuf);
+      masterFiles[i].masteredBuf=rendered;masterFiles[i].lufsOrig=calcLUFS(masterFiles[i].origBuf);
+      masterFiles[i].lufsMast=calcLUFS(rendered);masterFiles[i].peakMast=peakDBTP(rendered);
+      masterFiles[i].gainDB=makeupDB;masterFiles[i].status='done';
+    }catch(e){console.error('Master error:',e);masterFiles[i].masteredBuf=masterFiles[i].origBuf;masterFiles[i].lufsOrig=calcLUFS(masterFiles[i].origBuf);masterFiles[i].lufsMast=masterFiles[i].lufsOrig;masterFiles[i].peakMast=peakDBTP(masterFiles[i].origBuf);masterFiles[i].gainDB=0;masterFiles[i].status='done'}
+    renderQueue();
+  }
+  if(masterFiles.length&&masterFiles[0].status==='done')showPreview(0);
+}
+
+async function addFiles(files){
+  if(!masterCtx)masterCtx=new AudioContext();if(masterCtx.state==='suspended')await masterCtx.resume();
+  for(const file of files){
+    if(!file.type.startsWith('audio/')&&!file.name.match(/\.(mp3|wav|flac|m4a|ogg|aac|wma)$/i))continue;
+    try{const ab=await file.arrayBuffer();const audioBuf=await masterCtx.decodeAudioData(ab);
+      masterFiles.push({name:file.name,size:file.size,duration:audioBuf.duration,origBuf:audioBuf,masteredBuf:null,status:'pending',lufsOrig:0,lufsMast:0,peakMast:0,gainDB:0});
+    }catch(e){console.error('Decode error:',file.name,e)}
+  }
+  renderQueue();
+}
+
+const dz=document.getElementById('masterDrop'),fi=document.getElementById('masterFileInput');
+dz.addEventListener('click',()=>fi.click());
+fi.addEventListener('change',e=>{if(e.target.files.length)addFiles(e.target.files)});
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='var(--g1)'});
+dz.addEventListener('dragleave',()=>{dz.style.borderColor=''});
+dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='';if(e.dataTransfer.files.length)addFiles(e.dataTransfer.files)});
+document.getElementById('masterAllBtn').addEventListener('click',processAll);
+document.getElementById('masterClearBtn').addEventListener('click',()=>{stopPlay();masterFiles.length=0;renderQueue();document.getElementById('masterPreview').style.display='none'});
+document.getElementById('masterPlayBtn').addEventListener('click',togglePlay);
+document.getElementById('abOrigBtn').addEventListener('click',()=>{stopPlay();playingAB='original';document.getElementById('abOrigBtn').classList.add('on');document.getElementById('abMastBtn').classList.remove('on')});
+document.getElementById('abMastBtn').addEventListener('click',()=>{stopPlay();playingAB='mastered';document.getElementById('abMastBtn').classList.add('on');document.getElementById('abOrigBtn').classList.remove('on')});
+})();
+
 </script>
 </body>
 </html>
