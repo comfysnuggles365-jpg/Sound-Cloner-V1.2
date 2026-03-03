@@ -7729,19 +7729,40 @@ function showLangToast(langName){
       if(!mxSel.B)document.getElementById('mxSlotB').style.borderColor='var(--g3)';
       setTimeout(()=>{document.getElementById('mxSlotA').style.borderColor='';document.getElementById('mxSlotB').style.borderColor=''},1500);return;
     }
+    /* --- Randomized mixer: each click = unique blend --- */
+    function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+    function randPick(arr,n){return shuffle(arr).slice(0,Math.min(n,arr.length))}
+
     const pctA=parseInt(document.getElementById('mxBlendRange').value),pctB=100-pctA;
-    const pA=mxSel.A.p.split(',').map(s=>s.trim()),pB=mxSel.B.p.split(',').map(s=>s.trim());
-    const takeA=Math.max(2,Math.round(pA.length*(pctA/100))),takeB=Math.max(2,Math.round(pB.length*(pctB/100)));
-    const fromA=pA.slice(0,takeA),fromB=pB.slice(0,takeB);
+    const pA=mxSel.A.p.split(',').map(s=>s.trim()).filter(s=>s.length>2);
+    const pB=mxSel.B.p.split(',').map(s=>s.trim()).filter(s=>s.length>2);
+    /* Scale pick count by slider — at 70/30, take ~70% of A's pool, ~30% of B's pool */
+    const takeA=Math.max(2,Math.round(pA.length*(pctA/100)));
+    const takeB=Math.max(2,Math.round(pB.length*(pctB/100)));
+    /* Randomly select which pieces from each — never the same twice */
+    const fromA=randPick(pA,takeA);
+    const fromB=randPick(pB,takeB);
+
+    /* Flavor sliders — also randomize which descriptors */
     const gV=parseInt(document.getElementById('mxGenreRange').value),mV=parseInt(document.getElementById('mxMoodRange').value);
     const prV=parseInt(document.getElementById('mxProdRange').value),voV=parseInt(document.getElementById('mxVocalRange').value);
     const tempo=document.getElementById('mxTempoRange').value;
-    function pick(val,fd){if(val<30)return fd.low.slice(0,2);if(val>70)return fd.high.slice(0,2);return[]}
-    const allFlavors=[...pick(gV,mxFlavorDesc.genre),...pick(mV,mxFlavorDesc.mood),...pick(prV,mxFlavorDesc.prod),...pick(voV,mxFlavorDesc.vocal)];
+    function pickFlavor(val,fd){
+      if(val<30)return randPick(fd.low,1+Math.floor(Math.random()*2));
+      if(val>70)return randPick(fd.high,1+Math.floor(Math.random()*2));
+      return[];
+    }
+    const allFlavors=[...pickFlavor(gV,mxFlavorDesc.genre),...pickFlavor(mV,mxFlavorDesc.mood),...pickFlavor(prV,mxFlavorDesc.prod),...pickFlavor(voV,mxFlavorDesc.vocal)];
+
     let parts=[...fromA,...fromB];
     if(allFlavors.length)parts.push(...allFlavors);
-    if(mxSel.C){const pC=mxSel.C.p.split(',').map(s=>s.trim());parts.push(...pC.slice(0,3))}
-    parts.push(tempo+' BPM');
+    if(mxSel.C){const pC=mxSel.C.p.split(',').map(s=>s.trim()).filter(s=>s.length>2);parts.push(...randPick(pC,2+Math.floor(Math.random()*2)))}
+
+    /* Shuffle the final parts so A and B pieces are interleaved, not grouped */
+    parts=shuffle(parts);
+    /* Prepend tempo so it's always first */
+    parts=[tempo+' BPM',...parts.filter(p=>!p.match(/^\d+\s*BPM/))];
+
     const out=document.getElementById('mxOutputPrompt');
     out.value=parts.join(', ');
     out.removeAttribute('data-i18n');
@@ -7749,7 +7770,7 @@ function showLangToast(langName){
     document.getElementById('mxBdBPct').textContent='('+pctB+'%)';
     document.getElementById('mxBdAChips').innerHTML=fromA.map(c=>`<div class="mx-bd-chip from-a">${c}</div>`).join('');
     document.getElementById('mxBdBChips').innerHTML=fromB.map(c=>`<div class="mx-bd-chip from-b">${c}</div>`).join('');
-    document.getElementById('mxBdFlavorChips').innerHTML=(allFlavors.length?allFlavors.map(c=>`<div class="mx-bd-chip from-flavor">${c}</div>`).join(''):'')+`<div class="mx-bd-chip from-flavor">${tempo} BPM</div>`;
+    document.getElementById('mxBdFlavorChips').innerHTML=(allFlavors.length?allFlavors.map(c=>`<div class="mx-bd-chip from-flavor">${c}</div>`).join(''):'') +`<div class="mx-bd-chip from-flavor">${tempo} BPM</div>`;
   });
 
   document.getElementById('mxCopyMix').addEventListener('click',function(){const t=document.getElementById('mxOutputPrompt').value;if(t&&t.length>5){navigator.clipboard.writeText(t).catch(()=>{});this.textContent='✓ Copied!';setTimeout(()=>this.textContent='📋 Copy Prompt',1500)}});
