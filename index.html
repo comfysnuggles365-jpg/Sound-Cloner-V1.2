@@ -381,7 +381,12 @@ nav button:nth-child(10){animation-delay:.2s}
 /* Card CTA removed — using action row instead */
 
 /* === MASTER === */
-.m-hero{margin-bottom:40px}
+.m-hero{margin-bottom:20px;text-align:center}
+.m-title{margin:0 auto}
+.m-desc{margin:8px auto 0;max-width:600px}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+@media(max-width:900px){.m-grid{grid-template-columns:1fr}}
+.m-col{display:flex;flex-direction:column;gap:12px}
 .m-over{
   font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;
   text-transform:uppercase;margin-bottom:14px;
@@ -399,8 +404,8 @@ nav button:nth-child(10){animation-delay:.2s}
 .m-desc{font-size:15px;color:var(--t3);margin-top:14px;line-height:1.7;max-width:480px}
 
 .drop-zone{
-  background:var(--bg2);border:1.5px dashed var(--b2);border-radius:22px;
-  padding:56px 24px;text-align:center;cursor:pointer;
+  background:var(--bg2);border:1.5px dashed var(--b2);border-radius:16px;
+  padding:28px 20px;text-align:center;cursor:pointer;
   transition:all 0.35s var(--smooth);position:relative;overflow:hidden;
 }
 .drop-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(124,92,252,0.04),transparent 65%);opacity:0;transition:opacity 0.4s}
@@ -418,10 +423,10 @@ nav button:nth-child(10){animation-delay:.2s}
 .dz-sub{font-size:12px;color:var(--t4);margin-top:6px}
 
 /* Queue */
-.queue{margin:14px 0;display:flex;flex-direction:column;gap:8px}
+.queue{margin:8px 0;display:flex;flex-direction:column;gap:6px}
 .qi{
-  display:flex;align-items:center;gap:16px;padding:14px 18px;
-  background:var(--card);border:1px solid var(--b1);border-radius:16px;
+  display:flex;align-items:center;gap:12px;padding:10px 14px;
+  background:var(--card);border:1px solid var(--b1);border-radius:12px;
   transition:all 0.3s var(--smooth);backdrop-filter:blur(12px);
 }
 .qi:hover{border-color:var(--b2);transform:translateX(4px)}
@@ -452,7 +457,7 @@ nav button:nth-child(10){animation-delay:.2s}
 .qb.ghost:hover{background:var(--b2)}
 
 /* Buttons */
-.btns{display:flex;gap:10px;margin:28px 0}
+.btns{display:flex;gap:8px;margin:0}
 .btn-main{
   flex:1;height:50px;border:none;border-radius:14px;font-family:var(--body);
   font-weight:800;font-size:15px;cursor:pointer;
@@ -470,7 +475,7 @@ nav button:nth-child(10){animation-delay:.2s}
 .btn-sec:hover{background:var(--bg4)}
 
 /* Download */
-.dl-card{background:var(--card);border:1px solid var(--b1);border-radius:20px;padding:22px;margin-bottom:18px;backdrop-filter:blur(12px)}
+.dl-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:16px;margin-bottom:0;backdrop-filter:blur(12px)}
 .dl-input{width:100%;height:42px;padding:0 16px;background:var(--bg2);border:1px solid var(--b1);border-radius:12px;font-family:var(--body);font-size:13px;color:var(--t1);outline:none;margin-bottom:14px;transition:border-color 0.2s}
 .dl-input:focus{border-color:var(--g1)}
 .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -486,15 +491,15 @@ nav button:nth-child(10){animation-delay:.2s}
 
 /* Preview */
 .prev-card{
-  background:var(--card);border:1px solid var(--b1);border-radius:20px;
-  padding:26px;position:relative;overflow:hidden;backdrop-filter:blur(16px);
+  background:var(--card);border:1px solid var(--b1);border-radius:14px;
+  padding:18px;position:relative;overflow:hidden;backdrop-filter:blur(16px);
 }
 .prev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-main);opacity:0.5}
-.prev-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
+.prev-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
 .prev-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .prev-name{font-family:var(--display);font-size:18px;font-weight:500}
 
-.ab-sw{display:flex;background:var(--bg2);border-radius:12px;padding:3px;border:1px solid var(--b1);margin-bottom:20px}
+.ab-sw{display:flex;background:var(--bg2);border-radius:10px;padding:3px;border:1px solid var(--b1);margin-bottom:12px}
 .ab-btn{
   flex:1;height:38px;display:grid;place-items:center;border-radius:10px;
   font-family:var(--body);font-size:13px;font-weight:600;color:var(--t3);
@@ -518,12 +523,12 @@ nav button:nth-child(10){animation-delay:.2s}
 .tp-needle{position:absolute;top:4px;bottom:4px;left:42%;width:2.5px;border-radius:2px;background:var(--g1);box-shadow:0 0 10px rgba(124,92,252,0.4)}
 .tp-time{font-family:var(--mono);font-size:12px;color:var(--t4);min-width:85px;text-align:right}
 
-.meters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
-.meter{text-align:center;padding:16px 8px;background:var(--bg2);border-radius:14px;border:1px solid var(--b1)}
+.meters{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.meter{text-align:center;padding:12px 6px;background:var(--bg2);border-radius:10px;border:1px solid var(--b1)}
 .meter-v{font-family:var(--display);font-size:26px;font-weight:600;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .meter-l{font-family:var(--mono);font-size:8.5px;color:var(--t4);text-transform:uppercase;letter-spacing:0.12em;margin-top:4px}
 
-.hint{margin-top:22px;padding:16px 20px;background:rgba(124,92,252,0.04);border-left:3px solid var(--g1);border-radius:0 14px 14px 0;font-size:13px;color:var(--t2);line-height:1.7}
+.hint{margin-top:12px;padding:10px 14px;background:rgba(124,92,252,0.04);border-left:3px solid var(--g1);border-radius:0 14px 14px 0;font-size:13px;color:var(--t2);line-height:1.7}
 .hint strong{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* === BLUEPRINTS — genre production recipes === */
@@ -874,12 +879,19 @@ nav button:nth-child(10){animation-delay:.2s}
 .a-cact.fav:hover{border-color:var(--g4);box-shadow:0 4px 16px rgba(255,179,71,0.12);background:rgba(255,179,71,0.08)}
 
 /* Spotify Analyzer */
-.sp-hero{margin-bottom:32px}
+.sp-hero{margin-bottom:24px;text-align:center}
 .sp-over{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#1DB954;margin-bottom:6px}
-.sp-title{font-family:var(--display);font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-0.03em;line-height:1.05}
+.sp-title{font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:800;letter-spacing:-0.03em;line-height:1.05}
 .sp-title em{font-style:normal;background:linear-gradient(135deg,#1DB954,var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sp-desc{font-size:14.5px;color:var(--t3);margin-top:12px;line-height:1.7;max-width:560px}
-.sp-card{background:var(--bg2);border:1px solid var(--b1);border-radius:16px;padding:28px;max-width:720px}
+.sp-card{background:transparent;border:none;border-radius:0;padding:0}
+.sp-inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:800px){.sp-inputs-grid{grid-template-columns:1fr}}
+.sp-input-card{background:var(--bg2);border:1px solid var(--b1);border-radius:16px;padding:24px}
+.sp-key-wrap{background:var(--bg2);border:1px solid var(--b1);border-radius:16px;padding:24px;max-width:680px;margin:0 auto}
+.sp-results-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:800px){.sp-results-grid{grid-template-columns:1fr}}
+
 .sp-link-label{font:600 16px var(--body);color:var(--t1);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .sp-link-label strong{font:800 16px var(--display);letter-spacing:-0.01em}
 .sp-input-row{display:flex;gap:10px;margin-bottom:8px}
@@ -1327,133 +1339,159 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--t4);border-radius:2px}
 /* === PROMPT MIXER === */
-.mx-hero{margin-bottom:36px}
-.mx-over{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.mx-title{font-family:var(--display);font-size:48px;font-weight:600;letter-spacing:-0.04em;line-height:1.05;max-width:520px}
+.mx-hero{margin-bottom:24px;text-align:center}
+.mx-over{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mx-title{font-family:var(--display);font-size:42px;font-weight:600;letter-spacing:-0.04em;line-height:1.08;margin:0 auto}
 .mx-title em{font-style:normal;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.mx-desc{font-size:15px;color:var(--t3);margin-top:14px;line-height:1.7;max-width:520px}
-.mx-split{display:grid;grid-template-columns:440px 1fr;gap:24px}
-.mx-card{background:var(--card);border:1px solid var(--b1);border-radius:18px;padding:22px;position:relative;overflow:visible;backdrop-filter:blur(12px)}
-.mx-card-t{font-family:var(--display);font-size:14px;font-weight:600;color:var(--t1);letter-spacing:-0.01em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.mx-desc{font-size:14px;color:var(--t3);margin:10px auto 0;line-height:1.6;max-width:600px}
 
-.slot{background:var(--bg2);border:1px solid var(--b1);border-radius:14px;overflow:hidden;transition:border-color 0.25s var(--smooth)}
-.slot-header{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--b1)}
-.slot-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;flex:1}
-.slot-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.slot-dot.a{background:#E040FB;box-shadow:0 0 8px rgba(224,64,251,0.4)}
-.slot-dot.b{background:var(--g5);box-shadow:0 0 8px rgba(0,180,255,0.4)}
-.slot-dot.c{background:var(--g4);box-shadow:0 0 8px rgba(255,179,71,0.4)}
-.slot-clear{height:22px;padding:0 8px;border-radius:5px;border:1px solid var(--b1);background:transparent;color:var(--t4);font-family:var(--mono);font-size:9px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none}
+/* 3-col: Slot A | Center | Slot B */
+.mx-split{display:grid;grid-template-columns:1fr 380px 1fr;gap:12px;align-items:start}
+@media(max-width:1200px){.mx-split{grid-template-columns:1fr 340px 1fr;gap:10px}}
+@media(max-width:1000px){.mx-split{grid-template-columns:1fr 1fr;gap:10px}
+  .mx-center{grid-column:1/-1;order:3}}
+@media(max-width:720px){.mx-split{grid-template-columns:1fr}}
+
+/* Slot columns — compact with built-in genre rail */
+.mx-slot-wrap{background:var(--card);border:1px solid var(--b1);border-radius:14px;overflow:hidden;display:flex;max-height:520px}
+.mx-slot-rail{width:110px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b1);padding:8px 6px;overflow-y:auto;scrollbar-width:none}
+.mx-slot-rail::-webkit-scrollbar{width:0}
+.mx-slot-rail-hdr{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:0.12em;padding:4px 8px 10px}
+.mx-ri{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:7px;cursor:pointer;transition:all 0.15s var(--smooth);margin-bottom:1px;border:1px solid transparent}
+.mx-ri:hover{background:var(--glass)}
+.mx-ri.on{background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.2)}
+.mx-ri-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:all 0.2s var(--spring);box-shadow:0 0 4px currentColor}
+.mx-ri:hover .mx-ri-dot{transform:scale(1.3);box-shadow:0 0 8px currentColor}
+.mx-ri.on .mx-ri-dot{transform:scale(1.2);box-shadow:0 0 0 2px var(--bg),0 0 0 3px currentColor,0 0 12px currentColor}
+.mx-ri-name{font-size:11px;font-weight:600;color:var(--t2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-ri:hover .mx-ri-name{color:var(--t1)}
+.mx-ri.on .mx-ri-name{color:#fff;font-weight:700}
+.mx-ri-ct{font-family:var(--mono);font-size:9px;color:var(--t3);font-weight:600}
+.mx-ri.on .mx-ri-ct{color:rgba(255,255,255,0.7)}
+.mx-slot-body{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+
+/* Slot internals */
+.slot{background:transparent;border:none;border-radius:0;overflow:hidden;flex:1;display:flex;flex-direction:column;transition:border-color 0.25s var(--smooth)}
+.slot-header{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--b1)}
+.slot-label{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px;flex:1}
+.slot-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.slot-dot.a{background:#E040FB;box-shadow:0 0 6px rgba(224,64,251,0.4)}
+.slot-dot.b{background:var(--g5);box-shadow:0 0 6px rgba(0,180,255,0.4)}
+.slot-dot.c{background:var(--g4);box-shadow:0 0 6px rgba(255,179,71,0.4)}
+.slot-clear{height:20px;padding:0 6px;border-radius:4px;border:1px solid var(--b1);background:transparent;color:var(--t4);font-family:var(--mono);font-size:8px;font-weight:600;cursor:pointer;transition:all 0.2s;display:none}
 .slot-clear:hover{border-color:var(--g3);color:var(--g3)}
 .slot.has-selection .slot-clear{display:block}
-.slot-selected{display:none;padding:12px 14px;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s}
+.slot-selected{display:none;padding:8px 10px;align-items:center;gap:8px;cursor:pointer;transition:background 0.2s}
 .slot-selected:hover{background:var(--bg3)}
 .slot.has-selection .slot-selected{display:flex}
 .slot.has-selection .slot-browser{display:none}
-.slot-sel-av{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-size:13px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
+.slot-sel-av{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;font-family:var(--display);font-size:10px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
 .slot-sel-av::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.25),transparent 50%)}
-.slot-sel-name{font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:-0.01em}
-.slot-sel-genre{font-family:var(--mono);font-size:10px;color:var(--t4);margin-top:2px}
-.slot-sel-prompt{margin:0 14px 12px;padding:8px 10px;font-family:var(--mono);font-size:10px;color:var(--t3);line-height:1.7;background:var(--bg);border-radius:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.slot-sel-name{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:-0.01em}
+.slot-sel-genre{font-family:var(--mono);font-size:9px;color:var(--t4);margin-top:1px}
+.slot-sel-prompt{margin:0 10px 8px;padding:5px 7px;font-family:var(--mono);font-size:9px;color:var(--t3);line-height:1.5;background:var(--bg);border-radius:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .slot-sel-prompt.border-a{border-left:2px solid #E040FB}
 .slot-sel-prompt.border-b{border-left:2px solid var(--g5)}
 .slot-sel-prompt.border-c{border-left:2px solid var(--g4)}
-.slot-browser{padding:10px;background:rgba(255,255,255,0.01)}
-.slot-tabs{display:flex;gap:2px;background:var(--bg);border-radius:8px;padding:2px;margin-bottom:8px}
-.slot-tab{flex:1;height:28px;display:grid;place-items:center;border-radius:6px;font-family:var(--body);font-size:11px;font-weight:600;color:var(--t4);cursor:pointer;border:none;background:transparent;transition:all 0.2s}
+.slot-browser{padding:6px;background:rgba(255,255,255,0.01);flex:1;display:flex;flex-direction:column;overflow:hidden}
+.slot-tabs{display:flex;gap:2px;background:var(--bg);border-radius:6px;padding:2px;margin-bottom:5px}
+.slot-tab{flex:1;height:24px;display:grid;place-items:center;border-radius:4px;font-family:var(--body);font-size:10px;font-weight:600;color:var(--t4);cursor:pointer;border:none;background:transparent;transition:all 0.2s}
 .slot-tab:hover{color:var(--t2)}
 .slot-tab.on{background:var(--bg3);color:var(--t1)}
-.slot-search{width:100%;height:32px;padding:0 10px 0 30px;margin-bottom:8px;background:var(--bg);border:1px solid var(--b1);border-radius:8px;font-family:var(--body);font-size:11.5px;color:var(--t1);outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%233e3e55' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:9px center}
+.slot-search{width:100%;height:28px;padding:0 8px 0 26px;margin-bottom:4px;background:var(--bg);border:1px solid var(--b1);border-radius:6px;font-family:var(--body);font-size:10.5px;color:var(--t1);outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%233e3e55' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:8px center}
 .slot-search:focus{border-color:var(--g1)}
 .slot-search::placeholder{color:var(--t4)}
-.slot-genres{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:8px}
-.slot-genre-pill{height:22px;padding:0 8px;border-radius:100px;font-family:var(--body);font-size:10px;font-weight:600;color:var(--t4);background:var(--bg);border:1px solid var(--b1);cursor:pointer;transition:all 0.2s}
-.slot-genre-pill:hover{border-color:var(--b2);color:var(--t2)}
-.slot-genre-pill.on{border-color:var(--g1);color:var(--g1);background:rgba(124,92,252,0.06)}
-.slot-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;scrollbar-width:thin}
-.slot-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all 0.15s;color:var(--t1)}
+.slot-genres{display:none}
+.slot-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:2px;scrollbar-width:thin;min-height:0}
+.slot-item{display:flex;align-items:flex-start;gap:7px;padding:6px 8px;border-radius:6px;cursor:pointer;transition:all 0.12s;color:var(--t1)}
 .slot-item:hover{background:rgba(124,92,252,0.04)}
 .slot-item.selected{background:rgba(124,92,252,0.08)}
-.slot-item-av{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:var(--display);font-size:11px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
+.slot-item-av{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-family:var(--display);font-size:9px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
 .slot-item-av::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.2),transparent 50%)}
-.slot-item-av.bp{background:var(--bg4)!important;font-size:14px}
+.slot-item-av.bp{background:var(--bg4)!important;font-size:11px}
 .slot-item-info{flex:1;min-width:0}
-.slot-item-name{font-family:var(--display);font-size:12.5px;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.slot-item-meta{font-family:var(--mono);font-size:9px;color:var(--t4);margin-top:1px;display:flex;gap:6px}
-.slot-item-tags{display:flex;gap:3px}
-.slot-item-tag{font-family:var(--body);font-size:9px;padding:1px 5px;border-radius:3px;background:var(--b1);color:var(--t3)}
+.slot-item-name{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot-item-meta{font-family:var(--mono);font-size:7.5px;color:var(--t4);margin-top:0;display:flex;gap:4px}
+.slot-item-prompt{font-family:var(--mono);font-size:9.5px;color:var(--t2);line-height:1.5;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;opacity:0.85}
+.slot-item:hover .slot-item-prompt{opacity:1;color:var(--t1)}
+.slot-item-tags{display:none}
 
-.mx-blend-section{margin:16px 0}
-.mx-blend-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.mx-blend-label{font-family:var(--display);font-size:13px;font-weight:700}
+/* Center column */
+.mx-center{display:flex;flex-direction:column;gap:10px}
+.mx-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:14px;position:relative;overflow:visible;backdrop-filter:blur(12px)}
+.mx-card-t{font-family:var(--display);font-size:13px;font-weight:600;color:var(--t1);letter-spacing:-0.01em;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.mx-blend-section{margin:0}
+.mx-blend-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.mx-blend-label{font-family:var(--display);font-size:12px;font-weight:700}
 .mx-blend-label.a{color:#E040FB}
 .mx-blend-label.b{color:var(--g5)}
-.mx-blend-track{position:relative;padding:12px 0;margin:0 4px}
-.mx-blend-track-bg{display:flex;height:12px;border-radius:8px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,0.2)}
+.mx-blend-track{position:relative;padding:10px 0;margin:0 2px}
+.mx-blend-track-bg{display:flex;height:10px;border-radius:6px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,0.2)}
 .mx-blend-fill-a{height:100%;transition:width 0.12s ease;background:linear-gradient(90deg,#E040FB,#7C5CFC)}
 .mx-blend-fill-b{height:100%;transition:width 0.12s ease;background:linear-gradient(90deg,var(--g5),var(--g2))}
-.mx-blend-range{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);width:100%;height:36px;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;margin:0;z-index:2}
-.mx-blend-range::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:white;border:3px solid var(--g1);box-shadow:0 2px 10px rgba(0,0,0,0.35),0 0 0 4px rgba(124,92,252,0.1);cursor:grab;transition:transform 0.15s var(--spring)}
+.mx-blend-range{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);width:100%;height:32px;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;margin:0;z-index:2}
+.mx-blend-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:white;border:3px solid var(--g1);box-shadow:0 2px 8px rgba(0,0,0,0.35),0 0 0 3px rgba(124,92,252,0.1);cursor:grab;transition:transform 0.15s var(--spring)}
 .mx-blend-range::-webkit-slider-thumb:hover{transform:scale(1.15)}
-.mx-blend-range::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:white;border:3px solid var(--g1);box-shadow:0 2px 10px rgba(0,0,0,0.35);cursor:grab}
+.mx-blend-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:white;border:3px solid var(--g1);box-shadow:0 2px 8px rgba(0,0,0,0.35);cursor:grab}
 .mx-blend-range::-moz-range-track{background:transparent}
-.mx-blend-pct{text-align:center;margin-top:4px;font-family:var(--display);font-size:24px;font-weight:700;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mx-blend-pct{text-align:center;margin-top:2px;font-family:var(--display);font-size:20px;font-weight:700;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-.mx-slot-c-toggle{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1.5px dashed var(--b2);border-radius:14px;color:var(--t4);font-family:var(--body);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.25s var(--smooth);background:transparent;width:100%}
+.mx-slot-c-toggle{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border:1.5px dashed var(--b2);border-radius:10px;color:var(--t4);font-family:var(--body);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.25s var(--smooth);background:transparent;width:100%}
 .mx-slot-c-toggle:hover{border-color:var(--g4);color:var(--g4);background:rgba(255,179,71,0.03)}
 
-.mx-flavor-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t4);margin-bottom:14px}
-.mx-flavor{margin-bottom:16px}.mx-flavor:last-child{margin-bottom:0}
-.mx-flavor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
-.mx-flavor-name{font-family:var(--body);font-size:12px;font-weight:700;color:var(--t2)}
-.mx-flavor-val{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--g1)}
-.mx-flavor-row{display:flex;align-items:center;gap:8px}
-.mx-flavor-end{font-family:var(--mono);font-size:9px;color:var(--t4);min-width:55px;white-space:nowrap}
+.mx-flavor-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t4);margin-bottom:10px}
+.mx-flavor{margin-bottom:10px}.mx-flavor:last-child{margin-bottom:0}
+.mx-flavor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
+.mx-flavor-name{font-family:var(--body);font-size:11px;font-weight:700;color:var(--t2)}
+.mx-flavor-val{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--g1)}
+.mx-flavor-row{display:flex;align-items:center;gap:6px}
+.mx-flavor-end{font-family:var(--mono);font-size:8px;color:var(--t4);min-width:45px;white-space:nowrap}
 .mx-flavor-end.right{text-align:right}
-.mx-flavor-range{flex:1;height:6px;-webkit-appearance:none;appearance:none;background:var(--bg);border-radius:4px;cursor:pointer;outline:none}
-.mx-flavor-range::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--g1);border:2px solid white;box-shadow:0 1px 6px rgba(0,0,0,0.3);cursor:grab;transition:transform 0.15s var(--spring)}
+.mx-flavor-range{flex:1;height:5px;-webkit-appearance:none;appearance:none;background:var(--bg);border-radius:3px;cursor:pointer;outline:none}
+.mx-flavor-range::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--g1);border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3);cursor:grab;transition:transform 0.15s var(--spring)}
 .mx-flavor-range::-webkit-slider-thumb:hover{transform:scale(1.2)}
-.mx-flavor-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--g1);border:2px solid white;cursor:grab}
-.mx-flavor-range::-moz-range-track{height:6px;background:var(--bg);border-radius:4px}
-.mx-tempo-display{text-align:center;margin-top:3px}
-.mx-tempo-bpm{font-family:var(--display);font-size:28px;font-weight:700;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.mx-tempo-label{font-family:var(--mono);font-size:8px;color:var(--t4);letter-spacing:0.1em;text-transform:uppercase}
-.mx-mix-btn{width:100%;height:48px;border:none;border-radius:14px;font-family:var(--body);font-weight:800;font-size:15px;cursor:pointer;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);color:white;box-shadow:0 4px 20px rgba(224,64,251,0.2);transition:all 0.25s var(--smooth);letter-spacing:0.02em;margin-top:16px}
+.mx-flavor-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--g1);border:2px solid white;cursor:grab}
+.mx-flavor-range::-moz-range-track{height:5px;background:var(--bg);border-radius:3px}
+.mx-tempo-display{text-align:center;margin-top:2px}
+.mx-tempo-bpm{font-family:var(--display);font-size:22px;font-weight:700;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mx-tempo-label{font-family:var(--mono);font-size:7px;color:var(--t4);letter-spacing:0.1em;text-transform:uppercase}
+.mx-mix-btn{width:100%;height:42px;border:none;border-radius:12px;font-family:var(--body);font-weight:800;font-size:14px;cursor:pointer;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);color:white;box-shadow:0 4px 20px rgba(224,64,251,0.2);transition:all 0.25s var(--smooth);letter-spacing:0.02em}
 .mx-mix-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(224,64,251,0.3)}
 .mx-mix-btn:active{transform:scale(0.98)}
 
-.mx-output{display:flex;flex-direction:column;gap:14px}
-.mx-out-card{background:var(--card);border:1px solid var(--b1);border-radius:18px;padding:22px;position:relative;overflow:hidden;backdrop-filter:blur(16px)}
+.mx-out-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:14px;position:relative;overflow:hidden;backdrop-filter:blur(16px)}
 .mx-out-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);opacity:0.5}
-.mx-out-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:14px}
-.mx-out-prompt{font-family:var(--mono);font-size:11.5px;color:var(--t2);line-height:1.85;background:var(--bg2);border-radius:12px;padding:16px;border:1px solid var(--b1);border-left:3px solid #E040FB;white-space:pre-wrap;word-break:break-word;min-height:100px;transition:all 0.3s;width:100%;resize:vertical;outline:none}
+.mx-out-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.mx-out-prompt{font-family:var(--mono);font-size:10.5px;color:var(--t2);line-height:1.75;background:var(--bg2);border-radius:10px;padding:12px;border:1px solid var(--b1);border-left:3px solid #E040FB;white-space:pre-wrap;word-break:break-word;min-height:70px;transition:all 0.3s;width:100%;resize:vertical;outline:none}
 .mx-out-prompt:focus{border-color:rgba(224,64,251,0.3)}
 .mx-out-prompt::placeholder{color:var(--t4);font-style:italic}
-.mx-bd-section{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--b1)}
+.mx-bd-section{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--b1)}
 .mx-bd-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.mx-bd-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t4);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.mx-bd-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.mx-bd-chips{display:flex;flex-wrap:wrap;gap:4px}
-.mx-bd-chip{font-family:var(--body);font-size:10.5px;font-weight:500;padding:3px 9px;border-radius:5px}
+.mx-bd-label{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t4);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.mx-bd-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.mx-bd-chips{display:flex;flex-wrap:wrap;gap:3px}
+.mx-bd-chip{font-family:var(--body);font-size:9.5px;font-weight:500;padding:2px 7px;border-radius:4px}
 .mx-bd-chip.from-a{background:rgba(224,64,251,0.08);color:#E040FB;border:1px solid rgba(224,64,251,0.15)}
 .mx-bd-chip.from-b{background:rgba(0,180,255,0.08);color:var(--g5);border:1px solid rgba(0,180,255,0.15)}
 .mx-bd-chip.from-flavor{background:rgba(0,212,170,0.08);color:var(--g2);border:1px solid rgba(0,212,170,0.15)}
-.mx-actions{display:flex;gap:8px;margin-top:4px}
-.mx-act{flex:1;height:40px;border:none;border-radius:11px;font-family:var(--body);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s var(--smooth);display:flex;align-items:center;justify-content:center;gap:5px}
+.mx-actions{display:flex;gap:6px}
+.mx-act{flex:1;height:36px;border:none;border-radius:9px;font-family:var(--body);font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s var(--smooth);display:flex;align-items:center;justify-content:center;gap:4px}
 .mx-act.primary{background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);color:white;box-shadow:0 2px 12px rgba(224,64,251,0.15)}
 .mx-act.primary:hover{box-shadow:0 4px 20px rgba(224,64,251,0.25);transform:translateY(-1px)}
 .mx-act.secondary{background:var(--b1);color:var(--t2)}.mx-act.secondary:hover{background:var(--b2)}
 .mx-act.tertiary{background:transparent;border:1px solid var(--b1);color:var(--t3)}.mx-act.tertiary:hover{border-color:var(--g4);color:var(--g4)}
-.mx-hist-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t4);margin-bottom:12px}
-.mx-hist-list{display:flex;flex-direction:column;gap:5px}
-.mx-hist-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border:1px solid var(--b1);border-radius:10px;cursor:pointer;transition:all 0.2s var(--smooth)}
-.mx-hist-item:hover{border-color:var(--b2);transform:translateX(3px)}
-.mx-hist-dot{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:12px;flex-shrink:0}
+.mx-hist-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t4);margin-bottom:8px}
+.mx-hist-list{display:flex;flex-direction:column;gap:4px}
+.mx-hist-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg2);border:1px solid var(--b1);border-radius:8px;cursor:pointer;transition:all 0.2s var(--smooth)}
+.mx-hist-item:hover{border-color:var(--b2);transform:translateX(2px)}
+.mx-hist-dot{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-size:10px;flex-shrink:0}
 .mx-hist-info{flex:1;min-width:0}
-.mx-hist-name{font-family:var(--display);font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mx-hist-meta{font-family:var(--mono);font-size:9px;color:var(--t4);margin-top:1px}
-.mx-hist-use{height:26px;padding:0 10px;border-radius:6px;font-family:var(--body);font-size:9px;font-weight:700;border:1px solid var(--b1);background:transparent;color:var(--t4);cursor:pointer;transition:all 0.2s;flex-shrink:0}
+.mx-hist-name{font-family:var(--display);font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-hist-meta{font-family:var(--mono);font-size:8px;color:var(--t4);margin-top:1px}
+.mx-hist-use{height:22px;padding:0 8px;border-radius:5px;font-family:var(--body);font-size:8px;font-weight:700;border:1px solid var(--b1);background:transparent;color:var(--t4);cursor:pointer;transition:all 0.2s;flex-shrink:0}
 .mx-hist-use:hover{border-color:#E040FB;color:#E040FB}
+
+
 /* === PROMPT EVOLVER === */
 .ev-hero{margin-bottom:32px}
 .ev-over{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;background:linear-gradient(135deg,#00D4AA,#00B4FF,#7C5CFC);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -1793,7 +1831,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
       <div class="fv-grid" id="fvGrid">
         <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#FF6B8A">D</div><div class="fv-card-info"><div class="fv-card-name">Drake</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">82 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">melodic</span><span class="fv-tag">emotional</span><span class="fv-tag">atmospheric</span></div><div class="fv-note">Great for late night vibes — pair with Lo-Fi Boom Bap blueprint</div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
 
-        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#A78BFA">FO</div><div class="fv-card-info"><div class="fv-card-name">Frank Ocean</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">R&B</span><span class="fv-bpm">85 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">dreamy</span><span class="fv-tag">nostalgic</span><span class="fv-tag">intimate</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#A78BFA">FO</div><div class="fv-card-info"><div class="fv-card-name">Frank Ocean</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">R&B</span><span class="fv-bpm"></span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">dreamy</span><span class="fv-tag">nostalgic</span><span class="fv-tag">intimate</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
 
         <div class="fv-card bp"><div class="fv-card-top"><div class="fv-av bp-av">📘</div><div class="fv-card-info"><div class="fv-card-name">Trap Anthem</div><div class="fv-card-sub"><span class="fv-type blueprint">Blueprint</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">145 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">aggressive</span><span class="fv-tag">stadium</span><span class="fv-tag">hard-hitting</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
 
@@ -1807,16 +1845,22 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <!-- PROMPT MIXER -->
     <div class="view" id="vMixer">
-      <div class="mx-hero"><div class="mx-over" data-i18n="mixer_hero_sub">Prompt Mixer</div><div class="mx-title">Blend Any Sound Into<br>Something <em>New</em>.</div><div class="mx-desc" data-i18n="mixer_hero_desc">Pick 2–3 artist styles or blueprints, set the blend ratio, dial in your flavor — and get a custom hybrid prompt ready for Suno.</div></div>
+      <div class="mx-hero"><div class="mx-over" data-i18n="mixer_hero_sub">Prompt Mixer</div><div class="mx-title">Blend Any Sound Into Something <em>New</em>.</div><div class="mx-desc" data-i18n="mixer_hero_desc">Pick 2–3 artist styles or blueprints, set the blend ratio, dial in your flavor — and get a custom hybrid prompt ready for Suno.</div></div>
       <div class="mx-split">
-        <div style="display:flex;flex-direction:column;gap:12px">
+        <!-- COL 1: SLOT A -->
+        <div class="mx-slot-wrap">
+          <div class="mx-slot-rail" id="mxRailA">
+            <div class="mx-slot-rail-hdr">Genres</div>
+          </div>
+          <div class="mx-slot-body">
+            <div class="slot" id="mxSlotA"><div class="slot-header"><div class="slot-label"><div class="slot-dot a"></div>SLOT A <span id="mxSlotNameA" style="color:var(--t1);font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Pick a style</span></div><button class="slot-clear" onclick="mxClearSlot('A')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispA" onclick="mxReopenSlot('A')"></div><div class="slot-sel-prompt border-a" id="mxSelPromptA" style="display:none"></div><div class="slot-browser" id="mxBrowserA"><div class="slot-tabs"><button class="slot-tab on" data-slot="A" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="A" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search artists..." data-slot="A"><div class="slot-genres" id="mxGenresA"></div><div class="slot-list" id="mxListA"></div></div></div>
+          </div>
+        </div>
+
+        <!-- COL 2: CENTER -->
+        <div class="mx-center">
           <div class="mx-card">
-            <div class="mx-card-t">🎛️ <span data-i18n="mixer_board">Mixing Board</span></div>
-            <div class="slot" id="mxSlotA"><div class="slot-header"><div class="slot-label"><div class="slot-dot a"></div>SLOT A <span id="mxSlotNameA" style="color:var(--t1);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Select an Artist or Blueprint</span></div><button class="slot-clear" onclick="mxClearSlot('A')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispA" onclick="mxReopenSlot('A')"></div><div class="slot-sel-prompt border-a" id="mxSelPromptA" style="display:none"></div><div class="slot-browser" id="mxBrowserA"><div class="slot-tabs"><button class="slot-tab on" data-slot="A" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="A" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search artists..." data-slot="A"><div class="slot-genres" id="mxGenresA"></div><div class="slot-list" id="mxListA"></div></div></div>
             <div class="mx-blend-section"><div class="mx-blend-labels"><div class="mx-blend-label a"><span id="mxBlendNameA">A</span> — <span id="mxBlendPctA">70</span>%</div><div class="mx-blend-label b"><span id="mxBlendPctB">30</span>% — <span id="mxBlendNameB">B</span></div></div><div class="mx-blend-track"><div class="mx-blend-track-bg"><div class="mx-blend-fill-a" id="mxBlendFillA" style="width:70%"></div><div class="mx-blend-fill-b" id="mxBlendFillB" style="width:30%"></div></div><input type="range" min="10" max="90" value="70" step="5" class="mx-blend-range" id="mxBlendRange"></div><div class="mx-blend-pct" id="mxBlendPctBig">70 / 30</div></div>
-            <div class="slot" id="mxSlotB"><div class="slot-header"><div class="slot-label"><div class="slot-dot b"></div>SLOT B <span id="mxSlotNameB" style="color:var(--t1);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Select an Artist or Blueprint</span></div><button class="slot-clear" onclick="mxClearSlot('B')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispB" onclick="mxReopenSlot('B')"></div><div class="slot-sel-prompt border-b" id="mxSelPromptB" style="display:none"></div><div class="slot-browser" id="mxBrowserB"><div class="slot-tabs"><button class="slot-tab on" data-slot="B" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="B" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search artists..." data-slot="B"><div class="slot-genres" id="mxGenresB"></div><div class="slot-list" id="mxListB"></div></div></div>
-            <button class="mx-slot-c-toggle" id="mxSlotCToggle" data-i18n="mixer_add_third">+ Add a third style (optional)</button>
-            <div class="slot" id="mxSlotC" style="display:none;margin-top:8px"><div class="slot-header"><div class="slot-label"><div class="slot-dot c"></div>SLOT C <span id="mxSlotNameC" style="color:var(--t1);font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Select an Artist or Blueprint</span> <span style="color:var(--t4);font-weight:400;margin-left:4px">· accent</span></div><button class="slot-clear" onclick="mxClearSlot('C')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispC" onclick="mxReopenSlot('C')"></div><div class="slot-sel-prompt border-c" id="mxSelPromptC" style="display:none"></div><div class="slot-browser" id="mxBrowserC"><div class="slot-tabs"><button class="slot-tab on" data-slot="C" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="C" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search..." data-slot="C"><div class="slot-genres" id="mxGenresC"></div><div class="slot-list" id="mxListC"></div></div></div>
           </div>
           <div class="mx-card">
             <div class="mx-flavor-title" data-i18n="mixer_flavor">🎨 Flavor Layers</div>
@@ -1826,10 +1870,10 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <div class="mx-flavor"><div class="mx-flavor-header"><div class="mx-flavor-name">🎤 Vocal Style</div><div class="mx-flavor-val" id="mxVocalVal">Balanced</div></div><div class="mx-flavor-row"><div class="mx-flavor-end">Whispered</div><input type="range" min="0" max="100" value="50" class="mx-flavor-range" id="mxVocalRange"><div class="mx-flavor-end right">Belted</div></div></div>
             <div class="mx-flavor"><div class="mx-flavor-header"><div class="mx-flavor-name">⏱️ Tempo</div><div class="mx-flavor-val" id="mxTempoVal">120 BPM</div></div><div class="mx-flavor-row"><div class="mx-flavor-end">60</div><input type="range" min="60" max="180" value="120" step="1" class="mx-flavor-range" id="mxTempoRange"><div class="mx-flavor-end right">180</div></div><div class="mx-tempo-display"><div class="mx-tempo-bpm" id="mxTempoBig">120</div><div class="mx-tempo-label">BPM</div></div></div>
           </div>
+          <button class="mx-slot-c-toggle" id="mxSlotCToggle" data-i18n="mixer_add_third">+ Add third style</button>
+          <div class="slot" id="mxSlotC" style="display:none"><div class="slot-header"><div class="slot-label"><div class="slot-dot c"></div>SLOT C <span id="mxSlotNameC" style="color:var(--t1);font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Accent</span></div><button class="slot-clear" onclick="mxClearSlot('C')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispC" onclick="mxReopenSlot('C')"></div><div class="slot-sel-prompt border-c" id="mxSelPromptC" style="display:none"></div><div class="slot-browser" id="mxBrowserC"><div class="slot-tabs"><button class="slot-tab on" data-slot="C" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="C" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search..." data-slot="C"><div class="slot-genres" id="mxGenresC"></div><div class="slot-list" id="mxListC"></div></div></div>
           <button class="mx-mix-btn" id="mxMixBtn" data-i18n="mixer_generate">🎛️ Mix & Generate Prompt</button>
-        </div>
-        <div class="mx-output">
-          <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_output">Mixed Prompt <span style="font-weight:500;letter-spacing:0;text-transform:none;color:var(--t4);font-size:9px;margin-left:6px">✏️ editable</span></div><textarea class="mx-out-prompt" id="mxOutputPrompt" rows="5" placeholder="Pick two styles and hit Mix to generate your blended prompt..." data-i18n="mixer_output_empty"></textarea></div>
+          <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_output">Mixed Prompt <span style="font-weight:500;letter-spacing:0;text-transform:none;color:var(--t4);font-size:8px;margin-left:4px">✏️ editable</span></div><textarea class="mx-out-prompt" id="mxOutputPrompt" rows="4" placeholder="Pick two styles and hit Mix to generate your blended prompt..." data-i18n="mixer_output_empty"></textarea></div>
           <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_breakdown">Ingredient Breakdown</div>
             <div class="mx-bd-section"><div class="mx-bd-label"><div class="mx-bd-dot" style="background:#E040FB"></div>From Slot A <span id="mxBdAPct" style="color:#E040FB">(70%)</span></div><div class="mx-bd-chips" id="mxBdAChips"><div class="mx-bd-chip from-a">waiting...</div></div></div>
             <div class="mx-bd-section"><div class="mx-bd-label"><div class="mx-bd-dot" style="background:var(--g5)"></div>From Slot B <span id="mxBdBPct" style="color:var(--g5)">(30%)</span></div><div class="mx-bd-chips" id="mxBdBChips"><div class="mx-bd-chip from-b">waiting...</div></div></div>
@@ -1837,9 +1881,17 @@ header{animation:bootUp .4s var(--expo) .05s both}
           </div>
           <div class="mx-actions"><button class="mx-act primary" id="mxCopyMix" data-i18n="mixer_copy">📋 Copy Prompt</button><button class="mx-act secondary" id="mxSendBatch" data-i18n="mixer_send_batch">⚡ Send to Batch</button><button class="mx-act tertiary" id="mxSaveFav">☆ Save</button></div>
           <div class="mx-out-card" id="mxHistCard"><div class="mx-hist-label" data-i18n="mixer_history">Recent Mixes</div><div class="mx-hist-list" id="mxHistList">
-            
-            
           </div></div>
+        </div>
+
+        <!-- COL 3: SLOT B -->
+        <div class="mx-slot-wrap">
+          <div class="mx-slot-rail" id="mxRailB">
+            <div class="mx-slot-rail-hdr">Genres</div>
+          </div>
+          <div class="mx-slot-body">
+            <div class="slot" id="mxSlotB"><div class="slot-header"><div class="slot-label"><div class="slot-dot b"></div>SLOT B <span id="mxSlotNameB" style="color:var(--t1);font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Pick a style</span></div><button class="slot-clear" onclick="mxClearSlot('B')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispB" onclick="mxReopenSlot('B')"></div><div class="slot-sel-prompt border-b" id="mxSelPromptB" style="display:none"></div><div class="slot-browser" id="mxBrowserB"><div class="slot-tabs"><button class="slot-tab on" data-slot="B" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="B" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search artists..." data-slot="B"><div class="slot-genres" id="mxGenresB"></div><div class="slot-list" id="mxListB"></div></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2029,10 +2081,10 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <div class="a-key-dot"></div>
           <span class="a-key-label" data-i18n="analyse_api_label">Gemini API Key</span>
           <span class="a-key-free" data-i18n="analyse_api_free">FREE</span>
-          <span class="a-key-status">✓ Key saved</span>
+          <span class="a-key-status" id="aKeyStatus" style="display:none"></span>
         </div>
         <div class="a-key-row">
-          <input type="password" class="a-key-input" placeholder="Paste Gemini API key..." value="••••••••••••••••••••">
+          <input type="password" class="a-key-input" placeholder="Paste Gemini API key..." >
           <button class="a-key-save" data-i18n="analyse_api_save">Save</button>
         </div>
         <div class="a-key-help">
@@ -2052,42 +2104,42 @@ header{animation:bootUp .4s var(--expo) .05s both}
         <div class="a-drop-sub" data-i18n="analyse_drop_sub">MP3, WAV, M4A, OGG, FLAC — any size</div>
       </div>
 
-      <div class="a-file" id="aFileDisplay">
+      <div class="a-file" id="aFileDisplay" style="display:none">
         <div class="a-file-icon">🎵</div>
         <div class="a-file-info">
-          <div class="a-file-name" id="aFileName">midnight_drive_vocals.wav</div>
-          <div class="a-file-size" id="aFileSize">4.2 MB · WAV · 3:12</div>
+          <div class="a-file-name" id="aFileName"></div>
+          <div class="a-file-size" id="aFileSize"></div>
         </div>
         <button class="a-file-remove" id="aFileRemove">✕</button>
       </div>
 
       <button class="a-go-btn" data-i18n="analyse_go">🔬 Analyse Song</button>
 
-      <div class="a-results" id="aResults">
+      <div class="a-results" id="aResults" style="display:none">
         <div class="a-result voice">
           <div class="a-result-top">
             <div class="a-result-label voice-label" data-i18n="analyse_voice_label">🎤 Voice Prompt</div>
             <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
           </div>
-          <div class="a-result-text">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone</div>
+          <div class="a-result-text"></div>
         </div>
         <div class="a-result style">
           <div class="a-result-top">
             <div class="a-result-label style-label" data-i18n="analyse_style_label">🎹 Song Style Prompt</div>
             <button class="a-result-copy" data-i18n="analyse_copy">📋 Copy</button>
           </div>
-          <div class="a-result-text">Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
+          <div class="a-result-text"></div>
         </div>
 
         <div class="a-breakdown">
           <div class="a-breakdown-title" data-i18n="analyse_breakdown_title">🔍 Audio Breakdown</div>
           <div class="a-breakdown-grid">
             <div class="a-stat-card"><div class="a-stat-icon">🎵</div><div class="a-stat-info"><div class="a-stat-val">85 BPM</div><div class="a-stat-label" data-i18n="analyse_tempo">Tempo</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val">E♭ Minor</div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val">3:12</div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val">Lo-fi R&B</div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val">Nocturnal</div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
-            <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val">Low</div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎹</div><div class="a-stat-info"><div class="a-stat-val"></div><div class="a-stat-label" data-i18n="analyse_key">Key</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⏱️</div><div class="a-stat-info"><div class="a-stat-val"></div><div class="a-stat-label" data-i18n="analyse_duration">Duration</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🎧</div><div class="a-stat-info"><div class="a-stat-val"></div><div class="a-stat-label" data-i18n="analyse_genre">Genre</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">🌙</div><div class="a-stat-info"><div class="a-stat-val"></div><div class="a-stat-label" data-i18n="analyse_mood">Mood</div></div></div>
+            <div class="a-stat-card"><div class="a-stat-icon">⚡</div><div class="a-stat-info"><div class="a-stat-val"></div><div class="a-stat-label" data-i18n="analyse_energy">Energy</div></div></div>
           </div>
         </div>
 
@@ -2099,7 +2151,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <div class="a-combined-label">🎵 Combined Suno Prompt</div>
             <div class="a-combined-sub">Voice + Style merged into one ready-to-paste prompt</div>
           </div>
-          <div class="a-combined-text" id="aCombinedText">Smooth, warm male vocal with airy falsetto, subtle vibrato, intimate close-mic delivery, R&B/soul influenced phrasing with gentle vocal runs, slight rasp on lower notes, ethereal reverb-drenched tone, Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
+          <div class="a-combined-text" id="aCombinedText">, Lo-fi R&B, dreamy synth pads, soft 808 bass, muted trap hi-hats, ambient textures, reverb-heavy keys, 85 BPM, nocturnal atmosphere, bedroom pop production with neo-soul chord progressions, vinyl crackle overlay</div>
           <div class="a-combined-actions">
             <button class="a-cact primary" id="aCopyCombined">📋 Copy Combined Prompt</button>
             <button class="a-cact batch" id="aSendBatch">⚡ Send to Batch Generator</button>
@@ -2113,35 +2165,39 @@ header{animation:bootUp .4s var(--expo) .05s both}
     <div class="view" id="vSpotify">
       <div class="sp-hero">
         <div class="sp-over">AI Style Extraction</div>
-        <div class="sp-title">Reverse-Engineer<br>Any <em>Track</em>.</div>
+        <div class="sp-title">Reverse-Engineer Any <em>Track</em>.</div>
         <div class="sp-desc">Paste a Spotify or YouTube link — AI analyzes the song's sonic DNA and generates Suno-ready style and voice prompts you can use instantly.</div>
       </div>
 
       <div class="sp-card">
-        <!-- Spotify Input -->
-        <div class="sp-link-label">🎧 <strong>Spotify Track / Artist Link</strong></div>
-        <div class="sp-input-row">
-          <input class="sp-input" id="spInput" placeholder="https://open.spotify.com/track/...">
-          <button class="sp-go" id="spGoBtn" onclick="spAnalyze()">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
-            Analyze
-          </button>
-        </div>
-        <div class="sp-hint">Open Spotify → right-click any song → Share → Copy link → paste above</div>
+        <!-- Two-column input grid -->
+        <div class="sp-inputs-grid">
+          <div class="sp-input-card">
+            <div class="sp-link-label">🎧 <strong>Spotify Track / Artist Link</strong></div>
+            <div class="sp-input-row">
+              <input class="sp-input" id="spInput" placeholder="https://open.spotify.com/track/...">
+              <button class="sp-go" id="spGoBtn" onclick="spAnalyze()">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
+                Analyze
+              </button>
+            </div>
+            <div class="sp-hint">Open Spotify → right-click any song → Share → Copy link → paste above</div>
+          </div>
 
-        <!-- YouTube Input -->
-        <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--b1)"></div>
-        <div class="sp-link-label">📺 <strong>YouTube Video Link</strong></div>
-        <div class="sp-input-row">
-          <input class="sp-input" id="ytInput" placeholder="https://www.youtube.com/watch?v=...">
-          <button class="sp-go" id="ytGoBtn" onclick="ytAnalyze()" style="background:linear-gradient(135deg,#FF0000,#CC0000)">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
-            Analyze
-          </button>
+          <div class="sp-input-card">
+            <div class="sp-link-label">📺 <strong>YouTube Video Link</strong></div>
+            <div class="sp-input-row">
+              <input class="sp-input" id="ytInput" placeholder="https://www.youtube.com/watch?v=...">
+              <button class="sp-go" id="ytGoBtn" onclick="ytAnalyze()" style="background:linear-gradient(135deg,#FF0000,#CC0000)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
+                Analyze
+              </button>
+            </div>
+            <div class="sp-hint">Open YouTube → click Share → Copy link → paste above. Also supports youtu.be short links.</div>
+          </div>
         </div>
-        <div class="sp-hint">Open YouTube → click Share → Copy link → paste above. Also supports youtu.be short links.</div>
 
-        <!-- Shared Loading State -->
+        <!-- Loading States -->
         <div class="sp-loading" id="spLoading">
           <div class="sp-spinner"></div>
           <div class="sp-load-text" id="spLoadText">Fetching track info...</div>
@@ -2151,7 +2207,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <div class="sp-load-text" id="ytLoadText">Fetching video info...</div>
         </div>
 
-        <!-- Shared Result Area (Spotify) -->
+        <!-- Results side by side when both have data -->
         <div class="sp-result" id="spResult">
           <div class="sp-track">
             <div class="sp-art" id="spArt">🎵</div>
@@ -2191,7 +2247,6 @@ header{animation:bootUp .4s var(--expo) .05s both}
           </div>
         </div>
 
-        <!-- YouTube Result Area (hidden, uses own IDs) -->
         <div class="sp-result" id="ytResult">
           <div class="sp-track">
             <div class="sp-art" id="ytArt" style="background:linear-gradient(135deg,#FF0000,#282828);color:#fff">▶</div>
@@ -2231,36 +2286,38 @@ header{animation:bootUp .4s var(--expo) .05s both}
           </div>
         </div>
 
-        <!-- Gemini API Key (shared) -->
+        <!-- Gemini API Key -->
         <div class="sp-divider" style="margin:24px 0 20px"></div>
-        <div class="sp-key-card">
-          <div class="sp-key-top">
-            <div class="sp-key-dot"></div>
-            <span class="sp-key-label">Gemini API Key</span>
-            <span class="sp-key-free">FREE</span>
-            <span class="sp-key-status" id="spKeyStatus"></span>
-          </div>
-          <div class="sp-key-row">
-            <input type="password" class="sp-key-input" id="spKeyInput" placeholder="Paste your Gemini API key here...">
-            <button class="sp-key-save" id="spKeySave">Save</button>
-          </div>
-          <div class="sp-key-help">
-            <div class="sp-key-help-title">🔑 Get your FREE API key in 30 seconds:</div>
-            <div class="sp-key-steps">
-              <div class="sp-key-step"><span class="sp-step-num">1</span> Go to <strong>aistudio.google.com</strong></div>
-              <div class="sp-key-step"><span class="sp-step-num">2</span> Sign in with your Google account</div>
-              <div class="sp-key-step"><span class="sp-step-num">3</span> Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong></div>
-              <div class="sp-key-step"><span class="sp-step-num">4</span> Copy the key and paste it above</div>
+        <div class="sp-key-wrap">
+          <div class="sp-key-card">
+            <div class="sp-key-top">
+              <div class="sp-key-dot"></div>
+              <span class="sp-key-label">Gemini API Key</span>
+              <span class="sp-key-free">FREE</span>
+              <span class="sp-key-status" id="spKeyStatus"></span>
             </div>
-            <div class="sp-key-note">
-              <span class="sp-key-note-icon">💡</span>
-              <div>
-                <strong>Why Gemini?</strong> It powers the AI analysis — identifies instrumentation, mood, vocal style, and generates Suno-ready prompts. The free tier gives you <strong>60 requests/minute</strong> which is more than enough.
-                <br><span class="sp-key-warn">⚠ Use AI Studio ONLY — not Google Cloud Console</span>
+            <div class="sp-key-row">
+              <input type="password" class="sp-key-input" id="spKeyInput" placeholder="Paste your Gemini API key here...">
+              <button class="sp-key-save" id="spKeySave">Save</button>
+            </div>
+            <div class="sp-key-help">
+              <div class="sp-key-help-title">🔑 Get your FREE API key in 30 seconds:</div>
+              <div class="sp-key-steps">
+                <div class="sp-key-step"><span class="sp-step-num">1</span> Go to <strong>aistudio.google.com</strong></div>
+                <div class="sp-key-step"><span class="sp-step-num">2</span> Sign in with your Google account</div>
+                <div class="sp-key-step"><span class="sp-step-num">3</span> Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong></div>
+                <div class="sp-key-step"><span class="sp-step-num">4</span> Copy the key and paste it above</div>
               </div>
-            </div>
-            <div class="sp-key-shared">
-              <span class="sp-key-shared-icon">🔗</span> This key is shared with Song Analyzer — save it once and it works across all analyzers.
+              <div class="sp-key-note">
+                <span class="sp-key-note-icon">💡</span>
+                <div>
+                  <strong>Why Gemini?</strong> It powers the AI analysis — identifies instrumentation, mood, vocal style, and generates Suno-ready prompts. The free tier gives you <strong>60 requests/minute</strong> which is more than enough.
+                  <br><span class="sp-key-warn">⚠ Use AI Studio ONLY — not Google Cloud Console</span>
+                </div>
+              </div>
+              <div class="sp-key-shared">
+                <span class="sp-key-shared-icon">🔗</span> This key is shared with Song Analyzer — save it once and it works across all analyzers.
+              </div>
             </div>
           </div>
         </div>
@@ -2268,14 +2325,15 @@ header{animation:bootUp .4s var(--expo) .05s both}
     </div>
 
     <div class="view" id="vMaster">
-      <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track<br>Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
-      <!-- Gemini API Key for Audio Preview -->
-      <div class="a-key-card" style="margin-bottom:16px">
+      <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
+
+      <!-- Gemini API Key — compact -->
+      <div class="a-key-card" style="margin-bottom:14px;max-width:680px;margin-left:auto;margin-right:auto">
         <div class="a-key-top">
           <div class="a-key-dot" id="masterApiDot"></div>
           <span class="a-key-label">Gemini API Key</span>
           <span class="a-key-free">FREE</span>
-          <span class="a-key-status" id="masterApiStatus" style="display:none">✓ Key saved</span>
+          <span class="a-key-status" id="masterApiStatus" style="display:none"></span>
         </div>
         <div class="a-key-row">
           <input type="password" class="a-key-input" id="masterApiInput" placeholder="Paste Gemini API key for A/B preview...">
@@ -2286,16 +2344,23 @@ header{animation:bootUp .4s var(--expo) .05s both}
         </div>
       </div>
 
-      <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
-      <div class="drop-zone" id="masterDropZone" style="cursor:pointer"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
-      <div class="queue" id="masterQueue">
-        
-        <div class="qi" style="justify-content:center;opacity:0.4;padding:24px"><div class="qi-body" style="text-align:center"><div class="qi-name" style="font-size:13px">Drop audio files above to begin mastering</div></div></div>
+      <div class="m-grid">
+        <!-- LEFT: Drop + Queue + Buttons -->
+        <div class="m-col">
+          <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
+          <div class="drop-zone" id="masterDropZone" style="cursor:pointer"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
+          <div class="queue" id="masterQueue">
+            <div class="qi" style="justify-content:center;opacity:0.4;padding:18px"><div class="qi-body" style="text-align:center"><div class="qi-name" style="font-size:12px">Drop audio files above to begin mastering</div></div></div>
+          </div>
+          <div class="btns" id="masterBtns"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
+          <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
+        </div>
+
+        <!-- RIGHT: A/B Preview + Meters -->
+        <div class="m-col">
+          <div class="prev-card" id="masterPreview"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">No file loaded</div></div><div class="ab-sw"><button class="ab-btn" id="abOriginal" data-i18n="master_original">Original</button><button class="ab-btn on" id="abMastered" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play" id="masterPlayBtn">▶</button><div class="tp-wave" id="masterWaveWrap"><canvas id="wv"></canvas><div class="tp-fill" id="masterFill"></div><div class="tp-needle" id="masterNeedle"></div></div><div class="tp-time" id="masterTime">0:00 / 0:00</div></div><div class="meters"><div class="meter"><div class="meter-v" id="meterLufsBefore">—</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterLufsAfter">—</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">—</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
+        </div>
       </div>
-      </div>
-      <div class="btns" id="masterBtns"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
-      <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
-      <div class="prev-card" id="masterPreview"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">No file loaded</div></div><div class="ab-sw"><button class="ab-btn" id="abOriginal" data-i18n="master_original">Original</button><button class="ab-btn on" id="abMastered" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play" id="masterPlayBtn">▶</button><div class="tp-wave" id="masterWaveWrap"><canvas id="wv"></canvas><div class="tp-fill" id="masterFill"></div><div class="tp-needle" id="masterNeedle"></div></div><div class="tp-time" id="masterTime">1:24 / 3:12</div></div><div class="meters"><div class="meter"><div class="meter-v" id="meterLufsBefore">-18.3</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterLufsAfter">-14.1</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">-0.3</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
       <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
     </div>
 
@@ -7690,9 +7755,8 @@ function showLangToast(langName){
       const initials=item.n.split(' ').map(w=>w[0]).join('').slice(0,2);
       const isBp=item.type==='blueprint';
       return `<div class="slot-item" data-id="${item.id}" data-slot="${slot}">
-        <div class="slot-item-av ${isBp?'bp':''}" style="background:linear-gradient(135deg,${item.c},${item.c2||item.c})">${isBp?'📘':initials}</div>
-        <div class="slot-item-info"><div class="slot-item-name">${item.n}</div><div class="slot-item-meta"><span>${item.g}</span><span>${item.b} BPM</span></div></div>
-        <div class="slot-item-tags">${item.m.slice(0,2).map(t=>`<span class="slot-item-tag">${t}</span>`).join('')}</div>
+        <div class="slot-item-av ${isBp?'bp':''}" style="background:linear-gradient(135deg,${item.c},${item.c2||item.c})">${isBp?'\ud83d\udcd8':initials}</div>
+        <div class="slot-item-info"><div class="slot-item-name">${item.n}</div><div class="slot-item-meta"><span>${item.g}</span><span>${item.b} BPM</span></div><div class="slot-item-prompt">${(item.p||'').slice(0,120)}${(item.p||'').length>120?'...':''}</div></div>
       </div>`;
     }).join('')||'<div style="padding:16px;text-align:center;color:var(--t4);font-size:12px">No results</div>';
     list.querySelectorAll('.slot-item').forEach(el=>{el.addEventListener('click',()=>mxSelectItem(slot,el.dataset.id))});
@@ -7727,6 +7791,45 @@ function showLangToast(langName){
   };
 
   mxBuildSlot('A');mxBuildSlot('B');mxBuildSlot('C');
+
+  // === POPULATE GENRE RAILS ===
+  function mxPopulateRail(slot){
+    const rail = document.getElementById('mxRail'+slot);
+    if(!rail) return;
+    const ART_GC_BASE = typeof ART_GENRE_COLORS !== 'undefined' ? ART_GENRE_COLORS : {};
+    const ART_GC = Object.assign({}, ART_GC_BASE, {
+      'Alternative':'#FF6B9D','Ambient':'#64DFDF','Blues':'#5B8DEF','Classical':'#FFD93D',
+      'Country':'#FF8C42','Dance':'#FF5EF7','Dark Country':'#C44536','Electronic':'#00F5D4',
+      'Folk':'#DAA06D','Funk':'#FFE66D','Gospel':'#FFBE0B','Hip-Hop':'#FF6B8A',
+      'Indie':'#A78BFA','Jazz':'#FFC857','K-Pop':'#FF69B4','Latin':'#FB5607',
+      'Metal':'#EF233C','Pop':'#FF47DA','Punk':'#00F5FF','R&B':'#C77DFF',
+      'Reggae':'#06D6A0','Rock':'#FF4444','Singer-Songwriter':'#F4A261','Soul':'#FFB4A2',
+      'World':'#8AC926'
+    });
+    const counts = {};
+    mxAll.forEach(i => { if(i && i.g) counts[i.g] = (counts[i.g]||0)+1; });
+    let h = '<div class="mx-ri on" data-g="all"><div class="mx-ri-dot" style="color:var(--g1);background:var(--g1)"></div><div class="mx-ri-name">All</div><div class="mx-ri-ct">'+mxAll.length+'</div></div>';
+    mxGenres.forEach(g => {
+      const col = ART_GC[g] || '#888';
+      h += '<div class="mx-ri" data-g="'+g+'"><div class="mx-ri-dot" style="color:'+col+';background:'+col+'"></div><div class="mx-ri-name">'+g+'</div><div class="mx-ri-ct">'+(counts[g]||'')+'</div></div>';
+    });
+    rail.innerHTML = '<div class="mx-slot-rail-hdr">Genres</div>' + h;
+    rail.addEventListener('click', function(e){
+      const item = e.target.closest('.mx-ri');
+      if(!item) return;
+      rail.querySelectorAll('.mx-ri').forEach(x => x.classList.remove('on'));
+      item.classList.add('on');
+      const genre = item.dataset.g;
+      const pills = document.querySelectorAll('#mxGenres'+slot+' .slot-genre-pill');
+      pills.forEach(p => { p.classList.remove('on'); if(p.dataset.g === genre) p.classList.add('on'); });
+      mxRenderList(slot);
+    });
+  }
+  mxPopulateRail('A');
+  mxPopulateRail('B');
+
+
+  
 
   document.getElementById('mxSlotCToggle').addEventListener('click',function(){
     const sc=document.getElementById('mxSlotC');
@@ -8632,6 +8735,31 @@ ytRenderHistory();
 <script>
 // ===== SONG ANALYZER — FILE UPLOAD & GEMINI AUDIO ANALYSIS =====
 (function(){
+  /* --- Song Analyzer API key (shares gemini_key) --- */
+  const aKeyInput = document.querySelector('#vAnalyse .a-key-input');
+  const aKeySave = document.querySelector('#vAnalyse .a-key-save');
+  const aKeyStatus = document.querySelector('#vAnalyse .a-key-status');
+  if(aKeyInput){
+    const saved = localStorage.getItem('gemini_key')||'';
+    if(saved){
+      aKeyInput.value='\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022';
+      aKeyInput.type='password';
+      if(aKeyStatus){aKeyStatus.style.display='';aKeyStatus.textContent='\u2713 Key saved';}
+    }
+    if(aKeySave) aKeySave.addEventListener('click',()=>{
+      const key=aKeyInput.value.trim();
+      if(!key||key.indexOf('\u2022')===0){aKeyInput.focus();aKeyInput.style.borderColor='var(--g3)';setTimeout(()=>aKeyInput.style.borderColor='',1500);return;}
+      localStorage.setItem('gemini_key',key);
+      aKeySave.textContent='\u2713 Saved';
+      if(aKeyStatus){aKeyStatus.style.display='';aKeyStatus.textContent='\u2713 Key saved';}
+      aKeyInput.value='\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022';
+      aKeyInput.type='password';
+      setTimeout(()=>{aKeySave.textContent='Save'},2000);
+    });
+  }
+})();
+
+(function(){
   const dropZone = document.getElementById('aDropZone');
   const fileInput = document.getElementById('aFileInput');
   const fileDisplay = document.getElementById('aFileDisplay');
@@ -9130,88 +9258,94 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
     const sr = sampleRate || buf.sampleRate;
     const numCh = buf.numberOfChannels;
     const length = buf.length;
-    const blockSize = Math.round(sr * 0.4); // 400ms blocks
-    const stepSize = Math.round(sr * 0.1);  // 75% overlap (100ms steps)
+    const blockSize = Math.round(sr * 0.4);
+    const stepSize = Math.round(sr * 0.1);
 
-    // K-weight the audio: apply pre-filters per channel
-    // Stage 1: Shelving filter (+4dB, 1681Hz) — accounts for head acoustic effect
-    // Stage 2: High-pass (38Hz, 2nd order) — RLB weighting
-    // We approximate with biquad coefficients for common sample rates
+    // === K-WEIGHTING: 2nd-order biquad filters per ITU-R BS.1770-4 ===
+    // Stage 1: High shelf +4dB at 1681Hz (head acoustic effect)
+    // Stage 2: High-pass at 38Hz (RLB weighting)
+    // Using Audio EQ Cookbook formulas for exact coefficients
+
+    // Stage 1: High shelf
+    const A1 = Math.pow(10, 4.0 / 40); // +4dB
+    const w01 = 2 * Math.PI * 1681.0 / sr;
+    const cosw1 = Math.cos(w01), sinw1 = Math.sin(w01);
+    const alpha1 = sinw1 / (2 * 0.71);
+    const sqA1 = Math.sqrt(A1);
+    const s1a0 = (A1+1) - (A1-1)*cosw1 + 2*sqA1*alpha1;
+    const s1 = {
+      b0: (A1*((A1+1)+(A1-1)*cosw1+2*sqA1*alpha1))/s1a0,
+      b1: (-2*A1*((A1-1)+(A1+1)*cosw1))/s1a0,
+      b2: (A1*((A1+1)+(A1-1)*cosw1-2*sqA1*alpha1))/s1a0,
+      a1: (2*((A1-1)-(A1+1)*cosw1))/s1a0,
+      a2: ((A1+1)-(A1-1)*cosw1-2*sqA1*alpha1)/s1a0
+    };
+
+    // Stage 2: High-pass at 38Hz
+    const w02 = 2 * Math.PI * 38.0 / sr;
+    const cosw2 = Math.cos(w02);
+    const alpha2 = Math.sin(w02) / (2 * 0.5);
+    const s2a0 = 1 + alpha2;
+    const s2 = {
+      b0: ((1+cosw2)/2)/s2a0,
+      b1: (-(1+cosw2))/s2a0,
+      b2: ((1+cosw2)/2)/s2a0,
+      a1: (-2*cosw2)/s2a0,
+      a2: (1-alpha2)/s2a0
+    };
+
+    // Apply both filters per channel
     const filtered = [];
-    for(let c = 0; c < numCh; c++){
-      const raw = buf.getChannelData(c);
+    for(let ch = 0; ch < numCh; ch++){
+      const raw = buf.getChannelData(ch);
+      const tmp = new Float32Array(length);
       const out = new Float32Array(length);
 
-      // Stage 1: Pre-filter (high-shelf approximation)
-      // +4dB above ~1500Hz using a simple 1-pole shelf
-      const fc1 = 1681.0;
-      const K1 = Math.tan(Math.PI * fc1 / sr);
-      const Vh = Math.pow(10, 4.0 / 20); // +4dB
-      const a0_1 = 1 + K1 / Math.sqrt(Vh);
-      const b0_1 = (Vh + K1 * Math.sqrt(Vh)) / a0_1;
-      const b1_1 = (Vh - K1 * Math.sqrt(Vh)) / a0_1;
-      const a1_1 = (1 - K1 / Math.sqrt(Vh)) / a0_1;
-
-      let x1_1 = 0, y1_1 = 0;
-      const stage1 = new Float32Array(length);
-      for(let i = 0; i < length; i++){
-        stage1[i] = b0_1 * raw[i] + b1_1 * x1_1 - a1_1 * y1_1;
-        x1_1 = raw[i];
-        y1_1 = stage1[i];
+      // Stage 1: high shelf
+      let x1=0,x2=0,y1=0,y2=0;
+      for(let i=0;i<length;i++){
+        tmp[i] = s1.b0*raw[i] + s1.b1*x1 + s1.b2*x2 - s1.a1*y1 - s1.a2*y2;
+        x2=x1; x1=raw[i]; y2=y1; y1=tmp[i];
       }
 
-      // Stage 2: High-pass ~38Hz (RLB weighting)
-      const fc2 = 38.0;
-      const w0 = 2 * Math.PI * fc2 / sr;
-      const cosw = Math.cos(w0);
-      const alpha2 = Math.sin(w0) / (2 * 0.71);
-      const hp_a0 = 1 + alpha2;
-      const hp_b0 = ((1 + cosw) / 2) / hp_a0;
-      const hp_b1 = (-(1 + cosw)) / hp_a0;
-      const hp_b2 = ((1 + cosw) / 2) / hp_a0;
-      const hp_a1 = (-2 * cosw) / hp_a0;
-      const hp_a2 = (1 - alpha2) / hp_a0;
-
-      let hx1=0,hx2=0,hy1=0,hy2=0;
-      for(let i = 0; i < length; i++){
-        out[i] = hp_b0*stage1[i] + hp_b1*hx1 + hp_b2*hx2 - hp_a1*hy1 - hp_a2*hy2;
-        hx2=hx1; hx1=stage1[i]; hy2=hy1; hy1=out[i];
+      // Stage 2: high-pass
+      x1=0;x2=0;y1=0;y2=0;
+      for(let i=0;i<length;i++){
+        out[i] = s2.b0*tmp[i] + s2.b1*x1 + s2.b2*x2 - s2.a1*y1 - s2.a2*y2;
+        x2=x1; x1=tmp[i]; y2=y1; y1=out[i];
       }
       filtered.push(out);
     }
 
-    // Gated loudness measurement (two-pass gating per BS.1770-4)
+    // === GATED LOUDNESS per BS.1770-4 ===
     // Pass 1: absolute gate at -70 LUFS
     let blocks = [];
-    for(let start = 0; start <= length - blockSize; start += stepSize){
+    for(let start=0; start<=length-blockSize; start+=stepSize){
       let blockPower = 0;
-      for(let c = 0; c < numCh; c++){
-        let chPow = 0;
-        const d = filtered[c];
-        for(let i = start; i < start + blockSize; i++){
-          chPow += d[i] * d[i];
-        }
+      for(let ch=0; ch<numCh; ch++){
+        let chPow=0;
+        const d = filtered[ch];
+        for(let i=start; i<start+blockSize; i++) chPow += d[i]*d[i];
         blockPower += chPow / blockSize;
       }
       blockPower /= numCh;
-      const blockLUFS = -0.691 + 10 * Math.log10(Math.max(blockPower, 1e-20));
-      if(blockLUFS > -70) blocks.push({ power: blockPower, lufs: blockLUFS });
+      const bLUFS = -0.691 + 10*Math.log10(Math.max(blockPower, 1e-20));
+      if(bLUFS > -70) blocks.push({power:blockPower, lufs:bLUFS});
     }
+    if(blocks.length===0) return -70;
 
-    if(blocks.length === 0) return -70;
-
-    // Pass 2: relative gate at -10 dB below absolute-gated loudness
-    let sum1 = 0;
+    // Pass 2: relative gate at -10dB below absolute-gated loudness
+    let sum1=0;
     for(const b of blocks) sum1 += b.power;
-    const absGatedLUFS = -0.691 + 10 * Math.log10(sum1 / blocks.length);
+    const absGatedLUFS = -0.691 + 10*Math.log10(sum1/blocks.length);
     const relThreshold = absGatedLUFS - 10;
 
-    let sum2 = 0, count2 = 0;
+    let sum2=0, count2=0;
     for(const b of blocks){
       if(b.lufs > relThreshold){ sum2 += b.power; count2++; }
     }
-    if(count2 === 0) return -70;
-    return -0.691 + 10 * Math.log10(sum2 / count2);
+    if(count2===0) return -70;
+    return -0.691 + 10*Math.log10(sum2/count2);
   }
 
   function measureTruePeak(buf){
