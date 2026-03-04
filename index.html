@@ -707,6 +707,10 @@ nav button:nth-child(10){animation-delay:.2s}
 .bp-section-count{font-family:var(--mono);font-size:10px;color:var(--t4)}
 
 .bp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.bp-dl-bar{grid-column:1/-1;display:flex;justify-content:center;padding:8px 0 4px}
+.bp-dl-btn{height:40px;padding:0 24px;border-radius:10px;border:1px solid var(--g4);background:rgba(255,179,71,0.08);color:var(--g4);font:700 13px var(--body);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.bp-dl-btn:hover{background:rgba(255,179,71,0.15);border-color:var(--g3);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,179,71,0.15)}
+
 .bp-card-item{
   background:var(--card);border:1px solid var(--b1);border-radius:16px;
   overflow:hidden;display:flex;flex-direction:column;
@@ -2292,7 +2296,10 @@ header{animation:bootUp .4s var(--expo) .05s both}
       </div>
       <div class="batch-preview">
         <div class="bp-header"><div class="bp-count"><span class="bp-num">0</span><span class="bp-of" data-i18n="batch_songs_of">/ 5 songs</span></div><div class="bp-status" data-i18n="batch_status_waiting">Waiting for prompt...</div></div>
-        <div class="bp-grid">
+        <div id="batchDownloadBar" class="bp-dl-bar" style="display:none">
+            <button id="batchDownloadJson" class="bp-dl-btn">⬇ Download .JSON for SunoPrompter</button>
+          </div>
+          <div class="bp-grid">
           <div class="bp-card bp-placeholder"><div class="bp-card-num">01</div><div class="bp-card-inner"><div class="bp-empty-bar"></div><div class="bp-empty-bar short"></div><div class="bp-empty-bar med"></div></div></div>
           <div class="bp-card bp-placeholder"><div class="bp-card-num">02</div><div class="bp-card-inner"><div class="bp-empty-bar"></div><div class="bp-empty-bar med"></div><div class="bp-empty-bar short"></div></div></div>
           <div class="bp-card bp-placeholder"><div class="bp-card-num">03</div><div class="bp-card-inner"><div class="bp-empty-bar short"></div><div class="bp-empty-bar"></div><div class="bp-empty-bar med"></div></div></div>
@@ -5222,90 +5229,118 @@ function pickStructure(rng, genreKey) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const TITLES = {
   hiphop: [
-    'No Days Off','Run It Up','From the Bottom','Legacy','Made It Out','Talk My Talk','Different Breed','Hustle Hard',
-    'Self Made','On Sight','Real Ones','The Climb','No Cap','Can\'t Stop','Money Talks','Still Standing',
-    'Certified','Winners Circle','Grind Mode','Pressure','Crown Me','Night Shift','Level Up','Top Floor',
-    'Respect the Grind','First Class','Dream Chaser','Built to Last','No Limits','All Mine','Untouchable',
-    'The Wave','Flex Season','Glow Up','My City','Rare Breed','Big Dreams','On Everything','The Code',
+    'No Days Off','Run It Up','From the Bottom','Made It Out','Crown on Heavy',
+    'Streets Don\'t Forget','Came for Everything','Top of the Morning','Built Like That','Stack or Starve',
+    'Silent Killer Mode','Concrete Rose Garden','Wolves at My Door','Talk Is Cheap','Late Night Grind',
+    'Blood Oath Sworn','Real Ones Know','Ghost of the Block','Paper Trail Long','Money Talks Louder',
+    'Midnight Oil Burning','Drip Don\'t Stop','From Dust to Gold','Can\'t Hold Me Down','Born Against Odds',
+    'Bag Talk Only','Write My Own Rules','Pressure Makes Diamonds','Won\'t Bow Down','Fear Is Fiction',
+    'Long Way Home','Dead Silence Speaks','Every Scar Earned','Dark Side Crowning','Already Won Twice',
+    'Devil Knows My Name','Nothing Left to Burn','Sleep When I\'m Gone','Counting Every Step','Forever on Go'
   ],
   pop: [
-    'Electric Hearts','Midnight Gold','Alive Tonight','Firefly','Neon Dreams','Heartbeat','Sugar Rush','Glitter',
-    'Lights On','Daydream','Runaway','Euphoria','Golden Hour','Satellite','Paper Moon','Gravity',
-    'Shooting Star','Kaleidoscope','Crystal Clear','Technicolor','Sunburn','Wild Card','Magnetic','Blur',
-    'Weekend Feeling','Chemical','Free Fall','Déjà Vu','Afterglow','Champagne Problems','Vertigo','High Tide',
-    'Cosmic','Wild Hearts','Fever Dream','City Lights','Paradise','Main Character','Spotlight','This Is It',
+    'Electric Hearts Tonight','Midnight Gold Rush','Alive and Burning','Firefly in the Dark','Neon Dreams Again',
+    'Glitter on My Tears','Dancing Through the Pain','Daydream About You','Runaway with Me','Head Over Heels',
+    'Brighter Than the Sun','Gravity Can\'t Win','Main Character Energy','Heart on the Highway','Sugar High Crashing',
+    'Technicolor Love Story','Paper Planes Flying','Louder Than My Thoughts','Fast Forward the Feeling','Diamond Eyes Shining',
+    'Wildflower in the Wind','Mirror Mirror Lies','Burning Bright Tonight','Save the Last Light','Who I Am Now',
+    'Confetti in the Rain','Silver Lining Shows','Stars in My Pocket','Turn the Volume Up','Rewrite the Ending',
+    'Catching Fire Again','Don\'t Look Back Now','Cloud Nine Falling','Champagne on the Floor','Spotlight on Me'
   ],
   rnb: [
-    'Pillow Talk','After Hours','Body Language','Overtime','Closer','All Night','Skin Deep','Come Over',
-    'Good Morning','Appetite','Say My Name','Honest','Chemistry','Moonlight','Temporary Fix','Slow Motion',
-    'Private Show','Addicted','Taste','Your Love','Between Us','Confession','Temperature','Vibe',
-    'Undone','Tangled','Insomnia','Hypnotized','Your Touch','Dangerous','Secrets','Silk',
+    'Pillow Talk After','After Hours Only','Body Language Speaks','Overtime Loving You','Closer Than Close',
+    'Appetite for You','Honest in the Dark','Chemistry Won\'t Quit','Moonlight on My Skin','Addicted to Your',
+    'Taste of Tomorrow','Confession at Dawn','Temperature Keep Rising','Silk Sheets Calling','Slow Burn Tonight',
+    'Between the Sheets','Touch Me Like Rain','Tangled Up in You','Whisper What You Want','Velvet Voice Calling',
+    'Can\'t Get Enough','Heavy Love Pouring','Warm Side of Bed','Still Falling Deeper','Easy Love Coming',
+    'Burning Slow Tonight','Heart Wide Open','Dark Room Secrets','Love After Midnight','Sinning with Lights On',
+    'Fool Gold Feels Real','Something About Tonight','No One Like You','Half of Me Yours','Bleeding Beautifully'
   ],
   country: [
-    'Dirt Road Anthem','Small Town Famous','Friday Night','Good Life','Holy Water','Back Home',
-    'Simple Man','Tailgate Weather','Hometown Hero','Long Way Home','Backyard Gospel','Mud on the Tires',
-    'Sunrise to Sunset','Raised Right','Heaven Knows','Gravel Road','Wildflower','Old Boots New Dirt',
-    'Firefly Lane','Front Porch Swing','Whiskey and Rain','God\'s Country','Rust and Gold','Southern Stars',
-    'Dust and Diamonds','Neon Church','Baptized in the River','Heartland','Good Hearts','Red Dirt Blue Sky',
+    'Dirt Road Anthem','Small Town Famous','Friday Night Feeling','Good Life Livin','Holy Water Running',
+    'Wildflower by the Road','God and a Good Dog','Truck Bed and Stars','Back Where I Belong','Tailgate Philosophy',
+    'Porch Light Still On','Dusty Boots Walking','Whiskey for the Wicked','Sunset Over the Ridge','Long Gone Highway',
+    'Missing You Like Monday','Campfire Confessions','Southern State of Mind','Devil Came on Sunday','Gravel Under My Boots',
+    'Broken Fence Still Standing','Barn Dance Saturday','Sunday Morning Grace','Borrowed Time Running','Country in My Blood',
+    'Cold Beer and Friday','Drive Till I Forget','Homebound and Happy','Red Dirt and Rain','Steel and Stone Hearts'
   ],
   rock: [
-    'Revolution','Aftershock','Electric Fury','Unstoppable','Wrecking Ball','No Surrender','Firestarter',
-    'Rebel Heart','Voltage','Ignite','Breaking Point','War Cry','Adrenaline','Unbreakable','Wildfire',
-    'Blackout','Overdrive','Anarchy','Shockwave','Reckless','Bulletproof','Earthquake','Lions and Wolves',
-    'Thunderstruck','Born to Burn','Edge of Glory','Riot','Defy','Last Stand','Headlights','The Fallout',
+    'Electric Fury Rising','Wrecking Ball Heart','Tear the Walls Down','Born to Be Loud','Thunder in My Chest',
+    'Burning from the Inside','Louder Every Time','Sound the Alarm','Rebel with a Rhythm','Plugged In and Alive',
+    'Voltage in My Veins','Live Wire Heart','Full Throttle Feeling','Screaming into Nothing','Hit Me with Everything',
+    'Broken but Still Singing','Ghost of Who I Was','Smash the Silence','Shake the Foundation','Warning Shot Fired',
+    'Red Line Running','Can\'t Kill the Sound','Raw and Unfiltered','Turned Up to Chaos','Overdriven and Free',
+    'Electric to the Bone','Dead Weight Dropped','Steel Rain Falling','Fire Starter Heart','Revolution Starts Now'
   ],
   electronic: [
-    'Frequencies','Neon Pulse','Dissolve','Infinite Loop','Ultraviolet','Wavelength','Zero Gravity',
-    'Electric Sky','Resonance','Supersonic','Afterlife','Eclipse','Spectrum','Transcend','Parallax',
-    'Starfall','Hyperdrive','Midnight Circuit','Overdrive','Euphoria','Voltage','Kaleidoscope','Refraction',
-    'Apex','Synthetic Dreams','Binary Stars','Phase Shift','Horizon','Levitate','Pulse',
+    'Neon Pulse Beating','Infinite Loop Running','Signal Lost Found','Crystal Synth Calling','Digital Rain Falling',
+    'Frequency of Feeling','Synthesize My Heart','Waveform of a Memory','Algorithm of Desire','Chrome Plated Heart',
+    'Phase Shifting Home','Voltage of the Void','Deep Space Drifting','Circuit Overloaded','Binary Bliss State',
+    'Pulse Won\'t Quit','Bass in My Blood','Warm Static Comfort','Pixel Dust Falling','Ghost in the Machine',
+    'System Error Heart','Dead Channel Glow','Dark Matter Calling','Cloud Layer Floating','Zero Gravity Feeling',
+    'Lo-Fi and Lonely','Soft Reboot Heart','Laser Beam Heartbeat','Future Past Collide','Analog Days Missing'
   ],
   indie: [
-    'Almost Something','Coffee for Two','The In-Between','Cardboard Castles','Faded Polaroid','Quiet Riot',
-    'August Rain','Bittersweet','Half Light','Loose Ends','Kitchen Floor','Borrowed Time','Paper Thin',
-    'Gentle Chaos','Tangerine','Small Hours','Unfinished','Bruise','Soft Collision','Late Bloomer',
-    'Thrift Store Heart','Nowhere Fast','Second Guessing','Ordinary Magic','Footnotes','Almost Home',
+    'Almost Something Real','Coffee for Two Please','Cardboard Castle Dreams','Faded Polaroid Memory','Quiet Town Big Feelings',
+    'Golden Hour Bedroom','Sunday Morning Feeling','Camera Shy and Lovely','Tangerine Afternoon Light','Paper Crane Wishes',
+    'Rainy Window Daydream','Dusty Vinyl Comfort','Moth to Your Light','Bookshop in the Rain','Lighthouse in the Fog',
+    'Handwritten on My Heart','Telescope to Nowhere','Silhouette at Sunset','Bedroom Floor Symphony','Pastel Sky Goodbye',
+    'Warm December Night','Penny Lane Revisited','Folklore of Our Love','Wisteria Over the Gate','Vintage Feeling Forever',
+    'Old Bookshop Dreams','Honey Sun on Skin'
   ],
   latin: [
-    'Fuego','Caliente','La Noche','Ritmo','Bailar','Sin Frenos','Muévelo','Temperatura','Descontrol',
-    'Adrenalina','Salvaje','Fantasía','Inolvidable','Gasolina','Seducción','Vamos','Siente','Locura',
+    'Fuego en la Piel','Caliente Como el Sol','La Noche Es Nuestra','Ritmo No Para','Bailando Hasta el Amanecer',
+    'Muévelo Más Lento','Noches Sin Dormir','Dame Tu Veneno','Labios de Miel','No Me Dejes Solo',
+    'Corazón de Fuego','Piel Contra Piel','Sola en la Noche','El Último Trago','Tu Ritmo Me Llama',
+    'Secretos de Medianoche','Mi Alma Baila Sola','El Ritmo No Miente'
   ],
   kpop: [
-    'Limitless','Iconic','Shine Forever','Level Up','Supernova','Dream State','Electric','Galaxy',
-    'Spotlight','Fire and Ice','Breakthrough','Heartbeat','Overdrive','Fearless','Magnetic','Dazzle',
+    'Hearts on Overdrive','Neon Dreams Tonight','Love Like a Drama','Sugar Rush Heartbreak','Electric Butterfly Wings',
+    'Crystal Wings Spread','Thunder in My Chest','Fantasy Overload Mode','Glass Heart Shattering','Siren Song for You',
+    'Light Speed Love','Holographic Heartbeat','Cherry Blossom Tears','Dream Catching Tonight','Power Up My Soul',
+    'Wave of Emotion'
   ],
   gospel: [
-    'Amazing Grace','Breakthrough','His Love','Anointed','Victory Lap','Faithful','Higher Ground',
-    'Blessings','Overcomer','Hallelujah','The Promise','Redeemed','Glory','Unshakeable','His Way',
+    'Amazing Grace Found Me','His Grace Is Enough','His Love Never Fails','Walking on Holy Ground','Victory Is Mine',
+    'Faithful Through Storms','Blessed Beyond Measure','Lifted by the Spirit','Heaven Heard My Cry','Morning Mercy Shining',
+    'Joy Comes in Morning','River of Redemption','Standing on the Promise','Praise Like a Weapon','Grace Carried Me Home'
   ],
   jazz: [
-    'Midnight Blue','Smoke and Mirrors','Velvet Hours','Blue Note','The Last Set','Satin Moon',
-    'After Last Call','Quarter Note','Old Fashioned','Swing Time','Bitter and Sweet','Cool Breeze',
+    'Midnight Blue Session','Smoke and Mirrors','Velvet Hours Passing','Blue Note Calling','The Last Set Tonight',
+    'Satin Keys at Midnight','Quarter to Midnight','Brass and Bourbon','Cool Breeze Coming','Rhythm Found Me Here',
+    'Swinging Through the Night','Late Night in the Alley'
   ],
   metal: [
-    'Iron Throne','Inferno','Wrath','Annihilation','Blood and Thunder','Valhalla','Oblivion',
-    'Ashes and Empire','Berserker','Doomsday','Leviathan','Warpath','Cataclysm','Immortal','Colossus',
+    'Iron Throne of Blood','Wrath of the Unchained','Blood and Thunder Reign','Shatter Every Chain','Bow to No One',
+    'Forge of the Fallen','Death March Forward','Serpent Eats Its Tail','Venom Runs Through Me','Blackened Sky Falls',
+    'Chaos Is My Kingdom','Hellfire in the Hymn','No Mercy No Masters','Bone Dust and Glory','Doom Walks Among Us'
   ],
   reggae: [
-    'One Love','Roots and Culture','Zion','Positive Vibration','Island Time','Jah Blessing','Sunshine',
-    'Freedom Song','Irie','Revolution','Burning Fire','Promised Land','Rise Up','Kingston Town',
+    'One Love Is Enough','Roots and Culture Rising','Positive Vibration Only','Island Time Flowing','Sunshine in My Pocket',
+    'Irie Every Morning','Babylon Can\'t Hold Me','Jah Light My Way','Kingston Sunrise Coming','Easy Skanking Home',
+    'Dub in My Bones','Rock Steady My Heart','Trenchtown Taught Me','Cool Runnings Always'
   ],
   folk: [
-    'Old Oak Tree','River Song','The Homestead','Wildflowers','Harvest Moon','Simple Things',
-    'The Long Road','Fireside','Amber Waves','Seeds and Stones','The Wishing Well','Fences','Heartwood',
+    'Old Oak Tree Standing','River Song at Dusk','Harvest Moon Rising','Meadow Song at Dawn','Wooden Bridge to Somewhere',
+    'Cabin Door Left Open','Garden Gate Swinging','Winding Path Home','Autumn Leaf Falling','Wildflower by the Road',
+    'Candlewick Burning Low','Stone Wall Remembers','Hearthstone Still Warm'
   ],
   punk: [
-    'No Future','Riot Act','Dead End Kids','Rebel Yell','Smash the State','Anarchy','Outsiders',
-    'Burn It Down','Class War','System Error','No Authority','The Rejects','Defy','Raw Deal','Resist',
+    'No Future No Problem','Riot Act Encore','Dead End and Dancing','Rebel Yell Rising','Smash the State Down',
+    'Burn the Handbook','Middle Finger Anthem','System Can\'t Hold Me','Broken but Still Loud','Cheap Shot Champion',
+    'Youth Ain\'t Wasted','Blacklisted and Proud','Short Fuse Long Night','Anti Everything Today','Raw Deal Real Talk'
   ],
   phonk: [
-    'Ghost Ride','Dark Slide','Memphis Drip','VHS Dreams','Shadow Play','Trunk Rattle','Midnight Drift',
-    'Phantom','Smoke Screen','Cold Blooded','Static','Night Crawler','Dead of Night','Lowrider',
+    'Ghost Ride Midnight','Dark Slide Drifting','Memphis Drip Slow','VHS Dreams Playing','Shadow Play Running',
+    'Drift Into the Dark','Phantom Lane Cruising','Static on the Tape','Bass Rattle the Trunk','Lowrider at Midnight',
+    'Smoke and the Mirror','Neon Cemetery Glow','Codeine Sunset Fading','Dead of Night Drive'
   ],
   drill: [
-    'On Sight','No Lacking','Score','The Block Is Hot','Cold Winter','Scoreboard','Real Ones Only',
-    'Icy','Pressure','No Love','The Code','Sliding','Built Different','Active','No Hook','Talk Facts',
-  ],
+    'On Sight No Warning','No Lacking Ever','Block Is Hot Tonight','Cold Winter Coming','Pressure Won\'t Break Me',
+    'Dark Alley Gospel','Grim Don\'t Smile','Night Patrol Running','Silent Threat Loud','War Zone Lullaby',
+    'Frontline Every Day','Street Don\'t Forget','Shadow Work Pays','Drilling Through the Noise','Opp Can\'t See Me',
+    'Menace to the Comfortable'
+  ]
 };
 
 function getTitle(rng, genreKey, usedTitles) {
@@ -7843,6 +7878,7 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
             </div>`;
           });
           _grid.innerHTML=h;
+var dlBar=document.getElementById('batchDownloadBar');if(dlBar)dlBar.style.display=_songs.length?'flex':'none';
           _numEl.textContent=String(_songs.length);
           _statusEl.textContent=_songs.length+' songs generated ✓';
           _statusEl.classList.remove('bp-generating');
@@ -8999,7 +9035,7 @@ ytRenderHistory();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     this.textContent='✓ Downloaded!';
-    setTimeout(()=>{this.textContent='⬇ Download .JSON For Suno Prompter Tool'},1500);
+    setTimeout(()=>{this.textContent='⬇ Download .JSON'},1500);
   });
 
   function openRemix(idx){
