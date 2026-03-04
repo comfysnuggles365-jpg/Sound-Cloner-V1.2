@@ -775,20 +775,13 @@ nav button:nth-child(10){animation-delay:.2s}
 .fv-title em{font-style:normal;background:linear-gradient(135deg,var(--g4),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .fv-desc{font-size:15px;color:var(--t3);margin-top:14px;line-height:1.7;max-width:520px}
 
-.fv-toolbar{
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--b1);flex-wrap:wrap;
-}
-.fv-filters{display:flex;gap:6px}
-.fv-filter{
-  height:34px;padding:0 16px;border-radius:100px;font-family:var(--body);
-  font-size:12.5px;font-weight:600;color:var(--t3);background:var(--bg3);
-  border:1px solid var(--b1);cursor:pointer;transition:all 0.25s var(--smooth);
-}
-.fv-filter:hover{border-color:var(--b2);color:var(--t2)}
-.fv-filter.on{background:var(--grad-hot);border-color:transparent;color:white;box-shadow:0 2px 12px rgba(255,107,138,0.15)}
+
+
+
+
+
 .fv-sort{display:flex;align-items:center;gap:6px}
-.fv-sort-label{font-family:var(--mono);font-size:9px;color:var(--t4);letter-spacing:0.1em;text-transform:uppercase}
+
 .fv-sort-btn{
   height:28px;padding:0 12px;border-radius:7px;font-family:var(--body);font-size:11px;
   font-weight:600;color:var(--t4);background:transparent;border:1px solid var(--b1);
@@ -819,14 +812,11 @@ nav button:nth-child(10){animation-delay:.2s}
 .fv-card-info{flex:1;min-width:0}
 .fv-card-name{font-family:var(--display);font-size:15px;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fv-card-sub{display:flex;align-items:center;gap:6px;margin-top:3px;flex-wrap:wrap}
-.fv-type{
-  font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:0.05em;
-  text-transform:uppercase;padding:2px 7px;border-radius:4px;
-}
-.fv-type.artist{color:var(--g5);background:rgba(0,180,255,0.08);border:1px solid rgba(0,180,255,0.15)}
-.fv-type.blueprint{color:var(--g4);background:rgba(255,179,71,0.08);border:1px solid rgba(255,179,71,0.15)}
-.fv-genre{font-family:var(--mono);font-size:10px;color:var(--t4)}
-.fv-bpm{font-family:var(--mono);font-size:10px;color:var(--t4)}
+
+
+
+
+
 .fv-card-btns{flex-shrink:0}
 .fv-star{
   background:none;border:none;font-size:16px;cursor:pointer;color:var(--t4);
@@ -834,13 +824,9 @@ nav button:nth-child(10){animation-delay:.2s}
 }
 .fv-star.active{color:var(--g4)}
 .fv-star:hover{transform:scale(1.2)}
-.fv-card-tags{padding:0 18px 10px;display:flex;gap:5px;flex-wrap:wrap}
-.fv-tag{font-size:11px;font-weight:500;color:var(--t3);background:var(--b1);padding:3px 10px;border-radius:6px}
-.fv-note{
-  margin:0 18px 12px;padding:8px 12px;font-size:11px;color:var(--g4);
-  background:rgba(255,179,71,0.04);border:1px solid rgba(255,179,71,0.12);
-  border-radius:8px;line-height:1.5;font-style:italic;
-}
+
+
+
 .fv-card-acts{display:flex;border-top:1px solid var(--b1)}
 .fv-act{
   flex:1;padding:10px 6px;background:transparent;border:none;
@@ -849,6 +835,53 @@ nav button:nth-child(10){animation-delay:.2s}
 }
 .fv-act:not(:last-child){border-right:1px solid var(--b1)}
 .fv-act:hover{background:var(--glass);color:var(--t2)}
+
+/* Favorites: stats, search, sections */
+.fv-stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.fv-stat-chip{font-family:var(--mono);font-size:10px;font-weight:600;padding:5px 12px;border-radius:8px;border:1px solid var(--b1);background:var(--bg2);color:var(--t3);display:flex;align-items:center;gap:5px}
+.fv-stat-chip .fv-stat-count{color:var(--t1);font-weight:700}
+.fv-stat-chip.has{border-color:var(--b2)}
+
+.fv-search-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--b1)}
+.fv-search{flex:1;height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font:500 13px var(--body);outline:none;transition:border-color 0.2s}
+.fv-search:focus{border-color:var(--g4)}
+.fv-search::placeholder{color:var(--t4)}
+
+.fv-sections{display:flex;flex-direction:column;gap:8px}
+.fv-section{background:var(--card);border:1px solid var(--b1);border-radius:16px;overflow:hidden;transition:border-color 0.2s}
+.fv-section:hover{border-color:var(--b2)}
+.fv-section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;user-select:none;transition:background 0.15s}
+.fv-section-header:hover{background:rgba(255,255,255,0.02)}
+.fv-section-icon{font-size:18px;flex-shrink:0}
+.fv-section-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--t1);flex:1}
+.fv-section-count{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--t3);background:var(--bg2);padding:2px 8px;border-radius:6px}
+.fv-section-count.has{color:var(--g4);background:rgba(255,179,71,0.08);border:1px solid rgba(255,179,71,0.15)}
+.fv-section-arrow{color:var(--t4);font-size:12px;transition:transform 0.2s;flex-shrink:0}
+.fv-section.open .fv-section-arrow{transform:rotate(180deg)}
+.fv-section-body{display:none;padding:0 14px 14px;border-top:1px solid var(--b1)}
+.fv-section.open .fv-section-body{display:block}
+.fv-section-empty{text-align:center;padding:24px 16px;color:var(--t4);font-size:12px;line-height:1.6}
+.fv-section-empty-icon{font-size:28px;margin-bottom:6px;opacity:0.5}
+.fv-card-prompt{padding:0 14px 8px;font-family:var(--mono);font-size:10px;color:var(--t3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Section accent colors */
+.fv-section[data-type="artists"] .fv-section-name{color:#00B4FF}
+.fv-section[data-type="blueprints"] .fv-section-name{color:#FFB347}
+.fv-section[data-type="mixer"] .fv-section-name{color:#E040FB}
+.fv-section[data-type="evolver"] .fv-section-name{color:#7C5CFC}
+.fv-section[data-type="voices"] .fv-section-name{color:#FF6B8A}
+.fv-section[data-type="analyses"] .fv-section-name{color:#1DB954}
+
+/* Favorites: card checkboxes and batch bar */
+.fv-card-check{padding:8px 0 0 12px}
+.fv-check{width:16px;height:16px;accent-color:var(--g4);cursor:pointer}
+.fv-batch-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--card);border:1px solid var(--g4);border-radius:12px;margin-bottom:14px}
+.fv-select-all{display:flex;align-items:center;gap:6px;font:600 12px var(--body);color:var(--t2);cursor:pointer}
+.fv-sel-count{font:600 11px var(--mono);color:var(--g4);flex:1}
+.fv-batch-btn{height:32px;padding:0 14px;border-radius:8px;border:1px solid var(--b1);background:var(--bg2);color:var(--t2);font:600 11px var(--body);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.fv-batch-btn:hover{border-color:var(--b2);background:var(--bg3)}
+.fv-batch-btn.primary{background:linear-gradient(135deg,var(--g4),var(--g3));border:none;color:white}
+.fv-batch-btn.primary:hover{filter:brightness(1.1)}
 
 /* === ANALYSE — reverse-engineer any sound === */
 .a-hero{margin-bottom:36px}
@@ -1767,42 +1800,42 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .vl-over{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .vl-title{font-family:var(--display);font-size:48px;font-weight:600;letter-spacing:-0.04em;line-height:1.05}
 .vl-title em{font-style:normal;background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.vl-desc{font-size:15px;color:var(--t3);margin-top:14px;line-height:1.7;max-width:560px}
+.vl-desc{font-size:15px;color:var(--t2);margin-top:14px;line-height:1.7;max-width:560px}
 .vl-split{display:grid;grid-template-columns:1fr 380px;gap:24px}
 .vl-card{background:var(--card);border:1px solid var(--b1);border-radius:18px;padding:22px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
-.vl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);opacity:0.4}
-.vl-section-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t4);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.vl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);opacity:0.8}
+.vl-section-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--t2);margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .vl-sec-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .vl-slider{margin-bottom:20px}.vl-slider:last-child{margin-bottom:0}
 .vl-slider-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.vl-slider-name{font-family:var(--body);font-size:13px;font-weight:700;color:var(--t1)}
-.vl-slider-val{font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;min-width:80px;text-align:center}
+.vl-slider-name{font-family:var(--body);font-size:14px;font-weight:800;color:var(--t1)}
+.vl-slider-val{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;min-width:85px;text-align:center;background:rgba(224,64,251,0.1);border:1px solid rgba(224,64,251,0.2)}
 .vl-slider-row{display:flex;align-items:center;gap:10px}
-.vl-slider-end{font-family:var(--mono);font-size:9px;color:var(--t4);min-width:65px;white-space:nowrap}
+.vl-slider-end{font-family:var(--mono);font-size:9px;color:var(--t3);min-width:65px;white-space:nowrap}
 .vl-slider-end.right{text-align:right}
-.vl-range{flex:1;height:8px;-webkit-appearance:none;appearance:none;border-radius:4px;cursor:pointer;outline:none;opacity:0.3;transition:opacity 0.2s}
-.vl-range:hover{opacity:0.5}
-.vl-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:white;border:3px solid var(--g3);box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 0 3px rgba(255,107,138,0.1);cursor:grab;transition:transform 0.15s var(--spring)}
-.vl-range::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.vl-range{flex:1;height:8px;-webkit-appearance:none;appearance:none;border-radius:4px;cursor:pointer;outline:none;opacity:0.85;transition:all 0.2s;filter:drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor)}
+.vl-range:hover{opacity:1;filter:drop-shadow(0 0 8px currentColor) drop-shadow(0 0 18px currentColor)}
+.vl-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:white;border:3px solid var(--g3);box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 0 3px rgba(224,64,251,0.3),0 0 20px rgba(224,64,251,0.25);cursor:grab;transition:transform 0.15s var(--spring)}
+.vl-range::-webkit-slider-thumb:hover{transform:scale(1.25);box-shadow:0 2px 8px rgba(0,0,0,0.3),0 0 0 4px rgba(224,64,251,0.35),0 0 28px rgba(224,64,251,0.35)}
 .vl-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:white;border:3px solid var(--g3);cursor:grab}
 .vl-presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
-.vl-preset{height:30px;padding:0 12px;border-radius:8px;font-family:var(--body);font-size:11px;font-weight:600;border:1px solid var(--b1);background:transparent;color:var(--t3);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:5px}
+.vl-preset{height:32px;padding:0 14px;border-radius:8px;font-family:var(--body);font-size:11px;font-weight:600;border:1px solid var(--b2);background:rgba(255,255,255,0.02);color:var(--t2);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:5px}
 .vl-preset:hover{border-color:var(--b2);color:var(--t2)}
-.vl-preset.on{border-color:var(--g3);color:var(--g3);background:rgba(255,107,138,0.06)}
+.vl-preset.on{border-color:#E040FB;color:#E040FB;background:rgba(224,64,251,0.1);box-shadow:0 0 12px rgba(224,64,251,0.15)}
 .vl-fx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.vl-fx{padding:12px;border-radius:12px;border:1px solid var(--b1);background:var(--bg2);cursor:pointer;transition:all 0.2s;text-align:center}
+.vl-fx{padding:14px;border-radius:12px;border:1px solid var(--b2);background:var(--card);cursor:pointer;transition:all 0.2s;text-align:center}
 .vl-fx:hover{border-color:var(--b2)}
-.vl-fx.on{border-color:rgba(224,64,251,0.3);background:rgba(224,64,251,0.04)}
+.vl-fx.on{border-color:rgba(224,64,251,0.5);background:rgba(224,64,251,0.08);box-shadow:0 0 12px rgba(224,64,251,0.1)}
 .vl-fx-icon{font-size:20px;margin-bottom:4px}
-.vl-fx-name{font-family:var(--body);font-size:10px;font-weight:700;color:var(--t2)}
-.vl-fx-desc{font-family:var(--mono);font-size:8px;color:var(--t4);margin-top:2px}
+.vl-fx-name{font-family:var(--body);font-size:11px;font-weight:700;color:var(--t1)}
+.vl-fx-desc{font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:2px}
 .vl-fx.on .vl-fx-name{color:#E040FB}
 .vl-accent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.vl-accent{padding:10px 6px;border-radius:10px;border:1px solid var(--b1);background:var(--bg2);cursor:pointer;transition:all 0.2s;text-align:center}
+.vl-accent{padding:10px 6px;border-radius:10px;border:1px solid var(--b2);background:var(--card);cursor:pointer;transition:all 0.2s;text-align:center}
 .vl-accent:hover{border-color:var(--b2)}
-.vl-accent.on{border-color:rgba(0,180,255,0.3);background:rgba(0,180,255,0.04)}
+.vl-accent.on{border-color:rgba(0,180,255,0.5);background:rgba(0,180,255,0.1);box-shadow:0 0 12px rgba(0,180,255,0.1)}
 .vl-accent-flag{font-size:18px;margin-bottom:3px}
-.vl-accent-name{font-family:var(--body);font-size:9px;font-weight:600;color:var(--t3)}
+.vl-accent-name{font-family:var(--body);font-size:10px;font-weight:600;color:var(--t2)}
 .vl-accent.on .vl-accent-name{color:var(--g5)}
 .vl-viz{height:180px;position:relative;display:flex;align-items:center;justify-content:center}
 .vl-viz canvas{width:100%;height:100%;border-radius:12px}
@@ -1812,19 +1845,19 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .vl-voice-input:focus{border-color:var(--g3)}.vl-voice-input::placeholder{color:var(--t4)}
 .vl-randomize{width:40px;height:40px;border-radius:10px;border:1px solid var(--b1);background:transparent;color:var(--t3);font-size:16px;cursor:pointer;transition:all 0.2s;display:grid;place-items:center}
 .vl-randomize:hover{border-color:var(--g3);color:var(--g3);transform:rotate(180deg);transition:all 0.4s var(--spring)}
-.vl-prompt-out{font-family:var(--mono);font-size:12px;color:var(--t2);line-height:1.85;background:var(--bg2);border-radius:12px;padding:16px;width:100%;border:1px solid var(--b1);border-left:3px solid #FF6B8A;min-height:80px;resize:vertical;outline:none;transition:all 0.3s}
+.vl-prompt-out{font-family:var(--mono);font-size:12.5px;color:var(--t1);line-height:1.85;background:var(--bg2);border-radius:12px;padding:16px;width:100%;border:1px solid var(--b1);border-left:3px solid #FF6B8A;min-height:80px;resize:vertical;outline:none;transition:all 0.3s}
 .vl-prompt-out:focus{border-color:var(--g3)}
 .vl-traits{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
 .vl-trait{font-family:var(--body);font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px}
-.vl-trait.identity{background:rgba(255,107,138,0.08);color:#FF6B8A;border:1px solid rgba(255,107,138,0.15)}
-.vl-trait.fx{background:rgba(224,64,251,0.08);color:#E040FB;border:1px solid rgba(224,64,251,0.15)}
+.vl-trait.identity{background:rgba(255,107,138,0.12);color:#FF8CA8;border:1px solid rgba(255,107,138,0.25)}
+.vl-trait.fx{background:rgba(224,64,251,0.12);color:#E86CFC;border:1px solid rgba(224,64,251,0.25)}
 .vl-trait.accent{background:rgba(0,180,255,0.08);color:var(--g5);border:1px solid rgba(0,180,255,0.15)}
 .vl-actions{display:flex;gap:8px}
 .vl-act{flex:1;height:42px;border:none;border-radius:11px;font-family:var(--body);font-size:12.5px;font-weight:700;cursor:pointer;transition:all 0.2s var(--smooth);display:flex;align-items:center;justify-content:center;gap:6px}
-.vl-act.primary{background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);color:white;box-shadow:0 2px 12px rgba(255,107,138,0.15)}
+.vl-act.primary{background:linear-gradient(135deg,#FF6B8A,#E040FB,#7C5CFC);color:white;box-shadow:0 2px 16px rgba(255,107,138,0.25)}
 .vl-act.primary:hover{box-shadow:0 4px 20px rgba(255,107,138,0.25);transform:translateY(-1px)}
-.vl-act.secondary{background:var(--b1);color:var(--t2)}.vl-act.secondary:hover{background:var(--b2)}
-.vl-act.tertiary{background:transparent;border:1px solid var(--b1);color:var(--t3)}.vl-act.tertiary:hover{border-color:var(--g4);color:var(--g4)}
+.vl-act.secondary{background:var(--b2);color:var(--t1)}.vl-act.secondary:hover{background:var(--b2)}
+.vl-act.tertiary{background:transparent;border:1px solid var(--b2);color:var(--t2)}.vl-act.tertiary:hover{border-color:var(--g4);color:var(--g4)}
 /* ===== REMIX OVERLAY ===== */
 #sc-remix-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 #sc-remix-overlay.visible{display:flex}
@@ -2011,25 +2044,31 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <!-- FAVORITES -->
     <div class="view" id="vFavorites">
-      <div class="fv-hero"><div class="fv-over" data-i18n="favorites_hero_sub">Your Collection</div><div class="fv-title">Artists & Blueprints<br>You <em>Love</em>.</div><div class="fv-desc" data-i18n="favorites_hero_desc">All your saved favorites in one place. Quick access to your go-to styles — star any artist or blueprint to add them here.</div></div>
-
-      <div class="fv-toolbar">
-        <div class="fv-filters"><button class="fv-filter on" data-fvf="all">All (7)</button><button class="fv-filter" data-fvf="artist">🎤 Artists (4)</button><button class="fv-filter" data-fvf="blueprint">📘 Blueprints (3)</button></div>
-        <div class="fv-sort"><span class="fv-sort-label">Sort:</span><button class="fv-sort-btn on" data-fvs="recent">Recent</button><button class="fv-sort-btn" data-fvs="name">Name</button><button class="fv-sort-btn" data-fvs="genre">Genre</button></div>
+      <div class="fv-hero">
+        <div class="fv-over">Your Collection</div>
+        <div class="fv-title">Everything You've<br><em>Saved</em>.</div>
+        <div class="fv-desc">Your personal library — organized by where you saved it. Star artists, save voices, bookmark analyses — it all lives here.</div>
       </div>
 
-      <div class="fv-grid" id="fvGrid">
-        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#FF6B8A">D</div><div class="fv-card-info"><div class="fv-card-name">Drake</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">82 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">melodic</span><span class="fv-tag">emotional</span><span class="fv-tag">atmospheric</span></div><div class="fv-note">Great for late night vibes — pair with Lo-Fi Boom Bap blueprint</div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+      <div class="fv-stats" id="fvStats"></div>
 
-        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#A78BFA">FO</div><div class="fv-card-info"><div class="fv-card-name">Frank Ocean</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">R&B</span><span class="fv-bpm"></span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">dreamy</span><span class="fv-tag">nostalgic</span><span class="fv-tag">intimate</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+      <div class="fv-search-bar">
+        <input class="fv-search" id="fvSearch" placeholder="Search all favorites...">
+        <div class="fv-sort">
+          <button class="fv-sort-btn on" data-fvs="recent">Recent</button>
+          <button class="fv-sort-btn" data-fvs="name">A-Z</button>
+        </div>
+      </div>
 
-        <div class="fv-card bp"><div class="fv-card-top"><div class="fv-av bp-av">📘</div><div class="fv-card-info"><div class="fv-card-name">Trap Anthem</div><div class="fv-card-sub"><span class="fv-type blueprint">Blueprint</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">145 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">aggressive</span><span class="fv-tag">stadium</span><span class="fv-tag">hard-hitting</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+      <div class="fv-batch-bar" id="fvBatchBar" style="display:none">
+        <label class="fv-select-all"><input type="checkbox" id="fvSelectAll"> Select All</label>
+        <span class="fv-sel-count" id="fvSelCount">0 selected</span>
+        <button class="fv-batch-btn primary" id="fvBatchSelected">⚡ Batch Generate Selected</button>
+        <button class="fv-batch-btn" id="fvCopySelected">📋 Copy All Selected</button>
+      </div>
 
-        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#FFB347">TS</div><div class="fv-card-info"><div class="fv-card-name">Taylor Swift</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Pop</span><span class="fv-bpm">120 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">anthemic</span><span class="fv-tag">bright</span><span class="fv-tag">storytelling</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
-
-        <div class="fv-card bp"><div class="fv-card-top"><div class="fv-av bp-av">📘</div><div class="fv-card-info"><div class="fv-card-name">Lo-Fi Boom Bap</div><div class="fv-card-sub"><span class="fv-type blueprint">Blueprint</span><span class="fv-genre">Hip-Hop</span><span class="fv-bpm">90 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">chill</span><span class="fv-tag">jazzy</span><span class="fv-tag">golden era</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
-
-        <div class="fv-card"><div class="fv-card-top"><div class="fv-av" style="background:#00D4AA">R</div><div class="fv-card-info"><div class="fv-card-name">Radiohead</div><div class="fv-card-sub"><span class="fv-type artist">Artist</span><span class="fv-genre">Rock</span><span class="fv-bpm">108 BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active">★</button></div></div><div class="fv-card-tags"><span class="fv-tag">experimental</span><span class="fv-tag">melancholy</span><span class="fv-tag">layered</span></div><div class="fv-card-acts"><button class="fv-act">📋 Copy</button><button class="fv-act">⚡ Batch</button></div></div>
+      <div class="fv-sections" id="fvSections">
+        <!-- Sections rendered dynamically by JS -->
       </div>
     </div>
 
@@ -2094,7 +2133,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
       </div>
       <div class="ev-gen-bar"><div class="ev-gen-badge" id="evGenBadge">GEN 1</div><div class="ev-gen-line"></div><div class="ev-gen-count" id="evGenCount">10 mutations · 0 locked</div></div>
       <div class="ev-grid" id="evGrid"></div>
-      <div class="ev-export-bar" id="evExportBar" style="display:none"><div class="ev-export-left"><div class="ev-export-icon">🔒</div><div class="ev-export-info"><div class="ev-export-title" id="evExportTitle">0 prompts locked</div><div class="ev-export-sub">Export your locked mutations for Suno</div></div></div><div class="ev-export-actions"><button class="ev-export-btn batch" id="evBatchBtn">⚡ Send All to Batch</button><button class="ev-export-btn json" id="evJsonBtn">{ } Export .json</button><button class="ev-export-btn pdf" id="evPdfBtn">📄 Export .pdf</button><button class="ev-export-btn save" id="evSaveBtn">💾 Save Locked Prompts</button></div></div>
+      <div class="ev-export-bar" id="evExportBar" style="display:none"><div class="ev-export-left"><div class="ev-export-icon">🔒</div><div class="ev-export-info"><div class="ev-export-title" id="evExportTitle">0 prompts locked</div><div class="ev-export-sub">Export your locked mutations for Suno</div></div></div><div class="ev-export-actions"><button class="ev-export-btn batch" id="evBatchBtn">⚡ Send All to Batch</button><button class="ev-export-btn json" id="evJsonBtn">{ } Export .json</button><button class="ev-export-btn pdf" id="evPdfBtn">📄 Export .pdf</button><button class="ev-export-btn save" id="evSaveBtn">💾 Save Locked Prompts</button><button class="ev-export-btn" id="evSaveFav">⭐ Save to Favorites</button></div></div>
     </div>
 
     <!-- VOICE LAB -->
@@ -2102,7 +2141,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
       <div class="vl-hero"><div class="vl-over" data-i18n="voicelab_hero_sub">Voice Lab</div><div class="vl-title">Design A Voice<br>From <em>Scratch</em>.</div><div class="vl-desc" data-i18n="voicelab_hero_desc">Build the exact vocal character you hear in your head. Slide, click, and shape — then export a precise voice prompt string ready for Suno.</div></div>
       <div class="vl-split">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="vl-card"><div class="vl-section-title"><div class="vl-sec-dot" style="background:var(--g3)"></div>Quick Presets</div><div class="vl-presets" id="vlPresets"><button class="vl-preset" data-p="ethereal">✨ Ethereal</button><button class="vl-preset" data-p="gritty">🔥 Gritty</button><button class="vl-preset" data-p="smooth">🧊 Smooth</button><button class="vl-preset" data-p="powerful">⚡ Powerful</button><button class="vl-preset" data-p="haunting">🌙 Haunting</button><button class="vl-preset" data-p="robotic">🤖 Robotic</button><button class="vl-preset" data-p="soulful">🎷 Soulful</button><button class="vl-preset" data-p="whisper">💨 Whisper</button><button class="vl-preset" data-p="rapper">🎤 Rapper</button><button class="vl-preset" data-p="diva">👑 Diva</button><button class="vl-preset" data-p="grunge">🖤 Grunge</button><button class="vl-preset" data-p="choir">🕊️ Choir</button><button class="vl-preset" data-p="lofi">📼 Lo-Fi</button><button class="vl-preset" data-p="opera">🎭 Opera</button><button class="vl-preset" data-p="trap">💎 Trap</button><button class="vl-preset" data-p="folk">🍂 Folk</button><button class="vl-preset" data-p="punk">🏴 Punk</button><button class="vl-preset" data-p="gospel">🙏 Gospel</button><button class="vl-preset" data-p="anime">🌸 Anime</button><button class="vl-preset" data-p="demon">👹 Demon</button><button class="vl-preset" data-p="dreampop">🫧 Dream Pop</button><button class="vl-preset" data-p="narrator">📖 Narrator</button><button class="vl-preset" data-p="hyperpop">💊 Hyperpop</button><button class="vl-preset" data-p="jazz">🎹 Jazz Singer</button></div></div>
+          <div class="vl-card"><div class="vl-section-title"><div class="vl-sec-dot" style="background:var(--g3)"></div>Quick Presets</div><div class="vl-presets" id="vlPresets"><button class="vl-preset" data-p="ethereal">✨ Ethereal</button><button class="vl-preset" data-p="gritty">🔥 Gritty</button><button class="vl-preset" data-p="smooth">🧊 Smooth</button><button class="vl-preset" data-p="powerful">⚡ Powerful</button><button class="vl-preset" data-p="haunting">🌙 Haunting</button><button class="vl-preset" data-p="robotic">🤖 Robotic</button><button class="vl-preset" data-p="soulful">🎷 Soulful</button><button class="vl-preset" data-p="whisper">💨 Whisper</button><button class="vl-preset" data-p="rapper">🎤 Rapper</button><button class="vl-preset" data-p="diva">👑 Diva</button><button class="vl-preset" data-p="grunge">🖤 Grunge</button><button class="vl-preset" data-p="choir">🕊️ Choir</button><button class="vl-preset" data-p="lofi">📼 Lo-Fi</button><button class="vl-preset" data-p="opera">🎭 Opera</button><button class="vl-preset" data-p="trap">💎 Trap</button><button class="vl-preset" data-p="folk">🍂 Folk</button><button class="vl-preset" data-p="punk">🏴 Punk</button><button class="vl-preset" data-p="gospel">🙏 Gospel</button><button class="vl-preset" data-p="anime">🌸 Anime</button><button class="vl-preset" data-p="demon">👹 Demon</button><button class="vl-preset" data-p="dreampop">🫧 Dream Pop</button><button class="vl-preset" data-p="narrator">📖 Narrator</button><button class="vl-preset" data-p="hyperpop">💊 Hyperpop</button><button class="vl-preset" data-p="jazz">🎹 Jazz Singer</button><button class="vl-preset" data-p="rnb">🎵 R&B</button><button class="vl-preset" data-p="country">🤠 Country</button><button class="vl-preset" data-p="reggae">🇯🇲 Reggae</button><button class="vl-preset" data-p="metal">🤘 Metal</button><button class="vl-preset" data-p="indie">🎸 Indie</button><button class="vl-preset" data-p="afrobeat">🥁 Afrobeat</button><button class="vl-preset" data-p="kpop">💜 K-Pop</button><button class="vl-preset" data-p="blues">🎺 Blues</button><button class="vl-preset" data-p="edm">🎛️ EDM</button><button class="vl-preset" data-p="lullaby">🌙 Lullaby</button><button class="vl-preset" data-p="villain">🦹 Villain</button><button class="vl-preset" data-p="broadway">🎭 Broadway</button><button class="vl-preset" data-p="drill">🔫 Drill</button><button class="vl-preset" data-p="crooner">🎩 Crooner</button><button class="vl-preset" data-p="phonk">👻 Phonk</button><button class="vl-preset" data-p="celtic">☘️ Celtic</button></div></div>
           <div class="vl-card"><div class="vl-section-title"><div class="vl-sec-dot" style="background:var(--g3)"></div>Voice Identity</div>
             <div class="vl-slider"><div class="vl-slider-header"><div class="vl-slider-name">Gender</div><div class="vl-slider-val" id="vlGenderVal" style="color:#FF6B8A;background:rgba(255,107,138,0.08)">Androgynous</div></div><div class="vl-slider-row"><div class="vl-slider-end">♂ Masculine</div><input type="range" min="0" max="100" value="50" class="vl-range" id="vlGenderRange" style="background:linear-gradient(90deg,#00B4FF,#FF6B8A)"><div class="vl-slider-end right">♀ Feminine</div></div></div>
             <div class="vl-slider"><div class="vl-slider-header"><div class="vl-slider-name">Age</div><div class="vl-slider-val" id="vlAgeVal" style="color:var(--g4);background:rgba(255,179,71,0.08)">Adult</div></div><div class="vl-slider-row"><div class="vl-slider-end">Young</div><input type="range" min="0" max="100" value="50" class="vl-range" id="vlAgeRange" style="background:linear-gradient(90deg,#00D4AA,#FFB347)"><div class="vl-slider-end right">Mature</div></div></div>
@@ -2456,7 +2495,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="spSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="spSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="spSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="var n=document.getElementById('spTrackName');var p=document.getElementById('spStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'Spotify Track').trim(),{prompt:p?p.textContent:'',color:'#1DB954',genre:''});this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -2496,7 +2535,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="ytSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="ytSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="ytSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="var n=document.getElementById('ytTrackName');var p=document.getElementById('ytStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'YouTube Track').trim(),{prompt:p?p.textContent:'',color:'#FF0000',genre:''});this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -2913,6 +2952,45 @@ header{animation:bootUp .4s var(--expo) .05s both}
 <footer><div class="f-l"><div class="f-dot"></div><span data-i18n="footer_ready">Ready</span></div><div class="f-r"><span data-i18n="footer_brand">SoundCloner v2</span></div></footer>
 
 <script>
+// === GLOBAL GEMINI KEY SYNC ===
+// When any tab saves the key, update all other key UIs
+window.syncGeminiKeyUI = function(){
+  const key = localStorage.getItem('gemini_key') || '';
+  const mask = '••••••••••••••••••••';
+  // All known key input/status/dot elements across tabs
+  const inputs = [
+    document.getElementById('spKeyInput'),
+    document.getElementById('masterApiInput'),
+    document.querySelector('#vAnalyse .a-key-input'),
+    document.querySelector('#vBatch .a-key-input'),
+    document.querySelector('#vVoiceLab .a-key-input'),
+  ];
+  const statuses = [
+    document.getElementById('spKeyStatus'),
+    document.getElementById('masterApiStatus'),
+    document.querySelector('#vAnalyse .a-key-status'),
+    document.querySelector('#vBatch .a-key-status'),
+  ];
+  const dots = [
+    document.getElementById('saKeyDot'),
+    document.getElementById('masterApiDot'),
+    document.querySelector('#vAnalyse .a-key-dot'),
+    document.querySelector('#vBatch .a-key-dot'),
+  ];
+  inputs.forEach(el => {
+    if(el && el.value !== mask && key) el.value = mask;
+  });
+  statuses.forEach(el => {
+    if(el && key) { el.style.display = ''; el.textContent = '✓ Key saved'; el.style.color = '#1DB954'; }
+  });
+  dots.forEach(el => {
+    if(el) el.classList.toggle('active', !!key);
+  });
+};
+// Run on page load
+document.addEventListener('DOMContentLoaded', () => setTimeout(window.syncGeminiKeyUI, 500));
+
+
 const ART=[
   {n:'Drake',g:'Hip-Hop',c:'#FF6B8A',c2:'#c94070',b:80,m:["melodic","introspective","confident"],p:'80 BPM 2010s-era melodic trap, minimal warm piano or Rhodes loops, soft 808 bass with gentle pitch rides, hi-hats alternating straight and triplet, smooth singing-rapping hybrid delivery with Auto-Tune emotion, atmospheric reverb-drenched pads, late-night introspective mood, Toronto R&B influence on modern trap production'},
   {n:'Kendrick Lamar',g:'Hip-Hop',c:'#FF6B8A',c2:'#c94070',b:90,m:["intense","literary","west coast"],p:'90 BPM jazz-infused West Coast hip-hop, live double bass and brushed snare samples, saxophone stabs and muted trumpet, complex polyrhythmic drum programming, intense literary storytelling delivery with rapid-fire syllable stacking, genre-shifting from boom-bap to funk to free jazz within tracks, 2010s conscious rap evolution'},
@@ -4127,6 +4205,7 @@ leApiSave.addEventListener('click',()=>{
   if(!key){leApiInput.focus();leApiInput.style.borderColor='var(--g3)';setTimeout(()=>leApiInput.style.borderColor='',1500);return}
   localStorage.setItem('gemini_key',key);
   leApiSave.textContent='✓ Saved';
+  if(window.syncGeminiKeyUI) window.syncGeminiKeyUI();
   leApiSave.classList.add('saved');
   leApiStatus.textContent='✓ Key saved';
   leApiInput.type='password';
@@ -8133,7 +8212,16 @@ function showLangToast(langName){
     }
     this.textContent='✓ Sent!';setTimeout(()=>this.textContent='⚡ Send to Batch',1500);
   });
-  document.getElementById('mxSaveFav').addEventListener('click',function(){this.textContent='★ Saved!';this.style.color='var(--g4)';this.style.borderColor='var(--g4)';setTimeout(()=>{this.textContent='☆ Save';this.style.color='';this.style.borderColor=''},1500)});
+  document.getElementById('mxSaveFav').addEventListener('click',function(){
+  var promptEl = document.getElementById('mxOutputPrompt');
+  var prompt = promptEl?promptEl.value:'';
+  if(!prompt || prompt==='Pick two styles and hit Mix to generate your blended prompt...'){this.textContent='⚠ Mix first';setTimeout(()=>{this.textContent='☆ Save'},1200);return}
+  var name = 'Mix: ' + prompt.split(',').slice(0,2).join(' + ').slice(0,40);
+  var added = window._scToggleFav('mixer', name, {prompt:prompt, color:'#7C5CFC'});
+  this.textContent = added?'★ Saved!':'☆ Removed';
+  this.style.color='var(--g4)';this.style.borderColor='var(--g4)';
+  setTimeout(()=>{this.textContent='☆ Save';this.style.color='';this.style.borderColor=''},1500);
+});
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -8317,6 +8405,17 @@ document.getElementById('evBatchBtn').addEventListener('click',function(){
 document.getElementById('evSaveBtn').addEventListener('click',function(){
   const lk=evGetLocked();if(!lk.length)return;
   navigator.clipboard.writeText(lk.map((p,i)=>'[Prompt '+(i+1)+' — '+p.mutation_type+']\n'+p.prompt).join('\n\n')).catch(()=>{});
+
+document.getElementById('evSaveFav')?.addEventListener('click',function(){
+  var lockedEls = document.querySelectorAll('#vEvolver .ev-prompt-text');
+  var prompts = [];
+  lockedEls.forEach(function(el){if(el.textContent.trim()) prompts.push(el.textContent.trim())});
+  if(prompts.length===0){this.textContent='⚠ Nothing to save';setTimeout(()=>{this.textContent='⭐ Save to Favorites'},1200);return}
+  var name = 'Evolved: ' + prompts[0].slice(0,35) + '...';
+  var added = window._scToggleFav('evolver', name, {prompt:prompts.join('\n---\n'), color:'#7C5CFC'});
+  this.textContent = added?'✓ Saved!':'✓ Removed';
+  setTimeout(()=>{this.textContent='⭐ Save to Favorites'},1500);
+});
   this.textContent='✓ Copied '+lk.length+'!';setTimeout(()=>this.textContent='💾 Save Locked Prompts',1500);
 });
 document.getElementById('evInput').value='Dark cinematic R&B with 80s synthwave influence, soaring falsetto vocal runs with layered harmonies, gated reverb snare drums, analog synth arpeggios, pulsing deep bass, reverb-heavy spacious mix, minor key melancholy melodies, 95 BPM';
@@ -8388,7 +8487,24 @@ const VL_PRESETS={
   dreampop:{gender:65,age:30,texture:15,register:70,delivery:55,emotion:35,fx:['reverb','delay','chorus','whisper'],accent:'swedish'},
   narrator:{gender:35,age:60,texture:45,register:40,delivery:10,emotion:30,fx:['vinyl'],accent:'british'},
   hyperpop:{gender:70,age:20,texture:45,register:80,delivery:65,emotion:70,fx:['autotune','pitchup','distortion','chorus'],accent:''},
-  jazz:{gender:60,age:50,texture:45,register:55,delivery:70,emotion:65,fx:['reverb','vibrato','vinyl'],accent:'american'}
+  jazz:{gender:60,age:50,texture:45,register:55,delivery:70,emotion:65,fx:['reverb','vibrato','vinyl'],accent:'american'},
+  rnb:{gender:60,age:35,texture:25,register:60,delivery:75,emotion:70,fx:['reverb','falsetto','harmony'],accent:'american'},
+  country:{gender:40,age:45,texture:55,register:50,delivery:65,emotion:70,fx:['reverb','twang'],accent:'american'},
+  reggae:{gender:35,age:40,texture:50,register:45,delivery:55,emotion:60,fx:['reverb','delay'],accent:'jamaican'},
+  metal:{gender:20,age:40,texture:90,register:35,delivery:95,emotion:95,fx:['distortion','scream'],accent:''},
+  indie:{gender:55,age:28,texture:35,register:55,delivery:50,emotion:55,fx:['reverb','vinyl'],accent:'british'},
+  afrobeat:{gender:45,age:35,texture:40,register:55,delivery:70,emotion:65,fx:['reverb','chorus'],accent:'nigerian'},
+  kpop:{gender:65,age:22,texture:15,register:75,delivery:75,emotion:60,fx:['autotune','chorus','harmony'],accent:'korean'},
+  blues:{gender:35,age:60,texture:65,register:40,delivery:60,emotion:80,fx:['reverb','vinyl','vibrato'],accent:'american'},
+  edm:{gender:55,age:25,texture:20,register:70,delivery:60,emotion:45,fx:['vocoder','autotune','chorus'],accent:''},
+  lullaby:{gender:70,age:30,texture:5,register:65,delivery:30,emotion:40,fx:['reverb','whisper'],accent:''},
+  villain:{gender:20,age:55,texture:70,register:25,delivery:35,emotion:60,fx:['pitchdown','reverb','delay'],accent:'british'},
+  broadway:{gender:55,age:40,texture:30,register:80,delivery:90,emotion:85,fx:['reverb','harmony','vibrato'],accent:'american'},
+  drill:{gender:20,age:22,texture:65,register:30,delivery:20,emotion:60,fx:['autotune','pitchdown'],accent:'british'},
+  crooner:{gender:30,age:55,texture:25,register:40,delivery:55,emotion:50,fx:['reverb','vinyl','vibrato'],accent:'american'},
+  phonk:{gender:15,age:30,texture:80,register:20,delivery:35,emotion:55,fx:['pitchdown','vinyl','distortion'],accent:''},
+  celtic:{gender:65,age:35,texture:20,register:70,delivery:60,emotion:55,fx:['reverb','delay'],accent:'irish'},
+
 };
 let vlActiveFx=new Set(),vlAccent='';
 function vlGetLabel(map,val){const v=parseInt(val);let c=0;Object.keys(map).forEach(k=>{if(Math.abs(v-parseInt(k))<=Math.abs(v-c))c=parseInt(k)});return map[c]}
@@ -8453,7 +8569,16 @@ document.getElementById('vlBatch').addEventListener('click',function(){
   document.getElementById('rail').style.display='none';document.getElementById('sRow').style.display='none';
   this.textContent='✓ Sent!';setTimeout(()=>this.textContent='⚡ Send to Batch',1500);
 });
-document.getElementById('vlSave').addEventListener('click',function(){this.textContent='★ Saved!';this.style.color='var(--g4)';this.style.borderColor='var(--g4)';setTimeout(()=>{this.textContent='☆ Save Voice';this.style.color='';this.style.borderColor=''},1500)});
+document.getElementById('vlSave').addEventListener('click',function(){
+  var nameEl = document.getElementById('vlVoiceName');
+  var promptEl = document.getElementById('vlPromptOut');
+  var name = (nameEl?nameEl.value:'').trim() || 'Untitled Voice';
+  var prompt = promptEl?promptEl.value:'';
+  var added = window._scToggleFav('voices', name, {prompt:prompt, color:'#FF6B8A', voiceTraits:prompt.split(',').slice(0,3).join(', ')});
+  this.textContent = added?'★ Saved!':'☆ Removed';
+  this.style.color='var(--g4)';this.style.borderColor='var(--g4)';
+  setTimeout(()=>{this.textContent='☆ Save Voice';this.style.color='';this.style.borderColor=''},1500);
+});
 vlBuildPrompt();
 })();
 
@@ -8473,7 +8598,13 @@ document.getElementById('aSendBatch')?.addEventListener('click',function(){
   setTimeout(()=>this.innerHTML='⚡ Send to Batch Generator',1500);
 });
 document.getElementById('aSaveFav')?.addEventListener('click',function(){
-  this.innerHTML='✓ Saved!';this.style.borderColor='var(--g4)';
+  var nameEl = document.getElementById('aTrackName') || document.getElementById('aFileName');
+  var styleEl = document.getElementById('aStylePrompt');
+  var name = nameEl?nameEl.textContent||nameEl.value:'Analysis';
+  var prompt = styleEl?styleEl.textContent||styleEl.value:'';
+  var added = window._scToggleFav('analyses', name.trim(), {prompt:prompt, color:'#1DB954'});
+  this.innerHTML = added?'✓ Saved!':'✓ Removed';
+  this.style.borderColor='var(--g4)';
   setTimeout(()=>{this.innerHTML='⭐ Save to Favorites';this.style.borderColor=''},1500);
 });
 
@@ -8680,6 +8811,7 @@ spRenderHistory();
     const key=input.value.trim();
     if(!key||key.includes('•')){status.textContent='⚠ Paste a real key';status.style.color='var(--g4)';setTimeout(()=>status.textContent='',2000);return}
     localStorage.setItem('gemini_key',key);
+    if(window.syncGeminiKeyUI) window.syncGeminiKeyUI();
     input.value='••••••••••••••••••••';
     status.textContent='✓ Key saved!';status.style.color='var(--g2)';
     saveBtn.textContent='✓ Saved';saveBtn.style.background='var(--g2)';
@@ -8966,6 +9098,7 @@ ytRenderHistory();
       const key=aKeyInput.value.trim();
       if(!key||key.indexOf('\u2022')===0){aKeyInput.focus();aKeyInput.style.borderColor='var(--g3)';setTimeout(()=>aKeyInput.style.borderColor='',1500);return;}
       localStorage.setItem('gemini_key',key);
+    if(window.syncGeminiKeyUI) window.syncGeminiKeyUI();
       aKeySave.textContent='\u2713 Saved';
       if(aKeyStatus){aKeyStatus.style.display='';aKeyStatus.textContent='\u2713 Key saved';}
       aKeyInput.value='\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022';
@@ -9174,6 +9307,7 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
       const key=mApiInput.value.trim();
       if(!key||key==='••••••••••••••••••••'){mApiInput.focus();mApiInput.style.borderColor='var(--g3)';setTimeout(()=>mApiInput.style.borderColor='',1500);return}
       localStorage.setItem('gemini_key',key);
+    if(window.syncGeminiKeyUI) window.syncGeminiKeyUI();
       mApiSave.textContent='✓ Saved';mApiSave.classList.add('saved');
       mApiStatus.style.display='';mApiStatus.textContent='✓ Key saved';
       mApiInput.value='••••••••••••••••••••';mApiInput.type='password';
@@ -9968,55 +10102,219 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
 // ===== ENHANCEMENT LAYER: adds functional features to master =====
 
 // === FAVORITES SYSTEM ===
-window._scFavs=[];
-window._scFavSort='recent';
-window._scFavFilter='all';
-window._scToggleFav=function(type,name){
-  var idx=window._scFavs.findIndex(function(f){return f.type===type&&f.name===name});
-  if(idx>=0){window._scFavs.splice(idx,1);return false}
-  var src=type==='artist'?ART.find(function(a){return a.n===name}):BP_DATA.find(function(b){return b.n===name});
-  if(!src)return false;
-  window._scFavs.unshift({type:type,name:name,genre:src.g,color:src.c,bpm:src.b,prompt:src.p,moods:src.m,ts:Date.now()});
+// ===== FAVORITES SYSTEM (multi-type, organized by tab) =====
+window._scFavs = [];
+window._scFavSort = 'recent';
+
+// Favorite types and their metadata
+var FAV_SECTIONS = [
+  {type:'artists', icon:'🎤', name:'Artists', tab:'vArtists', hint:'Star any artist from the Artists tab'},
+  {type:'blueprints', icon:'📘', name:'Blueprints', tab:'vBlueprints', hint:'Star any blueprint from the Blueprints tab'},
+  {type:'mixer', icon:'🎛️', name:'Mixed Prompts', tab:'vMixer', hint:'Save blended prompts from the Prompt Mixer'},
+  {type:'evolver', icon:'🧬', name:'Evolved Prompts', tab:'vEvolver', hint:'Save mutations from the Prompt Evolver'},
+  {type:'voices', icon:'🎙️', name:'Voice Profiles', tab:'vVoiceLab', hint:'Save custom voices from the Voice Lab'},
+  {type:'analyses', icon:'🔬', name:'Song Analyses', tab:'vSpotify', hint:'Save analyses from the Spotify/YouTube Analyzer'}
+];
+
+window._scToggleFav = function(type, name, data){
+  var idx = window._scFavs.findIndex(function(f){return f.type===type && f.name===name});
+  if(idx >= 0){window._scFavs.splice(idx,1); return false}
+  var fav = {type:type, name:name, savedAt:Date.now()};
+  if(data) Object.assign(fav, data);
+  // Auto-fill from source data if artist/blueprint
+  if(type==='artists'){
+    var src = (typeof ART!=='undefined'?ART:[]).find(function(a){return a.n===name});
+    if(src){fav.genre=src.g; fav.color=src.c; fav.bpm=src.b; fav.prompt=src.p; fav.moods=src.m||[]}
+  } else if(type==='blueprints'){
+    var src2 = (typeof BP_DATA!=='undefined'?BP_DATA:[]).find(function(b){return b.n===name});
+    if(src2){fav.genre=src2.g; fav.color=src2.c; fav.bpm=src2.b; fav.prompt=src2.p; fav.moods=src2.m||[]}
+  }
+  window._scFavs.unshift(fav);
   return true;
 };
-window._scIsFav=function(type,name){return window._scFavs.some(function(f){return f.type===type&&f.name===name})};
-window._scRenderFavs=function(){
-  var grid=document.getElementById('fvGrid');if(!grid)return;
-  var list=window._scFavs.slice();
-  var filt=window._scFavFilter;
-  if(filt==='artist')list=list.filter(function(f){return f.type==='artist'});
-  if(filt==='blueprint')list=list.filter(function(f){return f.type==='blueprint'});
-  var sort=window._scFavSort;
-  if(sort==='name')list.sort(function(a,b){return a.name.localeCompare(b.name)});
-  if(sort==='genre')list.sort(function(a,b){return a.genre.localeCompare(b.genre)});
-  var all=window._scFavs.length,ac=window._scFavs.filter(function(f){return f.type==='artist'}).length,bc=window._scFavs.filter(function(f){return f.type==='blueprint'}).length;
-  document.querySelectorAll('[data-fvf]').forEach(function(b){
-    if(b.dataset.fvf==='all')b.textContent='All ('+all+')';
-    if(b.dataset.fvf==='artist')b.textContent='\uD83C\uDFA4 Artists ('+ac+')';
-    if(b.dataset.fvf==='blueprint')b.textContent='\uD83D\uDCD8 Blueprints ('+bc+')';
-  });
-  if(list.length===0){grid.innerHTML='<div style="text-align:center;padding:60px 20px;color:var(--t4)"><div style="font-size:48px;margin-bottom:16px">\u2B50</div><div style="font-size:16px;font-weight:600;color:var(--t2);margin-bottom:8px">No favorites yet</div><div style="font-size:13px">Star any artist or blueprint to add them here</div></div>';return}
-  grid.innerHTML=list.map(function(f){
-    var ini=f.name.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
-    var isB=f.type==='blueprint';
-    return '<div class="fv-card'+(isB?' bp':'')+'"><div class="fv-card-top"><div class="fv-av'+(isB?' bp-av':'')+'" style="background:'+f.color+'">'+(isB?'\uD83D\uDCD8':ini)+'</div><div class="fv-card-info"><div class="fv-card-name">'+f.name+'</div><div class="fv-card-sub"><span class="fv-type '+(isB?'blueprint':'artist')+'">'+(isB?'Blueprint':'Artist')+'</span><span class="fv-genre">'+f.genre+'</span><span class="fv-bpm">'+f.bpm+' BPM</span></div></div><div class="fv-card-btns"><button class="fv-star active" data-fv-type="'+f.type+'" data-fv-name="'+f.name+'">\u2605</button></div></div><div class="fv-card-tags">'+f.moods.slice(0,3).map(function(t){return '<span class="fv-tag">'+t+'</span>'}).join('')+'</div><div class="fv-card-acts"><button class="fv-act" data-fv-copy="'+f.name+'" data-fv-type="'+f.type+'">\uD83D\uDCCB Copy</button><button class="fv-act" data-fv-batch="'+f.name+'" data-fv-type="'+f.type+'">\u26A1 Batch</button></div></div>';
+
+window._scRenderFavs = function(){
+  var sections = document.getElementById('fvSections'); if(!sections) return;
+  var stats = document.getElementById('fvStats'); 
+  var search = (document.getElementById('fvSearch')||{}).value||'';
+  search = search.toLowerCase();
+  var sortMode = window._scFavSort;
+
+  // Stats chips
+  if(stats){
+    stats.innerHTML = FAV_SECTIONS.map(function(s){
+      var count = window._scFavs.filter(function(f){return f.type===s.type}).length;
+      return '<div class="fv-stat-chip'+(count?' has':'')+'">'+s.icon+' <span class="fv-stat-count">'+count+'</span> '+s.name+'</div>';
+    }).join('');
+  }
+
+  // Render sections
+  sections.innerHTML = FAV_SECTIONS.map(function(sec){
+    var items = window._scFavs.filter(function(f){return f.type===sec.type});
+    if(search){
+      items = items.filter(function(f){
+        return (f.name||'').toLowerCase().includes(search) || (f.genre||'').toLowerCase().includes(search) || (f.prompt||'').toLowerCase().includes(search);
+      });
+    }
+    if(sortMode==='name') items.sort(function(a,b){return (a.name||'').localeCompare(b.name||'')});
+    var count = items.length;
+    var isOpen = true;
+
+    var cardsHtml = '';
+    if(count === 0){
+      cardsHtml = '<div class="fv-section-empty"><div class="fv-section-empty-icon">'+sec.icon+'</div><div>'+sec.hint+'</div></div>';
+    } else {
+      cardsHtml = '<div class="fv-grid">' + items.map(function(f){
+        var initials = (f.name||'?').split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
+        var color = f.color || '#666';
+        var isVoice = f.type==='voices';
+        var isAnalysis = f.type==='analyses';
+        var isMix = f.type==='mixer' || f.type==='evolver';
+        var avContent = isVoice?'🎙️':isAnalysis?'🔬':isMix?'✨':initials;
+        var subParts = [];
+        if(f.genre) subParts.push(f.genre);
+        if(f.bpm) subParts.push(f.bpm+' BPM');
+        if(f.voiceTraits) subParts.push(f.voiceTraits);
+        var promptPreview = (f.prompt||'').slice(0,100);
+        return '<div class="fv-card"><div class="fv-card-check"><input type="checkbox" class="fv-check" data-fv-sel-type="'+f.type+'" data-fv-sel-name="'+f.name+'"></div><div class="fv-card-top"><div class="fv-av" style="background:'+(isMix?'linear-gradient(135deg,#E040FB,#7C5CFC)':isVoice?'linear-gradient(135deg,#FF6B8A,#E040FB)':isAnalysis?'linear-gradient(135deg,#1DB954,#00B4FF)':color)+'">'+avContent+'</div><div class="fv-card-info"><div class="fv-card-name">'+f.name+'</div><div class="fv-card-sub">'+subParts.map(function(s){return '<span>'+s+'</span>'}).join('<span>·</span>')+'</div></div><div class="fv-card-btns"><button class="fv-star" data-fv-type="'+f.type+'" data-fv-name="'+f.name+'">★</button></div></div>'+(promptPreview?'<div class="fv-card-prompt">'+promptPreview+'</div>':'')+'<div class="fv-card-acts"><button class="fv-act" data-fv-copy-prompt="'+f.type+'" data-fv-name="'+f.name+'">📋 Copy</button><button class="fv-act" data-fv-batch="'+f.type+'" data-fv-name="'+f.name+'">⚡ Batch</button>'+(f.type==='artists'||f.type==='blueprints'||f.type==='analyses'?'<button class="fv-act" data-fv-mixer="'+f.type+'" data-fv-name="'+f.name+'">🎛️ Mix</button>':'')+(f.type!=='voices'?'<button class="fv-act" data-fv-evolve="'+f.type+'" data-fv-name="'+f.name+'">🧬 Evolve</button>':'')+'<button class="fv-act" data-fv-edit="'+f.type+'" data-fv-name="'+f.name+'">✏️ Edit</button></div></div>';
+      }).join('') + '</div>';
+    }
+
+    return '<div class="fv-section'+(isOpen?' open':'')+'" data-type="'+sec.type+'"><div class="fv-section-header"><span class="fv-section-icon">'+sec.icon+'</span><span class="fv-section-name">'+sec.name+'</span><span class="fv-section-count'+(count?' has':'')+'">'+count+'</span><span class="fv-section-arrow">▼</span></div><div class="fv-section-body">'+cardsHtml+'</div></div>';
   }).join('');
-  grid.querySelectorAll('.fv-star').forEach(function(b){b.addEventListener('click',function(){
-    window._scToggleFav(b.dataset.fvType,b.dataset.fvName);window._scRenderFavs();
-  })});
-  grid.querySelectorAll('[data-fv-copy]').forEach(function(b){b.addEventListener('click',function(){
-    var src=b.dataset.fvType==='artist'?ART.find(function(a){return a.n===b.dataset.fvCopy}):BP_DATA.find(function(bp){return bp.n===b.dataset.fvCopy});
-    if(src)navigator.clipboard.writeText(src.p).catch(function(){});
-    b.textContent='\u2713 Copied!';setTimeout(function(){b.textContent='\uD83D\uDCCB Copy'},1200);
-  })});
-  grid.querySelectorAll('[data-fv-batch]').forEach(function(b){b.addEventListener('click',function(){
-    var src=b.dataset.fvType==='artist'?ART.find(function(a){return a.n===b.dataset.fvBatch}):BP_DATA.find(function(bp){return bp.n===b.dataset.fvBatch});
-    if(!src)return;
-    var ta=document.querySelector('#vBatch textarea');if(ta)ta.value=src.p;
-    document.querySelectorAll('#nav button').forEach(function(nb){nb.classList.remove('on');if(nb.dataset.v==='batch')nb.classList.add('on')});
-    document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});document.getElementById('vBatch').classList.add('on');
-  })});
+
+  // Bind events
+  sections.querySelectorAll('.fv-section-header').forEach(function(h){
+    h.addEventListener('click', function(){h.parentElement.classList.toggle('open')});
+  });
+  sections.querySelectorAll('.fv-star').forEach(function(b){
+    b.addEventListener('click', function(){
+      window._scToggleFav(b.dataset.fvType, b.dataset.fvName);
+      window._scRenderFavs();
+    });
+  });
+  sections.querySelectorAll('[data-fv-copy-prompt]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = window._scFavs.find(function(x){return x.type===b.dataset.fvCopyPrompt && x.name===b.dataset.fvName});
+      if(f && f.prompt) navigator.clipboard.writeText(f.prompt).catch(function(){});
+      b.textContent='✓ Copied'; setTimeout(function(){b.textContent='📋 Copy'},1200);
+    });
+  });
+  // Batch button — send prompt to batch tab
+  sections.querySelectorAll('[data-fv-batch]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = window._scFavs.find(function(x){return x.type===b.dataset.fvBatch && x.name===b.dataset.fvName});
+      if(!f||!f.prompt)return;
+      // Navigate to batch tab and try to fill prompt
+      document.querySelectorAll('[data-v]').forEach(function(nb){nb.classList.remove('on');if(nb.dataset.v==='batch')nb.classList.add('on')});
+      document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});document.getElementById('vBatch').classList.add('on');
+      var batchInput = document.querySelector('#vBatch textarea')||document.querySelector('#vBatch .batch-prompt-input');
+      if(batchInput){batchInput.value=f.prompt;batchInput.dispatchEvent(new Event('input'))}
+      b.textContent='✓ Sent';setTimeout(function(){b.textContent='⚡ Batch'},1200);
+    });
+  });
+  // Mixer button — send to prompt mixer
+  sections.querySelectorAll('[data-fv-mixer]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = window._scFavs.find(function(x){return x.type===b.dataset.fvMixer && x.name===b.dataset.fvName});
+      if(!f)return;
+      document.querySelectorAll('[data-v]').forEach(function(nb){nb.classList.remove('on');if(nb.dataset.v==='mixer')nb.classList.add('on')});
+      document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});document.getElementById('vMixer').classList.add('on');
+      b.textContent='✓ Opened';setTimeout(function(){b.textContent='🎛️ Mix'},1200);
+    });
+  });
+  // Evolve button — send to evolver
+  sections.querySelectorAll('[data-fv-evolve]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = window._scFavs.find(function(x){return x.type===b.dataset.fvEvolve && x.name===b.dataset.fvName});
+      if(!f||!f.prompt)return;
+      document.querySelectorAll('[data-v]').forEach(function(nb){nb.classList.remove('on');if(nb.dataset.v==='evolver')nb.classList.add('on')});
+      document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});document.getElementById('vEvolver').classList.add('on');
+      var evolverInput = document.getElementById('evSeedPrompt');
+      if(evolverInput){evolverInput.value=f.prompt;evolverInput.dispatchEvent(new Event('input'))}
+      b.textContent='✓ Sent';setTimeout(function(){b.textContent='🧬 Evolve'},1200);
+    });
+  });
+  // Edit button — toggle inline edit on prompt
+  sections.querySelectorAll('[data-fv-edit]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = window._scFavs.find(function(x){return x.type===b.dataset.fvEdit && x.name===b.dataset.fvName});
+      if(!f)return;
+      var card = b.closest('.fv-card');
+      var promptEl = card?card.querySelector('.fv-card-prompt'):null;
+      if(!promptEl)return;
+      if(promptEl.contentEditable==='true'){
+        promptEl.contentEditable='false';promptEl.style.border='';promptEl.style.background='';
+        f.prompt=promptEl.textContent;
+        b.textContent='✏️ Edit';
+      } else {
+        promptEl.contentEditable='true';promptEl.style.border='1px solid var(--g4)';promptEl.style.background='var(--bg3)';
+        promptEl.style.webkitLineClamp='unset';promptEl.style.maxHeight='200px';promptEl.style.overflow='auto';
+        promptEl.focus();
+        b.textContent='💾 Save';
+      }
+    });
+  });
+  // Checkbox change — show/hide batch bar
+  sections.querySelectorAll('.fv-check').forEach(function(cb){
+    cb.addEventListener('change', function(){fvUpdateBatchBar()});
+  });
 };
+
+// Search handler
+document.getElementById('fvSearch')?.addEventListener('input', function(){window._scRenderFavs()});
+// Sort handlers
+document.querySelectorAll('.fv-sort-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.fv-sort-btn').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    window._scFavSort = b.dataset.fvs;
+    window._scRenderFavs();
+  });
+});
+
+
+// Batch bar functions
+function fvUpdateBatchBar(){
+  var checks = document.querySelectorAll('#fvSections .fv-check:checked');
+  var bar = document.getElementById('fvBatchBar');
+  var count = document.getElementById('fvSelCount');
+  if(bar){bar.style.display = checks.length>0?'flex':'none'}
+  if(count){count.textContent = checks.length+' selected'}
+}
+document.getElementById('fvSelectAll')?.addEventListener('change',function(){
+  var checked = this.checked;
+  document.querySelectorAll('#fvSections .fv-check').forEach(function(cb){cb.checked=checked});
+  fvUpdateBatchBar();
+});
+document.getElementById('fvBatchSelected')?.addEventListener('click',function(){
+  var checks = document.querySelectorAll('#fvSections .fv-check:checked');
+  var prompts = [];
+  checks.forEach(function(cb){
+    var f = window._scFavs.find(function(x){return x.type===cb.dataset.fvSelType && x.name===cb.dataset.fvSelName});
+    if(f&&f.prompt) prompts.push(f.prompt);
+  });
+  if(!prompts.length)return;
+  // Navigate to batch and fill
+  document.querySelectorAll('[data-v]').forEach(function(nb){nb.classList.remove('on');if(nb.dataset.v==='batch')nb.classList.add('on')});
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});document.getElementById('vBatch').classList.add('on');
+  this.textContent='✓ Sent '+prompts.length+' to Batch';
+  setTimeout(function(){document.getElementById('fvBatchSelected').textContent='⚡ Batch Generate Selected'},1500);
+});
+document.getElementById('fvCopySelected')?.addEventListener('click',function(){
+  var checks = document.querySelectorAll('#fvSections .fv-check:checked');
+  var prompts = [];
+  checks.forEach(function(cb){
+    var f = window._scFavs.find(function(x){return x.type===cb.dataset.fvSelType && x.name===cb.dataset.fvSelName});
+    if(f&&f.prompt) prompts.push('// '+f.name+'\n'+f.prompt);
+  });
+  if(prompts.length) navigator.clipboard.writeText(prompts.join('\n\n')).catch(function(){});
+  this.textContent='✓ Copied '+prompts.length;
+  setTimeout(function(){document.getElementById('fvCopySelected').textContent='📋 Copy All Selected'},1200);
+});
+
+// Initial render
+window._scRenderFavs();
 
 // === SEARCH + UNIFIED ARTIST FILTER ===
 (function wireSearch(){
