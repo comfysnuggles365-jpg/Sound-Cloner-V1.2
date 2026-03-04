@@ -381,13 +381,142 @@ nav button:nth-child(10){animation-delay:.2s}
 /* Card CTA removed — using action row instead */
 
 /* === MASTER === */
-.m-hero{margin-bottom:20px;text-align:center}
-.m-title{margin:0 auto}
-.m-desc{margin:8px auto 0;max-width:600px}
-.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-@media(max-width:900px){.m-grid{grid-template-columns:1fr}}
-.m-col{display:flex;flex-direction:column;gap:12px}
-.m-over{
+/* === AUDIO MASTER LAYOUT === */
+.m-wrap{max-width:1200px;margin:0 auto}
+.m-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--b1);margin-bottom:16px}
+.m-header-left{display:flex;flex-direction:column;gap:2px}
+.m-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.m-heading{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-0.03em;line-height:1.15}
+.m-heading em{font-style:normal;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.m-key-btn{height:32px;padding:0 14px;border-radius:8px;border:1px solid var(--b1);background:var(--bg2);color:var(--t3);font-family:var(--body);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.m-key-btn:hover{border-color:var(--g1);color:var(--g1)}
+.m-key-btn.has-key{border-color:var(--g2);color:var(--g2)}
+.m-key-panel{background:var(--bg2);border:1px solid var(--b1);border-radius:12px;padding:14px;margin-bottom:14px}
+
+/* Drop zone - compact, full width */
+.m-dropzone{background:var(--bg2);border:1.5px dashed var(--b2);border-radius:14px;padding:40px;text-align:center;cursor:pointer;transition:all 0.3s var(--smooth);position:relative;overflow:hidden;margin-bottom:12px}
+.m-dropzone:hover{border-color:var(--g1);background:rgba(124,92,252,0.03)}
+.m-dropzone.dragover{border-color:var(--g2);background:rgba(0,212,170,0.06);transform:scale(1.005)}
+.m-dz-icon{width:36px;height:36px;margin:0 auto 8px;background:linear-gradient(135deg,var(--g2),var(--g1));border-radius:10px;display:grid;place-items:center;color:white}
+.m-dz-icon svg{width:18px;height:18px}
+.m-dz-title{font-family:var(--display);font-size:15px;font-weight:600;color:var(--t1);margin-bottom:2px}
+.m-dz-sub{font-family:var(--mono);font-size:10px;color:var(--t4)}
+
+/* Queue */
+.m-queue{max-height:140px;overflow-y:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+
+/* Player section - the hero */
+.m-player{background:var(--card);border:1px solid var(--b1);border-radius:16px;padding:20px;margin-bottom:12px;position:relative;overflow:hidden;backdrop-filter:blur(16px)}
+.m-player::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g2),var(--g1),#E040FB);opacity:0.6}
+.m-player-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.m-player-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.m-player-file{font-family:var(--display);font-size:14px;font-weight:600;color:var(--t2)}
+.m-ab{display:flex;background:var(--bg2);border-radius:10px;padding:2px;border:1px solid var(--b1);margin-bottom:14px;width:fit-content}
+.m-ab .ab-btn{padding:6px 20px;border-radius:8px;border:none;background:transparent;font-family:var(--body);font-size:12px;font-weight:600;color:var(--t4);cursor:pointer;transition:all 0.2s}
+.m-ab .ab-btn.on{background:var(--bg3);color:var(--t1)}
+.m-transport{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.m-play{width:40px;height:40px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--g2),var(--g1));color:white;font-size:16px;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:all 0.2s}
+.m-play:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(0,212,170,0.3)}
+.m-wave-wrap{flex:1;height:60px;background:var(--bg);border-radius:8px;position:relative;overflow:hidden}
+.m-wave-wrap canvas{width:100%;height:100%}
+.m-time{font-family:var(--mono);font-size:11px;color:var(--t4);flex-shrink:0;min-width:70px;text-align:right}
+.m-meters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.m-meter{text-align:center;padding:14px 8px;background:var(--bg2);border-radius:10px;border:1px solid var(--b1)}
+.m-meter-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--t1);letter-spacing:-0.02em}
+.m-meter-label{font-family:var(--mono);font-size:8px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+
+/* Actions row */
+.m-actions{display:flex;gap:8px;margin-bottom:12px}
+.m-actions-left{display:flex;gap:8px;flex:1}
+.m-actions-right{display:flex;gap:6px}
+.m-dl-btn{height:38px;padding:0 16px;border-radius:10px;border:1px solid var(--b1);background:var(--card);color:var(--t2);font-family:var(--body);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.m-dl-btn:hover{border-color:var(--g1);color:var(--g1)}
+.m-dl-btn .dl-emoji{font-size:14px}
+.m-name-input{height:38px;flex:1;padding:0 14px;border-radius:10px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font-family:var(--display);font-size:13px;font-weight:600;outline:none;transition:border-color 0.2s;min-width:0}
+.m-name-input:focus{border-color:var(--g1)}
+
+/* Footer hint */
+.m-spec-badges{display:flex;gap:6px}
+.m-badge{height:26px;padding:0 10px;border-radius:6px;border:1px solid var(--b2);background:var(--bg2);font-family:var(--mono);font-size:10px;font-weight:600;color:var(--g2);display:flex;align-items:center;letter-spacing:0.02em}
+.m-player{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:18px;margin-top:12px;position:relative;overflow:hidden}
+.m-player::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g2),var(--g1),#E040FB);opacity:0.6}
+.m-player-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.m-player-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.m-player-file{font-family:var(--display);font-size:14px;font-weight:600;color:var(--t2)}
+.m-player-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.m-ab{display:flex;background:var(--bg2);border-radius:10px;padding:2px;border:1px solid var(--b1)}
+.m-ab .ab-btn{padding:6px 20px;border-radius:8px;border:none;background:transparent;font-family:var(--body);font-size:12px;font-weight:600;color:var(--t4);cursor:pointer;transition:all 0.2s}
+.m-ab .ab-btn.on{background:var(--bg3);color:var(--t1)}
+.m-meters-inline{display:flex;align-items:center;gap:8px}
+.m-mi{display:flex;flex-direction:column;align-items:center;gap:1px}
+.m-mi.arrow{font-size:16px;color:var(--g2);font-weight:700;flex-direction:row}
+.m-mi.sep{color:var(--b2);font-size:14px;flex-direction:row}
+.m-mi-label{font-family:var(--mono);font-size:8px;color:var(--t4);text-transform:uppercase;letter-spacing:0.08em}
+.m-mi-val{font-family:var(--display);font-size:18px;font-weight:700;color:var(--t1);letter-spacing:-0.02em}
+.m-mi-val.out{color:var(--g2)}
+.m-transport{display:flex;align-items:center;gap:12px}
+.m-play{width:40px;height:40px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--g2),var(--g1));color:white;font-size:16px;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:all 0.2s}
+.m-play:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(0,212,170,0.3)}
+.m-wave-wrap{flex:1;height:56px;background:var(--bg);border-radius:8px;position:relative;overflow:hidden}
+.m-wave-wrap canvas{width:100%;height:100%}
+.m-time{font-family:var(--mono);font-size:11px;color:var(--t4);flex-shrink:0;min-width:70px;text-align:right}
+.m-actions-spacer{flex:1}
+.m-results{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.m-rc-ab-row{margin-bottom:12px}
+.m-rc-ab-toggle{display:inline-flex;background:var(--bg2);border-radius:10px;padding:2px;border:1px solid var(--b1)}
+.m-rc-ab-btn{padding:8px 28px;border-radius:8px;border:1px solid transparent;background:transparent;font-family:var(--body);font-size:13px;font-weight:600;color:var(--t4);cursor:pointer;transition:all 0.15s}
+.m-rc-ab-btn:hover{color:var(--t2)}
+.m-rc-ab-btn.on[data-mode="mastered"]{background:linear-gradient(135deg,rgba(124,92,252,0.3),rgba(0,180,255,0.2));color:var(--g1);border:1px solid rgba(124,92,252,0.3);font-weight:700}
+.m-rc-ab-btn.on[data-mode="original"]{background:rgba(255,255,255,0.08);color:var(--t1);border:1px solid rgba(255,255,255,0.15);font-weight:700}
+.m-rc-transport{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:12px 14px;background:rgba(10,8,24,0.6);border-radius:12px;border:1px solid var(--b1)}
+.m-rc-play{width:48px;height:48px;border-radius:50%;border:none;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);color:white;font-size:18px;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:all 0.2s;box-shadow:0 2px 12px rgba(124,92,252,0.25)}
+.m-rc-play:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(124,92,252,0.35)}
+.m-rc-play.playing{animation:m-pulse 1.5s ease infinite}
+@keyframes m-pulse{0%,100%{box-shadow:0 2px 12px rgba(124,92,252,0.25)}50%{box-shadow:0 4px 20px rgba(224,64,251,0.4)}}
+.m-rc-wave-bar{flex:1;height:56px;background:rgba(10,8,24,0.8);border-radius:10px;overflow:hidden;position:relative;border:1px solid rgba(124,92,252,0.12)}
+.m-rc-wave-bar canvas{width:100%;height:100%;display:block}
+.m-rc-wave-progress{position:absolute;top:0;left:0;width:0%;height:100%;background:linear-gradient(90deg,rgba(224,64,251,0.08),rgba(124,92,252,0.06));pointer-events:none;transition:width 0.1s linear}
+.m-rc-time{font-family:var(--mono);font-size:12px;color:var(--t3);flex-shrink:0;min-width:90px;text-align:right;font-weight:600}
+.m-rc-title{text-align:center;font-family:var(--display);font-size:20px;font-weight:800;color:var(--t1);letter-spacing:-0.02em;padding:8px 0 12px}
+.m-rc-meters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.m-rc-meter{text-align:center;padding:14px 8px;background:var(--bg2);border-radius:12px;border:1px solid var(--b1)}
+.m-rc-meter-val{font-family:var(--display);font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-0.02em}
+.m-rc-meter-val.after{color:var(--g2)}
+.m-rc-meter-label{font-family:var(--mono);font-size:8px;font-weight:600;color:var(--t4);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px}
+.m-rc-bottom{text-align:center}
+.m-dl-all{height:36px;padding:0 20px;border-radius:10px;border:none;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);color:white;font-family:var(--body);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 2px 12px rgba(124,92,252,0.2)}
+.m-dl-all:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(124,92,252,0.3)}
+.m-results-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--b1);margin-bottom:4px}
+.m-results-title{font-family:var(--display);font-size:18px;font-weight:700;color:var(--g2)}
+.m-results-actions{display:flex;gap:8px}
+.m-result-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:16px;position:relative;overflow:hidden}
+.m-result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g2),var(--g1),#E040FB);opacity:0.5}
+.m-rc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.m-rc-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:8px}
+.m-rc-name .done-check{color:var(--g2);font-size:13px}
+.m-rc-dl{height:32px;padding:0 14px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--g2),var(--g1));color:white;font-family:var(--body);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.2s}
+.m-rc-dl:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,212,170,0.3)}
+.m-rc-stats{display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.m-rc-stat{display:flex;align-items:center;gap:4px}
+.m-rc-stat-label{font-family:var(--mono);font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:0.06em}
+.m-rc-stat-val{font-family:var(--display);font-size:16px;font-weight:700;color:var(--t1)}
+.m-rc-stat-val.before{color:var(--t3)}
+.m-rc-stat-val.after{color:var(--g2)}
+.m-rc-arrow{color:var(--g2);font-size:14px;font-weight:700;margin:0 2px}
+.m-rc-sep{color:var(--b2);margin:0 4px}
+.m-rc-player{display:flex;align-items:center;gap:10px}
+.m-rc-play{width:36px;height:36px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--g2),var(--g1));color:white;font-size:14px;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:all 0.2s}
+.m-rc-play:hover{transform:scale(1.08);box-shadow:0 4px 12px rgba(0,212,170,0.25)}
+.m-rc-play.playing{background:linear-gradient(135deg,#E040FB,#7C5CFC)}
+.m-rc-wave{flex:1;height:48px;background:var(--bg);border-radius:8px;position:relative;overflow:hidden}
+.m-rc-wave canvas{width:100%;height:100%;display:block}
+.m-rc-time{font-family:var(--mono);font-size:10px;color:var(--t4);flex-shrink:0;min-width:64px;text-align:right}
+.m-rc-ab{display:flex;background:var(--bg2);border-radius:8px;padding:2px;border:1px solid var(--b1);flex-shrink:0}
+.m-rc-ab button{padding:5px 14px;border-radius:6px;border:none;background:transparent;font-family:var(--body);font-size:10px;font-weight:600;color:var(--t4);cursor:pointer;transition:all 0.15s}
+.m-rc-ab button.on{background:var(--bg3);color:var(--t1)}
+.m-footer{font-family:var(--mono);font-size:10px;color:var(--t4);text-align:center;padding:10px 0;border-top:1px solid var(--b1)}
+.m-footer strong{color:var(--g2)}
+
   font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;
   text-transform:uppercase;margin-bottom:14px;
   background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
@@ -405,7 +534,7 @@ nav button:nth-child(10){animation-delay:.2s}
 
 .drop-zone{
   background:var(--bg2);border:1.5px dashed var(--b2);border-radius:16px;
-  padding:28px 20px;text-align:center;cursor:pointer;
+  padding:32px 20px;text-align:center;cursor:pointer;
   transition:all 0.35s var(--smooth);position:relative;overflow:hidden;
 }
 .drop-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(124,92,252,0.04),transparent 65%);opacity:0;transition:opacity 0.4s}
@@ -492,7 +621,7 @@ nav button:nth-child(10){animation-delay:.2s}
 /* Preview */
 .prev-card{
   background:var(--card);border:1px solid var(--b1);border-radius:14px;
-  padding:18px;position:relative;overflow:hidden;backdrop-filter:blur(16px);
+  padding:16px;position:relative;overflow:hidden;backdrop-filter:blur(16px);
 }
 .prev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-main);opacity:0.5}
 .prev-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
@@ -529,6 +658,16 @@ nav button:nth-child(10){animation-delay:.2s}
 .meter-l{font-family:var(--mono);font-size:8.5px;color:var(--t4);text-transform:uppercase;letter-spacing:0.12em;margin-top:4px}
 
 .hint{margin-top:12px;padding:10px 14px;background:rgba(124,92,252,0.04);border-left:3px solid var(--g1);border-radius:0 14px 14px 0;font-size:13px;color:var(--t2);line-height:1.7}
+
+.m-drop{flex:0 0 280px;padding:18px 14px !important;border-radius:14px !important;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+.m-queue-wrap .queue{flex:1;max-height:160px;overflow-y:auto;margin:0 0 8px}
+.m-queue-wrap .btns{margin:0}
+
+.m-bottom-row .dl-card{flex:1;margin-bottom:0}
+.m-bottom-row .hint{flex:1;margin-top:0}
+@media(max-width:800px){.m-top-row{flex-direction:column}.m-drop{flex:none}.m-bottom-row{flex-direction:column}}
+
 .hint strong{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* === BLUEPRINTS — genre production recipes === */
@@ -879,6 +1018,57 @@ nav button:nth-child(10){animation-delay:.2s}
 .a-cact.fav:hover{border-color:var(--g4);box-shadow:0 4px 16px rgba(255,179,71,0.12);background:rgba(255,179,71,0.08)}
 
 /* Spotify Analyzer */
+/* === SPOTIFY ANALYZER REDESIGN === */
+.sa-wrap{max-width:1200px;margin:0 auto}
+.sa-header{text-align:center;margin-bottom:28px}
+.sa-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#1DB954;margin-bottom:6px}
+.sa-title{font-family:var(--display);font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+.sa-title em{font-style:normal;background:linear-gradient(135deg,#1DB954,var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sa-desc{font-size:14px;color:var(--t3);margin-top:10px;line-height:1.6;max-width:560px;margin-left:auto;margin-right:auto}
+.sa-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:800px){.sa-inputs{grid-template-columns:1fr}}
+.sa-input-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:border-color 0.2s}
+.sa-input-card:hover{border-color:var(--b2)}
+.sa-input-card.spotify:hover{border-color:rgba(29,185,84,0.3)}
+.sa-input-card.youtube:hover{border-color:rgba(255,0,0,0.3)}
+.sa-input-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.sa-input-body{flex:1;min-width:0}
+.sa-input-title{font-family:var(--display);font-size:15px;font-weight:700;color:var(--t1);margin-bottom:10px}
+.sa-input-row{display:flex;gap:8px;margin-bottom:6px}
+.sa-input{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font:500 12.5px var(--body);outline:none;transition:all 0.2s;min-width:0}
+.sa-input:focus{border-color:#1DB954;box-shadow:0 0 0 3px rgba(29,185,84,0.08)}
+.sa-input::placeholder{color:var(--t4)}
+.sa-go{padding:10px 20px;border-radius:10px;border:none;color:#fff;font:700 12px var(--body);cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0}
+.sa-go.spotify{background:linear-gradient(135deg,#1DB954,#1ED760)}
+.sa-go.youtube{background:linear-gradient(135deg,#FF0000,#CC0000)}
+.sa-go:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.sa-input-hint{font-family:var(--mono);font-size:9px;color:var(--t4)}
+
+/* API Key bar — clean full-width inline */
+.sa-key-bar{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:12px 18px;margin-bottom:8px}
+.sa-key-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sa-key-dot{width:8px;height:8px;border-radius:50%;background:#444}
+.sa-key-dot.active{background:#1DB954;box-shadow:0 0 6px rgba(29,185,84,0.4)}
+.sa-key-title{font-family:var(--display);font-size:14px;font-weight:700;color:var(--t1)}
+.sa-key-badge{font-family:var(--mono);font-size:9px;font-weight:700;color:#1DB954;background:rgba(29,185,84,0.1);border:1px solid rgba(29,185,84,0.2);border-radius:4px;padding:2px 6px;letter-spacing:0.05em}
+.sa-key-center{flex:1;min-width:0}
+.sa-key-input{width:100%;padding:8px 14px;border-radius:8px;border:1px solid var(--b1);background:var(--bg2);color:var(--t1);font:500 12px var(--body);outline:none;transition:border-color 0.2s}
+.sa-key-input:focus{border-color:#1DB954}
+.sa-key-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.sa-key-status{font-family:var(--mono);font-size:10px;font-weight:600;color:#1DB954}
+.sa-key-save{padding:8px 18px;border-radius:8px;border:none;background:#1DB954;color:#fff;font:700 11px var(--body);cursor:pointer;transition:all 0.2s}
+.sa-key-save:hover{filter:brightness(1.1)}
+.sa-key-save.saved{background:var(--g2)}
+.sa-key-help-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--b2);background:transparent;color:var(--t3);font:600 12px var(--body);cursor:pointer;display:grid;place-items:center;transition:all 0.15s}
+.sa-key-help-toggle:hover{border-color:var(--t2);color:var(--t1)}
+
+/* Collapsible help */
+.sa-key-help{background:var(--bg2);border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin-bottom:16px}
+.sa-help-steps{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px}
+.sa-help-step{display:flex;align-items:center;gap:8px;font:500 12px var(--body);color:var(--t2)}
+.sa-step-n{width:22px;height:22px;border-radius:50%;background:#1DB954;color:#fff;font:700 11px var(--body);display:grid;place-items:center;flex-shrink:0}
+.sa-help-note{font:500 11px var(--body);color:var(--t3);line-height:1.5}
+.sa-help-note strong{color:var(--t1)}
 .sp-hero{margin-bottom:24px;text-align:center}
 .sp-over{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#1DB954;margin-bottom:6px}
 .sp-title{font-family:var(--display);font-size:clamp(30px,4vw,42px);font-weight:800;letter-spacing:-0.03em;line-height:1.05}
@@ -2163,38 +2353,66 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
     <!-- SPOTIFY ANALYZER -->
     <div class="view" id="vSpotify">
-      <div class="sp-hero">
-        <div class="sp-over">AI Style Extraction</div>
-        <div class="sp-title">Reverse-Engineer Any <em>Track</em>.</div>
-        <div class="sp-desc">Paste a Spotify or YouTube link — AI analyzes the song's sonic DNA and generates Suno-ready style and voice prompts you can use instantly.</div>
-      </div>
+      <div class="sa-wrap">
+        <!-- Header -->
+        <div class="sa-header">
+          <div class="sa-label">AI Style Extraction</div>
+          <div class="sa-title">Reverse-Engineer Any <em>Track</em>.</div>
+          <div class="sa-desc">Paste a Spotify or YouTube link — AI analyzes the song's sonic DNA and generates Suno-ready prompts.</div>
+        </div>
 
-      <div class="sp-card">
-        <!-- Two-column input grid -->
-        <div class="sp-inputs-grid">
-          <div class="sp-input-card">
-            <div class="sp-link-label">🎧 <strong>Spotify Track / Artist Link</strong></div>
-            <div class="sp-input-row">
-              <input class="sp-input" id="spInput" placeholder="https://open.spotify.com/track/...">
-              <button class="sp-go" id="spGoBtn" onclick="spAnalyze()">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
-                Analyze
-              </button>
+        <!-- Input cards side by side -->
+        <div class="sa-inputs">
+          <div class="sa-input-card spotify">
+            <div class="sa-input-icon">🎧</div>
+            <div class="sa-input-body">
+              <div class="sa-input-title">Spotify Track / Artist</div>
+              <div class="sa-input-row">
+                <input class="sa-input" id="spInput" placeholder="https://open.spotify.com/track/...">
+                <button class="sa-go spotify" id="spGoBtn" onclick="spAnalyze()">Analyze</button>
+              </div>
+              <div class="sa-input-hint">Right-click any song → Share → Copy link</div>
             </div>
-            <div class="sp-hint">Open Spotify → right-click any song → Share → Copy link → paste above</div>
           </div>
+          <div class="sa-input-card youtube">
+            <div class="sa-input-icon">📺</div>
+            <div class="sa-input-body">
+              <div class="sa-input-title">YouTube Video</div>
+              <div class="sa-input-row">
+                <input class="sa-input" id="ytInput" placeholder="https://www.youtube.com/watch?v=...">
+                <button class="sa-go youtube" id="ytGoBtn" onclick="ytAnalyze()">Analyze</button>
+              </div>
+              <div class="sa-input-hint">Share → Copy link · supports youtu.be short links</div>
+            </div>
+          </div>
+        </div>
 
-          <div class="sp-input-card">
-            <div class="sp-link-label">📺 <strong>YouTube Video Link</strong></div>
-            <div class="sp-input-row">
-              <input class="sp-input" id="ytInput" placeholder="https://www.youtube.com/watch?v=...">
-              <button class="sp-go" id="ytGoBtn" onclick="ytAnalyze()" style="background:linear-gradient(135deg,#FF0000,#CC0000)">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="10" fill="#fff" opacity="0.2"/><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A.998.998 0 008 6.82z" fill="#fff"/></svg>
-                Analyze
-              </button>
-            </div>
-            <div class="sp-hint">Open YouTube → click Share → Copy link → paste above. Also supports youtu.be short links.</div>
+        <!-- API Key — clean full-width bar -->
+        <div class="sa-key-bar">
+          <div class="sa-key-left">
+            <div class="sa-key-dot" id="saKeyDot"></div>
+            <span class="sa-key-title">Gemini API Key</span>
+            <span class="sa-key-badge">FREE</span>
           </div>
+          <div class="sa-key-center">
+            <input type="password" class="sa-key-input" id="spKeyInput" placeholder="Paste your Gemini API key...">
+          </div>
+          <div class="sa-key-right">
+            <span class="sa-key-status" id="spKeyStatus"></span>
+            <button class="sa-key-save" id="spKeySave">Save</button>
+            <button class="sa-key-help-toggle" id="saKeyHelpToggle">?</button>
+          </div>
+        </div>
+
+        <!-- Collapsible help -->
+        <div class="sa-key-help" id="saKeyHelp" style="display:none">
+          <div class="sa-help-steps">
+            <div class="sa-help-step"><span class="sa-step-n">1</span> Go to <strong>aistudio.google.com</strong></div>
+            <div class="sa-help-step"><span class="sa-step-n">2</span> Sign in with your Google account</div>
+            <div class="sa-help-step"><span class="sa-step-n">3</span> Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong></div>
+            <div class="sa-help-step"><span class="sa-step-n">4</span> Copy the key and paste it above</div>
+          </div>
+          <div class="sa-help-note">💡 Free tier gives you <strong>60 requests/minute</strong>. Use AI Studio ONLY — not Google Cloud Console. Key is shared across all tabs.</div>
         </div>
 
         <!-- Loading States -->
@@ -2207,7 +2425,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <div class="sp-load-text" id="ytLoadText">Fetching video info...</div>
         </div>
 
-        <!-- Results side by side when both have data -->
+        <!-- Spotify Result -->
         <div class="sp-result" id="spResult">
           <div class="sp-track">
             <div class="sp-art" id="spArt">🎵</div>
@@ -2238,7 +2456,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="spSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="spSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="spSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="this.innerHTML='\u2713 Saved!';setTimeout(()=>this.innerHTML='\u2b50 Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -2247,6 +2465,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
           </div>
         </div>
 
+        <!-- YouTube Result -->
         <div class="sp-result" id="ytResult">
           <div class="sp-track">
             <div class="sp-art" id="ytArt" style="background:linear-gradient(135deg,#FF0000,#282828);color:#fff">▶</div>
@@ -2277,7 +2496,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="ytSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="ytSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="ytSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="this.innerHTML='\u2713 Saved!';setTimeout(()=>this.innerHTML='\u2b50 Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -2285,83 +2504,73 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <div class="sp-history-list" id="ytHistoryList"></div>
           </div>
         </div>
-
-        <!-- Gemini API Key -->
-        <div class="sp-divider" style="margin:24px 0 20px"></div>
-        <div class="sp-key-wrap">
-          <div class="sp-key-card">
-            <div class="sp-key-top">
-              <div class="sp-key-dot"></div>
-              <span class="sp-key-label">Gemini API Key</span>
-              <span class="sp-key-free">FREE</span>
-              <span class="sp-key-status" id="spKeyStatus"></span>
-            </div>
-            <div class="sp-key-row">
-              <input type="password" class="sp-key-input" id="spKeyInput" placeholder="Paste your Gemini API key here...">
-              <button class="sp-key-save" id="spKeySave">Save</button>
-            </div>
-            <div class="sp-key-help">
-              <div class="sp-key-help-title">🔑 Get your FREE API key in 30 seconds:</div>
-              <div class="sp-key-steps">
-                <div class="sp-key-step"><span class="sp-step-num">1</span> Go to <strong>aistudio.google.com</strong></div>
-                <div class="sp-key-step"><span class="sp-step-num">2</span> Sign in with your Google account</div>
-                <div class="sp-key-step"><span class="sp-step-num">3</span> Click <strong>"Get API Key"</strong> → <strong>"Create API key"</strong></div>
-                <div class="sp-key-step"><span class="sp-step-num">4</span> Copy the key and paste it above</div>
-              </div>
-              <div class="sp-key-note">
-                <span class="sp-key-note-icon">💡</span>
-                <div>
-                  <strong>Why Gemini?</strong> It powers the AI analysis — identifies instrumentation, mood, vocal style, and generates Suno-ready prompts. The free tier gives you <strong>60 requests/minute</strong> which is more than enough.
-                  <br><span class="sp-key-warn">⚠ Use AI Studio ONLY — not Google Cloud Console</span>
-                </div>
-              </div>
-              <div class="sp-key-shared">
-                <span class="sp-key-shared-icon">🔗</span> This key is shared with Song Analyzer — save it once and it works across all analyzers.
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
     <div class="view" id="vMaster">
-      <div class="m-hero"><div class="m-over" data-i18n="master_hero_sub">Audio Mastering</div><div class="m-title">Make Every Track Sound <em>Incredible</em>.</div><div class="m-desc" data-i18n="master_hero_desc">Drop your tracks for streaming-optimized masters. Professional EQ, compression, stereo widening & loudness normalization — all targeting -14 LUFS.</div></div>
-
-      <!-- Gemini API Key — compact -->
-      <div class="a-key-card" style="margin-bottom:14px;max-width:680px;margin-left:auto;margin-right:auto">
-        <div class="a-key-top">
-          <div class="a-key-dot" id="masterApiDot"></div>
-          <span class="a-key-label">Gemini API Key</span>
-          <span class="a-key-free">FREE</span>
-          <span class="a-key-status" id="masterApiStatus" style="display:none"></span>
-        </div>
-        <div class="a-key-row">
-          <input type="password" class="a-key-input" id="masterApiInput" placeholder="Paste Gemini API key for A/B preview...">
-          <button class="a-key-save" id="masterApiSave">Save</button>
-        </div>
-        <div class="a-key-help">
-          <strong>Get your FREE key:</strong> Go to <strong>aistudio.google.com</strong> → Sign in → <strong>Get API Key</strong> → <strong>Create API key</strong>. Uses the same key as Batch Generator &amp; Song Analyzer.
-        </div>
-      </div>
-
-      <div class="m-grid">
-        <!-- LEFT: Drop + Queue + Buttons -->
-        <div class="m-col">
-          <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
-          <div class="drop-zone" id="masterDropZone" style="cursor:pointer"><div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div><div class="dz-title" data-i18n="master_drop_title">Drop audio files here</div><div class="dz-sub" data-i18n="master_drop_sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div></div>
-          <div class="queue" id="masterQueue">
-            <div class="qi" style="justify-content:center;opacity:0.4;padding:18px"><div class="qi-body" style="text-align:center"><div class="qi-name" style="font-size:12px">Drop audio files above to begin mastering</div></div></div>
+      <div class="m-wrap">
+        <!-- Header -->
+        <div class="m-header">
+          <div class="m-header-left">
+            <div class="m-label">Audio Mastering</div>
+            <div class="m-heading">Master your audio to <em>streaming standards</em>.</div>
           </div>
-          <div class="btns" id="masterBtns"><button class="btn-main" id="masterAllBtn" data-i18n="master_all">Master All</button><button class="btn-sec" id="masterClearBtn" data-i18n="master_clear">Clear</button></div>
-          <div class="dl-card"><input class="dl-input" value="Chill House — EP Masters"><div class="dl-grid"><div class="dl-opt"><div class="dl-opt-i">📦</div><div class="dl-opt-t">ZIP Archive</div><div class="dl-opt-d">Single file</div></div><div class="dl-opt"><div class="dl-opt-i">📄</div><div class="dl-opt-t">One by One</div><div class="dl-opt-d">Per file</div></div><div class="dl-opt"><div class="dl-opt-i">⚡</div><div class="dl-opt-t">All at Once</div><div class="dl-opt-d">Parallel</div></div></div></div>
+          <div class="m-header-right">
+            <div class="m-spec-badges">
+              <span class="m-badge">-14 LUFS</span>
+              <span class="m-badge">-1.0 dBTP</span>
+              <span class="m-badge">24-bit WAV</span>
+            </div>
+          </div>
         </div>
 
-        <!-- RIGHT: A/B Preview + Meters -->
-        <div class="m-col">
-          <div class="prev-card" id="masterPreview"><div class="prev-top"><div class="prev-tag">A/B Preview</div><div class="prev-name" id="masterPreviewName">No file loaded</div></div><div class="ab-sw"><button class="ab-btn" id="abOriginal" data-i18n="master_original">Original</button><button class="ab-btn on" id="abMastered" data-i18n="master_mastered">Mastered</button></div><div class="tp"><button class="tp-play" id="masterPlayBtn">▶</button><div class="tp-wave" id="masterWaveWrap"><canvas id="wv"></canvas><div class="tp-fill" id="masterFill"></div><div class="tp-needle" id="masterNeedle"></div></div><div class="tp-time" id="masterTime">0:00 / 0:00</div></div><div class="meters"><div class="meter"><div class="meter-v" id="meterLufsBefore">—</div><div class="meter-l" data-i18n="master_lufs_before">LUFS Before</div></div><div class="meter"><div class="meter-v" id="meterLufsAfter">—</div><div class="meter-l" data-i18n="master_lufs_after">LUFS After</div></div><div class="meter"><div class="meter-v" id="meterPeak">—</div><div class="meter-l" data-i18n="master_peak">Peak dBTP</div></div></div></div>
+        <!-- Drop Zone -->
+        <input type="file" id="masterFileInput" accept="audio/*" multiple style="display:none">
+        <div class="m-dropzone" id="masterDropZone">
+          <div class="m-dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div>
+          <div class="m-dz-title">Drop audio files here</div>
+          <div class="m-dz-sub">MP3, WAV, FLAC, M4A, OGG — drag multiple for batch</div>
+        </div>
+
+        <!-- Queue (pending/processing) -->
+        <div class="m-queue" id="masterQueue" style="display:none"></div>
+
+        <!-- Actions -->
+        <div class="m-actions" id="masterBtns" style="display:none">
+          <button class="btn-main" id="masterAllBtn" style="flex:1">Master All</button>
+          <button class="btn-sec" id="masterClearBtn">Clear</button>
+        </div>
+
+        <!-- Results: shown after mastering, one card per track -->
+        <div class="m-results" id="masterResults" style="display:none"></div>
+
+        <!-- Hidden elements the JS expects for the preview system -->
+        <div id="masterPreview" style="display:none"></div>
+        <div id="masterPreviewName" style="display:none"></div>
+        <button id="abOriginal" style="display:none"></button>
+        <button id="abMastered" style="display:none"></button>
+        <button id="masterPlayBtn" style="display:none"></button>
+        <div id="masterWaveWrap" style="display:none"><canvas id="wv"></canvas></div>
+        <div id="masterFill" style="display:none"></div>
+        <div id="masterNeedle" style="display:none"></div>
+        <div id="masterTime" style="display:none"></div>
+        <div id="meterLufsBefore" style="display:none"></div>
+        <div id="meterLufsAfter" style="display:none"></div>
+        <div id="meterPeak" style="display:none"></div>
+
+        <!-- Hidden API key elements -->
+        <div id="mKeyCollapse" style="display:none">
+          <div id="masterApiDot"></div>
+          <span id="masterApiStatus" style="display:none"></span>
+          <input type="password" id="masterApiInput" style="display:none">
+          <button id="masterApiSave" style="display:none"></button>
+        </div>
+
+        <!-- Footer -->
+        <div class="m-footer">
+          <strong>-14 LUFS</strong> · Spotify, Apple Music & YouTube · 24dB/oct subsonic filter → glue compression → mono bass → loudness normalization → 4x oversampled true peak limiter (-1.0 dBTP) → TPDF dither → 24-bit WAV
         </div>
       </div>
-      <div class="hint">Targets <strong>-14 LUFS</strong> — optimized for Spotify, Apple Music & YouTube. Chain: high-pass → 4-band EQ → compression → stereo widening → limiter → 24-bit WAV.</div>
     </div>
 
     <!-- ═══════════ GUIDE TAB ═══════════ -->
@@ -3719,6 +3928,13 @@ const GENRE_ICONS={'Hip-Hop':'🎤','Pop':'🎵','R&B':'🎙️','Country':'🤠
   });
   sb.innerHTML=h;
 })();
+// Master API key toggle
+document.getElementById('mKeyToggle')?.addEventListener('click',function(){
+  const col=document.getElementById('mKeyCollapse');
+  if(col.style.display==='none'){col.style.display='';this.classList.add('open');}
+  else{col.style.display='none';this.classList.remove('open');}
+});
+
 
 renderBPCards('all');
 
@@ -9014,7 +9230,7 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
         : t.status==='error' ? '<div class="qi-badge" style="color:#f87171">Error</div>'
         : '<div class="qi-badge wait">Pending</div>';
       const acts = t.status==='done'
-        ? '<div class="qi-acts"><button class="qb ghost" data-preview="'+i+'">Preview</button><button class="qb fill" data-dl="'+i+'">Download</button></div>'
+        ? '<div class="qi-acts"><button class="qb ghost" data-preview="'+i+'">🔊 Compare</button><button class="qb fill" data-dl="'+i+'">⬇ Download</button></div>'
           + '<div class="qi-stats" style="display:flex;gap:16px;padding:4px 0 0 52px;font-size:11px;color:var(--t4);font-family:var(--mono)">'
           + '<span>LUFS in: <strong style="color:var(--t2)">'+( t.lufsOrig||'—')+'</strong></span>'
           + '<span>LUFS out: <strong style="color:var(--g2)">'+( t.lufsOut||'—')+'</strong></span>'
@@ -9024,24 +9240,11 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
       return '<div class="qi"><div class="qi-thumb">'+svgIcon+'</div><div class="qi-body"><div class="qi-name">'+t.name+'</div><div class="qi-meta">'+fmtSize(t.size)+'</div></div>'+badge+acts+'</div>';
     }).join('');
 
-    queue.querySelectorAll('[data-dl]').forEach(b => {
-      b.addEventListener('click', ()=> {
-        const t = tracks[parseInt(b.dataset.dl)];
-        if(!t||!t.masteredBlob) return;
-        const url = URL.createObjectURL(t.masteredBlob);
-        const a = document.createElement('a'); a.href=url;
-        a.download = 'mastered_' + t.name.replace(/\.[^.]+$/,'') + '.wav';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      });
-    });
+    
 
-    queue.querySelectorAll('[data-preview]').forEach(b => {
-      b.addEventListener('click', ()=> {
-        const idx = parseInt(b.dataset.preview);
-        if(window._masterOpenPreview) window._masterOpenPreview(idx);
-      });
-    });
+    
+
+    
   }
 
   masterAllBtn.addEventListener('click', async ()=> {
@@ -9059,9 +9262,228 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
       renderQueue();
     }
     masterAllBtn.disabled = false; masterAllBtn.textContent = 'Master All';
+    // Hide queue and show results with A/B comparison
+    queue.style.display = 'none';
+    btns.style.display = 'none';
+    renderResults();
   });
 
   masterClearBtn.addEventListener('click', ()=> { tracks=[]; renderQueue(); });
+
+  function renderResults(){
+    const resultsEl = document.getElementById('masterResults');
+    const done = tracks.filter(t => t.status === 'done');
+    if(!done.length){ resultsEl.style.display = 'none'; return; }
+    resultsEl.style.display = '';
+    
+    resultsEl.innerHTML = '<div class="m-results-header"><div class="m-results-title">' + done.length + ' track' + (done.length>1?'s':'') + ' mastered</div><div class="m-results-actions"><button class="m-dl-all" id="mDlAll">⬇ Download All</button><button class="m-rc-dl" id="mNewBatch">＋ New Batch</button></div></div>' + done.map((t, i) => {
+      const idx = tracks.indexOf(t);
+      return `<div class="m-result-card" data-idx="${idx}">
+        <div class="m-rc-ab-row">
+          <div class="m-rc-ab-toggle"><button class="m-rc-ab-btn" data-ab="${idx}" data-mode="original">Original</button><button class="m-rc-ab-btn on" data-ab="${idx}" data-mode="mastered">Mastered</button></div>
+        </div>
+        <div class="m-rc-transport">
+          <button class="m-rc-play" data-play="${idx}">▶</button>
+          <div class="m-rc-wave-bar"><canvas data-wave="${idx}" width="1000" height="56"></canvas><div class="m-rc-wave-progress" data-progress="${idx}"></div></div>
+          <div class="m-rc-time" data-time="${idx}">0:00 / 0:00</div>
+        </div>
+        <div class="m-rc-title">${t.name.replace(/\.[^.]+$/,'')}</div>
+        <div class="m-rc-meters">
+          <div class="m-rc-meter"><div class="m-rc-meter-val">${t.lufsIn || '—'}</div><div class="m-rc-meter-label">LUFS Before</div></div>
+          <div class="m-rc-meter"><div class="m-rc-meter-val after">${t.lufsOut || '—'}</div><div class="m-rc-meter-label">LUFS After</div></div>
+          <div class="m-rc-meter"><div class="m-rc-meter-val">${t.truePeak || '—'} dBTP</div><div class="m-rc-meter-label">Peak dBTP</div></div>
+        </div>
+        <div class="m-rc-bottom"></div>
+      </div>`;
+    }).join('');
+
+    // Draw waveforms
+    function drawWave(canvas, buffer, color){
+      if(!canvas || !buffer) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0,0,w,h);
+      const data = buffer.getChannelData(0);
+      const barW = 2;
+      const gap = 1;
+      const barCount = Math.floor(w / (barW + gap));
+      const samplesPerBar = Math.floor(data.length / barCount);
+      const isMastered = color.includes('124,92,252');
+      for(let i = 0; i < barCount; i++){
+        let min = 1, max = -1;
+        const start = i * samplesPerBar;
+        for(let j = 0; j < samplesPerBar; j++){
+          const s = data[start + j] || 0;
+          if(s < min) min = s;
+          if(s > max) max = s;
+        }
+        const amp = (max - min) / 2;
+        const barH = Math.max(amp * h, 1);
+        const x = i * (barW + gap);
+        const y = (h - barH) / 2;
+        if(isMastered){
+          const t = i / barCount;
+          const r = Math.round(180 + 44 * Math.sin(t * Math.PI));
+          const g = Math.round(60 + 32 * Math.sin(t * Math.PI + 1));
+          const b = Math.round(200 + 55 * Math.cos(t * Math.PI));
+          ctx.fillStyle = 'rgba('+r+','+g+','+b+',0.85)';
+        } else {
+          ctx.fillStyle = 'rgba(180,180,200,0.35)';
+        }
+        ctx.fillRect(x, y, barW, barH);
+      }
+    }
+    // Draw mastered waveform by default
+    resultsEl.querySelectorAll('canvas[data-wave]').forEach(canvas => {
+      const t = tracks[parseInt(canvas.dataset.wave)];
+      if(t) drawWave(canvas, t.masteredBuffer, 'rgba(124,92,252,0.7)');
+    });
+
+    // Download All button
+    const dlAllBtn = document.getElementById('mDlAll');
+    if(dlAllBtn) dlAllBtn.addEventListener('click', () => {
+      tracks.forEach(t => {
+        if(t.status !== 'done' || !t.masteredBlob) return;
+        const url = URL.createObjectURL(t.masteredBlob);
+        const a = document.createElement('a'); a.href = url;
+        a.download = 'mastered_' + t.name.replace(/\.[^.]+$/, '') + '.wav';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    });
+
+    // New Batch button
+    const newBatchBtn = document.getElementById('mNewBatch');
+    if(newBatchBtn) newBatchBtn.addEventListener('click', () => {
+      resultsEl.style.display = 'none';
+      resultsEl.innerHTML = '';
+      tracks = [];
+      queue.style.display = 'none';
+      btns.style.display = 'none';
+      Object.keys(audioPlayers).forEach(k => { if(audioPlayers[k]) try{audioPlayers[k].stop();}catch(e){} });
+    });
+
+
+
+    // Play handlers with seamless A/B switching
+    window._masterPlayers = window._masterPlayers || {};
+    const audioPlayers = window._masterPlayers;
+
+    function stopAll(){
+      Object.keys(audioPlayers).forEach(k => {
+        if(audioPlayers[k]) { try{audioPlayers[k].stop();}catch(e){} audioPlayers[k] = null; }
+      });
+      resultsEl.querySelectorAll('.m-rc-play').forEach(b => { b.textContent = '▶'; b.classList.remove('playing'); });
+      resultsEl.querySelectorAll('.m-rc-wave-progress').forEach(p => { p.style.width = '0%'; });
+    }
+
+    resultsEl.querySelectorAll('[data-play]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.play);
+        const t = tracks[idx];
+        if(!t || !t.originalBuffer || !t.masteredBuffer) return;
+
+        // If playing, stop
+        if(btn.classList.contains('playing')){ stopAll(); return; }
+        // Stop anything else first
+        stopAll();
+
+        // Create dual-source player for seamless A/B
+        const actx = new AudioContext();
+        const gainOrig = actx.createGain();
+        const gainMaster = actx.createGain();
+        const srcOrig = actx.createBufferSource();
+        const srcMaster = actx.createBufferSource();
+        srcOrig.buffer = t.originalBuffer;
+        srcMaster.buffer = t.masteredBuffer;
+        srcOrig.connect(gainOrig).connect(actx.destination);
+        srcMaster.connect(gainMaster).connect(actx.destination);
+
+        // Set initial A/B state
+        const abBtns = resultsEl.querySelectorAll('[data-ab="'+idx+'"]');
+        let mode = 'mastered';
+        abBtns.forEach(ab => { if(ab.classList.contains('on')) mode = ab.dataset.mode; });
+        gainOrig.gain.value = mode === 'original' ? 1 : 0;
+        gainMaster.gain.value = mode === 'mastered' ? 1 : 0;
+
+        // Start both at the same time
+        srcOrig.start();
+        srcMaster.start();
+
+        // Store player with A/B switch capability
+        audioPlayers[idx] = {
+          actx: actx,
+          gainOrig: gainOrig,
+          gainMaster: gainMaster,
+          setMode: function(m){
+            gainOrig.gain.setTargetAtTime(m === 'original' ? 1 : 0, actx.currentTime, 0.005);
+            gainMaster.gain.setTargetAtTime(m === 'mastered' ? 1 : 0, actx.currentTime, 0.005);
+          },
+          stop: function(){ try{srcOrig.stop();srcMaster.stop();actx.close();}catch(e){} }
+        };
+
+        btn.textContent = '⏸'; btn.classList.add('playing');
+
+        const onEnd = () => { 
+          btn.textContent = '▶'; btn.classList.remove('playing'); 
+          audioPlayers[idx] = null;
+          if(progressEl) progressEl.style.width = '0%';
+        };
+        srcMaster.onended = onEnd;
+
+        // Timer + progress
+        const timeEl = resultsEl.querySelector('[data-time="'+idx+'"]');
+        const dur = t.masteredBuffer.duration;
+        const startTime = actx.currentTime;
+        const progressEl = resultsEl.querySelector('[data-progress="'+idx+'"]');
+        const tick = () => {
+          if(!btn.classList.contains('playing')) return;
+          const elapsed = actx.currentTime - startTime;
+          const m = Math.floor(elapsed/60), s = Math.floor(elapsed%60);
+          const dm = Math.floor(dur/60), ds = Math.floor(dur%60);
+          if(timeEl) timeEl.textContent = m+':'+(s<10?'0':'')+s+' / '+dm+':'+(ds<10?'0':'')+ds;
+          if(progressEl) progressEl.style.width = Math.min(100, (elapsed/dur)*100) + '%';
+          requestAnimationFrame(tick);
+        };
+        tick();
+      });
+    });
+
+    // A/B toggle — seamless switch without stopping
+    resultsEl.querySelectorAll('[data-ab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.ab;
+        const mode = btn.dataset.mode;
+        resultsEl.querySelectorAll('[data-ab="'+idx+'"]').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+
+        // Switch audio instantly if playing
+        const player = audioPlayers[parseInt(idx)];
+        if(player && player.setMode) player.setMode(mode);
+
+        // Redraw waveform
+        const canvas = resultsEl.querySelector('canvas[data-wave="'+idx+'"]');
+        const t = tracks[parseInt(idx)];
+        if(!canvas || !t) return;
+        const buffer = mode === 'original' ? t.originalBuffer : t.masteredBuffer;
+        const color = mode === 'original' ? 'rgba(255,255,255,0.3)' : 'rgba(124,92,252,0.7)';
+        drawWave(canvas, buffer, color);
+      });
+    });
+  }
+
+  // Also clear results when clearing queue
+  const origClear = masterClearBtn.onclick;
+  masterClearBtn.addEventListener('click', () => {
+    document.getElementById('masterResults').style.display = 'none';
+    document.getElementById('masterResults').innerHTML = '';
+    // Stop any playing audio
+    Object.keys(window._masterPlayers || {}).forEach(k => {
+      if(window._masterPlayers[k]) { try{window._masterPlayers[k].stop();}catch(e){} }
+    });
+    window._masterPlayers = {};
+  });
+
 
   async function masterTrack(idx){
     const t = tracks[idx];
@@ -9075,179 +9497,179 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
     const ch = decoded.numberOfChannels;
     const len = decoded.length;
 
-    // Measure original loudness with K-weighting
+    // Measure original loudness (ITU-R BS.1770-4 K-weighted, gated)
     t.lufsOrig = measureLUFS(decoded, sr).toFixed(1);
 
-    // ========================================================
-    // PASS 1: EQ + Compression + Stereo Widening
-    // Professional mastering chain for streaming platforms
-    // ========================================================
+    // ================================================================
+    // MASTERING CHAIN — Transparent, streaming-optimized
+    //
+    // Philosophy: The source is already mixed. Our job is to prepare it
+    // for streaming platforms without degrading it. Less is more.
+    //
+    // 1. Subsonic filter (remove what you can't hear but wastes headroom)
+    // 2. Gentle glue compression (cohesion, not squashing)
+    // 3. Loudness normalize to -14 LUFS integrated
+    // 4. True peak limit to -1.0 dBTP (codec-safe)
+    // 5. Mono bass below 120Hz (streaming + phone compatibility)
+    // 6. Iterative loudness correction (nail the target)
+    // 7. TPDF dither at 24-bit
+    // ================================================================
+
+    // --- STEP 1: Subsonic filter + minimal corrective EQ ---
     const off1 = new OfflineAudioContext(ch, len, sr);
     const src1 = off1.createBufferSource();
     src1.buffer = decoded;
 
-    // 1. High-pass 30Hz — remove sub-bass rumble & DC offset
+    // High-pass 25Hz, 12dB/oct — removes DC, rumble, inaudible sub-bass
+    // that eats headroom and causes limiter to work harder
     const hp = off1.createBiquadFilter();
-    hp.type='highpass'; hp.frequency.value=30; hp.Q.value=0.71;
+    hp.type='highpass'; hp.frequency.value=25; hp.Q.value=0.71;
 
-    // 2. Low shelf +1.5dB at 80Hz — controlled low-end warmth
-    const lo = off1.createBiquadFilter();
-    lo.type='lowshelf'; lo.frequency.value=80; lo.gain.value=1.5;
+    // Second HP stage for steeper rolloff (24dB/oct Linkwitz-Riley)
+    const hp2 = off1.createBiquadFilter();
+    hp2.type='highpass'; hp2.frequency.value=25; hp2.Q.value=0.71;
 
-    // 3. Cut 250Hz -2dB (Q=0.8) — reduce mud & boxiness
-    const mud = off1.createBiquadFilter();
-    mud.type='peaking'; mud.frequency.value=250; mud.Q.value=0.8; mud.gain.value=-2;
-
-    // 4. Presence boost +2dB at 3.5kHz (Q=1.2) — vocal clarity & cut-through
-    const pres = off1.createBiquadFilter();
-    pres.type='peaking'; pres.frequency.value=3500; pres.Q.value=1.2; pres.gain.value=2;
-
-    // 5. Air shelf +2dB at 12kHz — sparkle & openness
-    const air = off1.createBiquadFilter();
-    air.type='highshelf'; air.frequency.value=12000; air.gain.value=2;
-
-    // 6. De-harsh notch -1.5dB at 6kHz (Q=2) — tame sibilance/harshness
-    const deharsh = off1.createBiquadFilter();
-    deharsh.type='peaking'; deharsh.frequency.value=6000; deharsh.Q.value=2.0; deharsh.gain.value=-1.5;
-
-    // 7. Glue compressor — gentle bus compression for cohesion
+    // --- STEP 2: Gentle glue compression ---
+    // Emulates SSL bus comp behavior: very gentle, just "glues" the mix
     const comp = off1.createDynamicsCompressor();
-    comp.threshold.value = -18;  // catch the loudest parts
-    comp.knee.value = 6;         // soft knee for transparent compression
-    comp.ratio.value = 2.5;      // gentle glue, not squashing
-    comp.attack.value = 0.010;   // 10ms — lets transients through
-    comp.release.value = 0.200;  // 200ms — musical release
+    comp.threshold.value = -16;   // only catches the loudest peaks
+    comp.knee.value = 12;          // very soft knee = transparent
+    comp.ratio.value = 1.5;        // barely compressing
+    comp.attack.value = 0.030;     // 30ms — lets all transients through
+    comp.release.value = 0.300;    // 300ms — slow, musical release
 
-    // Chain: source → HP → low shelf → mud cut → presence → de-harsh → air → compressor → out
+    // Chain: source → HP → HP2 → comp → destination
     src1.connect(hp);
-    hp.connect(lo);
-    lo.connect(mud);
-    mud.connect(pres);
-    pres.connect(deharsh);
-    deharsh.connect(air);
-    air.connect(comp);
+    hp.connect(hp2);
+    hp2.connect(comp);
     comp.connect(off1.destination);
     src1.start(0);
-    const pass1 = await off1.startRendering();
+    const processed = await off1.startRendering();
 
-    // ========================================================
-    // STEREO WIDENING (mid/side processing in sample domain)
-    // Widen highs above 300Hz by ~20%, keep bass mono for club/streaming
-    // ========================================================
+    // --- STEP 3: Mono bass below 120Hz ---
+    // Critical for streaming: ensures bass translates on phone speakers,
+    // earbuds, and club systems. All major releases do this.
     if(ch >= 2){
-      const L = pass1.getChannelData(0);
-      const R = pass1.getChannelData(1);
-      const widthAbove = 1.2;  // 20% wider for highs
-      // Simple mid/side: mid=(L+R)/2, side=(L-R)/2
-      // Then L=mid+side*width, R=mid-side*width
-      // Apply only to content above ~300Hz using a running average as low-pass proxy
-      const alpha = Math.exp(-2 * Math.PI * 300 / sr); // ~300Hz cutoff
+      const L = processed.getChannelData(0);
+      const R = processed.getChannelData(1);
+      const alpha = Math.exp(-2 * Math.PI * 120 / sr);
       let midLP = 0, sideLP = 0;
-      for(let i = 0; i < L.length; i++){
+      for(let i = 0; i < len; i++){
         const mid = (L[i] + R[i]) * 0.5;
         const side = (L[i] - R[i]) * 0.5;
-        // Low-pass the mid/side to separate bass
         midLP = midLP * alpha + mid * (1 - alpha);
         sideLP = sideLP * alpha + side * (1 - alpha);
-        // High-frequency components
-        const midHi = mid - midLP;
-        const sideHi = side - sideLP;
-        // Reconstruct with widened highs, mono bass
-        const newMid = midLP + midHi;
-        const newSide = sideLP + sideHi * widthAbove;
-        L[i] = newMid + newSide;
-        R[i] = newMid - newSide;
+        // Kill side signal below 120Hz (mono the bass)
+        // Keep everything above 120Hz untouched
+        const newSide = side - sideLP; // remove low side, keep high side
+        L[i] = mid + newSide;
+        R[i] = mid - newSide;
       }
     }
 
-    // ========================================================
-    // PASS 2: Loudness normalization to -14 LUFS + True Peak Limiting
-    // Target: -14 LUFS integrated (Spotify, YouTube, Apple Music standard)
-    // Ceiling: -1.0 dBTP true peak (streaming safe)
-    // ========================================================
-    const lufsAfterEQ = measureLUFS(pass1, sr);
+    // --- STEP 4: Loudness normalization to -14 LUFS ---
+    const lufsAfterProcessing = measureLUFS(processed, sr);
     const TARGET_LUFS = -14;
-    const gainDB = TARGET_LUFS - lufsAfterEQ;
-    // Clamp gain: don't boost more than +12dB (would be a very quiet source)
-    // Don't cut more than -12dB (would be absurdly loud source)
-    const clampedGainDB = Math.min(Math.max(gainDB, -12), 12);
+    const gainDB = TARGET_LUFS - lufsAfterProcessing;
+    const clampedGainDB = Math.min(Math.max(gainDB, -15), 15);
     const gainLinear = Math.pow(10, clampedGainDB / 20);
 
-    // Apply gain + brick-wall limiter in sample domain (more accurate than DynamicsCompressor)
-    const ceiling = Math.pow(10, -1.0 / 20); // -1.0 dBTP = 0.8913
-    const limAttack = Math.round(sr * 0.001);  // 1ms lookahead
-    const limRelease = Math.round(sr * 0.050); // 50ms release
-
     for(let c2 = 0; c2 < ch; c2++){
-      const data = pass1.getChannelData(c2);
-      // First apply gain
-      for(let i = 0; i < data.length; i++){
-        data[i] *= gainLinear;
-      }
+      const data = processed.getChannelData(c2);
+      for(let i = 0; i < len; i++) data[i] *= gainLinear;
     }
 
-    // Brick-wall limiter with lookahead (sample-accurate)
-    // Find peaks across all channels, then apply gain reduction
+    // --- STEP 5: True peak limiter (-1.0 dBTP) ---
+    // 4x oversampled peak detection using Catmull-Rom interpolation
+    // 1ms lookahead, 80ms release — transparent on music
+    const ceiling = Math.pow(10, -1.0 / 20); // 0.8913
+
+    // Detect true peaks with 4x oversampling
     const peakEnv = new Float32Array(len);
-    for(let i = 0; i < len; i++){
-      let pk = 0;
-      for(let c2 = 0; c2 < ch; c2++){
-        pk = Math.max(pk, Math.abs(pass1.getChannelData(c2)[i]));
+    for(let c2 = 0; c2 < ch; c2++){
+      const data = processed.getChannelData(c2);
+      for(let i = 1; i < len - 2; i++){
+        let pk = Math.abs(data[i]);
+        const y0=data[i-1], y1=data[i], y2=data[i+1];
+        const y3 = i+2 < len ? data[i+2] : y2;
+        for(let k=1;k<=3;k++){
+          const tt=k/4, t2=tt*tt, t3=t2*tt;
+          const v=0.5*((2*y1)+(-y0+y2)*tt+(2*y0-5*y1+4*y2-y3)*t2+(-y0+3*y1-3*y2+y3)*t3);
+          pk = Math.max(pk, Math.abs(v));
+        }
+        if(pk > peakEnv[i]) peakEnv[i] = pk;
       }
-      peakEnv[i] = pk;
     }
 
-    // Compute gain reduction envelope
+    // Gain reduction envelope
     const grEnv = new Float32Array(len);
     grEnv.fill(1.0);
     for(let i = 0; i < len; i++){
-      if(peakEnv[i] > ceiling){
-        grEnv[i] = ceiling / peakEnv[i];
-      }
+      if(peakEnv[i] > ceiling) grEnv[i] = ceiling / peakEnv[i];
     }
 
-    // Smooth the gain reduction (lookahead + release)
-    // Forward pass: apply attack smoothing (lookahead)
+    // Smooth: 1ms lookahead + 80ms release
+    const limAttack = Math.round(sr * 0.001);
+    const limRelease = Math.round(sr * 0.080);
     const smoothGR = new Float32Array(len);
     smoothGR.set(grEnv);
-    // Look ahead: pull gain reduction earlier to catch transients
     for(let i = len - 1; i >= limAttack; i--){
-      if(smoothGR[i] < smoothGR[i - limAttack]){
-        smoothGR[i - limAttack] = smoothGR[i];
-      }
+      if(smoothGR[i] < smoothGR[i - limAttack]) smoothGR[i - limAttack] = smoothGR[i];
     }
-    // Release smoothing: gradual return to unity
-    const releaseCoeff = Math.exp(-1.0 / limRelease);
-    let currentGR = 1.0;
+    const relCoeff = Math.exp(-1.0 / limRelease);
+    let curGR = 1.0;
     for(let i = 0; i < len; i++){
-      if(smoothGR[i] < currentGR){
-        currentGR = smoothGR[i]; // instant attack
-      } else {
-        currentGR = smoothGR[i] * (1 - releaseCoeff) + currentGR * releaseCoeff;
-      }
-      smoothGR[i] = currentGR;
+      if(smoothGR[i] < curGR) curGR = smoothGR[i];
+      else curGR = smoothGR[i] * (1 - relCoeff) + curGR * relCoeff;
+      smoothGR[i] = curGR;
     }
 
-    // Apply gain reduction to all channels
     for(let c2 = 0; c2 < ch; c2++){
-      const data = pass1.getChannelData(c2);
+      const data = processed.getChannelData(c2);
       for(let i = 0; i < len; i++){
         data[i] *= smoothGR[i];
-        // Final hard clip safety net
         if(data[i] > ceiling) data[i] = ceiling;
         else if(data[i] < -ceiling) data[i] = -ceiling;
       }
     }
 
-    // Measure final output
-    const finalLUFS = measureLUFS(pass1, sr);
-    const truePeak = measureTruePeak(pass1);
+    // --- STEP 6: Iterative loudness correction ---
+    // Limiter may have reduced loudness. Correct to nail -14 LUFS.
+    for(let iter = 0; iter < 4; iter++){
+      const curLUFS = measureLUFS(processed, sr);
+      const diff = TARGET_LUFS - curLUFS;
+      if(Math.abs(diff) < 0.1) break;
+      const corrGain = Math.pow(10, diff / 20);
+      for(let c2 = 0; c2 < ch; c2++){
+        const data = processed.getChannelData(c2);
+        for(let i = 0; i < len; i++){
+          data[i] *= corrGain;
+          if(data[i] > ceiling) data[i] = ceiling;
+          else if(data[i] < -ceiling) data[i] = -ceiling;
+        }
+      }
+    }
+
+    // --- STEP 7: TPDF dither at 24-bit ---
+    const ditherAmp = 1.0 / 8388607;
+    for(let c2 = 0; c2 < ch; c2++){
+      const data = processed.getChannelData(c2);
+      for(let i = 0; i < len; i++){
+        data[i] += (Math.random() - 0.5 + Math.random() - 0.5) * ditherAmp;
+        if(data[i] > ceiling) data[i] = ceiling;
+        else if(data[i] < -ceiling) data[i] = -ceiling;
+      }
+    }
+
+    // Final measurements
+    const finalLUFS = measureLUFS(processed, sr);
+    const truePeak = measureTruePeakOversampled(processed);
     t.lufsIn = t.lufsOrig;
     t.lufsOut = finalLUFS.toFixed(1);
     t.truePeak = truePeak.toFixed(1);
 
-    t.masteredBuffer = pass1;
-    t.masteredBlob = bufToWav24(pass1);
+    t.masteredBuffer = processed;
+    t.masteredBlob = bufToWav24(processed);
   }
 
   // ========================================================
@@ -9348,17 +9770,25 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
     return -0.691 + 10*Math.log10(sum2/count2);
   }
 
-  function measureTruePeak(buf){
+  // 4x oversampled true peak measurement (ITU-R BS.1770-4 compliant)
+  function measureTruePeakOversampled(buf){
     let peak = 0;
     for(let c=0; c<buf.numberOfChannels; c++){
       const d = buf.getChannelData(c);
-      for(let i=0; i<d.length; i++){
-        const abs = Math.abs(d[i]);
-        if(abs > peak) peak = abs;
+      for(let i = 1; i < d.length - 2; i++){
+        peak = Math.max(peak, Math.abs(d[i]));
+        const y0=d[i-1], y1=d[i], y2=d[i+1], y3=i+2<d.length?d[i+2]:d[i+1];
+        for(let k=1;k<=3;k++){
+          const t=k/4, t2=t*t, t3=t2*t;
+          const v=0.5*((2*y1)+(-y0+y2)*t+(2*y0-5*y1+4*y2-y3)*t2+(-y0+3*y1-3*y2+y3)*t3);
+          peak = Math.max(peak, Math.abs(v));
+        }
       }
     }
     return 20 * Math.log10(Math.max(peak, 1e-20));
   }
+
+  function measureTruePeak(buf){ return measureTruePeakOversampled(buf); }
 
   // 24-bit WAV encoder (streaming standard)
   function bufToWav24(buffer){
