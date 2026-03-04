@@ -2495,7 +2495,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="spSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="spSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="spSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="var n=document.getElementById('spTrackName');var p=document.getElementById('spStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'Spotify Track').trim(),{prompt:p?p.textContent:'',color:'#1DB954',genre:''});this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="var n=document.getElementById('spTrackName');var p=document.getElementById('spStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'Spotify Track').trim(),{prompt:p?p.textContent:'',color:'#1DB954',genre:''});if(window._scRenderFavs)window._scRenderFavs();this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -2535,7 +2535,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
             <button class="sp-act primary" onclick="ytSendBatch()">⚡ Send to Batch</button>
             <button class="sp-act" onclick="ytSendMixer()">🎛️ Open in Mixer</button>
             <button class="sp-act" onclick="ytSendEvolver()">🧬 Evolve Prompt</button>
-            <button class="sp-act" onclick="var n=document.getElementById('ytTrackName');var p=document.getElementById('ytStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'YouTube Track').trim(),{prompt:p?p.textContent:'',color:'#FF0000',genre:''});this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
+            <button class="sp-act" onclick="var n=document.getElementById('ytTrackName');var p=document.getElementById('ytStylePrompt');window._scToggleFav('analyses',(n?n.textContent:'YouTube Track').trim(),{prompt:p?p.textContent:'',color:'#FF0000',genre:''});if(window._scRenderFavs)window._scRenderFavs();this.innerHTML='✓ Saved!';setTimeout(()=>this.innerHTML='⭐ Save to Favorites',1200)">⭐ Save to Favorites</button>
           </div>
           <div class="sp-divider"></div>
           <div class="sp-history">
@@ -8217,7 +8217,7 @@ function showLangToast(langName){
   var prompt = promptEl?promptEl.value:'';
   if(!prompt || prompt==='Pick two styles and hit Mix to generate your blended prompt...'){this.textContent='⚠ Mix first';setTimeout(()=>{this.textContent='☆ Save'},1200);return}
   var name = 'Mix: ' + prompt.split(',').slice(0,2).join(' + ').slice(0,40);
-  var added = window._scToggleFav('mixer', name, {prompt:prompt, color:'#7C5CFC'});
+  var added = window._scToggleFav('mixer', name, {prompt:prompt, color:'#7C5CFC'}); if(window._scRenderFavs) window._scRenderFavs();
   this.textContent = added?'★ Saved!':'☆ Removed';
   this.style.color='var(--g4)';this.style.borderColor='var(--g4)';
   setTimeout(()=>{this.textContent='☆ Save';this.style.color='';this.style.borderColor=''},1500);
@@ -8412,7 +8412,7 @@ document.getElementById('evSaveFav')?.addEventListener('click',function(){
   lockedEls.forEach(function(el){if(el.textContent.trim()) prompts.push(el.textContent.trim())});
   if(prompts.length===0){this.textContent='⚠ Nothing to save';setTimeout(()=>{this.textContent='⭐ Save to Favorites'},1200);return}
   var name = 'Evolved: ' + prompts[0].slice(0,35) + '...';
-  var added = window._scToggleFav('evolver', name, {prompt:prompts.join('\n---\n'), color:'#7C5CFC'});
+  var added = window._scToggleFav('evolver', name, {prompt:prompts.join('\n---\n'), color:'#7C5CFC'}); if(window._scRenderFavs) window._scRenderFavs();
   this.textContent = added?'✓ Saved!':'✓ Removed';
   setTimeout(()=>{this.textContent='⭐ Save to Favorites'},1500);
 });
@@ -8571,10 +8571,10 @@ document.getElementById('vlBatch').addEventListener('click',function(){
 });
 document.getElementById('vlSave').addEventListener('click',function(){
   var nameEl = document.getElementById('vlVoiceName');
-  var promptEl = document.getElementById('vlPromptOut');
+  var promptEl = document.getElementById('vlVoicePrompt');
   var name = (nameEl?nameEl.value:'').trim() || 'Untitled Voice';
   var prompt = promptEl?promptEl.value:'';
-  var added = window._scToggleFav('voices', name, {prompt:prompt, color:'#FF6B8A', voiceTraits:prompt.split(',').slice(0,3).join(', ')});
+  var added = window._scToggleFav('voices', name, {prompt:prompt, color:'#FF6B8A', voiceTraits:prompt.split(',').slice(0,3).join(', ')}); if(window._scRenderFavs) window._scRenderFavs();
   this.textContent = added?'★ Saved!':'☆ Removed';
   this.style.color='var(--g4)';this.style.borderColor='var(--g4)';
   setTimeout(()=>{this.textContent='☆ Save Voice';this.style.color='';this.style.borderColor=''},1500);
@@ -8598,11 +8598,12 @@ document.getElementById('aSendBatch')?.addEventListener('click',function(){
   setTimeout(()=>this.innerHTML='⚡ Send to Batch Generator',1500);
 });
 document.getElementById('aSaveFav')?.addEventListener('click',function(){
-  var nameEl = document.getElementById('aTrackName') || document.getElementById('aFileName');
-  var styleEl = document.getElementById('aStylePrompt');
-  var name = nameEl?nameEl.textContent||nameEl.value:'Analysis';
-  var prompt = styleEl?styleEl.textContent||styleEl.value:'';
-  var added = window._scToggleFav('analyses', name.trim(), {prompt:prompt, color:'#1DB954'});
+  var nameEl = document.getElementById('aFileName');
+  var combinedEl = document.getElementById('aCombinedText');
+  var name = nameEl?(nameEl.textContent||nameEl.value).trim():'Analysis';
+  if(!name) name = 'Song Analysis';
+  var prompt = combinedEl?(combinedEl.textContent||combinedEl.value).trim():'';
+  var added = window._scToggleFav('analyses', name.trim(), {prompt:prompt, color:'#1DB954'}); if(window._scRenderFavs) window._scRenderFavs();
   this.innerHTML = added?'✓ Saved!':'✓ Removed';
   this.style.borderColor='var(--g4)';
   setTimeout(()=>{this.innerHTML='⭐ Save to Favorites';this.style.borderColor=''},1500);
@@ -10103,7 +10104,7 @@ Be accurate to what you actually hear. Estimate BPM, key, and duration from the 
 
 // === FAVORITES SYSTEM ===
 // ===== FAVORITES SYSTEM (multi-type, organized by tab) =====
-window._scFavs = [];
+window._scFavs = (function(){try{var s=localStorage.getItem('sc_favs');return s?JSON.parse(s):[]}catch(e){return []}})();
 window._scFavSort = 'recent';
 
 // Favorite types and their metadata
@@ -10118,7 +10119,7 @@ var FAV_SECTIONS = [
 
 window._scToggleFav = function(type, name, data){
   var idx = window._scFavs.findIndex(function(f){return f.type===type && f.name===name});
-  if(idx >= 0){window._scFavs.splice(idx,1); return false}
+  if(idx >= 0){window._scFavs.splice(idx,1); try{localStorage.setItem('sc_favs',JSON.stringify(window._scFavs))}catch(e){} return false}
   var fav = {type:type, name:name, savedAt:Date.now()};
   if(data) Object.assign(fav, data);
   // Auto-fill from source data if artist/blueprint
@@ -10130,6 +10131,7 @@ window._scToggleFav = function(type, name, data){
     if(src2){fav.genre=src2.g; fav.color=src2.c; fav.bpm=src2.b; fav.prompt=src2.p; fav.moods=src2.m||[]}
   }
   window._scFavs.unshift(fav);
+  try{localStorage.setItem('sc_favs',JSON.stringify(window._scFavs))}catch(e){}
   return true;
 };
 
@@ -10367,6 +10369,7 @@ window._applyArtistFilters=function(){
     var a=(typeof ART!=='undefined')?ART[idx]:null;if(!a)return;
     var added=window._scToggleFav('artist',a.n);
     s.textContent=added?'\u2605':'\u2606';s.style.color=added?'var(--g4)':'';
+    if(window._scRenderFavs) window._scRenderFavs();
   },true);
   var bg=document.querySelector('.bp-grid');
   if(bg)bg.addEventListener('click',function(e){
@@ -10376,6 +10379,7 @@ window._applyArtistFilters=function(){
     var b=(typeof BP_DATA!=='undefined')?BP_DATA[idx]:null;if(!b)return;
     var added=window._scToggleFav('blueprint',b.n);
     s.textContent=added?'\u2605':'\u2606';s.style.color=added?'var(--g4)':'';
+    if(window._scRenderFavs) window._scRenderFavs();
   },true);
 })();
 
