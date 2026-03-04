@@ -745,7 +745,7 @@ nav button:nth-child(10){animation-delay:.2s}
   font-family:var(--mono);font-size:10px;color:var(--t4);line-height:1.7;
   background:var(--bg2);border-radius:8px;padding:8px 10px;
   border-left:2px solid rgba(240,192,96,0.25);
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
 }
 .bp-card-foot{
   display:flex;border-top:1px solid var(--b1);position:relative;z-index:1;
@@ -1529,31 +1529,31 @@ header{animation:bootUp .4s var(--expo) .05s both}
 
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--t4);border-radius:2px}
 /* === PROMPT MIXER === */
-.mx-hero{margin-bottom:24px;text-align:center}
+.mx-hero{margin-bottom:14px;text-align:center}
 .mx-over{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .mx-title{font-family:var(--display);font-size:42px;font-weight:600;letter-spacing:-0.04em;line-height:1.08;margin:0 auto}
 .mx-title em{font-style:normal;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .mx-desc{font-size:14px;color:var(--t3);margin:10px auto 0;line-height:1.6;max-width:600px}
 
 /* 3-col: Slot A | Center | Slot B */
-.mx-split{display:grid;grid-template-columns:1fr 380px 1fr;gap:12px;align-items:start}
-@media(max-width:1200px){.mx-split{grid-template-columns:1fr 340px 1fr;gap:10px}}
+.mx-split{display:grid;grid-template-columns:1fr 400px 1fr;gap:12px;align-items:start}
+@media(max-width:1200px){.mx-split{grid-template-columns:1fr 360px 1fr;gap:10px}}
 @media(max-width:1000px){.mx-split{grid-template-columns:1fr 1fr;gap:10px}
   .mx-center{grid-column:1/-1;order:3}}
 @media(max-width:720px){.mx-split{grid-template-columns:1fr}}
 
 /* Slot columns — compact with built-in genre rail */
-.mx-slot-wrap{background:var(--card);border:1px solid var(--b1);border-radius:14px;overflow:hidden;display:flex;max-height:520px}
-.mx-slot-rail{width:110px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b1);padding:8px 6px;overflow-y:auto;scrollbar-width:none}
+.mx-slot-wrap{background:var(--card);border:1px solid var(--b1);border-radius:14px;overflow:hidden;display:flex;max-height:calc(100vh - 180px);min-height:400px}
+.mx-slot-rail{width:130px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b1);padding:8px 6px;overflow-y:auto;scrollbar-width:none}
 .mx-slot-rail::-webkit-scrollbar{width:0}
 .mx-slot-rail-hdr{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:0.12em;padding:4px 8px 10px}
-.mx-ri{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:7px;cursor:pointer;transition:all 0.15s var(--smooth);margin-bottom:1px;border:1px solid transparent}
+.mx-ri{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:all 0.15s var(--smooth);margin-bottom:1px;border:1px solid transparent}
 .mx-ri:hover{background:var(--glass)}
 .mx-ri.on{background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.2)}
 .mx-ri-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:all 0.2s var(--spring);box-shadow:0 0 4px currentColor}
 .mx-ri:hover .mx-ri-dot{transform:scale(1.3);box-shadow:0 0 8px currentColor}
 .mx-ri.on .mx-ri-dot{transform:scale(1.2);box-shadow:0 0 0 2px var(--bg),0 0 0 3px currentColor,0 0 12px currentColor}
-.mx-ri-name{font-size:11px;font-weight:600;color:var(--t2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-ri-name{font-size:12px;font-weight:600;color:var(--t2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mx-ri:hover .mx-ri-name{color:var(--t1)}
 .mx-ri.on .mx-ri-name{color:#fff;font-weight:700}
 .mx-ri-ct{font-family:var(--mono);font-size:9px;color:var(--t3);font-weight:600}
@@ -1579,7 +1579,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .slot-sel-av::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.25),transparent 50%)}
 .slot-sel-name{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:-0.01em}
 .slot-sel-genre{font-family:var(--mono);font-size:9px;color:var(--t4);margin-top:1px}
-.slot-sel-prompt{margin:0 10px 8px;padding:5px 7px;font-family:var(--mono);font-size:9px;color:var(--t3);line-height:1.5;background:var(--bg);border-radius:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.slot-sel-prompt{margin:0 10px 8px;padding:5px 7px;font-family:var(--mono);font-size:9px;color:var(--t3);line-height:1.5;background:var(--bg);border-radius:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .slot-sel-prompt.border-a{border-left:2px solid #E040FB}
 .slot-sel-prompt.border-b{border-left:2px solid var(--g5)}
 .slot-sel-prompt.border-c{border-left:2px solid var(--g4)}
@@ -1593,16 +1593,16 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .slot-search::placeholder{color:var(--t4)}
 .slot-genres{display:none}
 .slot-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:2px;scrollbar-width:thin;min-height:0}
-.slot-item{display:flex;align-items:flex-start;gap:7px;padding:6px 8px;border-radius:6px;cursor:pointer;transition:all 0.12s;color:var(--t1)}
+.slot-item{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all 0.12s;color:var(--t1)}
 .slot-item:hover{background:rgba(124,92,252,0.04)}
 .slot-item.selected{background:rgba(124,92,252,0.08)}
-.slot-item-av{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-family:var(--display);font-size:9px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
+.slot-item-av{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-family:var(--display);font-size:10px;font-weight:600;color:white;flex-shrink:0;position:relative;overflow:hidden}
 .slot-item-av::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.2),transparent 50%)}
 .slot-item-av.bp{background:var(--bg4)!important;font-size:11px}
 .slot-item-info{flex:1;min-width:0}
-.slot-item-name{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.slot-item-meta{font-family:var(--mono);font-size:7.5px;color:var(--t4);margin-top:0;display:flex;gap:4px}
-.slot-item-prompt{font-family:var(--mono);font-size:9.5px;color:var(--t2);line-height:1.5;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;opacity:0.85}
+.slot-item-name{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot-item-meta{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:2px;display:flex;gap:6px}
+.slot-item-prompt{font-family:var(--mono);font-size:10.5px;color:var(--t2);line-height:1.5;margin-top:3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;opacity:0.85}
 .slot-item:hover .slot-item-prompt{opacity:1;color:var(--t1)}
 .slot-item-tags{display:none}
 
@@ -1652,7 +1652,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
 .mx-out-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:14px;position:relative;overflow:hidden;backdrop-filter:blur(16px)}
 .mx-out-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);opacity:0.5}
 .mx-out-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;background:linear-gradient(135deg,#E040FB,#7C5CFC,#00B4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
-.mx-out-prompt{font-family:var(--mono);font-size:10.5px;color:var(--t2);line-height:1.75;background:var(--bg2);border-radius:10px;padding:12px;border:1px solid var(--b1);border-left:3px solid #E040FB;white-space:pre-wrap;word-break:break-word;min-height:70px;transition:all 0.3s;width:100%;resize:vertical;outline:none}
+.mx-out-prompt{font-family:var(--mono);font-size:12px;color:var(--t1);line-height:1.7;background:var(--bg2);border-radius:10px;padding:14px;border:1px solid var(--b1);border-left:3px solid #E040FB;white-space:pre-wrap;word-break:break-word;min-height:110px;transition:all 0.3s;width:100%;resize:vertical;outline:none}
 .mx-out-prompt:focus{border-color:rgba(224,64,251,0.3)}
 .mx-out-prompt::placeholder{color:var(--t4);font-style:italic}
 .mx-bd-section{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--b1)}
@@ -2063,7 +2063,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <button class="mx-slot-c-toggle" id="mxSlotCToggle" data-i18n="mixer_add_third">+ Add third style</button>
           <div class="slot" id="mxSlotC" style="display:none"><div class="slot-header"><div class="slot-label"><div class="slot-dot c"></div>SLOT C <span id="mxSlotNameC" style="color:var(--t1);font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:none;margin-left:4px">— Accent</span></div><button class="slot-clear" onclick="mxClearSlot('C')">✕ Clear</button></div><div class="slot-selected" id="mxSelDispC" onclick="mxReopenSlot('C')"></div><div class="slot-sel-prompt border-c" id="mxSelPromptC" style="display:none"></div><div class="slot-browser" id="mxBrowserC"><div class="slot-tabs"><button class="slot-tab on" data-slot="C" data-type="artists">🎤 Artists</button><button class="slot-tab" data-slot="C" data-type="blueprints">📘 Blueprints</button></div><input class="slot-search" placeholder="Search..." data-slot="C"><div class="slot-genres" id="mxGenresC"></div><div class="slot-list" id="mxListC"></div></div></div>
           <button class="mx-mix-btn" id="mxMixBtn" data-i18n="mixer_generate">🎛️ Mix & Generate Prompt</button>
-          <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_output">Mixed Prompt <span style="font-weight:500;letter-spacing:0;text-transform:none;color:var(--t4);font-size:8px;margin-left:4px">✏️ editable</span></div><textarea class="mx-out-prompt" id="mxOutputPrompt" rows="4" placeholder="Pick two styles and hit Mix to generate your blended prompt..." data-i18n="mixer_output_empty"></textarea></div>
+          <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_output">Mixed Prompt <span style="font-weight:500;letter-spacing:0;text-transform:none;color:var(--t4);font-size:8px;margin-left:4px">✏️ editable</span></div><textarea class="mx-out-prompt" id="mxOutputPrompt" rows="6" placeholder="Pick two styles and hit Mix to generate your blended prompt..." data-i18n="mixer_output_empty"></textarea></div>
           <div class="mx-out-card"><div class="mx-out-label" data-i18n="mixer_breakdown">Ingredient Breakdown</div>
             <div class="mx-bd-section"><div class="mx-bd-label"><div class="mx-bd-dot" style="background:#E040FB"></div>From Slot A <span id="mxBdAPct" style="color:#E040FB">(70%)</span></div><div class="mx-bd-chips" id="mxBdAChips"><div class="mx-bd-chip from-a">waiting...</div></div></div>
             <div class="mx-bd-section"><div class="mx-bd-label"><div class="mx-bd-dot" style="background:var(--g5)"></div>From Slot B <span id="mxBdBPct" style="color:var(--g5)">(30%)</span></div><div class="mx-bd-chips" id="mxBdBChips"><div class="mx-bd-chip from-b">waiting...</div></div></div>
@@ -7972,7 +7972,7 @@ function showLangToast(langName){
       const isBp=item.type==='blueprint';
       return `<div class="slot-item" data-id="${item.id}" data-slot="${slot}">
         <div class="slot-item-av ${isBp?'bp':''}" style="background:linear-gradient(135deg,${item.c},${item.c2||item.c})">${isBp?'\ud83d\udcd8':initials}</div>
-        <div class="slot-item-info"><div class="slot-item-name">${item.n}</div><div class="slot-item-meta"><span>${item.g}</span><span>${item.b} BPM</span></div><div class="slot-item-prompt">${(item.p||'').slice(0,120)}${(item.p||'').length>120?'...':''}</div></div>
+        <div class="slot-item-info"><div class="slot-item-name">${item.n}</div><div class="slot-item-meta"><span>${item.g}</span><span>${item.b} BPM</span></div><div class="slot-item-prompt">${(item.p||'').slice(0,180)}${(item.p||'').length>180?'...':''}</div></div>
       </div>`;
     }).join('')||'<div style="padding:16px;text-align:center;color:var(--t4);font-size:12px">No results</div>';
     list.querySelectorAll('.slot-item').forEach(el=>{el.addEventListener('click',()=>mxSelectItem(slot,el.dataset.id))});
