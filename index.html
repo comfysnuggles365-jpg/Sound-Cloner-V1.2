@@ -1524,11 +1524,21 @@ nav button:nth-child(10){animation-delay:.2s}
 .bp-gen-copy{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:10px;padding:4px 10px;border-radius:8px;cursor:pointer;font-family:var(--mono);transition:all 0.2s}
 .bp-gen-copy:hover{background:rgba(255,255,255,0.3)}
 .bp-gen-body{padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.bp-chorus-toggle{display:flex;align-items:center;gap:8px;font:500 12px var(--body);color:var(--t2);cursor:pointer;padding:6px 0}
+.bp-chorus-toggle input{width:16px;height:16px;accent-color:var(--g4);cursor:pointer}
+.bp-chorus-toggle span{opacity:0.8}
+.bp-chorus-toggle input:checked+span{opacity:1;color:var(--g4)}
+
+.bp-editable{width:100%;background:var(--bg2);border:1px solid var(--b1);border-radius:8px;color:var(--t2);font-family:var(--mono);font-size:11px;line-height:1.6;padding:10px 12px;resize:vertical;outline:none;transition:border-color 0.2s}
+.bp-editable:focus{border-color:var(--g4);box-shadow:0 0 0 2px rgba(255,179,71,0.1)}
+textarea.bp-gen-lyrics{min-height:140px}
+textarea.bp-gen-style{min-height:40px}
+.bp-edit-hint{font-size:9px;color:var(--t4);font-weight:400;font-style:italic}
+
 .bp-gen-section{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--t4);margin-bottom:2px}
-.bp-gen-lyrics{font-family:var(--body);font-size:12.5px;color:var(--t2);line-height:1.7;white-space:pre-wrap;max-height:220px;overflow-y:auto;padding-right:6px}
-.bp-gen-lyrics::-webkit-scrollbar{width:4px}
-.bp-gen-lyrics::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
-.bp-gen-style{font-family:var(--mono);font-size:11px;color:var(--g2);line-height:1.5;padding:8px 10px;background:var(--bg2);border-radius:8px;border:1px solid var(--b1)}
+
+
+
 .bp-gen-actions{display:flex;gap:6px;padding:10px 18px 14px;border-top:1px solid var(--b1)}
 .bp-gen-btn{flex:1;padding:7px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:all 0.2s;border:1px solid var(--b2);background:var(--bg2);color:var(--t2)}
 .bp-gen-btn:hover{background:var(--g1);color:#fff;border-color:var(--g1)}
@@ -2175,6 +2185,9 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <button class="paste-btn" id="pasteBtn" data-i18n="batch_paste">📋 Paste from Clipboard</button><button class="paste-btn" id="quickGenBtn" style="background:var(--grad-main);color:#fff;border-color:transparent;margin-left:8px" title="Generate Batch">⚡ Generate</button>
         </div>
         <div class="bx"><div class="bx-t" data-i18n="batch_songs_count">🎵 Songs to Generate</div><div class="cnt-row"><button class="cnt on">5</button><button class="cnt">10</button><button class="cnt">15</button><button class="cnt">20</button><button class="cnt">50</button></div></div>
+        <div class="bx" style="margin-top:8px"><div class="bx-t">🎵 Song Structure</div>
+          <label class="bp-chorus-toggle"><input type="checkbox" id="bpChorusFirst"> <span>Start every song with the Chorus</span></label>
+        </div>
 
         <div class="bx">
           <div class="bx-t" data-i18n="batch_style_var">🎲 Style Variation</div>
@@ -7631,7 +7644,15 @@ function generateSong({ genreKey, seedInfo={}, batchIndex=0, batchCount=1 }) {
   const rng = makePRNG({ ...seedInfo, genre: genreKey, timestamp: seedInfo.timestamp||Date.now() });
 
   const songUsed = new Set();
-  const structure = pickStructure(rng, genreKey);
+  let structure = pickStructure(rng, genreKey);
+  // Chorus First mode — add chorus at the very start, keep rest of structure intact
+  if (window._scChorusFirst) {
+    // Find if there's an intro
+    const introIdx = structure.findIndex(t => t.toLowerCase().includes('intro'));
+    // Insert [Chorus] right at position 0, or after [Intro] if present
+    const insertAt = introIdx >= 0 ? introIdx + 1 : 0;
+    structure.splice(insertAt, 0, '[Chorus]');
+  }
 
   let verseNum = 0;
   let chorusLines = null;
@@ -7836,6 +7857,7 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
     // Use setTimeout to let UI update before heavy computation
     setTimeout(()=>{
       try{
+          window._scChorusFirst = document.getElementById('bpChorusFirst')?.checked || false;
         const songs=generateSongsV2(basePrompt, batchSongCount, new Set(), Date.now());
         // Store songs globally for remix/regen/remove
         window._scSetBatchSongs(songs, finalPrompt);
@@ -7862,10 +7884,10 @@ function generateSongsV2(stylePrompt, count, usedTitles=new Set(), sessionNonce=
                 <div class="bp-gen-copy" data-idx="${i}" title="Copy all">📋</div>
               </div>
               <div class="bp-gen-body">
-                <div class="bp-gen-section">Lyrics</div>
-                <div class="bp-gen-lyrics">${eLyrics}</div>
-                <div class="bp-gen-section" style="margin-top:6px">Style Prompt</div>
-                <div class="bp-gen-style">${eStyle}</div>
+                <div class="bp-gen-section">Lyrics <span class="bp-edit-hint">(click to edit)</span></div>
+                <textarea class="bp-gen-lyrics bp-editable" data-edit-lyrics="${i}" spellcheck="false">${eLyrics}</textarea>
+                <div class="bp-gen-section" style="margin-top:6px">Style Prompt <span class="bp-edit-hint">(click to edit)</span></div>
+                <textarea class="bp-gen-style bp-editable" data-edit-style="${i}" spellcheck="false">${eStyle}</textarea>
               </div>
               <div class="bp-gen-actions">
                 <button class="bp-gen-btn primary" data-copy-lyrics="${i}">📋 Lyrics</button>
@@ -7924,6 +7946,19 @@ var dlBar=document.getElementById('batchDownloadBar');if(dlBar)dlBar.style.displ
           });
           _grid.querySelectorAll('[data-remove]').forEach(b=>{
             b.addEventListener('click',()=>window._scRemoveSong(parseInt(b.dataset.remove)));
+          });
+          // Editable lyrics/style — save on blur
+          _grid.querySelectorAll('[data-edit-lyrics]').forEach(ta=>{
+            ta.addEventListener('blur',()=>{
+              const idx=parseInt(ta.dataset.editLyrics);
+              if(_songs[idx]) _songs[idx].lyrics=ta.value;
+            });
+          });
+          _grid.querySelectorAll('[data-edit-style]').forEach(ta=>{
+            ta.addEventListener('blur',()=>{
+              const idx=parseInt(ta.dataset.editStyle);
+              if(idx===0) window._scBatchFinalPrompt=ta.value; // update the shared style
+            });
           });
         };
 
