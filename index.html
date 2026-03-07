@@ -6,6 +6,7 @@
 <title>Sound Cloner V2</title>
 <meta name="description" content="500 artist style prompts, batch song generation, AI analysis & mastering for Suno AI">
 <meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237c6af7'/><path d='M10 22 Q10 10 16 10 Q22 10 22 22' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='9' cy='22' r='3' fill='white'/><circle cx='23' cy='22' r='3' fill='white'/><line x1='16' y1='10' x2='16' y2='6' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -2609,6 +2610,56 @@ header{animation:bootUp .4s var(--expo) .05s both}
           <div class="gen-prompt-text" id="genPromptText"></div>
         </div>
 
+        <!-- ⚙️ Session Defaults — persisted across page reloads -->
+        <div class="bx" id="scPrefsPanel" style="margin-bottom:10px">
+          <div class="bx-t" style="cursor:pointer;user-select:none" id="scPrefsToggle">⚙️ Session Defaults <span id="scPrefsArrow" style="font-size:11px;opacity:.6">▼</span></div>
+          <div id="scPrefsBody" style="display:none;padding-top:8px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+              <div>
+                <label style="font-size:11px;opacity:.65;display:block;margin-bottom:3px">Artist Name</label>
+                <input id="scPrefArtist" type="text" placeholder="e.g. bp" style="width:100%;box-sizing:border-box;background:var(--input-bg,#1a1a2e);border:1px solid var(--border,#333);border-radius:6px;padding:6px 8px;color:inherit;font-size:13px">
+              </div>
+              <div>
+                <label style="font-size:11px;opacity:.65;display:block;margin-bottom:3px">Label / Publisher</label>
+                <input id="scPrefLabel" type="text" placeholder="e.g. Self-Released" style="width:100%;box-sizing:border-box;background:var(--input-bg,#1a1a2e);border:1px solid var(--border,#333);border-radius:6px;padding:6px 8px;color:inherit;font-size:13px">
+              </div>
+              <div>
+                <label style="font-size:11px;opacity:.65;display:block;margin-bottom:3px">Default Genre</label>
+                <select id="scPrefGenre" style="width:100%;box-sizing:border-box;background:var(--input-bg,#1a1a2e);border:1px solid var(--border,#333);border-radius:6px;padding:6px 8px;color:inherit;font-size:13px">
+                  <option value="">— none —</option>
+                  <option value="hiphop">Hip-Hop</option><option value="pop">Pop</option>
+                  <option value="rnb">R&amp;B / Soul</option><option value="country">Country</option>
+                  <option value="rock">Rock</option><option value="electronic">Electronic</option>
+                  <option value="indie">Indie</option><option value="latin">Latin</option>
+                  <option value="kpop">K-Pop</option><option value="gospel">Gospel</option>
+                  <option value="jazz">Jazz</option><option value="metal">Metal</option>
+                  <option value="reggae">Reggae</option><option value="folk">Folk</option>
+                  <option value="punk">Punk</option><option value="phonk">Phonk</option>
+                  <option value="drill">Drill</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:11px;opacity:.65;display:block;margin-bottom:3px">Default Language</label>
+                <select id="scPrefLang" style="width:100%;box-sizing:border-box;background:var(--input-bg,#1a1a2e);border:1px solid var(--border,#333);border-radius:6px;padding:6px 8px;color:inherit;font-size:13px">
+                  <option value="">— none —</option>
+                  <option value="en">English</option><option value="es">Spanish</option>
+                  <option value="fr">French</option><option value="pt">Portuguese</option>
+                  <option value="de">German</option><option value="it">Italian</option>
+                  <option value="pl">Polish</option><option value="sv">Swedish</option>
+                  <option value="ru">Russian</option><option value="ar">Arabic</option>
+                  <option value="ja">Japanese</option><option value="ko">Korean</option>
+                  <option value="zh">Chinese</option><option value="hi">Hindi</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button id="scPrefsSave" style="background:var(--accent,#7c6af7);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer">Save Defaults</button>
+              <button id="scPrefsClear" style="background:transparent;color:var(--text-dim,#888);border:1px solid var(--border,#444);border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer">Clear</button>
+              <span id="scPrefsSavedMsg" style="font-size:11px;color:#5dba6d;display:none">✓ Saved</span>
+            </div>
+          </div>
+        </div>
+
         <button class="gen-btn" id="genBtn" data-i18n="batch_generate">⚡ Generate Batch</button>
       </div>
       <div class="batch-preview">
@@ -5103,6 +5154,70 @@ const RHYME_GROUPS = [
   ['breathing','leaving','dreaming','seeing','feeling','healing','dealing','meaning','being','reading','leading','bleeding','feeding','needing','speeding','freeing','fleeing','preceding','exceeding','succeeding','proceeding','believing','achieving','receiving','deceiving','conceiving','perceiving','retrieving','relieving'],
   ['fighting','writing','lighting','biting','sighting','igniting','exciting','inviting','uniting','delighting','reciting','indicting'],
   ['money','honey','funny','sunny','bunny','running','coming','nothing','something','loving','shoving','above him','other','mother','brother','smother','another','discover','recover','uncover','hover','cover','lover','under','wonder','thunder','blunder','plunder','asunder','surrender','younger','hunger','stronger','longer','conquer','prosper','monster','wonder','wander'],
+
+
+  // EXTENDED — covers genre-specific END_WORDS not in original groups
+  ['home','alone','known','stone','bone','grown','throne','zone','unknown','phone','own','overthrown','tone','moan','groan','blown','shown','prone','hone','drone','sown','postpone','milestone','cornerstone','microphone','headphone','hormone','undertone','monotone','cornerstone'],
+  ['block','clock','stock','knock','lock','rock','top','stop','drop','chop','pop','shop','prop','cop','crop','mop','hop','bop','swap','plot','got','hot','shot','spot','dot','rot','knot','not','lot','slot','forgot','robot','cannot'],
+  ['blood','flood','mud','thud','bud','stud','crud','dud','hood','stood','good','wood','understood','brotherhood','neighborhood','misunderstood','childhood','manhood','likelihood'],
+  ['smoke','broke','woke','spoke','joke','choke','cloak','oak','soak','folk','poke','coke','yoke','evoke','provoke','revoke','invoke','bespoke','outspoke','backstroke','artichoke','sunstroke'],
+  ['dance','chance','romance','advance','trance','stance','glance','lance','enhance','circumstance','performance','rance','prance','france','expanse','finance','entrance','nuance'],
+  ['loud','crowd','proud','cloud','allowed','vowed','shroud','endowed','avowed','aloud','wowed','bowed'],
+  ['blaze','gaze','daze','praise','raise','days','ways','phrase','amaze','craze','haze','maze','pays','stays','plays','rays','sways','always','displays','delays','phase'],
+  ['shine','fine','line','mine','vine','wine','divine','sign','intertwine','undermine','define','decline','design','confine','spine','pine','dine','combine','assign','malign','recline','incline','refine','outline','deadline','sunshine','moonshine','punchline','bloodline','headline','sideline','airline','feline','borderline'],
+  ['skin','begin','within','sin','win','spin','grin','thin','kin','chin','twin','in','pin','bin'],
+  ['beat','street','heat','meat','seat','repeat','complete','feet','sweet','meet','defeat','treat','elite','retreat','heartbeat','concrete','compete','delete','discrete','fleet','sheet','sleet','tweet','greet','upbeat','downbeat','offbeat'],
+  ['star','far','scar','are','guitar','bar','car','jar','bizarre','radar','avatar','superstar','memoir','bazaar','cigar','caviar'],
+  ['wave','rave','save','brave','cave','crave','grave','slave','behave','engrave','enclave','pave','gave','shave','have'],
+  ['breath','death','beneath','underneath'],
+  ['fell','spell','well','tell','sell','hell','bell','yell','shell','swell','compel','repel','excel','rebel','farewell','doorbell','nutshell','bombshell','parallel','dwell','smell','gel','hotel','motel','lapel'],
+  ['wire','tire','hire','entire','admire','inspire','transpire','choir','liar','prior','empire','vampire','desire','fire','higher'],
+  ['ice','dice','price','twice','nice','sacrifice','paradise','precise','prize','advice','spice','slice','splice','vice','device','suffice','entice','concise'],
+  ['disguise','lies','eyes','rise','wise','size','surprise','guys','skies','ties','tries','flies','cries','spies','alibis','analyze','neutralize','recognize','visualize','emphasize','capitalize','memorize','advertise'],
+  ['rush','crush','hush','blush','flush','gush','plush','brush','lush','mush'],
+  ['wake','shake','take','make','break','stake','lake','fake','bake','cake','mistake','heartbreak','remake','earthquake','forsake','overtake','undertake','flake','rake','snake'],
+  ['peace','release','increase','decrease','cease','lease','please','tease','freeze','breeze','masterpiece','police','crease','grease'],
+  ['pray','sway','lay','stray','spray','betray','convey','relay','display','portray','portray','astray','okay','hooray','cliché'],
+  ['plain','vein','reign','obtain','attain','terrain','domain','complain','abstain'],
+  ['sorrow','borrow','tomorrow','follow','hollow','swallow'],
+  ['still','will','fill','hill','thrill','mill','skill','spill','bill','drill','until','fulfill','uphill','downhill','goodwill','freefall'],
+  ['young','hung','lung','sung','among','tongue','stung','rung','clung','flung','sprung'],
+  ['wrath','path','aftermath','math','bath','wrath'],
+  ['change','range','strange','rearrange','exchange','arrange','estrange','derange'],
+  ['room','bloom','doom','gloom','loom','boom','zoom','tomb','consume','assume','resume','perfume','mushroom','bedroom','heirloom','overcome'],
+  ['lost','cost','ghost','post','toast','boast','roast','coast','host','most','utmost','foremost','outpost','almost'],
+  ['move','prove','groove','approve','remove','improve','smooth','soothe','groove'],
+  ['song','strong','long','along','belong','prolong','lifelong','headstrong'],
+  ['cloud','shroud','crowd','proud','loud','allowed','aloud'],
+  ['full','pull','push','bull','wool','could','should','would','good','stood','hood','misunderstood'],
+  ['went','meant','spent','bent','sent','lent','rent','tent','vent','cement','content','dissent','consent','relent','intent','prevent','invent','ascent','descent','percent','resent','event','dent','extent'],
+
+  // FINAL COVERAGE — remaining genre-specific words
+  ['touch','much','such','clutch','Dutch','hutch','smutch','crutch'],
+  ['body','nobody','somebody','everybody','hotty','party','arty','smarty','naughty','hottie','jolly','folly','holly','molly','polly','brolly'],
+  ['again','refrain','terrain','contain','obtain','explain','remain','campaign','sustain','domain','disdain','constrain','restrain','mundane','cocaine','insane','profane','membrane'],
+  ['stars','bars','cars','scars','mars','guitars','memoirs','bazaars'],
+  ['ours','hours','towers','flowers','powers','devours','showers','empowers'],
+  ['beer','dear','steer','smear','shear','leer','peer','sneer','veer','career','frontier','cashier','veneer','musketeer','mountaineer','auctioneer','pioneer','engineer','atmosphere','volunteer','chandelier','hemisphere','persevere'],
+  ['stall','crawl','trawl','sprawl','drawl','haul','maul','squall','install','recall','downfall','overall','enthrall','appall'],
+  ['grey','they','hey','café','soirée','portrayal'],
+  ['below','bestow','plateau','chateau','although','rainbow','elbow','shadow','follow','hollow','borrow','sorrow','tomorrow','narrow','arrow','sparrow','marrow'],
+  ['electric','hectic','synthetic','magnetic','prophetic','aesthetic','genetic','phonetic','pathetic','poetic','kinetic','cosmetic','athletic'],
+  ['bass','glass','class','grass','mass','pass','gas','lass','brass','crass','overpass','underpass','bypass','deadpan','cancan'],
+  ['crawl','stall','brawl','hall','fall','call','tall','wall','all','small','recall','overall','downfall','install','appall','enthrall'],
+  ['system','rhythm','victim','prison','reason','season','treason','freezin','pleasin','squeezing'],
+  ['decree','guarantee','referee','devotee','absentee','honoree','refugee','employee','disagree','oversee','foresee','trustee','trainee','franchisee','marquee'],
+  ['field','yield','healed','sealed','revealed','concealed','appealed','repealed','kneeled','steeled','shielded','wielded'],
+  ['park','bark','dark','mark','spark','shark','stark','remark','landmark','trademark','benchmark','embark','disembark','patriarch'],
+  ['glide','slide','pride','inside','outside','ride','hide','guide','wide','decide','provide','divide','confide','worldwide','override'],
+  ['mellow','fellow','yellow','bellow','hello','cello','below','marshmallow'],
+  ['stroll','scroll','cajole','extol','bankroll','payroll','enroll'],
+  ['owed','showed','flowed','glowed','road','load','code','mode','bestowed','overload','episode','explode'],
+  ['arm','farm','charm','harm','alarm','disarm','forearm','sidearm','firearm','warm','storm','swarm','transform','reform','perform','conform','inform','uniform','platform'],
+  ['act','fact','pact','impact','abstract','contract','exact','compact','attract','detract','interact','distract','extract','subtract','counteract','overreact'],
+  ['react','react','intact','contact','artifact','cataract','transact','reenact'],
+  ['controlled','enrolled','patrolled','consoled','extolled'],
+  ['beneath','wreath','underneath','bequeath'],
 ];
 
 function pickRhymeSet(rng, count) {
@@ -7451,26 +7566,48 @@ function pickStructure(rng, genreKey) {
   const g = STRUCTURES[genreKey] || STRUCTURES.pop;
   const items = g.patterns.map(p => p.s);
   const weights = g.patterns.map(p => p.w);
+  const n = items.length;
 
-  // Use album-level structure tracking when in album mode, batch-level otherwise
   const activeUsedStructures = _albumModeActive ? _albumUsedStructures : _batchUsedStructures;
 
-  // Filter out recently used structures to force album/batch variety
-  const recentlyUsed = activeUsedStructures.slice(-Math.max(2, Math.floor(items.length * 0.5)));
-  const freshItems = items.filter(s => !recentlyUsed.includes(JSON.stringify(s)));
+  // Count how many times each structure has been used this session
+  const useCounts = items.map(s => {
+    const key = JSON.stringify(s);
+    return activeUsedStructures.filter(u => u === key).length;
+  });
 
-  let chosen;
-  if (freshItems.length > 0) {
-    const freshWeights = freshItems.map(s => {
-      const idx = items.indexOf(s);
-      return idx >= 0 ? weights[idx] : 1;
-    });
-    chosen = rWeighted(rng, freshItems, freshWeights);
-  } else {
-    chosen = rWeighted(rng, items, weights);
-  }
+  // Find the minimum use count — we want to exhaust all patterns at each tier before
+  // allowing repeats, while still respecting weights within a tier.
+  const minUse = Math.min(...useCounts);
+
+  // "Fresh" = at or below minimum use count
+  // This guarantees every structure fires at least once before any fires twice,
+  // every structure fires at least twice before any fires three times, etc.
+  const freshIndices = items
+    .map((_, i) => i)
+    .filter(i => useCounts[i] <= minUse);
+
+  // Never allow the most recently used structure to repeat immediately
+  const lastKey = activeUsedStructures.length > 0
+    ? activeUsedStructures[activeUsedStructures.length - 1]
+    : null;
+
+  const candidateIndices = freshIndices.filter(
+    i => JSON.stringify(items[i]) !== lastKey
+  );
+
+  // If filtering by last-used wipes everything, use all fresh candidates
+  const finalIndices = candidateIndices.length > 0 ? candidateIndices : freshIndices;
+
+  // Weight-biased pick within the fresh tier — hit formulas still surface more often,
+  // but all structures get their turn
+  const finalItems = finalIndices.map(i => items[i]);
+  const finalWeights = finalIndices.map(i => weights[i]);
+  const chosen = rWeighted(rng, finalItems, finalWeights);
 
   activeUsedStructures.push(JSON.stringify(chosen));
+  // Trim history to prevent unbounded growth (keep last 200)
+  if (activeUsedStructures.length > 200) activeUsedStructures.splice(0, 50);
   return chosen;
 }
 
@@ -10408,6 +10545,63 @@ const VERSE_LINES = {
       "Not the public face you wear, the one you've never shown","There's a version of this story where I say the thing I feel","Most nights I choose the door instead and that's the real deal",
       "I been writing songs about you since before I knew the weight","Falling into something unreciprocated feels like fate","I know it isn't fate \u2014 I just don't know how to deflate"
     ],
+  
+    distance_rnb: [
+      "Three time zones between us and I feel it every hour",
+      "I check the clock to picture what you\'re doing now",
+      "The airport has a whole department of our goodbyes",
+      "I keep your jacket here because the smell is something",
+      "I screenshot your location like it counts as close",
+      "The video call ends and the room gets loud with quiet",
+      "I\'ve memorized the sound of your phone picking up",
+      "Long distance is just love without a body",
+      "I count the sleep-overs we\'ll have when this is over",
+      "You\'re in the city and I\'m in the city too but not your city",
+      "I\'ve gotten good at loving you through a screen",
+      "The flight home lands and suddenly the whole chest opens up",
+    ],
+    self_worth_rnb: [
+      "I stopped shrinking to fit inside your version of me",
+      "The girl who gave too much is learning to hold some back",
+      "I don\'t apologize for taking up the space I need",
+      "He said I was too much and I said that\'s exactly right",
+      "I spent years performing calm I didn\'t feel",
+      "The praise felt good until I realized what it cost",
+      "I was the kind of love that looked like service",
+      "I gave you easy and you still called it difficult",
+      "My boundaries aren\'t a wall they\'re a door with a lock",
+      "I stopped dimming so the room would feel more comfortable",
+      "The version of me that accepted less is not available",
+      "I love with both hands now and I keep one for myself",
+    ],
+    ritual_rnb: [
+      "Sunday mornings are a religion we invented for ourselves",
+      "Coffee and your voice before the world gets loud",
+      "We have a language that only works between us",
+      "I make the playlist and you make the mood",
+      "The way you say my name in half-sleep is a whole thing",
+      "We built a life from overlapping habits",
+      "You always know when I need silence and when I need sound",
+      "Our inside jokes are chapters in a private book",
+      "I love the version of myself that only you\'ve seen",
+      "We fight about the temperature and agree on everything else",
+      "The ritual of us is my favorite kind of ordinary",
+      "I want to wake up to this exact same life for years",
+    ],
+    complicated_rnb: [
+      "I love you and I\'m angry and I\'m tired of both",
+      "The relationship we have doesn\'t have a category",
+      "We keep starting over at the same starting point",
+      "I know your damage the way I know my own",
+      "You make it easy and you make it impossible",
+      "The chemistry is not in question — the timing always is",
+      "We are good at being together and bad at staying there",
+      "I\'ve forgiven you more times than I\'ve forgiven myself",
+      "The love is real and it still might not be enough",
+      "You\'re the best mistake I make on a recurring basis",
+      "I don\'t know if this is love or just deep habit",
+      "We\'re complicated in a way that feels like home",
+    ],
   },
   country: {
     night: [
@@ -11073,6 +11267,63 @@ const VERSE_LINES = {
       "The imperfection is the proof that someone had to feel","Their way through to the ending with their hands and not their plan","The record with the tape hiss is the one I understand",
       "Give me the live recording with the cough and the mistake","The evidence of presence is the only thing that's awake","To what it means to be alive and playing for the sake"
     ],
+  
+    war_rock: [
+      "I\'ve been fighting in a war no one declared",
+      "The casualties they don\'t report are everything I was",
+      "I\'ve seen the things they send young men to see",
+      "My hands remember what my mind tries to forget",
+      "They handed me a flag and called it freedom",
+      "I came home different and found different doesn\'t fit",
+      "The uniform came off but the weight stayed on",
+      "There are wounds that don\'t show up on any scan",
+      "I gave them years they spent like pocket change",
+      "The songs they play at funerals don\'t tell the truth",
+      "I fought for something I still can\'t define",
+      "They say be proud of what I can\'t forget",
+    ],
+    highway_rock: [
+      "The yellow lines keep counting down to something",
+      "I\'ve been driving since the argument got quiet",
+      "Every exit sign\'s a life I didn\'t choose",
+      "The radio keeps playing songs from better years",
+      "I drive until the city lights stop following",
+      "There\'s a stretch of road where I stopped pretending",
+      "The miles between us don\'t make this easier",
+      "I know every diner on the eastbound side",
+      "The engine hums the thing I can\'t say straight",
+      "I pull off at the edge of somewhere new",
+      "The road ahead looks like the one behind me",
+      "I keep driving because stopping hurts the most",
+    ],
+    redemption_rock: [
+      "I was the cautionary tale they told in school",
+      "The rock bottom I hit had a lower floor",
+      "Everything I burned down I am building back by hand",
+      "The version of me I destroyed was not the last",
+      "I put the bottle down and picked up something harder",
+      "I cost myself things I still can\'t calculate",
+      "The ones I hurt forgave me before I did",
+      "I showed up at the wreckage with a plan",
+      "Recovery is not a line you cross once",
+      "I traded every comfort for the chance to start again",
+      "The scar proves something survived the burning",
+      "I made the choice to stay when leaving was the easy call",
+    ],
+    venue_rock: [
+      "The speaker blew the night we played the biggest room",
+      "I\'ve played to two and played to two thousand",
+      "The load-in always smells the same in every city",
+      "We live in fifteen minutes of incredible",
+      "The van broke down between the gig and the next gig",
+      "I\'ve slept on every floor this scene has got",
+      "The merch table knows what the album counts don\'t",
+      "We gave everything we had to people who half-listened",
+      "The encore is the one moment where it all makes sense",
+      "I\'ve watched a room go quiet at the first chord",
+      "The setlist is a kind of autobiography",
+      "We play like it\'s the last night because it always might be",
+    ],
   },
   electronic: {
     sound: [
@@ -11701,6 +11952,49 @@ const VERSE_LINES = {
       "I gave away the sweaters but I kept the crockery","There's no logic in the sorting of somebody's history","The birthday card you signed, the grocery list in your hand",
       "The specific slant of penmanship I'll never understand","You wrote your a's with little loops \u2014 that's all I have some nights","A lowercase a that meant the world before I knew such lights",
       "Grief is not an arc that ends with acceptance, wide and clean","It's Tuesday in November and you should have seen","The way the light came in the way you always loved the scene"
+    ],
+  
+    small_things: [
+      "The crack in your mug has a whole biography",
+      "I keep the stub from every show we saw together",
+      "Your handwriting changed sometime in the second year",
+      "The song I played on loop that whole October",
+      "I found your note inside the book you left behind",
+      "The photo on your wall is not the one you\'re living",
+      "I know the specific way you laugh when something\'s actually funny",
+      "The thrift store had our kind of everything",
+      "You said the band\'s name wrong and I never corrected you",
+      "The secondhand sweater carried someone else\'s winter",
+      "I keep receipts from diners we\'ll probably never return to",
+      "The particular gray of this sky has a specific feeling",
+    ],
+    twenties_indie: [
+      "I have a degree and a drawer full of doubt",
+      "The apartment is small enough to feel honest in",
+      "I don\'t know what I\'m doing but I\'m doing it with intention",
+      "The job pays the rent and steals the hours",
+      "My friends are scattered across the map of we don\'t know yet",
+      "I call home less and think about it more",
+      "The life I planned is not the one I\'m living",
+      "I expected to have more figured out by this part",
+      "Every decision feels like a closing and an opening at once",
+      "I live in the gap between who I was and who I\'m getting to",
+      "The city is huge and I\'ve made a small corner mine",
+      "I\'m building something I can\'t see the shape of yet",
+    ],
+    grief_indie: [
+      "I still reach for my phone to send you something funny",
+      "The chair at the table is the one thing I can\'t move",
+      "Grief isn\'t an ending it\'s just a different kind of presence",
+      "I find you in the strangest places still",
+      "The playlist on your phone was the last thing you were thinking",
+      "I carry your name like something fragile in a pocket",
+      "Time doesn\'t heal it just gives you more room around the hurt",
+      "I still say things like wait till I tell you about this",
+      "The world kept going and that\'s the part I don\'t forgive",
+      "Your handwriting on the envelope is worth more than the letter",
+      "I learned your favorite things the year you weren\'t here",
+      "The grief is just the love with nowhere left to go",
     ],
   },
   latin: {
@@ -12369,6 +12663,49 @@ const VERSE_LINES = {
       "By the songs we sent in crisis and the when and how","I made my closest friendships through a parasocial start","There's nothing wrong with that \u2014 that's how humans make their art",
       "Of connection in the modern where the geography is wide","We love the same thing and that love became a guide","To finding one another in the digital and the tide"
     ],
+  
+    performance_k: [
+      "The stage is the one place where everything gets quiet inside",
+      "A hundred thousand phone lights and I see none of them",
+      "The choreography is a conversation we have with our bodies",
+      "I\'ve rehearsed this so many times it lives in my hands now",
+      "The spotlight finds us and for three minutes we are everything",
+      "The performance me and the real me keep negotiating",
+      "I put on the costume and something larger comes through",
+      "We hit the mark together like we always knew this",
+      "The audience gives back what we put in multiplied",
+      "I\'m most myself when I\'m the version they\'re watching",
+      "The breakdown in the bridge is where I actually breathe",
+      "We built this show from the ground up and the ground shook",
+    ],
+    behind_scenes_k: [
+      "The practice room remembers every version of this song",
+      "We were strangers who became the only people who understand",
+      "The comeback prep is where we fall apart and put back together",
+      "I\'ve seen my groupmates cry in every language of exhaustion",
+      "The camera doesn\'t catch the hour before the camera turns on",
+      "We do the interview and then we debrief in the van",
+      "The schedule is a kind of structure that holds us up",
+      "I know their sleep schedules better than I know my own",
+      "The recording booth is where we leave the honest version",
+      "We fight and forgive faster than most families do",
+      "The stage you see took ten thousand hours you didn\'t see",
+      "My team is the reason the performance looks effortless",
+    ],
+    longing_k: [
+      "I have your photo in my wallet like that changes anything",
+      "The fan letter sat on my desk until I had the words",
+      "I want to tell you what this means but the stage is in the way",
+      "The moment we almost spoke lives in a specific part of me",
+      "I replay our meeting in the quiet parts of every city",
+      "You\'re in the audience and I\'m performing everything I feel",
+      "The song I wrote for you is on the album with no note",
+      "I memorized your face the way I memorize lyrics — for keeps",
+      "We\'re on different paths but they run parallel sometimes",
+      "I keep the memory like a photo in a phone I lost",
+      "The feeling has no category in the language that I have",
+      "I hope you heard it in the bridge because that part was yours",
+    ],
   },
   gospel: {
     free: [
@@ -12703,6 +13040,49 @@ const VERSE_LINES = {
       "I didn't fabricate the faith to make the sermon clean","I told God all the anger and the places in between","The doubt that lives inside the devotion is still faith",
       "The wrestling in the darkness is the oldest act of grace","Jacob walked away with blessing and a limp to show","Some encounters with the holy leave a mark that doesn't go",
       "I came out of the season different \u2014 not the way I prayed","Something was removed and something better was remade","The silence was not absence \u2014 it was something being laid"
+    ],
+  
+    wilderness_gospel: [
+      "I\'ve been in the desert long enough to know the sound of water",
+      "The valley doesn\'t mean I\'ve been abandoned",
+      "My faith was small enough to fit inside the smallest crack of light",
+      "He found me in the wilderness and walked me out",
+      "I prayed with nothing left and something answered",
+      "The waiting season was the growing season I couldn\'t see",
+      "I held onto the promise when the promise made no sense",
+      "The test looked like disaster and became a testimony",
+      "I lost the thing I held so He could give me what I needed",
+      "The storm was loud but His voice was louder in it",
+      "My lowest point became the platform for the testimony",
+      "He doesn\'t waste the broken years He uses them",
+    ],
+    community_gospel: [
+      "We lift each other when the weight becomes too much for one",
+      "The church is not the building it\'s the showing up",
+      "I\'ve seen this congregation carry people to the other side",
+      "We hold the line for whoever\'s breaking in the back row",
+      "The testimony that freed you will set somebody else free",
+      "We were never meant to walk this road alone",
+      "I\'ve watched this body hold the grieving and the dancing same",
+      "Your story is somebody\'s sermon in a language they can hear",
+      "The meal we share is more than bread and more than cup",
+      "We intercede for each other\'s names in the night",
+      "The sound of this congregation is the sound of not giving up",
+      "We press together through the things that press against us",
+    ],
+    provision_gospel: [
+      "He made a way when every road was blocked",
+      "The provision came from where I wasn\'t even looking",
+      "I had exactly what I needed on the day I needed it",
+      "The math didn\'t work and it worked anyway",
+      "He remembered me when I had forgotten how to ask",
+      "The bill came due and something I didn\'t see covered it",
+      "I was at the end of every resource and He was past the end",
+      "His supply has no depleting it just keeps arriving",
+      "The miracle was quiet the way the best ones always are",
+      "I stopped counting what I lacked and started counting what He gave",
+      "He provides in seasons I would never have chosen",
+      "My lack became the stage where His abundance showed",
     ],
   },
   jazz: {
@@ -15711,17 +16091,122 @@ function buildLine(rng, genreKey, songUsed, section, rhymeTarget) {
 }
 
 // Build a rhyming couplet (two lines that end-rhyme)
-function buildCouplet(rng, genreKey, songUsed, section) {
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// enforceEndRhyme — post-pass that retrofits end-words on a
+// pre-built array of lines to match a rhyme scheme.
+// Replaces only the LAST WORD of targeted lines, leaving the
+// rest of each line intact. Used by scene/arc verse builders
+// which assemble lines thematically but don't control end-words.
+//
+// Scheme logic:
+//   AABB: pairs (0,1), (2,3), (4,5)... each pair rhymes
+//   ABAB: pairs (0,2), (1,3), (4,6), (5,7)... alternating rhyme
+//   ABCB: pairs (1,3), (5,7)... only B-positions rhyme
+//   AAAA: all lines get words from one rhyme group
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function replaceLastWord(line, newWord) {
+  if (!line || !newWord) return line;
+  const words = line.trim().split(/\s+/);
+  if (words.length === 0) return line;
+  // Preserve trailing punctuation from original last word
+  const orig = words[words.length - 1];
+  const trail = orig.match(/[.,!?;:—]+$/) ? orig.match(/[.,!?;:—]+$/)[0] : '';
+  words[words.length - 1] = newWord + trail;
+  return words.join(' ');
+}
+
+function pickRhymePair(rng, genreKey) {
+  // Pick two words from END_WORDS that are confirmed rhyme partners
   const endWords = END_WORDS[genreKey] || END_WORDS.pop;
-  const wordA = rPick(rng, endWords);
-  let wordB = findRhyme(rng, wordA);
-  if (!wordB) {
-    for (let i = 0; i < 20; i++) {
-      const candidate = rPick(rng, endWords);
-      if (candidate !== wordA && rhymes(wordA, candidate)) { wordB = candidate; break; }
+  const shuffled = [...endWords].sort(() => rng() - 0.5);
+  for (const w of shuffled) {
+    const partner = findRhyme(rng, w);
+    if (partner && partner !== w) return [w, partner];
+  }
+  // Fallback: pick from a random rhyme group directly
+  const grp = RHYME_GROUPS[Math.floor(rng() * RHYME_GROUPS.length)];
+  const sh = [...grp].sort(() => rng() - 0.5);
+  return [sh[0], sh[1] || sh[0]];
+}
+
+function enforceEndRhyme(lines, scheme, rng, genreKey) {
+  if (!lines || lines.length === 0) return lines;
+  const out = [...lines];
+  const n = out.length;
+
+  if (scheme === 'AABB') {
+    for (let i = 0; i + 1 < n; i += 2) {
+      const [wA, wB] = pickRhymePair(rng, genreKey);
+      out[i]   = replaceLastWord(out[i],   wA);
+      out[i+1] = replaceLastWord(out[i+1], wB);
+    }
+  } else if (scheme === 'ABAB') {
+    // A-positions: 0, 2, 4, 6...   B-positions: 1, 3, 5, 7...
+    for (let base = 0; base + 3 < n; base += 4) {
+      const [wA1, wA2] = pickRhymePair(rng, genreKey);
+      const [wB1, wB2] = pickRhymePair(rng, genreKey);
+      out[base]   = replaceLastWord(out[base],   wA1);
+      out[base+1] = replaceLastWord(out[base+1], wB1);
+      out[base+2] = replaceLastWord(out[base+2], wA2);
+      out[base+3] = replaceLastWord(out[base+3], wB2);
+    }
+    // Handle trailing pair (lineCount=6: lines 4,5 → treat as AABB couplet)
+    if (n % 4 === 2) {
+      const [wA, wB] = pickRhymePair(rng, genreKey);
+      out[n-2] = replaceLastWord(out[n-2], wA);
+      out[n-1] = replaceLastWord(out[n-1], wB);
+    }
+  } else if (scheme === 'ABCB') {
+    // Only B-positions (1, 3, 5, 7...) rhyme; A and C are free
+    for (let base = 0; base + 3 < n; base += 4) {
+      const [wB1, wB2] = pickRhymePair(rng, genreKey);
+      out[base+1] = replaceLastWord(out[base+1], wB1);
+      out[base+3] = replaceLastWord(out[base+3], wB2);
+    }
+  } else if (scheme === 'AAAA') {
+    // All lines get words from one rhyme group
+    const endWords = END_WORDS[genreKey] || END_WORDS.pop;
+    let chosenGroup = null;
+    const shuffled = [...endWords].sort(() => rng() - 0.5);
+    for (const w of shuffled) {
+      const grp = RHYME_GROUPS.find(g => g.some(x => x.toLowerCase() === w.toLowerCase()));
+      if (grp && grp.length >= 3) { chosenGroup = grp; break; }
+    }
+    if (!chosenGroup) chosenGroup = RHYME_GROUPS[Math.floor(rng() * RHYME_GROUPS.length)];
+    const pool = [...chosenGroup].sort(() => rng() - 0.5);
+    for (let i = 0; i < n; i++) {
+      out[i] = replaceLastWord(out[i], pool[i % pool.length]);
     }
   }
-  if (!wordB) wordB = rPick(rng, endWords);
+  return out;
+}
+
+function buildCouplet(rng, genreKey, songUsed, section) {
+  const endWords = END_WORDS[genreKey] || END_WORDS.pop;
+
+  // Strategy: try up to 30 candidates for wordA until we find one that has a rhyme partner
+  let wordA = null, wordB = null;
+  const shuffled = [...endWords].sort(() => rng() - 0.5);
+  for (const candidate of shuffled) {
+    const partner = findRhyme(rng, candidate);
+    if (partner && partner !== candidate) {
+      wordA = candidate;
+      wordB = partner;
+      break;
+    }
+    // Try suffix-matching fallback for this candidate
+    for (let i = 0; i < 10; i++) {
+      const c2 = rPick(rng, endWords);
+      if (c2 !== candidate && rhymes(candidate, c2)) {
+        wordA = candidate;
+        wordB = c2;
+        break;
+      }
+    }
+    if (wordA) break;
+  }
+  // Hard fallback: use same end-word (near-identical rhyme) rather than no rhyme
+  if (!wordA) { wordA = rPick(rng, endWords); wordB = wordA; }
 
   const lineA = buildLine(rng, genreKey, songUsed, section, wordA);
   const lineB = buildLine(rng, genreKey, songUsed, section, wordB);
@@ -15820,7 +16305,6 @@ function applyInternalRhyme(lines, genreKey, rng) {
 function buildVerseLines(rng, genreKey, songUsed, scheme, lineCount, section) {
   const activeUsedLines = _albumModeActive ? _albumUsedLines : _batchUsedLines;
   const lines = [];
-  const endWords = END_WORDS[genreKey] || END_WORDS.pop;
 
   if (scheme === 'AABB') {
     for (let i = 0; i < lineCount; i += 2) {
@@ -15828,33 +16312,71 @@ function buildVerseLines(rng, genreKey, songUsed, scheme, lineCount, section) {
       lines.push(a, b);
     }
   } else if (scheme === 'ABAB') {
-    // FIXED: pick two rhyme families directly, then pull lines from each family
-    // This guarantees actual rhyming instead of hoping END_WORDS match VERSE_LINES families
-    const genreLines = VERSE_LINES[genreKey] || VERSE_LINES.pop;
-    const families = Object.keys(genreLines);
-    // Pick family A and family B (different families)
-    const familyA = rPick(rng, families);
-    let familyB = rPick(rng, families);
-    let attempts = 0;
-    while (familyB === familyA && attempts++ < 10) familyB = rPick(rng, families);
-    // Get 2 fresh lines from each family
-    lines.push(getLine(rng, genreKey, familyA, songUsed, section)); // A1
-    lines.push(getLine(rng, genreKey, familyB, songUsed, section)); // B1
-    lines.push(getLine(rng, genreKey, familyA, songUsed, section)); // A2
-    lines.push(getLine(rng, genreKey, familyB, songUsed, section)); // B2
+    // TRUE PHONETIC ABAB: A and A rhyme, B and B rhyme, alternating.
+    // Loops to handle lineCount of 2, 4, 6, 8 (any multiple of 2).
+    const endWords = END_WORDS[genreKey] || END_WORDS.pop;
+    const quatrains = Math.max(1, Math.ceil(lineCount / 4));
+    for (let q = 0; q < quatrains; q++) {
+      // Pick fresh A-pair rhyme words
+      let wA1 = rPick(rng, endWords), wA2 = findRhyme(rng, wA1);
+      if (!wA2) {
+        for (let t = 0; t < 15; t++) {
+          const w = rPick(rng, endWords);
+          const r = findRhyme(rng, w);
+          if (r) { wA1 = w; wA2 = r; break; }
+        }
+      }
+      if (!wA2) wA2 = wA1;
+      // Pick fresh B-pair rhyme words (different rhyme group from A)
+      let wB1 = rPick(rng, endWords), wB2 = findRhyme(rng, wB1);
+      let tries = 0;
+      while ((!wB2 || wB1 === wA1 || rhymes(wB1, wA1)) && tries++ < 20) {
+        wB1 = rPick(rng, endWords); wB2 = findRhyme(rng, wB1);
+      }
+      if (!wB2) wB2 = wB1;
+      lines.push(buildLine(rng, genreKey, songUsed, section, wA1)); // A
+      lines.push(buildLine(rng, genreKey, songUsed, section, wB1)); // B
+      lines.push(buildLine(rng, genreKey, songUsed, section, wA2)); // A
+      lines.push(buildLine(rng, genreKey, songUsed, section, wB2)); // B
+    }
   } else if (scheme === 'ABCB') {
-    const wordB1 = rPick(rng, endWords);
-    const wordB2 = findRhyme(rng, wordB1) || rPick(rng, endWords);
-    lines.push(buildLine(rng, genreKey, songUsed, section, rPick(rng, endWords))); // A
-    lines.push(buildLine(rng, genreKey, songUsed, section, wordB1)); // B
-    lines.push(buildLine(rng, genreKey, songUsed, section, rPick(rng, endWords))); // C
-    lines.push(buildLine(rng, genreKey, songUsed, section, wordB2)); // B
-  } else { // AAAA or fallback
-    const wordA = rPick(rng, endWords);
-    const group = RHYME_GROUPS.find(g => g.map(w=>w.toLowerCase()).includes(wordA.toLowerCase()));
-    const pool = group ? rShuffle(rng, group) : [wordA];
+    // B positions (lines 2 and 4) rhyme; A (line 1) and C (line 3) are free.
+    // Loops to handle lineCount of 2, 4, 6, 8.
+    const endWords = END_WORDS[genreKey] || END_WORDS.pop;
+    const quatrains = Math.max(1, Math.ceil(lineCount / 4));
+    for (let q = 0; q < quatrains; q++) {
+      let wB1 = null, wB2 = null;
+      const shuffled = [...endWords].sort(() => rng() - 0.5);
+      for (const candidate of shuffled) {
+        const partner = findRhyme(rng, candidate);
+        if (partner && partner !== candidate) { wB1 = candidate; wB2 = partner; break; }
+        for (let i = 0; i < 8; i++) {
+          const c2 = rPick(rng, endWords);
+          if (c2 !== candidate && rhymes(candidate, c2)) { wB1 = candidate; wB2 = c2; break; }
+        }
+        if (wB1) break;
+      }
+      if (!wB1) { wB1 = rPick(rng, endWords); wB2 = wB1; }
+      lines.push(buildLine(rng, genreKey, songUsed, section, rPick(rng, endWords))); // A (free)
+      lines.push(buildLine(rng, genreKey, songUsed, section, wB1));                  // B
+      lines.push(buildLine(rng, genreKey, songUsed, section, rPick(rng, endWords))); // C (free)
+      lines.push(buildLine(rng, genreKey, songUsed, section, wB2));                  // B
+    }
+  } else { // AAAA — all lines end with same rhyme group words
+    const endWords = END_WORDS[genreKey] || END_WORDS.pop;
+    // Find a word that is IN a rhyme group (so we have multiple rhyme partners)
+    let chosenGroup = null;
+    const shuffled = [...endWords].sort(() => rng() - 0.5);
+    for (const w of shuffled) {
+      const grp = RHYME_GROUPS.find(g => g.some(x => x.toLowerCase() === w.toLowerCase()));
+      if (grp && grp.length >= 3) { chosenGroup = grp; break; }
+    }
+    // Fallback: any rhyme group at all
+    if (!chosenGroup) chosenGroup = RHYME_GROUPS[Math.floor(rng() * RHYME_GROUPS.length)];
+    const pool = [...chosenGroup].sort(() => rng() - 0.5);
     for (let i = 0; i < lineCount; i++) {
-      const ew = pool[i % pool.length] || rPick(rng, endWords);
+      // Cycle through the pool to avoid repeating end-words
+      const ew = pool[i % pool.length];
       lines.push(buildLine(rng, genreKey, songUsed, section, ew));
     }
   }
@@ -16066,19 +16588,19 @@ function buildVerse(rng, genreKey, songUsed, verseNum, _totalVerses, _blend) {
   if (rng() < 0.75) {
     const sceneLines = buildVerseWithScene(rng, genreKey, songUsed, verseNum, totalVerses, _blend);
     if (sceneLines && sceneLines.length >= 2) {
-      // Apply adlibs and return — scene verses skip rhyme-pair enforcement
-      // because scene families already share thematic coherence
       const adlibChance = ['hiphop','drill','phonk','latin'].includes(genreKey) ? 0.18 : 0.07;
       const adlibs = ADLIBS[genreKey] || ADLIBS.pop;
-      
-      // Hook callback on verse 2+ (same as main verse builder)
+
+      // Hook callback on verse 2+
       if (verseNum >= 2 && _currentHook && _currentHook.length > 5 && rng() < 0.20) {
         const hw = _currentHook.split(' ');
         sceneLines[sceneLines.length - 1] = hw.length <= 6 ? _currentHook :
           hw.slice(0, Math.ceil(hw.length * 0.6)).join(' ') + '...';
       }
-      
-      return applyInternalRhyme(sceneLines, genreKey, rng).map(l => rng() < adlibChance ? l + ' ' + rPick(rng, adlibs) : l);
+
+      // Apply phonetic rhyme scheme as a post-pass on the thematically-built lines
+      const rhymedLines = enforceEndRhyme(sceneLines, scheme, rng, genreKey);
+      return applyInternalRhyme(rhymedLines, genreKey, rng).map(l => rng() < adlibChance ? l + ' ' + rPick(rng, adlibs) : l);
     }
   }
 
@@ -16102,7 +16624,8 @@ function buildVerse(rng, genreKey, songUsed, verseNum, _totalVerses, _blend) {
         linesArr.push(getBlendedLine(rng, blend.primary, blend.secondary, blend.blend, fam, songUsed));
         linesArr.push(getBlendedLine(rng, blend.primary, blend.secondary, blend.blend, fam, songUsed));
       }
-      lines = linesArr.slice(0, lineCount);
+      // Apply phonetic rhyme scheme as post-pass on thematically-built lines
+      lines = enforceEndRhyme(linesArr.slice(0, lineCount), scheme, rng, genreKey);
     } else {
       lines = buildVerseLines(rng, genreKey, songUsed, scheme, lineCount, 'verse');
     }
@@ -16553,38 +17076,36 @@ function buildChorusVariation(rng, genreKey, songUsed, originalLines, repeatInde
 
   // Genre-aware variation palette
   // Each genre favors different evolution styles
+  // Genre variation palettes — each entry has an 'up' pool (2nd chorus: builds energy)
+  // and a 'fin' pool (3rd+ chorus: strips or anthems). Every strategy in the palette
+  // appears in at least one pool, so nothing is unreachable.
   const genreVariantBias = {
-    hiphop:     ['double_up','strip','ad_lib_wrap','flip'],
-    pop:        ['build_add','strip','last_hook','reorder'],
-    rnb:        ['melt_down','build_add','ad_lib_wrap','flip'],
-    country:    ['sing_it_back','reorder','strip','last_hook'],
-    rock:       ['double_up','anthem_swell','strip','last_hook'],
-    electronic: ['stripped_drop','stutter','melt_down','flip'],
-    indie:      ['stripped_drop','flip','reorder','ad_lib_wrap'],
-    latin:      ['double_up','build_add','reorder','flip'],
-    kpop:       ['build_add','stutter','double_up','last_hook'],
-    gospel:     ['anthem_swell','sing_it_back','ad_lib_wrap','double_up'],
-    metal:      ['double_up','anthem_swell','strip','last_hook'],
-    reggae:     ['sing_it_back','stripped_drop','flip','ad_lib_wrap'],
-    folk:       ['sing_it_back','reorder','build_add','melt_down'],
-    punk:       ['double_up','strip','last_hook','stutter'],
-    drill:      ['double_up','ad_lib_wrap','strip','flip'],
-    phonk:      ['stripped_drop','stutter','ad_lib_wrap','double_up'],
+    hiphop:     { up: ['double_up','build_add','flip'],         fin: ['strip','ad_lib_wrap','flip','last_hook'] },
+    pop:        { up: ['build_add','reorder','double_up'],      fin: ['strip','last_hook','melt_down','stutter'] },
+    rnb:        { up: ['build_add','flip','reorder'],           fin: ['melt_down','ad_lib_wrap','strip','flip'] },
+    country:    { up: ['sing_it_back','reorder','build_add'],   fin: ['strip','last_hook','sing_it_back'] },
+    rock:       { up: ['double_up','anthem_swell','build_add'], fin: ['anthem_swell','strip','last_hook','double_up'] },
+    electronic: { up: ['build_add','flip','stutter'],           fin: ['stripped_drop','stutter','melt_down','flip'] },
+    indie:      { up: ['reorder','build_add','flip'],           fin: ['stripped_drop','ad_lib_wrap','flip','melt_down'] },
+    latin:      { up: ['double_up','build_add','reorder'],      fin: ['reorder','flip','strip','ad_lib_wrap'] },
+    kpop:       { up: ['build_add','double_up','anthem_swell'], fin: ['stutter','last_hook','strip','anthem_swell'] },
+    gospel:     { up: ['anthem_swell','sing_it_back','double_up'], fin: ['anthem_swell','ad_lib_wrap','sing_it_back'] },
+    metal:      { up: ['double_up','anthem_swell','build_add'], fin: ['anthem_swell','strip','last_hook','double_up'] },
+    reggae:     { up: ['sing_it_back','build_add','flip'],      fin: ['stripped_drop','ad_lib_wrap','flip','last_hook'] },
+    folk:       { up: ['sing_it_back','reorder','build_add'],   fin: ['melt_down','strip','sing_it_back','reorder'] },
+    jazz:       { up: ['reorder','build_add','flip'],           fin: ['melt_down','strip','ad_lib_wrap','reorder'] },
+    punk:       { up: ['double_up','stutter','build_add'],      fin: ['strip','last_hook','stutter','double_up'] },
+    drill:      { up: ['double_up','flip','build_add'],         fin: ['strip','ad_lib_wrap','flip','last_hook'] },
+    phonk:      { up: ['stripped_drop','stutter','flip'],       fin: ['stripped_drop','stutter','ad_lib_wrap','melt_down'] },
   };
 
-  const biasPool = genreVariantBias[genreKey] || ['reorder','strip','build_add','flip','last_hook'];
+  const biasPools = genreVariantBias[genreKey] || { up: ['build_add','reorder','double_up'], fin: ['strip','last_hook','melt_down','flip'] };
 
-  // Pick variant: repeatIndex 1 → bias toward energy UP, repeatIndex 2+ → bias toward minimal or anthem
-  let variant;
-  if (repeatIndex === 1) {
-    // 2nd chorus: build or reorder — still familiar but slightly evolved
-    const biasUp = biasPool.filter(v => ['build_add','double_up','anthem_swell','sing_it_back','reorder'].includes(v));
-    variant = biasUp.length > 0 ? rPick(rng, biasUp) : rPick(rng, biasPool);
-  } else {
-    // 3rd+ chorus: strip down or big finale
-    const biasFinal = biasPool.filter(v => ['strip','stripped_drop','last_hook','melt_down','stutter','ad_lib_wrap','anthem_swell'].includes(v));
-    variant = biasFinal.length > 0 ? rPick(rng, biasFinal) : rPick(rng, biasPool);
-  }
+  // Pick variant: repeatIndex 1 → energy UP, repeatIndex 2+ → strip or anthem finale
+  // Both pools guaranteed non-empty, so no silent fallback needed
+  const variant = repeatIndex === 1
+    ? rPick(rng, biasPools.up)
+    : rPick(rng, biasPools.fin);
 
   switch(variant) {
     case 'reorder': {
@@ -18446,6 +18967,217 @@ const BRIDGES = {
 // Fallback: use pop bridges for any genre not listed
 BRIDGES.pop = BRIDGES.pop || [];
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// POST_CHORUS — Short chant/hook lines for post-chorus sections
+// 2–6 words, rhythmic, designed for repetition after chorus drop
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const POST_CHORUS = {
+  hiphop: [
+    "They know my name now","Built from the ground up","Never fold, never fold",
+    "We made it out","This is what it is","All the way up",
+    "Can't take this from me","Real ones know","We don't stop",
+    "Still standing, still standing","From nothing to this","Ain't going back",
+    "We run this","No days off","The grind don't lie",
+    "Watch how I move","They can't stop this","This is my time",
+    "Up from the bottom","We stay ready","Earned every single thing",
+    "They thought I'd fold","Look at me now","Still here, still here",
+    "We don't quit","This the real thing","Straight from the heart",
+    "No looking back","We built this","The top or nothing",
+  ],
+  pop: [
+    "Feel it, feel it now","I'm alive in this","Can't stop the feeling",
+    "This is everything","I let go, let go","Here we are again",
+    "I'm finally free","Dancing in the dark","This is our moment",
+    "Say it with me","We glow, we glow","Right here, right now",
+    "I won't stop now","This is what love is","Over and over",
+    "I believe, I believe","All night, all night","Nothing can stop us",
+    "We shine, we shine","Just you and me","Let it out, let it out",
+    "Higher, higher now","We are unstoppable","Feel the rush",
+    "Yes, yes, yes","I found my way","We rise together",
+    "This is real","Breathe it all in","Never letting go",
+  ],
+  rnb: [
+    "Stay with me now","I feel you, feel you","Love is all we need",
+    "Come back to me","We don't need words","All I need is you",
+    "Can't let go, can't","You're everything to me","Feel this with me",
+    "I want you here","So good, so good","We got this love",
+    "Hold me closer now","This is real love","You and only you",
+    "Deep in my soul","I been waiting for this","Give me all of you",
+    "We belong together","Love like this","Stay, don't leave",
+    "I see you, I see you","Forever isn't long enough","You complete me",
+    "Nothing compares to this","Our love is endless","Baby don't go",
+    "I need you here","Right where you are","Love without limits",
+  ],
+  country: [
+    "This is home","Where I come from","Ain't that the truth",
+    "God and family","These boots remember","Country in my bones",
+    "Down the old dirt road","That's just who we are","Back to the land",
+    "Hold on tight now","Simple as that","We're still here",
+    "That's the whole truth","Heart like mine","Till the day I die",
+    "Built to last","Through the fields again","Front porch living",
+    "Lord knows I tried","That old familiar feeling","This old town",
+    "Raised on this","Strong and free","Sunday morning kind",
+    "Roots run deep","Never far from home","That's the country way",
+    "Dirt road memories","Family comes first","These hands remember",
+  ],
+  rock: [
+    "Turn it up louder","We don't back down","Burn it all down",
+    "This is our sound","Louder than thunder","We still believe",
+    "Nothing holds us back","We are alive","Scream it out loud",
+    "Feel the ground shake","We are the noise","This is our anthem",
+    "Breaking through the walls","We won't be silenced","Set the night on fire",
+    "Unbroken, unbroken","Raise your voice now","Let it all out",
+    "We are the storm","Never surrender","Rise up, rise up",
+    "Rock and roll forever","Loud and proud","Push through the pain",
+    "We are fearless","Turn it up higher","This is what we are",
+    "Nothing stops us now","Alive and burning","We are the fire",
+  ],
+  electronic: [
+    "Feel the frequency","Let the bass drop","We are the signal",
+    "Into the night we go","Pulse and heartbeat","Lose yourself in this",
+    "The beat goes on","We are the wave","Drop it again",
+    "Resonating now","Feel the vibration","Let the music take you",
+    "Into the light","Synthesize the feeling","We are the current",
+    "Ride the frequency","Electric in my veins","The drop, the drop",
+    "Surrender to the sound","We oscillate together","Rise with the bass",
+    "Feel the rhythm pulse","Into the grid we go","Wired and alive",
+    "The signal never stops","We are transmission","Tune in, tune in",
+    "Let it loop forever","Deep in the mix","Infinite loop now",
+  ],
+  indie: [
+    "Here in the quiet","Just you and the song","This is enough now",
+    "I feel it too","Stay in this moment","Simple and true",
+    "We found something real","Not what they expected","This is ours",
+    "Softly, softly now","I see it clearly","Just the two of us",
+    "This small beautiful thing","Let it be strange","We are the others",
+    "Quietly alive","Nothing more needed","I belong here",
+    "Gentle and honest","This feeling, this one","We made something",
+    "Tender and real","The world falls away","I'm right here",
+    "Messy and beautiful","Slow down with me","This imperfect life",
+    "We see each other","Honest to the end","Exactly as we are",
+  ],
+  latin: [
+    "Baila, baila conmigo","El corazón no miente","Somos uno, uno",
+    "Fuego en la sangre","Esta noche es nuestra","Siente el ritmo",
+    "We dance till dawn","La música nos une","Amor sin fronteras",
+    "El ritmo en el alma","Muévete, muévete","Esta es la vida",
+    "Corazón abierto","Juntos, juntos ya","Sigue bailando",
+    "El sabor es real","Vibra conmigo","La noche es joven",
+    "Suena el tambor","Todo para ti","No te detengas",
+    "Ven y baila ya","Somos el ritmo","Puro corazón",
+    "La salsa no para","Enciende el fuego","Ritmo en los pies",
+    "Algo especial esto","No para el beat","Alma y corazón",
+  ],
+  kpop: [
+    "We shine together","One more time for us","Feel the energy",
+    "This is our moment","We are one now","Shine bright, shine bright",
+    "Together we rise","This feeling is real","We are the future",
+    "Forever and ever","Standing strong together","This is our dream",
+    "We won't stop now","Beautiful and free","Higher we go",
+    "We dance as one","Love is the answer","We are unstoppable",
+    "This is what we are","Forever in our hearts","We light up the dark",
+    "Strong and beautiful","This is the beginning","We keep the faith",
+    "Dream with me now","We are the stars","Together forever",
+    "This is our story","We glow from within","Nothing can dim us",
+  ],
+  gospel: [
+    "Hallelujah, hallelujah","God is good always","We are not alone",
+    "His grace is enough","Worthy, worthy, worthy","We lift our hands",
+    "Glory to the highest","He brought us through","Praise without ceasing",
+    "His mercy endures","We are redeemed","Holy, holy, holy",
+    "The Lord provides","We trust His plan","Blessed and grateful",
+    "He never fails us","Lift every voice","Grace upon grace",
+    "We are chosen","The victory is won","His love never ends",
+    "Shout it out now","Free in His name","Covered by grace",
+    "We stand in faith","His word is true","Praise, praise, praise",
+    "We are His own","Amen, amen","Forever in His arms",
+  ],
+  jazz: [
+    "Blue notes falling","Swing low, swing low","Feel the changes",
+    "Into the groove now","Play it again now","The melody lingers",
+    "We improvise","Smooth and easy now","The changes know",
+    "Late night feeling","Let the music breathe","Bebop and soul",
+    "We scat together","The piano speaks","Soft and blue",
+    "We swing together","All that jazz","The standard remains",
+    "Feel the room breathe","Cool, so cool","The bass walks on",
+    "We play it true","Deep in the groove","Notes in the air",
+    "We find the key","Slow and deliberate","The chord suspends",
+    "We trust the changes","Soulful and free","The night belongs",
+  ],
+  metal: [
+    "We will not break","The fire inside","Rise from the ashes",
+    "We are the storm","Blood, sweat, and steel","Unbreakable, unbreakable",
+    "The beast awakens","We stand our ground","Darkness cannot hold us",
+    "We are the thunder","Fight through the pain","We are still standing",
+    "The riff never dies","Into the void we go","Forged in fire",
+    "Nothing can stop us","We are the resistance","The wall comes down",
+    "We are the fury","Death and rebirth","Louder than war",
+    "We wage war","Iron and blood","The metal calls",
+    "We are eternal","Crush the silence","The horns go up",
+    "We are the heavy","Power through the dark","We never surrender",
+  ],
+  reggae: [
+    "One love, one heart","Jah will provide","We keep moving on",
+    "Rise above it all","Positive vibration","The roots run deep",
+    "We are the people","Babylon can't hold us","We keep the faith",
+    "Natural mystic rising","One people, one love","The music sets us free",
+    "We stand as one","Praise Jah always","Roots and culture",
+    "We shall overcome","The rhythm is truth","Unity forever",
+    "We carry on","Redemption song rising","The bass line speaks",
+    "We are the movement","Love and only love","No more suffering",
+    "We walk in light","The riddim never stops","Together we rise",
+    "Jah rastafari","We are free now","Forward ever onward",
+  ],
+  folk: [
+    "Simple and true now","This old song again","We carry it on",
+    "Home in every note","The tradition lives","Passed down, passed down",
+    "We remember this","An old soul singing","The fire still burns",
+    "We are the keepers","From the earth we come","This song belongs to all",
+    "The old ways remain","We sing together","Roots in every word",
+    "The melody survives","We tend the flame","From the source we drink",
+    "The song remembers","We are the thread","Ancient and new",
+    "The story continues","We hold the line","Voice to voice to voice",
+    "The circle stays whole","We are the living","Old songs made new",
+    "This is the tradition","We give it forward","The music endures",
+  ],
+  punk: [
+    "We won't comply","This is resistance","No more silence",
+    "We take it back","Fight the power now","We are the noise",
+    "No gods no masters","We are awake","Tear it all down",
+    "Revolt and rebuild","We are the people","The system lies",
+    "We see through it","Three chords, the truth","We don't back down",
+    "Loud and unafraid","We are the change","Question everything",
+    "We rise together","No more compromise","We are still here",
+    "Do it yourself","The truth is loud","We are the outcasts",
+    "United we stand","We burn it back","Anarchy of love",
+    "We keep fighting","This is our voice","We were always here",
+  ],
+  phonk: [
+    "Drifting in the dark","Memphis in my blood","Slow burn forever",
+    "The tape plays on","Midnight, midnight","Into the drift",
+    "Heavy and slow","The bass remembers","Four AM feeling",
+    "We ride in silence","The ghost of Memphis","Down and dirty now",
+    "The static speaks","Low and hollow","Drift, drift, drift",
+    "The cassette fades","We are the underground","Slow motion living",
+    "The dark is honest","Roll slow, roll slow","The bass is the truth",
+    "We sink deeper in","Memphis never sleeps","The loop knows",
+    "We move in shadows","Dark and deliberate","The frequency knows",
+    "We are the drift","Into the basement","The tape never ends",
+  ],
+  drill: [
+    "On sight, on sight","From the trenches","We don't play",
+    "All facts no cap","The block don't sleep","We stay strapped mentally",
+    "No lacking ever","This is the code","From the pavement",
+    "We move in silence","The block speaks","Caught lacking never",
+    "We been here","The streets know","No love lost",
+    "We ride for ours","Every day survival","The score don't lie",
+    "We stay up","From nothing built","The system failed us",
+    "We made our own way","No mercy shown","The corners watched",
+    "We are the real","Came up from nothing","Still standing tall",
+    "The city is ours","We don't fold","Built in the dark",
+  ],
+};
+
 
 function buildBridge(rng, genreKey, songUsed) {
   // 60% of bridges: use BRIDGES pool (emotional pivot lines — curated)
@@ -18504,16 +19236,25 @@ function buildDrop(rng, genreKey, songUsed) {
 }
 
 function buildPostChorus(rng, genreKey, songUsed) {
-  // Use PRECHORUS pool for post-chorus - short tension lines work well as post-chorus chants
-  // This avoids competing with the HOOKS pool used by the main chorus
-  const pool = PRECHORUS[genreKey] || PRECHORUS.pop;
-  const short = pool.filter(l => l.split(' ').length <= 8 && !songUsed.has(l));
-  const h = rPick(rng, short.length > 0 ? short : pool);
+  // Use dedicated POST_CHORUS pool — short 2–6 word chant lines designed for repetition
+  // Falls back to PRECHORUS if POST_CHORUS is exhausted
+  const activeUsedLines = _albumModeActive ? _albumUsedLines : _batchUsedLines;
+  const pool = (POST_CHORUS[genreKey] || POST_CHORUS.pop || []);
+  const fresh = pool.filter(l => !songUsed.has(l) && !activeUsedLines.has(l));
+  const src = fresh.length > 0 ? fresh : pool.filter(l => !songUsed.has(l));
+  const h = rPick(rng, src.length > 0 ? src : pool);
   songUsed.add(h);
-  // Fragment the line for post-chorus feel
+  activeUsedLines.add(h);
+  if (_albumModeActive) _albumUsedLines.add(h);
+  // Short chant pattern: full line + echo fragment
   const words = h.split(' ');
-  const half = words.slice(0, Math.ceil(words.length / 2)).join(' ');
-  return [h, half + ' —'];
+  const echo = words.length <= 3 ? h : words.slice(0, Math.ceil(words.length * 0.55)).join(' ');
+  // Pick a second distinct chant line for variety
+  const fresh2 = pool.filter(l => l !== h && !songUsed.has(l));
+  const h2 = fresh2.length > 0 ? rPick(rng, fresh2) : echo + '...';
+  songUsed.add(h2);
+  activeUsedLines.add(h2);
+  return [h, echo, h2, echo];
 }
 
 function buildVamp(rng, genreKey, songUsed) {
@@ -25499,6 +26240,97 @@ function generateAlbum(stylePrompt, albumLength, onProgress) {
   // Also init immediately if already on album tab
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('vAlbum')?.classList.contains('on')) initAlbumTab();
+  });
+})();
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SESSION DEFAULTS — _scPrefs
+// Persists: artistName, label, defaultGenre, defaultLang
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+(function initScPrefs() {
+  const PREFS_KEY = 'sc_prefs_v1';
+
+  function loadPrefs() {
+    try { return JSON.parse(localStorage.getItem(PREFS_KEY) || '{}'); }
+    catch(e) { return {}; }
+  }
+  function savePrefs(p) {
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch(e) {}
+  }
+
+  // Expose globally so generation code can read it
+  window._scPrefs = loadPrefs();
+
+  function applyPrefsToUI(p) {
+    const a = document.getElementById('scPrefArtist');
+    const l = document.getElementById('scPrefLabel');
+    const g = document.getElementById('scPrefGenre');
+    const lang = document.getElementById('scPrefLang');
+    if (a) a.value = p.artistName || '';
+    if (l) l.value = p.label || '';
+    if (g) g.value = p.defaultGenre || '';
+    if (lang) lang.value = p.defaultLang || '';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    applyPrefsToUI(window._scPrefs);
+
+    // Toggle open/close
+    const toggle = document.getElementById('scPrefsToggle');
+    const body   = document.getElementById('scPrefsBody');
+    const arrow  = document.getElementById('scPrefsArrow');
+    if (toggle && body) {
+      toggle.addEventListener('click', function() {
+        const open = body.style.display !== 'none';
+        body.style.display = open ? 'none' : 'block';
+        if (arrow) arrow.textContent = open ? '▼' : '▲';
+      });
+    }
+
+    // Save
+    const saveBtn = document.getElementById('scPrefsSave');
+    const savedMsg = document.getElementById('scPrefsSavedMsg');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function() {
+        const p = {
+          artistName:   (document.getElementById('scPrefArtist')?.value || '').trim(),
+          label:        (document.getElementById('scPrefLabel')?.value || '').trim(),
+          defaultGenre: document.getElementById('scPrefGenre')?.value || '',
+          defaultLang:  document.getElementById('scPrefLang')?.value || '',
+        };
+        savePrefs(p);
+        window._scPrefs = p;
+        // Apply default lang to language selector if user hasn't manually changed it
+        if (p.defaultLang) {
+          const langSel = document.getElementById('langSelect');
+          if (langSel && !langSel._userChanged) langSel.value = p.defaultLang;
+        }
+        if (savedMsg) {
+          savedMsg.style.display = 'inline';
+          setTimeout(() => { savedMsg.style.display = 'none'; }, 2000);
+        }
+      });
+    }
+
+    // Clear
+    const clearBtn = document.getElementById('scPrefsClear');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        savePrefs({});
+        window._scPrefs = {};
+        applyPrefsToUI({});
+      });
+    }
+
+    // Mark language selector as user-changed if touched
+    const langSel = document.getElementById('langSelect');
+    if (langSel) {
+      langSel.addEventListener('change', function() { this._userChanged = true; });
+      // Apply saved default lang on load if not yet changed
+      if (window._scPrefs.defaultLang && !langSel._userChanged) {
+        langSel.value = window._scPrefs.defaultLang;
+      }
+    }
   });
 })();
 
