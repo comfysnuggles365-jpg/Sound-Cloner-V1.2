@@ -2191,8 +2191,8 @@ header{animation:bootUp .4s var(--expo) .05s both}
     <button data-v="mixer"><span class="nav-ico">🎛️</span><span data-i18n="nav_mixer">Prompt Mixer</span></button>
     <button data-v="evolver"><span class="nav-ico">🧬</span><span data-i18n="nav_evolver">Prompt Evolver</span></button>
     <button data-v="voiceLab"><span class="nav-ico">🎭</span><span data-i18n="nav_voicelab">Voice Lab</span></button>
-    <button data-v="batch"><span class="nav-ico">⚡</span><span data-i18n="nav_batch">Batch Generator</span></button>
-    <button data-v="album"><span class="nav-ico">💿</span><span>Album Mode</span></button>
+    <button data-v="batch" style="flex-direction:column;align-items:center"><span class="nav-ico">⚡</span><span data-i18n="nav_batch">Batch Generator</span><span style="font-size:9px;color:#FFD600;font-weight:700;line-height:1.2;margin-top:3px;white-space:nowrap">🚧 Under Construction</span></button>
+    <button data-v="album" style="flex-direction:column;align-items:center"><span class="nav-ico">💿</span><span>Album Mode</span><span style="font-size:9px;color:#FFD600;font-weight:700;line-height:1.2;margin-top:3px;white-space:nowrap">🚧 Under Construction</span></button>
     <button data-v="analyse"><span class="nav-ico">🔬</span><span data-i18n="nav_analyse">Song Analyzer</span></button>
     <button data-v="spotify"><span class="nav-ico">🎵</span><span data-i18n="nav_spotify">Music Analyzer</span></button>
     <button data-v="master"><span class="nav-ico">🎚️</span><span data-i18n="nav_master">Audio Master</span></button>
@@ -2661,6 +2661,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
         </div>
 
         <button class="gen-btn" id="genBtn" data-i18n="batch_generate">⚡ Generate Batch</button>
+        <div style="text-align:center;margin-top:8px;font-size:13px;font-weight:700;color:#FFD600;letter-spacing:0.04em;text-shadow:0 0 8px rgba(255,214,0,0.4)">🚧 Under Construction 🚧</div>
       </div>
       <div class="batch-preview">
         <div class="bp-header"><div class="bp-count"><span class="bp-num">0</span><span class="bp-of" data-i18n="batch_songs_of">/ 5 songs</span></div><div class="bp-status" data-i18n="batch_status_waiting">Waiting for prompt...</div></div>
@@ -2702,6 +2703,7 @@ header{animation:bootUp .4s var(--expo) .05s both}
         </div>
 
         <button class="bp-gen-btn" id="albumGenBtn" style="width:100%;margin-top:4px">⚡ Generate Album</button>
+        <div style="text-align:center;margin-top:8px;font-size:13px;font-weight:700;color:#FFD600;letter-spacing:0.04em;text-shadow:0 0 8px rgba(255,214,0,0.4)">🚧 Under Construction 🚧</div>
       </div>
 
       <div class="batch-results" style="flex:1;min-width:0">
@@ -23188,6 +23190,49 @@ async function getTrackInfo(url, source) {
   }
 }
 
+// Gemini fetch with model fallback: tries 2.5-flash first, falls back to 2.0-flash on 429/empty
+async function geminiPost(key, body) {
+  const models = ['gemini-2.5-flash', 'gemini-2.0-flash'];
+  let lastErr;
+  for (const model of models) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+    let resp;
+    try {
+      resp = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    } catch(e) { lastErr = e; continue; }
+
+    if (resp.status === 429) {
+      // Rate limited — try next model
+      lastErr = new Error('Rate limited (429). Your free-tier API key has hit the per-minute request cap. Wait ~60 seconds and try again, or try fewer songs in a row.');
+      continue;
+    }
+    if (!resp.ok) {
+      const errText = await resp.text();
+      throw new Error(`Gemini API error ${resp.status}: ${errText.slice(0, 200)}`);
+    }
+    const data = await resp.json();
+    const candidate = data?.candidates?.[0];
+    const finishReason = candidate?.finishReason;
+    const parts = candidate?.content?.parts || [];
+    let raw = '';
+    for (const p of parts) { if (p.text) raw += p.text + '\n'; }
+
+    if (!raw) {
+      if (finishReason === 'SAFETY') throw new Error('Gemini blocked this content for safety reasons. Try a different file or track.');
+      if (finishReason === 'RECITATION') throw new Error('Gemini flagged this as copyrighted content (RECITATION). Try a different track.');
+      if (data?.promptFeedback?.blockReason) throw new Error('Gemini blocked the prompt: ' + data.promptFeedback.blockReason);
+      if (!data?.candidates?.length) {
+        // No candidates at all — rate limit or quota, try fallback model
+        lastErr = new Error('Gemini returned no response. Your free-tier per-minute limit is likely exhausted. Wait ~60 seconds and try again.');
+        continue;
+      }
+      throw new Error('Gemini returned empty content (finishReason: ' + (finishReason||'unknown') + ').');
+    }
+    return raw; // success
+  }
+  throw lastErr || new Error('All Gemini models failed.');
+}
+
 async function geminiAnalyze(url, source) {
   const key = localStorage.getItem('gemini_key');
   if (!key) {
@@ -23207,26 +23252,11 @@ The artist name "${info.artist}" is confirmed from the platform metadata — use
 Based on your knowledge of this EXACT song by this EXACT artist, provide a detailed musical analysis.
 Do NOT guess or substitute a different artist. The "artist" field in your JSON MUST be "${info.artist}".`;
 
-  const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: userMsg }] }],
-      systemInstruction: { parts: [{ text: ANALYZE_PROMPT }] },
-      generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
-    })
+  const raw = await geminiPost(key, {
+    contents: [{ parts: [{ text: userMsg }] }],
+    systemInstruction: { parts: [{ text: ANALYZE_PROMPT }] },
+    generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
   });
-  if (!resp.ok) {
-    const err = await resp.text();
-    throw new Error(`Gemini API error: ${resp.status} - ${err.slice(0, 200)}`);
-  }
-  const data = await resp.json();
-  const parts = data?.candidates?.[0]?.content?.parts || [];
-  let raw = '';
-  for (const p of parts) {
-    if (p.text) raw += p.text + '\n';
-  }
-  if (!raw) throw new Error('Gemini returned empty response');
   // Strip markdown fences and find JSON
   let cleaned = raw.replace(/```json\s*/g, '').replace(/```\s*/g, '');
   // Find the outermost { ... } block
@@ -23735,30 +23765,15 @@ Respond ONLY in this exact JSON format, no other text:
 
 Be accurate to what you actually hear. Estimate BPM, key, and duration from the audio. The voice and style prompts should be ready to paste directly into Suno AI.`;
 
-      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { inlineData: { mimeType: mime, data: base64 } },
-              { text: SONG_ANALYSIS_PROMPT }
-            ]
-          }],
-          generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
-        })
+      const raw = await geminiPost(key, {
+        contents: [{
+          parts: [
+            { inlineData: { mimeType: mime, data: base64 } },
+            { text: SONG_ANALYSIS_PROMPT }
+          ]
+        }],
+        generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
       });
-
-      if (!resp.ok) {
-        const errText = await resp.text();
-        throw new Error(`Gemini API error ${resp.status}: ${errText.slice(0, 200)}`);
-      }
-
-      const data = await resp.json();
-      const parts = data?.candidates?.[0]?.content?.parts || [];
-      let raw = '';
-      for (const p of parts) { if (p.text) raw += p.text + '\n'; }
-      if (!raw) throw new Error('Gemini returned empty response');
 
       // Parse JSON from response
       let cleaned = raw.replace(/```json\s*/g, '').replace(/```\s*/g, '');
